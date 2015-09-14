@@ -6,6 +6,7 @@ mysqli_close($connect);
 
 $connect = mysqli_connect("localhost","root","","AA") or die(mysqli_error($connect));
 
+
 $query  = "CREATE TABLE Usuario(
 			id varchar(7) NOT NULL,
 			nombre varchar(40) NOT NULL,
