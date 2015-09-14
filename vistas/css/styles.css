@@ -131,6 +131,10 @@ html, body{
 .horario label{
 	margin-bottom: 0;
 }
+.btn-add{
+	height: 45px;
+}
+
 footer{
 	background-color: #FFFFFF;
 	border-top: 4px solid #e74c3c;
