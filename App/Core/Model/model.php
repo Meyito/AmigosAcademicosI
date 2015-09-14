@@ -6,15 +6,15 @@ class Model{
 
 	public function connect(){
 		//cambiar parametros de conexión de acuerdo con los parametros locales de cada uno
-		$this->$connection = mysqli_connect("localhost","root","","AA") or die(mysqli_error($connection));
+		$this->connection = mysqli_connect("localhost","root","","AA") or die(mysqli_error($connection));
 	}
 
 	public function query($sql){
-		return mysqli_query($this->$connection,$sql);
+		return mysqli_query($this->connection,$sql);
 	}
 
 	public function terminate(){
-		mysqli_close($this->$connection);
+		mysqli_close($this->connection);
 	}
 
 }

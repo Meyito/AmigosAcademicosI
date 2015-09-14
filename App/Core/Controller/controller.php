@@ -1,6 +1,6 @@
 <?php
 
-	include_once "Core/Model/userBD.php";
+	include_once "Core/Model/userDB.php";
 
 	class Controller{
 
@@ -41,18 +41,19 @@
 		}
 
 		public function login($name, $password){
-			$pass=$this->encryptPassword($password);
+			//$pass=$this->encryptPassword($password);
 
-			$userModel=new UserBD();
-			$data=$userModel->login($name, $pass);
+			$userModel=new UserDB();
+			//$data=$userModel->login($name, $pass);
+			$data=$userModel->login($name, $password);
 
-			print_r($data);
+			//print_r($data);
 			if($data!=false){
 				//cargar los datos de sesion y de acuerdo al usuario cargar la vista asociada.
-
+				echo $data['nombre'];
 			}else{
 				//ENVIAR ALERTA DE ERROR
-				$this->index();
+				echo "Usuario no registrado";
 			}
 
 		}

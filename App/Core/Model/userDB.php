@@ -11,10 +11,11 @@ class UserDB extends Model{
 		$cont = 0;
 		$user = "";
 		while($row = mysqli_fetch_array($query)){
-			cont++;
+			$cont++;
 			$user = $row;
 		}
-		if(cont==1){
+		
+		if($cont==1){
 			return $user;
 		}
 		else{
