@@ -1,7 +1,6 @@
 <?php
 
-	//include_once "Core/Model/...";
-
+	include_once "Core/Model/userBD.php";
 
 	class Controller{
 
@@ -39,6 +38,26 @@
 		*/
 		public function renderView($ubicacion, $cadenaReemplazar, $reemplazo){
 			return str_replace($cadenaReemplazar, $reemplazo, $ubicacion);
+		}
+
+		public function login($name, $password){
+			$pass=$this->encryptPassword($password);
+
+			$userModel=new UserBD();
+			$data=$userModel->login($name, $pass);
+
+			if($data!=false){
+				//cargar los datos de sesion y de acuerdo al usuario cargar la vista asociada.
+
+			}else{
+				//ENVIAR ALERTA DE ERROR
+				$this->index();
+			}
+
+		}
+
+		public function encryptPassword($pass){
+			return sha1($pass);
 		}
 	}
 

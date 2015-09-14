@@ -36,8 +36,11 @@ html, body{
 .login{
 	margin-top: 106px;
 }
+.signup{
+	margin-top: 30px;
+}
 .input-group{
-	margin-bottom: 25px;
+	margin-bottom: 15px;
 }
 .submit{
 	background-color: #e74c3c;
@@ -53,7 +56,7 @@ html, body{
 	width: 100%;
 }
 .input-group-addon, .form-control{
-	height: 50px;
+	height: 45px;
 }
 .access{
 	color: #666;
@@ -120,6 +123,7 @@ html, body{
 	margin: 0;
 	padding: 0!important;
 	cursor: pointer;
+	width: 16.6%;
 }
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
 	vertical-align: inherit;
@@ -127,6 +131,10 @@ html, body{
 .horario label{
 	margin-bottom: 0;
 }
+.btn-add{
+	height: 45px;
+}
+
 footer{
 	background-color: #FFFFFF;
 	border-top: 4px solid #e74c3c;

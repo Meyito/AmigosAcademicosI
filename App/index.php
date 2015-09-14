@@ -6,6 +6,10 @@
 
 	$control=new controller();
 
-	$control->index();
+	if(isset($_POST["signIn"])){
+		$control->login($_POST["codigo"], $_POST["password"]);
+	}else{
+		$control->index();
+	}
 
 ?>
