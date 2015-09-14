@@ -3,6 +3,7 @@
 include_once "App/Core/Model/model.php";
 
 class UserDB extends Model{
+	
 	public function login($id,$password){
 		$this->connect();
 		$query = $this->query("SELECT * FROM Usuario WHERE id = '".$id."' AND contrasenia = '".$password."' ");
@@ -21,6 +22,7 @@ class UserDB extends Model{
 		}
 
 	}
+	
 }
 
 ?>
