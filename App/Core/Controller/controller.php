@@ -46,6 +46,7 @@
 			$userModel=new UserBD();
 			$data=$userModel->login($name, $pass);
 
+			print_r($data);
 			if($data!=false){
 				//cargar los datos de sesion y de acuerdo al usuario cargar la vista asociada.
 

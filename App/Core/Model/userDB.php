@@ -1,6 +1,6 @@
 <?php
 
-include_once "App/Core/Model/model.php";
+include_once "Core/Model/model.php";
 
 class UserDB extends Model{
 	
