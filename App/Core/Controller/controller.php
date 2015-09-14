@@ -50,16 +50,33 @@
 			//print_r($data);
 			if($data!=false){
 				//cargar los datos de sesion y de acuerdo al usuario cargar la vista asociada.
-				echo $data['nombre'];
+				$this->setSession($data);
+				if($data["tipo"]==1){
+					$_SESSION["tipo"]="Administrador";
+					header('Location: index.php');
+					//cargar vista Admin;
+				}else if($data["tipo"]==2){
+					$_SESSION["tipo"]="AmigoA";
+					//cargar vista AA;
+				}else{
+					$_SESSION["tipo"]="Estudiante";
+					//cargar vista Estudiante;
+				}
 			}else{
 				//ENVIAR ALERTA DE ERROR
-				echo "Usuario no registrado";
+				$this->index();
 			}
 
 		}
 
 		public function encryptPassword($pass){
 			return sha1($pass);
+		}
+
+		public function setSession($data){
+			$_SESSION["codigo"]=$data["id"];
+			$_SESSION["nombre"]=$data["nombre"];
+			$_SESSION["avatar"]=$data["avatar"];
 		}
 	}
 
