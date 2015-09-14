@@ -12,7 +12,7 @@ $query  = "CREATE TABLE Usuario(
 			nombre varchar(40) NOT NULL,
 			contrasenia varchar(40) NOT NULL,
 			correoElectronico varchar(40),
-			semestre int NOT NULL,
+			semestre int,
 			tipo int NOT NULL,
 			avatar varchar(100),
 			PRIMARY KEY(id)
