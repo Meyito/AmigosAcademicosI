@@ -98,6 +98,35 @@ html, body{
 .button-sidebar, .button-sidebar:hover, .button-sidebar:active{
 	color: #FFFFFF;
 }
+.academic .input-group{
+	margin-bottom: 20px;
+}
+.academic .input-group-addon, .academic .form-control {
+    height: 35px;
+}
+.hour input[type=checkbox]{
+	display: none;
+}
+.hour input[type=checkbox] + label {
+	height: 30px;
+	transition: all .3s ease;
+	width: 100%;
+} 
+.hour input[type=checkbox]:checked + label {
+  	background-color: #e74c3c;
+} 
+
+.horario td, .hour label{
+	margin: 0;
+	padding: 0!important;
+	cursor: pointer;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+	vertical-align: inherit;
+}
+.horario label{
+	margin-bottom: 0;
+}
 footer{
 	background-color: #FFFFFF;
 	border-top: 4px solid #e74c3c;
@@ -127,5 +156,13 @@ footer p{
 	.item-sidebar{
 		padding-top: 13px;
 		padding-bottom: 13px;
+	}
+}
+@media (max-width: 767px) {
+	.sidebar{
+		margin-bottom: 0;
+	}
+	.navbar h1{
+		font-size: 22px;
 	}
 }
