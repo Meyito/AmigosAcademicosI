@@ -1,0 +1,168 @@
+/*Fuente Roboto*/
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v15/CWB0XYA8bzo0kSThX0UTuA.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+*{
+	font-family: 'Roboto', sans-serif;
+}
+html, body{
+	height: 100%;
+}
+.h1, .h2, .h3, h1, h2, h3 {
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+.navbar{
+	background-color: #FFFFFF;
+	border-bottom: 4px solid #e74c3c;
+}
+.navbar-brand{	
+	height: 70px;
+	padding: 7px;
+}
+.front{
+	background-color: #eeeeee;
+	margin-bottom: -90px;
+	min-height: 100%;
+	padding-bottom: 100px;
+	padding-top: 74px;
+}
+.login{
+	margin-top: 106px;
+}
+.input-group{
+	margin-bottom: 25px;
+}
+.submit{
+	background-color: #e74c3c;
+	border-bottom: 5px solid #d14233;
+	border-left: none;
+	border-radius: 10px;
+	border-right: none;
+	border-top: none;
+	color: #FFFFFF;
+	font-size: 18px;
+	height: 50px;
+	margin-top: 30px;
+	width: 100%;
+}
+.input-group-addon, .form-control{
+	height: 50px;
+}
+.access{
+	color: #666;
+}
+.img-responsive{
+	display: inline-block;
+}
+.sidebar{
+	background-color: #e74c3c;
+	color: #FFFFFF;
+	margin-bottom: -90px;
+	min-height: 100%;
+	overflow: scroll;
+	padding-top: 15px;
+}
+.sidebar .row{
+	border-bottom: 1px solid #c0392b;
+}
+.avatar{
+	margin-top: 5px;
+	margin-bottom: 15px;
+}
+.button-help-sidebar span{
+	border-radius: 50%;
+	font-size: 20px;
+	margin-bottom: 3px;
+	padding: 10px;
+	transition: all .4s ease;
+}
+.button-help-sidebar span:hover{
+	background-color: #c0392b;
+}
+
+.item-sidebar{
+	padding-top: 20px;
+	padding-bottom: 20px;
+	transition: all .3s ease;
+}
+.item-sidebar:hover{
+	background-color: #c0392b;
+}
+.button-sidebar, .button-sidebar:hover, .button-sidebar:active{
+	color: #FFFFFF;
+}
+.academic .input-group{
+	margin-bottom: 20px;
+}
+.academic .input-group-addon, .academic .form-control {
+    height: 35px;
+}
+.hour input[type=checkbox]{
+	display: none;
+}
+.hour input[type=checkbox] + label {
+	height: 30px;
+	transition: all .3s ease;
+	width: 100%;
+} 
+.hour input[type=checkbox]:checked + label {
+  	background-color: #e74c3c;
+} 
+
+.horario td, .hour label{
+	margin: 0;
+	padding: 0!important;
+	cursor: pointer;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+	vertical-align: inherit;
+}
+.horario label{
+	margin-bottom: 0;
+}
+footer{
+	background-color: #FFFFFF;
+	border-top: 4px solid #e74c3c;
+	bottom: 0;
+	height: 90px;
+	padding-top: 10px;
+	z-index: 10;
+}
+footer p{
+	margin: 0 0 5px;
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+	.sidebar h4{
+		font-size: 16px;
+	}
+	.sidebar h5{
+		font-size: 12px;
+	}
+	.item-sidebar{
+		padding-top: 16px;
+		padding-bottom: 16px;
+	}
+	
+}
+@media (min-width: 768px) and (max-width: 991px) {
+	.item-sidebar{
+		padding-top: 13px;
+		padding-bottom: 13px;
+	}
+}
+@media (max-width: 767px) {
+	.sidebar{
+		margin-bottom: 0;
+	}
+	.navbar h1{
+		font-size: 22px;
+	}
+}
