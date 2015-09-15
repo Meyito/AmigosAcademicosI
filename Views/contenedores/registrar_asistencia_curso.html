@@ -1,0 +1,25 @@
+<!--Contenedor de registro de asistencia a cursos
+
+  Editar manualmente
+  [[ARCHIVO_PHP]]     -> Colocar el link que procesa el registro
+-->
+
+          <div class="col-lg-10 col-md-9 col-sm-9 text-center">
+            <h3>NOMBRE DEL CURSO REEMPLAZAR</h3>
+            <p>(Los estudiantes deben estar previamente registrados en la plataforma)</p>
+            <div class="row">
+              <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                <form action="[[ARCHIVO_PHP]]" method="post">
+                  <div id="campos">
+                    <div class="input-group">
+                      <input name="codigo[]" type="text" class="form-control" placeholder="Código">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default btn-add" type="button" onclick="agregarCampo()">&nbsp;+&nbsp;</button>
+                      </span>
+                    </div>
+                  </div>
+                  <input type="submit" class="submit" value="Registrar Asistencia">
+                </form>  
+              </div>
+            </div>
+          </div>
