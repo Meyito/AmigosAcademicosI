@@ -1,4 +1,6 @@
 /*Función grafica: Ajusta el sidebar al tamaño de la pantalla*/
+
+var cont = 1;
 function sidebarAdjust(){
 	a = document.getElementById("front");
 	b = document.getElementById("sidebar");
@@ -17,7 +19,110 @@ function agregarCampo(){
 	sidebarAdjust();
 }
 
+function agregarCampoAsesoria(){
+	text = '<div class="input-group"><input name="codigo[]" type="text" class="form-control" placeholder="Código"><span class="input-group-btn"><button class="btn btn-default btn-add" type="button" onclick="agregarTab(REPLACECONT)"><span class="glyphicon glyphicon-ok"></span></button><button class="btn btn-default btn-add" type="button" onclick="agregarCampoAsesoria();agregarTab(REPLACECONT)"><span class="glyphicon glyphicon-plus"></span></button></span></div>';
+	text = text.replace("REPLACECONT", cont);
+	text = text.replace("REPLACECONT", cont);
+	campos = document.getElementById("codigos-asesoria");
+	div = document.createElement("div");
+	div.innerHTML = text;
+	cont++;
+	div.className = "col-md-6";
+	campos.appendChild(div);
+	sidebarAdjust();
+}
+
+function agregarTab(a){
+	codigos = document.getElementsByName("codigo[]");
+	tabs = document.getElementById("tabs");
+	tabContent = document.getElementById("tab-contents");
+	tabActual = document.getElementById("link"+a);
+	li = '<a href="#REPLACEC1" aria-controls="REPLACEC2" role="tab" data-toggle="tab" id="REPLACEC3">REPLACECODIGO</a>';
+	pane = '<textarea name="comentario[]" id="comentarioREPLACEC1" class="form-control" rows="3"  placeholder="Ingrese un comentario"></textarea>';
+	if(tabActual != null){
+		document.getElementById("link"+a).innerHTML = codigos[a].value;
+	}else{
+		if(codigos[a]!=""){
+			li = li.replace("REPLACEC1", a);
+			li = li.replace("REPLACEC2", a);
+			li = li.replace("REPLACEC3", "link"+a);
+			li = li.replace("REPLACECODIGO", codigos[a].value);
+			pane = pane.replace("REPLACEC1",a);
+			listed = document.createElement("li");
+			listed.innerHTML = li;
+			listed.setAttribute("role","presentation");
+			tabs.appendChild(listed);
+			tabPane = document.createElement("div");
+			tabPane.setAttribute("role","tabpanel");
+			tabPane.className = "tab-pane";
+			tabPane.id = a;
+			tabPane.innerHTML = pane;
+			tabContent.appendChild(tabPane);
+		}
+	}
+	sidebarAdjust();
+	cambiarTipoComentario();
+}
+
+function cambiarTipoComentario(){
+	radio = document.getElementsByName("tipoComentario");
+	tabs = document.getElementById("tabs").childNodes;
+	content = document.getElementById("tab-contents").childNodes;
+	if(radio[0].checked){
+		for(i=1;i<tabs.length;i++){
+			if(tabs[i].nodeName=="LI" && tabs[i].className.search("disabled")!=-1){
+				tabs[i].className = tabs[i].className.replace("disabled", "");
+			}
+		}
+		for(i=1;i<content.length;i++){
+			if(content[i].nodeName=="DIV"){
+				aux = content[i].childNodes;
+				for(j=0;j<aux.length;j++){
+					if(aux[j].nodeName=="TEXTAREA"){
+						aux[j].disabled = false;
+					}
+				}
+			}
+		}
+	}else{
+		for(i=1;i<tabs.length;i++){
+			if(tabs[i].nodeName=="LI" && tabs[i].className.search("disabled")==-1){
+				tabs[i].className = tabs[i].className+" disabled";
+			}
+		}
+		for(i=1;i<content.length;i++){
+			if(content[i].nodeName=="DIV" && content[i].id!="0"){
+				aux = content[i].childNodes;
+				for(j=0;j<aux.length;j++){
+					if(aux[j].nodeName=="TEXTAREA"){
+						aux[j].disabled = true;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+function copiarTextArea(){
+	original = document.getElementById("comentario0");
+	if(radio[1].checked){
+		for(i=1;i<content.length;i++){
+			if(content[i].nodeName=="DIV" && content[i].id!="0"){
+				aux = content[i].childNodes;
+				for(j=0;j<aux.length;j++){
+					if(aux[j].nodeName=="TEXTAREA"){
+						aux[j].value = original.value;
+					}
+				}
+			}
+		}
+	}
+}
+
 
 
 window.addEventListener("resize", sidebarAdjust, false);
-
+document.getElementById("tipoComentario1").addEventListener("click", cambiarTipoComentario, false);
+document.getElementById("tipoComentario2").addEventListener("click", cambiarTipoComentario, false);
+document.getElementById("0").addEventListener("keyup", copiarTextArea, false);
