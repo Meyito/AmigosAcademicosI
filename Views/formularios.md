@@ -17,3 +17,12 @@ $_POST["horario"] 		-> ARRAY con valores numericos de dos digitos, el primero in
 El formulario de registrar_asistencia_curso.html retorna por metodo post:  
 
 $_POST["codigo"] 		-> ARRAY con el o los códigos de los asistentes.  
+
+El formulario de registrar_curso.html retorna por metodo post:  
+
+$_POST["materia"] 		-> Materia del curso
+$_POST["fecha"] 		-> Fecha del curso
+$_POST["hora"] 			-> Hora del curso
+$_POST["amigo"] 		-> Amigo académico a cargo
+$_POST["tema"] 			-> Tema del curso
+$_POST["descripcion"] 	-> Descripción del curso

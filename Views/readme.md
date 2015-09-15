@@ -10,4 +10,7 @@ Cada archivo contiene comentariado que debe incluirse en cada palabra, y si es c
 [[PALABRA]] El contenido marcado entre corchetes debe ser reemplazado manualmente en la plantilla.
 
 
+IMPORTANTE: El inicio amigo academico, de momento se usará tambien como inicio de admin.
+
+
 
