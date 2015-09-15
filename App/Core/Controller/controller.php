@@ -78,6 +78,14 @@
 			$_SESSION["nombre"]=$data["nombre"];
 			$_SESSION["avatar"]=$data["avatar"];
 		}
+
+		public function logout(){
+
+		}
+
+		public function updateProfile(){
+			
+		}
 	}
 
 ?>
