@@ -1,0 +1,61 @@
+<!--Plantilla para las notificaciones de asesorias por calificar
+
+
+  Editar manualmente:
+  [[ARCHIVO_PHP]] 			-> Archivo que procesa el formulario
+
+-->
+
+                <div class="modal fade" id="notificacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+								  <div class="modal-dialog" role="document">
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								        <h4 class="modal-title" id="myModalLabel">Calificar asesoria</h4>
+								      </div>
+								      <form action="[[ARCHIVO_PHP]]" method="POST">
+								        <div class="modal-body">
+								          <input type="hidden" name="asesoria" id="asesoria" value="">
+								          <div class="text-center">
+								            <div class="star checkbox-inline">
+								              <input type="checkbox" name="calificacion[]" class="star-checkbox" value="1" id="star-1">
+								              <label onclick="ajustarCalificacion(1)">
+								                <span class="glyphicon glyphicon-star"></span>
+								              </label>
+								            </div>
+								            <div class="star checkbox-inline">
+								              <input type="checkbox" name="calificacion[]" class="star-checkbox" value="2" id="star-2">
+								              <label onclick="ajustarCalificacion(2)">
+								                <span class="glyphicon glyphicon-star"></span>
+								              </label>
+								            </div>
+								            <div class="star checkbox-inline">
+								              <input type="checkbox" name="calificacion[]" class="star-checkbox" value="3" id="star-3">
+								              <label onclick="ajustarCalificacion(3)">
+								                <span class="glyphicon glyphicon-star"></span>
+								              </label>
+								            </div>
+								            <div class="star checkbox-inline">
+								              <input type="checkbox" name="calificacion[]" class="star-checkbox" value="4" id="star-4">
+								              <label onclick="ajustarCalificacion(4)">
+								                <span class="glyphicon glyphicon-star"></span>
+								              </label>
+								            </div>
+								            <div class="star checkbox-inline">
+								              <input type="checkbox" name="calificacion[]" class="star-checkbox" value="5" id="star-5">
+								              <label onclick="ajustarCalificacion(5)">
+								                <span class="glyphicon glyphicon-star"></span>
+								              </label>
+								            </div>
+								            <br>
+								            <textarea name="comentarios" id="comentarios" class="form-control" placeholder="Comentarios" rows="3"></textarea>
+								          </div>
+								          
+								        </div>
+								        <div class="modal-footer">
+								          <input type="button" class="btn btn-danger" value="Guardar">
+								        </div>
+								      </form>
+								    </div>
+								  </div>
+								</div>

@@ -1,4 +1,4 @@
-El formulario de contenido_asistencia_asesoria.html retorna por metodo post:  
+El formulario de registrar_asistencia_asesoria.html retorna por metodo post:  
 
 $_POST["materia"]  		-> Nombre de la materia  
 $_POST["tema"] 			-> Nombre del tema  
@@ -14,4 +14,6 @@ $_POST["password2"] 	-> Contraseña del estudiante para verificar que este bien 
 $_POST["horario"] 		-> ARRAY con valores numericos de dos digitos, el primero indicando dia de la semana, y el segundo indicando hora.  
 
 
+El formulario de registrar_asistencia_curso.html retorna por metodo post:  
 
+$_POST["codigo"] 		-> ARRAY con el o los códigos de los asistentes.  
