@@ -86,82 +86,132 @@
                 </div>
               </a>
           </div>
-
+      
+  
           <div class="col-lg-10 col-md-9 col-sm-9 text-center">
-            <h3>Registrar Asesoria</h3>
-            <form action="" method="">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="input-group">
-                    <span class="input-group-addon" id="semestre">
-                      <span class="glyphicon glyphicon-education" aria-hidden="true"></span>
-                    </span>
-                    <input type="text" name="materia" class="form-control" placeholder="Materia" aria-describedby="materia" required>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="input-group">
-                    <span class="input-group-addon" id="semestre">
-                      <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
-                    </span>
-                    <input type="text" name="tema" class="form-control" placeholder="tema" aria-describedby="tema" required>
-                  </div>
-                </div>
-                <div id="codigos-asesoria">
-                  <h4 class="text-center">Códigos de los estudiantes</h4>
-                  <div class="col-md-6">
-                    <div class="input-group">
-                      <input name="codigo[]" type="text" class="form-control" placeholder="Código">
-                      <span class="input-group-btn">
-                        <button class="btn btn-default btn-add" type="button" onclick="agregarTab(0)">
-                          <span class="glyphicon glyphicon-ok"></span>
-                        </button>
-                        <button class="btn btn-default btn-add" type="button" onclick="agregarCampoAsesoria();agregarTab(0)">
-                          <span class="glyphicon glyphicon-plus"></span>
-                        </button>
-                      </span>
-                    </div>
-                  </div>
-                </div> 
-              </div>
 
-              <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                  <div class="radio">
-                    <label>
-                      <input type="radio" name="tipoComentario" id="tipoComentario1" value="1" checked>
-                      Añadir comentarios independientes por cada estudiante.
-                    </label>
-                  </div>
-                  <div class="radio">
-                    <label>
-                      <input type="radio" name="tipoComentario" id="tipoComentario2" value="2">
-                      Añadir el mismo comentario para todos los estudiantes.
-                    </label>
-                  </div>
-                  <ul class="nav nav-tabs nav-justified" role="tablist" id="tabs">
-                    <li role="presentation" class="active"><a id="link0" href="#0" aria-controls="0" role="tab" data-toggle="tab">Comentarios</a></li>
-                  </ul>
+            <div class="col-sm-10 col-sm-offset-1">
+              <div class="row space">
+                <h3>Horario</h3>
+                <table class="table table-bordered table-striped horario-admin white table-hover">
+                  <tr class="head-table">
+                    <th>Hora</th>
+                    <th>Lunes</th>
+                    <th>Martes</th>
+                    <th>Miercoles</th>
+                    <th>Jueves</th>
+                    <th>Viernes</th>
+                  </tr>
+                  <tr>
+                    <td>2:00 - 3:00 PM</td>
+                    <td>Denis Gonzales - Andres Jerez</td>
+                    <td>Denis Gonzales - Andres Jerez</td>
+                    <td>Denis Gonzales - Andres Jerez</td>
+                    <td>Arturo Saavedra - Andres Jerez</td>
+                    <td>Arturo Saavedra - Andres Jerez</td>
+                  </tr>
+                  <tr>
+                    <td>3:00 - 4:00 PM</td>
+                    <td>Yurley Rojas - Denis Gonzales</td>
+                    <td>Yurley Rojas - Andres Jerez</td>
+                    <td>Yurley Rojas - Arturo Saavedra</td>
+                    <td>Denis Gonzales - Arturo Saavedra</td>
+                    <td>Denis Gonzales - Arturo Saavedra</td>
+                  </tr>
+                  <tr>
+                    <td>4:00 - 5:00 PM</td>
+                    <td>Yurley Rojas - Andres Jerez</td>
+                    <td>Yurley Rojas - Denis Gonzales</td>
+                    <td>Denis Gonzales - Yurley Rojas</td>
+                    <td>Andres Jerez - Yurley Rojas</td>
+                    <td>Andres Jerez - Yurley Rojas</td>
+                  </tr>
+                  <tr>
+                    <td>5:00 - 6:00 PM</td>
+                    <td>Andres Jerez - Arturo Saavedra</td>
+                    <td>Andres Jerez - Denis Gonzales</td>
+                    <td>Andres Jerez - Arturo Saavedra</td>
+                    <td>Arturo Saavedra - Yurley Rojas</td>
+                    <td>Arturo Saavedra - Yurley Rojas</td>
+                  </tr>
+                  <tr>
+                    <td>6:00 - 7:00 PM</td>
+                    <td>Melissa Delgado - Yurley Rojas</td>
+                    <td>Melissa Delgado - Yurley Rojas</td>
+                    <td>Melissa Delgado - Arturo Saavedra</td>
+                    <td>Melissa Delgado - Arturo Saavedra</td>
+                    <td>Melissa Delgado - Arturo Saavedra</td>
+                  </tr>
+                </table>
 
-                  <div class="tab-content" id="tab-contents">
-                    <div role="tabpanel" class="tab-pane active" id="0">
-                      <textarea name="comentario[]" id="comentario0" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-              <div class="row">
-              <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-                <input type="submit" class="submit" value="Registrar Asistencia">
               </div>
             </div>
-            </form>
+            <div class="col-md-5 col-md-offset-1">
+              <div class="row space">
+                <h3>Temas de la semana</h3>
+                <table class="table table-striped table-hover str">
+                  <tr>
+                    <th>Cálculo: </th>
+                    <td>Variables separables</td>
+                  </tr>
+                  <tr>
+                    <th>POO:</th>
+                    <td>Polimorfismo</td>
+                  </tr>
+                  <tr>
+                    <th>Matemáticas Discretas:</th>
+                    <td>Tablas de verdad</td>
+                  </tr>
+                </table>
+                
+                
+              </div>
+            </div>
+            <div class="col-md-4 col-md-offset-1">
+              <div class="row">
+                <h3>Cursos</h3>
+                <table class="table table-striped table-hover str">
+                  <tr>
+                    <th colspan="2">Polimorfismo</th>
+                  </tr>
+                  <tr>
+                    <td>Denis Gonzalez</td>
+                    <td>06-Agosto-2015</td>
+                  </tr>
+                  <tr>
+                    <th colspan="2">Herencia</th>
+                  </tr>
+                  <tr>
+                    <td>Denis Gonzalez</td>
+                    <td>06-Agosto-2015</td>
+                  </tr>
+                  <tr>
+                    <th colspan="2">Inecuaciones</th>
+                  </tr>
+                  <tr>
+                    <td>Denis Gonzalez</td>
+                    <td>06-Agosto-2015</td>
+                  </tr>
+                  <tr>
+                    <th colspan="2">Tablas de verdad</th>
+                  </tr>
+                  <tr>
+                    <td>Denis Gonzalez</td>
+                    <td>06-Agosto-2015</td>
+                  </tr>
+                  <tr>
+                    <th colspan="2">Velocidad Uniforme</th>
+                  </tr>
+                  <tr>
+                    <td>Denis Gonzalez</td>
+                    <td>06-Agosto-2015</td>
+                  </tr>
+                </table>              
+            </div>
           </div>
-
-
         </div>
-    </div>
+      </div>
+      </div>
     <footer id="footer">
        <div class="container">
         <div class="col-sm-3 col-xs-6 text-center">
@@ -186,9 +236,6 @@
     <script src="js/index.js"></script>
     <script>
       sidebarAdjust();
-      document.getElementById("tipoComentario1").addEventListener("click", cambiarTipoComentario, false);
-      document.getElementById("tipoComentario2").addEventListener("click", cambiarTipoComentario, false);
-      document.getElementById("0").addEventListener("keyup", copiarTextArea, false);
     </script>
   </body>
 </html>

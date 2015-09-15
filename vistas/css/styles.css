@@ -55,6 +55,14 @@ html, body{
 	margin-top: 30px;
 	width: 100%;
 }
+.submit:hover{
+	background-color: #e74c3c;
+	border-bottom: 5px solid #d14233;
+	color: #FFF;
+}
+.space{
+	margin-bottom: 30px;
+}
 .input-group-addon, .form-control{
 	height: 45px;
 }
@@ -125,6 +133,11 @@ html, body{
 	cursor: pointer;
 	width: 16.6%;
 }
+.horario-admin td{
+	margin: 0;
+	padding: 10px;
+	width: 16.6%;
+}
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
 	vertical-align: inherit;
 }
@@ -134,7 +147,29 @@ html, body{
 .btn-add{
 	height: 45px;
 }
+.white{
+	box-shadow: 0 0 25px #BBB;
+}
+.str{
+	box-shadow: 0 0 25px #BBB;
 
+}
+.str>tbody>tr:nth-of-type(odd){
+	background-color: rgba(208, 205, 204, 0.48);
+}
+.white>tbody>tr:hover{
+	background-color: rgba(208, 205, 204, 0.48);
+}
+.str>tbody>tr:hover{
+	background-color: #FFF;
+}
+.head-table{
+	background-color: #e74c3c!important;
+	color: #FFFFFF;
+}
+.head-table:hover, .head-table td:hover{
+	background-color: #c0392b!important;
+}
 footer{
 	background-color: #FFFFFF;
 	border-top: 4px solid #e74c3c;
