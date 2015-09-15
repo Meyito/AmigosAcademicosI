@@ -1,6 +1,11 @@
-/*Función grafica: Ajusta el sidebar al tamaño de la pantalla*/
 
-var cont = 1;
+
+
+var cont = 1; //Variable usada en las pestañas de agregar asesoria
+
+
+
+/*Función grafica: Ajusta el sidebar al tamaño de la pantalla*/
 function sidebarAdjust(){
 	a = document.getElementById("front");
 	b = document.getElementById("sidebar");
@@ -9,6 +14,9 @@ function sidebarAdjust(){
 	b.style.height = (a.offsetHeight-c.offsetHeight-d.offsetHeight)+"px";
 }
 
+
+
+/*Función que edita el DOM para agregar un input para código adicional en el registro de cursos*/
 function agregarCampo(){
 	text = '<input name="codigo[]" type="text" class="form-control" placeholder="Código"><span class="input-group-btn"><button class="btn btn-default btn-add" type="button" onclick="agregarCampo()">&nbsp;+&nbsp;</button></span>';
 	campos = document.getElementById("campos");
@@ -19,6 +27,7 @@ function agregarCampo(){
 	sidebarAdjust();
 }
 
+/*Función que edita el DOM para agregar un input para código adicional en el registro de asesorias*/
 function agregarCampoAsesoria(){
 	text = '<div class="input-group"><input name="codigo[]" type="text" class="form-control" placeholder="Código"><span class="input-group-btn"><button class="btn btn-default btn-add" type="button" onclick="agregarTab(REPLACECONT)"><span class="glyphicon glyphicon-ok"></span></button><button class="btn btn-default btn-add" type="button" onclick="agregarCampoAsesoria();agregarTab(REPLACECONT)"><span class="glyphicon glyphicon-plus"></span></button></span></div>';
 	text = text.replace("REPLACECONT", cont);
@@ -32,6 +41,7 @@ function agregarCampoAsesoria(){
 	sidebarAdjust();
 }
 
+/*Función que edita el DOM y agrega pestañas a los comentarios sobre las asesorias*/
 function agregarTab(a){
 	codigos = document.getElementsByName("codigo[]");
 	tabs = document.getElementById("tabs");
@@ -40,7 +50,10 @@ function agregarTab(a){
 	li = '<a href="#REPLACEC1" aria-controls="REPLACEC2" role="tab" data-toggle="tab" id="REPLACEC3">REPLACECODIGO</a>';
 	pane = '<textarea name="comentario[]" id="comentarioREPLACEC1" class="form-control" rows="3"  placeholder="Ingrese un comentario"></textarea>';
 	if(tabActual != null){
-		document.getElementById("link"+a).innerHTML = codigos[a].value;
+		if(codigos[a].value != ""){
+			document.getElementById("link"+a).innerHTML = codigos[a].value;
+		}
+		
 	}else{
 		if(codigos[a]!=""){
 			li = li.replace("REPLACEC1", a);
@@ -64,6 +77,7 @@ function agregarTab(a){
 	cambiarTipoComentario();
 }
 
+/*Función que habilita o deshabilita los comentarios similares en todas las pestañas*/
 function cambiarTipoComentario(){
 	radio = document.getElementsByName("tipoComentario");
 	tabs = document.getElementById("tabs").childNodes;
@@ -103,7 +117,7 @@ function cambiarTipoComentario(){
 	}
 }
 
-
+/*Copia el contenido del textarea principal en todos los demas*/
 function copiarTextArea(){
 	original = document.getElementById("comentario0");
 	if(radio[1].checked){
@@ -121,7 +135,7 @@ function copiarTextArea(){
 }
 
 
-
+/*Escuchadores*/
 window.addEventListener("resize", sidebarAdjust, false);
 document.getElementById("tipoComentario1").addEventListener("click", cambiarTipoComentario, false);
 document.getElementById("tipoComentario2").addEventListener("click", cambiarTipoComentario, false);
