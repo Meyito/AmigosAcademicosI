@@ -151,5 +151,8 @@ function ajustarCalificacion (actual) {
 	}
 }
 
+function cargarAlerta (identificador) {
+	document.getElementById("asesoria").value = identificador;
+}
 /*Escuchadores*/
 window.addEventListener("resize", sidebarAdjust, false);
