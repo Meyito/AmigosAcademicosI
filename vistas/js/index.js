@@ -135,5 +135,21 @@ function copiarTextArea(){
 }
 
 
+function ajustarCalificacion (actual) {
+	s = new Array();
+	s[0] = document.getElementById("star-1");
+	s[1] = document.getElementById("star-2");
+	s[2] = document.getElementById("star-3");
+	s[3] = document.getElementById("star-4");
+	s[4] = document.getElementById("star-5");
+	var i;
+	for(i=0;i<actual;i++){
+		s[i].checked = true;
+	}
+	for(;i<s.length;i++){
+		s[i].checked = false;
+	}
+}
+
 /*Escuchadores*/
 window.addEventListener("resize", sidebarAdjust, false);

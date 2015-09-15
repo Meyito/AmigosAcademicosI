@@ -83,9 +83,22 @@ html, body{
 .sidebar .row{
 	border-bottom: 1px solid #c0392b;
 }
+.notifications{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
 .avatar{
 	margin-top: 5px;
 	margin-bottom: 15px;
+}
+.alert{
+	border-radius: 0;
+}
+.notifications a{
+	text-decoration: none;
+}
+.notifications a:hover{
+	text-decoration: none;
 }
 .button-help-sidebar span{
 	border-radius: 50%;
@@ -126,7 +139,18 @@ html, body{
 .hour input[type=checkbox]:checked + label {
   	background-color: #e74c3c;
 } 
-
+.star input[type=checkbox]{
+	display: none;
+}
+.star input[type=checkbox] + label {
+	color: #999999;
+	font-size: 20px;
+	cursor: pointer;
+	transition: all .3s ease;
+} 
+.star input[type=checkbox]:checked + label {
+  	color: #e74c3c;
+} 
 .horario td, .hour label{
 	margin: 0;
 	padding: 0!important;
@@ -170,6 +194,7 @@ html, body{
 .head-table:hover, .head-table td:hover{
 	background-color: #c0392b!important;
 }
+
 footer{
 	background-color: #FFFFFF;
 	border-top: 4px solid #e74c3c;
