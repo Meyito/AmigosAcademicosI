@@ -1,7 +1,7 @@
 <?php
 
 	require_once "Core/Controller/controller.php";
-	//include_once "Core/Model/adminDB.php";
+	include_once "Core/Model/adminDB.php";
 
 	class Admin extends Controller{
 
@@ -80,7 +80,7 @@
 			$this->showView($view);
 		}
 
-		public function aaRegister(){
+		public function aaViewRegister(){
 			$index=$this->base();
 			$content=$this->getTemplate("Core/View/contenedores/registrar_amigo_academico.html");
 			$menu=$this->getTemplate("Core/View/assets/menu_admin.html");
@@ -89,8 +89,49 @@
 			$this->showView($index);
 		}
 
-		public function aaUpdate(){
+		public function aaUpdate($id){
+			$view=$this->base();
+			$content=$this->getUpdate($id);
+			$menu=$this->getTemplate("Core/View/assets/menu_admin.html");
+			$view=$this->renderView($view, "{{COMPUESTO:CONTENIDO}}", $content);
+			$view=$this->renderView($view, "{{CICLO:ITEM_SIDEBAR}}", $menu);
+			$this->showView($view);
+		}
 
+		public function getUpdate($id){
+			$template=$this->getTemplate("Core/View/contenedores/editar_amigo_academico.html");
+			//$adminModel=new AdminDB();
+			//$data=$adminModel->getAmigo();
+
+			//prueba
+			$data=[1150990, "1234", "amelisdl@gmail.com"];
+			//
+
+			$_POST["id"]=$id;
+			$_POST["password"]=$data[1];
+			$template=$this->renderView($template, "{{BASICO:CODIGO}}", $data[0]);
+			$template=$this->renderView($template, "{{BASICO:EMAIL}}", $data[2]);			
+			//horario//
+
+			return $template;
+		}
+
+		public function registerAA($codigo, $email, $password, $horario){
+			$name="holi";
+			$semester=5;
+			$avatar="Static/img/avatars/h1.png";
+			$adminModel=new AdminDB();
+			$data=false;
+			//$data=$adminModel->getAmigo($codigo);
+			if($data==false){
+				$result=$adminModel->addAmigo($codigo,$password,$name,$semester,$email,$avatar,$horario);
+				print_r("Exito");
+			}else{
+				//ALERTA ERROR, USUARIO YA REGISTRADO
+				echo"error";
+			}
+			$this->showAA();
+			
 		}
 
 		public function createCourse(){

@@ -1,0 +1,189 @@
+<!--Contenedor de registro de amigos académicos
+  Hidden -> para el enrutador
+
+  Editar manualmente:
+  ACCION            -> Link que edita el amigo academico
+
+  Editar:
+  BASICO:CODIGO     -> Código del amigo académico
+  BASICO:EMAIL      -> Email del amigo
+  CHECK[]           -> Debe iterarse por todos los check que aparecen en el archivo
+                    -> Si la fecha está activa, debe cambiar CHECKn1n2 por "CHECKED" (sin comillas)
+                    -> De lo contrario, debe cambiarse por "" (espacio en blanco)
+
+  IMPORTANTE: Por seguridad la contraseña no debe mostrarse en el formulario.
+  Si el espacio contraseña queda en blanco, este no se cambia en la base
+  Solo se modifica si se ingresó algún texto.
+-->
+
+        <div class="col-lg-10 col-md-9 col-sm-9 text-center">
+          <br>
+					<h3>Editar amigo académico</h3>
+          <form action="index.php" method="POST">
+            <input type="hidden" name="registrarAA" value="registrarAA">
+  					<div class="row academic">
+  						<div class="col-sm-6">
+  	            <div class="input-group">
+  	              <span class="input-group-addon" id="code">
+  	                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+  	              </span>
+  	              <input type="number" name="codigo" class="form-control" value="{{BASICO:CODIGO}}" aria-describedby="code" required>
+  	            </div>
+  	            <div class="input-group">
+  	              <span class="input-group-addon" id="email">
+  	                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+  	              </span>
+  	              <input type="email" name="email" class="form-control" value="{{BASICO:EMAIL}}" aria-describedby="email" required>
+  	            </div>
+  	          </div>
+  	          <div class="col-sm-6">
+  	            <div class="input-group">
+  	              <span class="input-group-addon" id="password">
+  	                <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+  	              </span>
+  	              <input type="password" name="password" class="form-control" placeholder="Contraseña" aria-describedby="password">
+  	            </div>
+  	            <div class="input-group">
+  	              <span class="input-group-addon" id="password">
+  	                <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+  	              </span>
+  	              <input type="password" name="password2" class="form-control" placeholder="Repite la Contraseña" aria-describedby="password">
+  	            </div>
+  	          </div>
+              <div class="col-md-10 col-md-offset-1 horario">
+                <br>
+                <p>Selecciona el horario del amigo académico haciendo clic en los espacios correspondientes.</p>
+                <table class="table table-striped table-bordered">
+                  <tr>
+                    <td>
+                      <div class="hour">Hora</div>
+                    </td>
+                    <td>
+                      <div class="hour">Lunes</div>
+                    </td>
+                    <td>
+                      <div class="hour">Martes</div>
+                    </td>
+                    <td>
+                      <div class="hour">Miercoles</div>
+                    </td>
+                    <td>
+                      <div class="hour">Jueves</div>
+                    </td>
+                    <td>
+                      <div class="hour">Viernes</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="hour">2:00 - 3:00 PM</div>
+                    </td>
+                    <td>
+                      <div class="hour"><input type="checkbox" name="horario[]" value="12" id="lunes2" {{CHECK12}}><label for="lunes2"></label></div>
+                    </td>
+                    <td>
+                      <div class="hour"><input type="checkbox" name="horario[]" value="22" id="martes2" {{CHECK22}}><label for="martes2"></label></div>
+                    </td>
+                    <td>
+                      <div class="hour"><input type="checkbox" name="horario[]" value="32" id="miercoles2" {{CHECK32}}><label for="miercoles2"></label></div>
+                    </td>
+                    <td>
+                      <div class="hour"><input type="checkbox" name="horario[]" value="42" id="jueves2" {{CHECK42}}><label for="jueves2"></label></div>
+                    </td>
+                    <td>
+                      <div class="hour"><input type="checkbox" name="horario[]" value="52" id="viernes2" {{CHECK52}}><label for="viernes2"></label></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="hour">3:00 - 4:00 PM</div>
+                    </td>
+                    <td>
+                      <div class="hour"><input type="checkbox" name="horario[]" value="13" id="lunes3" {{CHECK13}}><label for="lunes3"></label></div>
+                    </td>
+                    <td>
+                      <div class="hour"><input type="checkbox" name="horario[]" value="23" id="martes3" {{CHECK23}}><label for="martes3"></label></div>
+                    </td>
+                    <td>
+                      <div class="hour"><input type="checkbox" name="horario[]" value="33" id="miercoles3" {{CHECK33}}><label for="miercoles3"></label></div>
+                    </td>
+                    <td>
+                      <div class="hour"><input type="checkbox" name="horario[]" value="43" id="jueves3" {{CHECK43}}><label for="jueves3"></label></div>
+                    </td>
+                    <td>
+                      <div class="hour"><input type="checkbox" name="horario[]" value="53" id="viernes3" {{CHECK53}}><label for="viernes3"></label></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="hour">4:00 - 5:00 PM</div>
+                    </td>
+                    <td>
+                      <div class="hour"><input type="checkbox" name="horario[]" value="14" id="lunes4" {{CHECK14}}><label for="lunes4"></label></div>
+                    </td>
+                    <td>
+                      <div class="hour"><input type="checkbox" name="horario[]" value="24" id="martes4" {{CHECK24}}><label for="martes4"></label></div>
+                    </td>
+                    <td>
+                      <div class="hour"><input type="checkbox" name="horario[]" value="34" id="miercoles4" {{CHECK34}}><label for="miercoles4"></label></div>
+                    </td>
+                    <td>
+                      <div class="hour"><input type="checkbox" name="horario[]" value="44" id="jueves4" {{CHECK44}}><label for="jueves4"></label></div>
+                    </td>
+                    <td>
+                      <div class="hour"><input type="checkbox" name="horario[]" value="54" id="viernes4" {{CHECK54}}><label for="viernes4"></label></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="hour">5:00 - 6:00 PM</div>
+                    </td>
+                    <td>
+                      <div class="hour"><input type="checkbox" name="horario[]" value="15" id="lunes5" {{CHECK15}}><label for="lunes5"></label></div>
+                    </td>
+                    <td>
+                      <div class="hour"><input type="checkbox" name="horario[]" value="25" id="martes5" {{CHECK25}}><label for="martes5"></label></div>
+                    </td>
+                    <td>
+                      <div class="hour"><input type="checkbox" name="horario[]" value="35" id="miercoles5" {{CHECK35}}><label for="miercoles5"></label></div>
+                    </td>
+                    <td>
+                      <div class="hour"><input type="checkbox" name="horario[]" value="45" id="jueves5" {{CHECK45}}><label for="jueves5"></label></div>
+                    </td>
+                    <td>
+                      <div class="hour"><input type="checkbox" name="horario[]" value="55" id="viernes5" {{CHECK55}}><label for="viernes5"></label></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="hour">6:00 - 7:00 PM</div>
+                    </td>
+                    <td>
+                      <div class="hour"><input type="checkbox" name="horario[]" value="16" id="lunes6" {{CHECK16}}><label for="lunes6"></label></div>
+                    </td>
+                    <td>
+                      <div class="hour"><input type="checkbox" name="horario[]" value="26" id="martes6" {{CHECK26}}><label for="martes6"></label></div>
+                    </td>
+                    <td>
+                      <div class="hour"><input type="checkbox" name="horario[]" value="36" id="miercoles6" {{CHECK36}}><label for="miercoles6"></label></div>
+                    </td>
+                    <td>
+                      <div class="hour"><input type="checkbox" name="horario[]" value="46" id="jueves6" {{CHECK46}}><label for="jueves6"></label></div>
+                    </td>
+                    <td>
+                      <div class="hour"><input type="checkbox" name="horario[]" value="56" id="viernes6" {{CHECK56}}><label for="viernes6"></label></div>
+                    </td>
+                  </tr>
+                      
+                     
+                </table>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                <input type="submit" class="submit" value="Actualizar Amigo Academico">
+              </div>
+            </div>
+            
+          </form>
+	      </div>
