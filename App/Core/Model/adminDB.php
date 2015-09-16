@@ -27,7 +27,7 @@ class AdminDB extends Model{
 		$query = $this->query("INSERT INTO Usuario VALUES ('".$id."','".$name."','".$password."','".$email."',".$semester.",2,'".$avatar."','activo')");
 		if($query){
 			$iter = 0;
-			while($iter<count($array){
+			while($iter<count($array)){
 				$day = $array[$iter]/10;
 				$hour = $array[$iter]%10;
 				$query = $this->query("INSERT INTO Agenda VALUES ('".$id."',".$day.",".$hour.")");
@@ -37,7 +37,13 @@ class AdminDB extends Model{
 		}
 		return $query;	
 	}
-	
+	public function deleteUser($id){
+		$this->connect();
+		$query = $this->query("DELETE FROM Usuario WHERE id = '".$id."'");
+		$this->terminate();
+		return $query;
+	}
+
 	public function changeStateAmigo($id,$estado){
 		$this->connect();
 		$query = $this->query("UPDATE Usuario SET estado = '".$estado."' WHERE id = '".$id."' AND tipo = 2");
@@ -45,6 +51,10 @@ class AdminDB extends Model{
 		return $query;
 	}
 
+	public function getAmigo($id){
+		$this->connect();
+		$query = $this->query("SELECT * FROM Usuario WHERE id = '".$id."' AND tipo = 2");
+	}
 	
 	
 }
