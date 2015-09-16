@@ -2,12 +2,19 @@
 	Contiene todo el esqueleto de la página.
 
 	Editar:
-	BASICO:NOMBRE 			-> Nombre de la persona con la sesión iniciada.
+  BASICO:AVATAR         -> Cambiar por la ruta y nombre del avatar.  
+ 	BASICO:NOMBRE 			  -> Nombre de la persona con la sesión iniciada.
 	BASICO:TIPO_USUARIO 	-> Administrador, Estudiante, Amigo Académico.
 	CICLO:ITEM_SIDEBAR 		-> Botones del sidebar con las acciones permitidas para cada usuario.
-								-> El botón plantilla se encuentra en assets/boton_sidebar.html
+								        -> El botón plantilla se encuentra en assets/boton_sidebar.html
 	COMPUESTO:CONTENIDO 	-> Espacio del contenedor principal, depende de la vista mostrada.
-	COMPUESTO:LIBRERIAS_JS 	-> Espacio para indicar los llamados javascript de cada vista.
+	COMPUESTO:LIBRERIAS_JS-> Espacio para indicar los llamados javascript de cada vista.
+
+  Editar manualmente:
+  CAMBIAR_AVATAR        -> Link a cambiar avatar
+  CAMBIAR_AYUDA         -> Link a ayuda
+  CERRAR_SESÏON         -> Link a cerrar sesión
+                        -> Mientras no se completen las vistas, estos espacios pueden cambiarse por #
 -->
 
 
@@ -35,7 +42,7 @@
       <div class="container">
         <div class="row">
           <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.php">
               <img src="img/logo.png" alt="Amigos Académicos">
             </a>
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar" aria-expanded="false" >
@@ -54,25 +61,33 @@
     <div class="container-fluid front" id="front">
         <div class="row">
           <div class="col-lg-2 col-md-3 col-sm-3 sidebar collapse navbar-collapse" id="sidebar">
-            <div class="row">
-              <div class="col-md-4 col-sm-4 col-sm-offset-4 col-md-offset-0 hidden-xs">
-                <img src="img/avatars/h1.png" alt="avatar" class="img-responsive avatar">
+            <a href="index.php" class="wh">
+              <div class="row">
+                <div class="col-md-4 col-sm-4 col-sm-offset-4 col-md-offset-0 hidden-xs">
+                  <img src="{{BASICO:AVATAR}}" alt="avatar" class="img-responsive avatar">
+                </div>
+                <div class="col-md-8 col-sm-12 text-center">
+                  <h4>{{BASICO:NOMBRE}}</h4>
+                  <h5>{{BASICO:TIPO_USUARIO}}</h5>
+                </div>
               </div>
-              <div class="col-md-8 col-sm-12 text-center">
-                <h4>{{BASICO:NOMBRE}}</h4>
-                <h5>{{BASICO:TIPO_USUARIO}}</h5>
-              </div>
-            </div>
+            </a>
               <div class="row text-center">
-                <div class="col-xs-4 button-help-sidebar">
-                  <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
-                </div>
-                <div class="col-xs-4 button-help-sidebar">
-                  <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
-                </div>
-                <div class="col-xs-4 button-help-sidebar">
-                  <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-                </div>
+                <a href="[[CAMBIAR_AVATAR]]" class="wh">
+                  <div class="col-xs-4 button-help-sidebar">
+                    <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
+                  </div>
+                </a>
+                <a href="[[CAMBIAR_AYUDA]]" class="wh">
+                  <div class="col-xs-4 button-help-sidebar">
+                    <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                  </div>
+                </a>
+                <a href="[[CERRAR_SESION]]" class="wh">
+                  <div class="col-xs-4 button-help-sidebar">
+                    <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                  </div>
+                </a>
               </div>
               {{CICLO:ITEM_SIDEBAR}}
               

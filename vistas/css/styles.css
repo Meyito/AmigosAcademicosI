@@ -100,6 +100,9 @@ html, body{
 .notifications a:hover{
 	text-decoration: none;
 }
+.wh, .wh:hover{
+	color: #FFF;
+}
 .button-help-sidebar span{
 	border-radius: 50%;
 	font-size: 20px;
