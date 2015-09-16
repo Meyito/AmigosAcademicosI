@@ -55,6 +55,14 @@ html, body{
 	margin-top: 30px;
 	width: 100%;
 }
+.submit:hover{
+	background-color: #e74c3c;
+	border-bottom: 5px solid #d14233;
+	color: #FFF;
+}
+.space{
+	margin-bottom: 30px;
+}
 .input-group-addon, .form-control{
 	height: 45px;
 }
@@ -75,9 +83,25 @@ html, body{
 .sidebar .row{
 	border-bottom: 1px solid #c0392b;
 }
+.notifications{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
 .avatar{
 	margin-top: 5px;
 	margin-bottom: 15px;
+}
+.alert{
+	border-radius: 0;
+}
+.notifications a{
+	text-decoration: none;
+}
+.notifications a:hover{
+	text-decoration: none;
+}
+.wh, .wh:hover{
+	color: #FFF;
 }
 .button-help-sidebar span{
 	border-radius: 50%;
@@ -118,11 +142,27 @@ html, body{
 .hour input[type=checkbox]:checked + label {
   	background-color: #e74c3c;
 } 
-
+.star input[type=checkbox]{
+	display: none;
+}
+.star input[type=checkbox] + label {
+	color: #999999;
+	font-size: 20px;
+	cursor: pointer;
+	transition: all .3s ease;
+} 
+.star input[type=checkbox]:checked + label {
+  	color: #e74c3c;
+} 
 .horario td, .hour label{
 	margin: 0;
 	padding: 0!important;
 	cursor: pointer;
+	width: 16.6%;
+}
+.horario-admin td{
+	margin: 0;
+	padding: 10px;
 	width: 16.6%;
 }
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
@@ -133,6 +173,29 @@ html, body{
 }
 .btn-add{
 	height: 45px;
+}
+.white{
+	box-shadow: 0 0 25px #BBB;
+}
+.str{
+	box-shadow: 0 0 25px #BBB;
+
+}
+.str>tbody>tr:nth-of-type(odd){
+	background-color: rgba(208, 205, 204, 0.48);
+}
+.white>tbody>tr:hover{
+	background-color: rgba(208, 205, 204, 0.48);
+}
+.str>tbody>tr:hover{
+	background-color: #FFF;
+}
+.head-table{
+	background-color: #e74c3c!important;
+	color: #FFFFFF;
+}
+.head-table:hover, .head-table td:hover{
+	background-color: #c0392b!important;
 }
 
 footer{
