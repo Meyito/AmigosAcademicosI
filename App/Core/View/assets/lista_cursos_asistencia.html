@@ -1,0 +1,21 @@
+<!--Asset para formar la tabla de cursos para asistencia.
+
+IMPORTANTE: Dado que el link se envia con get, es necesario verificar con variables de sesión
+que el tipo de usuario sea admin, de lo contrario, usuarios no autorizados podrian cambiar datos.
+Tambien es posible colocar un form con post.
+
+Editar:
+  
+  BASICO:NOMBRE_AMIGO         -> Nombre del curso
+  BASICO:FECHA_CURSO					-> Fecha del curso
+  BASICO:LINK_EDITAR_AMIGO    -> Link desde donde es posible editar dicho curso
+
+
+-->
+                  <tr>
+                    <td>{{BASICO:NOMBRE_CURSO}}</td>
+                    <td>{{BASICO:FECHA_CURSO}}</td>
+                    <td>
+                      <a href="{{BASICO:LINK_EDITAR_CURSO}}" class="btn btn-danger">Registrar Asistencia</a>
+                    </td>
+                  </tr>
