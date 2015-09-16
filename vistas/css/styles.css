@@ -67,6 +67,9 @@ hr{
 .space{
 	margin-bottom: 30px;
 }
+.pad{
+	padding: 15px;
+}
 .input-group-addon, .form-control{
 	height: 45px;
 }
@@ -117,7 +120,24 @@ hr{
 .button-help-sidebar span:hover{
 	background-color: #c0392b;
 }
-
+.inactivo{
+	background-color: #CCC;
+	color: #888;
+}
+.inactivo:hover{
+	background-color: #BBB!important;
+	color: #888;
+}
+.inactivo .btn{
+	background-color: #FFF;
+	color: #333;
+}
+.activo{
+	background-color: #FFF!important;
+}
+.activo:hover{
+	background-color: #EEE!important;
+}
 .item-sidebar{
 	padding-top: 20px;
 	padding-bottom: 20px;
