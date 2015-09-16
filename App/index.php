@@ -21,6 +21,8 @@
 					$adminC->statistics();
 				}else if($_GET["accion"]=="logout"){
 					$adminC->logout();
+				}else if($_GET["accion"]=="editarAA"){
+					echo $_GET["id"];
 				}
 
 
