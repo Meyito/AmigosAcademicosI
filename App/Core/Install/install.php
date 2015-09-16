@@ -14,7 +14,8 @@ $query  = "CREATE TABLE Usuario(
 			correoElectronico varchar(40),
 			semestre int,
 			tipo int NOT NULL,
-			avatar varchar(100),
+			avatar varchar(100) NOT NULL,
+			estado varchar(10) NOT NULL,
 			PRIMARY KEY(id)
 			)";
 mysqli_query($connect,$query);
@@ -52,6 +53,7 @@ $query = "CREATE TABLE Curso(
 			descripcion varchar(144),
 			idAmigoAcademico varchar(7) NOT NULL,
 			fecha Date NOT NULL,
+			estado varchar(15) NOT NULL,
 			idMateria varchar(7) NOT NULL,
 			PRIMARY KEY(id),
 			FOREIGN KEY(idAmigoAcademico) REFERENCES Usuario(id),
