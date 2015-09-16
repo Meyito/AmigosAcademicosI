@@ -79,6 +79,13 @@
 			$_SESSION["avatar"]=$data["avatar"];
 		}
 
+		public function base(){
+			$template = $this->getTemplate("Core/View/base.html");
+			$template = $this->renderView($template, "{{BASICO:NOMBRE}}", $_SESSION["nombre"]);
+			$template = $this->renderView($template, "{{BASICO:TIPO_USUARIO}}", $_SESSION["tipo"]);
+			return $template;
+		}
+
 		public function logout(){
 
 		}

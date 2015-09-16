@@ -1,0 +1,21 @@
+<!--Plantilla botón_sidebar
+	Contiene el código de un botón individual del sidebar, repetir cuantas veces sea necesario
+	para completar todos los botones.
+
+
+	Editar:
+	BASICO:ACCION 				-> Link a donde lleva el botón
+	BASICO:ICONO 					-> Nombre del icono del botón. La lista de iconos está en: 
+														-> http://getbootstrap.com/components/#glyphicons
+														-> Colocar solo el nombre del icono. Ej: glyphicon-user
+	BASICO:TITULO_ITEM 		-> Texto del botón
+-->			  
+
+			  <a href="{{BASICO:ACCION}}" class="button-sidebar">
+                <div class="row item-sidebar">
+                  <div class="col-xs-3 col-sm-2 col-md-2 col-lg-4">
+                    <span class="glyphicon {{BASICO:ICONO}}"></span>
+                  </div>
+                  <div class="col-xs-9 col-sm-10 col-md-9 col-lg-8">{{BASICO:TITULO_ITEM}}</div>
+                </div>
+              </a>
