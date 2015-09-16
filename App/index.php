@@ -10,7 +10,13 @@
 	if(isset($_SESSION["tipo"])){
 		if($_SESSION["tipo"]=="Administrador"){
 			$adminC=new Admin();
-			$adminC->index();
+			if(isset($_GET["accion"])){
+				if($_GET["accion"]=="registrarAA"){
+					$adminC->aaRegister();
+				}
+			}else{
+				$adminC->index();
+			}
 		}
 	}else if(isset($_POST["signIn"])){
 		$control->login($_POST["codigo"], $_POST["password"]);

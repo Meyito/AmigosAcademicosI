@@ -16,10 +16,15 @@
 		}
 
 		public function topicRegister(){
-
 		}
 
 		public function aaRegister(){
+			$index=$this->base();
+			$content=$this->getTemplate("Core/View/contenedores/registrar_amigo_academico.html");
+			$menu=$this->getTemplate("Core/View/assets/menu_admin.html");
+			$index=$this->renderView($index, "{{COMPUESTO:CONTENIDO}}", $content);
+			$index=$this->renderView($index, "{{CICLO:ITEM_SIDEBAR}}", $menu);
+			$this->showView($index);
 
 		}
 
