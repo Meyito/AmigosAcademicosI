@@ -23,7 +23,29 @@ class UserDB extends Model{
 		}
 
 	}
-	
+	public function updateUser($id,$password,$name,$semester,$email,$avatar){
+		$this->connect();
+		$query = $this->query("UPDATE Usuario SET id = '".$id."',nombre = '".$name."',contrasenia = '".$password."',correoElectronico = '".$email."',semestre = ".$semester.",avatar = '".$avatar."' WHERE id='".$id."' ");
+		$this->terminate();
+		return $query;
+	}
+	public function deleteUser($id){
+		$this->connect();
+		$query = $this->query("DELETE FROM Usuario WHERE id = '".$id."'");
+		$this->terminate();
+		return $query;
+	}
+	public function getAmigos(){
+		$this->connect();
+		$query = $this->query("SELECT id,nombre,estado FROM Usuario WHERE tipo = 2");
+		$this->terminate();
+		$array = array();
+		while($row = mysqli_fetch_array($query)){
+			array_push($array,$row);
+		}
+		return $array;
+	}
+
 }
 
 ?>

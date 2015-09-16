@@ -40,22 +40,12 @@ class AdminDB extends Model{
 	
 	public function changeStateAmigo($id,$estado){
 		$this->connect();
-		$query = $this->query("UPDATE Usuario SET estado = '".$estado."' WHERE id = '".$id."' AND tipo = 3");
+		$query = $this->query("UPDATE Usuario SET estado = '".$estado."' WHERE id = '".$id."' AND tipo = 2");
 		$this->terminate();
 		return $query;
 	}
 
-	public function getAmigos(){
-		$this->connect();
-		$query = $this->query("SELECT id,nombre,estado FROM Usuario WHERE tipo = 2");
-		$this->terminate();
-		$array = array();
-		while($row = mysqli_fetch_array($query)){
-			array_push($array,$row);
-		}
-		return $array;
-	}
-
+	
 	
 }
 
