@@ -87,7 +87,10 @@
 		}
 
 		public function logout(){
-
+			$_SESSION["nombre"] = false;
+			$_SESSION["tipo"] = false;
+			session_destroy();
+			header('location:index.php');
 		}
 
 		public function updateProfile(){
