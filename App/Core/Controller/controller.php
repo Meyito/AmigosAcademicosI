@@ -1,6 +1,7 @@
 <?php
 
 	include_once "Core/Model/userDB.php";
+	include_once "Core/Model/studentDB.php";
 
 	class Controller{
 
@@ -54,13 +55,12 @@
 				if($data["tipo"]==1){
 					$_SESSION["tipo"]="Administrador";
 					header('Location: index.php');
-					//cargar vista Admin;
 				}else if($data["tipo"]==2){
-					$_SESSION["tipo"]="AmigoA";
-					//cargar vista AA;
+					$_SESSION["tipo"]="Amigo Académico";
+					header('Location: index.php');
 				}else{
 					$_SESSION["tipo"]="Estudiante";
-					//cargar vista Estudiante;
+					header('Location: index.php');
 				}
 			}else{
 				//ENVIAR ALERTA DE ERROR
@@ -94,8 +94,12 @@
 			header('location:index.php');
 		}
 
-		public function updateProfile(){
-			
+		public function studentRegister($codigo, $nombre, $correo, $semestre, $password){
+			$password=$this->encryptPassword($password);
+			$studentModel=new StudentDB();
+			$avatar="Static/img/avatars/h1.png";
+			$rta=$studentModel->addStudent($codigo,$password,$nombre,$semestre,$correo,$avatar);
+			$this->login($codigo, $password);
 		}
 	}
 

@@ -4,6 +4,8 @@
 
 	require "Core/Controller/controller.php";
 	require "Core/Controller/admin.php";
+	require "Core/Controller/student.php";
+	require "Core/Controller/amigo.php";
 
 	$control=new controller();
 
@@ -46,13 +48,60 @@
 					$adminC->updateCourse($_GET["id"]);
 				}else if($_GET["accion"]=="addCourse"){
 					$adminC->createCourse();
+				}else if($_GET["accion"]=="cambiarAvatar"){
+					$adminC->changeAvatar();
+				}else if($_GET["accion"]=="help"){
+					$adminC->help();
 				}
 			}else{
 				$adminC->index();
 			}
+		}else if($_SESSION["tipo"]=="Estudiante"){
+			$studentC=new Student();
+			if(isset($_GET["accion"])){
+				if($_GET["accion"]=="logout"){
+					$studentC->logout();
+				}else if($_GET["accion"]=="temas"){
+					$studentC->topics();
+				}else if($_GET["accion"]=="cursos"){
+					$studentC->courses();
+				}else if($_GET["accion"]=="cambiarAvatar"){
+					$studentC->changeAvatar();
+				}else if($_GET["accion"]=="help"){
+					$studentC->help();
+				}
+			}else{
+				$studentC->index();	
+			}
+		}else if($_SESSION["tipo"]=="Amigo Académico"){
+			$amigoC=new Amigo();
+			if(isset($_GET["accion"])){
+				if($_GET["accion"]=="logout"){
+					$amigoC->logout();
+				}else if($_GET["accion"]=="cambiarAvatar"){
+					$amigoC->changeAvatar();
+				}else if($_GET["accion"]=="help"){
+					$amigoC->help();
+				}else if($_GET["accion"]=="asesoria"){
+					$amigoC->adviceRegister();
+				}else if($_GET["accion"]=="cursos"){
+					$amigoC->courseAssistantR();
+				}else if($_GET["accion"]=="asistenciaCursos"){
+					$amigoC->registrarAsisC($_GET["id"]);
+				}
+			}else{
+				$amigoC->index();	
+			}			
 		}
 	}else if(isset($_POST["signIn"])){
 		$control->login($_POST["codigo"], $_POST["password"]);
+	}else if(isset($_POST["signUp"])){
+		if($_POST["password"]!=$_POST["password2"]){
+			$control->index();
+			//mensaje error;
+		}else{
+			$control->studentRegister($_POST["codigo"], $_POST["nombre"], $_POST["correo"], $_POST["semestre"], $_POST["password"]);
+		}
 	}else{
 		$control->index();
 	}
