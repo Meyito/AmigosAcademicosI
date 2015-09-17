@@ -89,7 +89,7 @@ class AdminDB extends Model{
 
 	public function addCurso($name,$description,$idAmigo,$fecha,$idMateria){
 		$this->connect();
-		$query = $this->query("");
+		$query = $this->query("INSERT INTO Curso(nombre,descripcion,idAmigoAcademico,fecha,estado,idMateria) VALUES('".$name."','".$description."','".$idAmigo."','".$fecha."','activo','".$idMateria."')");
 		$this->terminate();
 		return $query;
 	}
