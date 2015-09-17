@@ -29,12 +29,7 @@ class UserDB extends Model{
 		$this->terminate();
 		return $query;
 	}
-	public function deleteUser($id){
-		$this->connect();
-		$query = $this->query("DELETE FROM Usuario WHERE id = '".$id."'");
-		$this->terminate();
-		return $query;
-	}
+	
 	public function getAmigos(){
 		$this->connect();
 		$query = $this->query("SELECT id,nombre,estado FROM Usuario WHERE tipo = 2");
