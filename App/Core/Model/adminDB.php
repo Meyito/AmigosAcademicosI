@@ -62,17 +62,23 @@ class AdminDB extends Model{
 		}
 		if($iter>0){
 			$schedule = array();
-			$query = $this->query("SELECT dia,hora FROM Agenda WHERE id='".$id."' ");
+			$query = $this->query("SELECT dia,hora FROM Agenda WHERE idAmigoAcademico='".$id."' ");
+			
 			while($row = mysqli_fetch_array($query)){
 				array_push($schedule,$row);
 			}
 			array_push($array,$schedule);
+
 			return $array;
 		}
 		else{
 			$this->terminate();
 			return false;
 		}
+	}
+
+	public function addCurso($name,$description,$idAmigo,$fecha,$idMateria){
+
 	}
 	
 	
