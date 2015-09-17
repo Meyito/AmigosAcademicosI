@@ -23,6 +23,23 @@ class UserDB extends Model{
 		}
 
 	}
+	public function isAvailable($id){
+		$this->connect();
+		$query = $this->query("SELECT * FROM Usuario WHERE id= '".$id."'");
+		$this->terminate();
+		$iter = 0;
+		while($row = mysqli_fetch_array($query)){
+			$iter++;
+		}
+		if($iter<0){
+			return true;
+		}
+		else{
+			return false;
+		}
+		
+	}
+
 	public function updateUser($id,$password,$name,$semester,$email,$avatar){
 		$this->connect();
 		$query = $this->query("UPDATE Usuario SET id = '".$id."',nombre = '".$name."',contrasenia = '".$password."',correoElectronico = '".$email."',semestre = ".$semester.",avatar = '".$avatar."' WHERE id='".$id."' ");
