@@ -20,9 +20,9 @@
 				}else if($_POST["accion"]=="registrarCurso"){
 					$adminC->courseRegister($_POST["tema"], $_POST["descripción"], $_POST["amigo"], $_POST["fecha"], $_POST["materia"]);
 				}else if($_POST["accion"]=="actualizarCurso"){
-					$adminC->updateC($_POST["tema"], $_POST["descripción"], $_POST["amigo"], $_POST["fecha"], $_POST["materia"]);
+					$adminC->updateC($_POST["id"], $_POST["tema"], $_POST["descripción"], $_POST["amigo"], $_POST["fecha"], $_POST["materia"]);
 				}else if($_POST["accion"]=="eliminarCurso"){
-					echo "haga algo";
+					$adminC->deleteCourse($_POST["id"]);
 				}
 
 			}else if(isset($_GET["accion"])){

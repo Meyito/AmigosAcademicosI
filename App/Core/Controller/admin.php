@@ -85,21 +85,15 @@
 
 		public function getCourses(){
 			$template=$this->getTemplate("Core/View/assets/lista_cursos_editable.html");
-			/*$adminModel=new AdminDB();
-			$data=$adminModel->getCourses();*/
-			
-			$data=array();
-			$aa=[1, "12-9-15", "objetos"];
-			array_push($data, $aa);
-			$aa=[1, "12-9-15", "objetos"];
-			array_push($data, $aa);
+			$userModel=new UserDB();
+			$data=$userModel->getCourses();
 
 			$aux="";
 			$list="";
 			for($i=0; $i<count($data); $i++){
 				$aux=$template;
 				$aux=$this->renderView($aux, "{{BASICO:NOMBRE_CURSO}}", $data[$i][1]);
-				$aux=$this->renderView($aux, "{{BASICO:FECHA_CURSO}}", $data[$i][2]);
+				$aux=$this->renderView($aux, "{{BASICO:FECHA_CURSO}}", $data[$i][4]);
 				$aux=$this->renderView($aux, "{{id}}", $data[$i][0]);
 				$list=$list.$aux;
 			}
@@ -130,11 +124,11 @@
 			$data=$adminModel->getAmigo($id);
 
 			$_POST["id"]=$id;
-			$_POST["password"]=$data[0][1];
+			$_POST["password"]=$data[0][2];
 			$template=$this->renderView($template, "{{BASICO:CODIGO}}", $data[0][0]);
-			$template=$this->renderView($template, "{{BASICO:EMAIL}}", $data[0][2]);
-			//$template=$this->renderView($template, "{{BASICO:NOMBRE}}", $data[0][3]);
-			//$template=$this->renderView($template, "{{BASICO:SEMESTRE}}", $data[0][4]);			
+			$template=$this->renderView($template, "{{BASICO:EMAIL}}", $data[0][3]);
+			$template=$this->renderView($template, "{{BASICO:NOMBRE}}", $data[0][1]);
+			$template=$this->renderView($template, "{{BASICO:SEMESTRE}}", $data[0][4]);			
 			//horario $data [1]// 
 			
 			return $template;
@@ -172,15 +166,16 @@
 			$content=$this->getTemplate("Core/View/contenedores/editar_curso.html");//cambiar
 
 			$adminModel=new AdminDB();
-			//$datos=$adminModel->getCourse($id);
+			$data=$adminModel->getCourse($id);
+
 			$hora="03:30";
 			$content=$this->renderView($content, "{{BASICO:HORA}}", $hora);
 			$content=$this->renderView($content, "{{id}}", $id);
-			/*$content=$this->renderView($content, "{{BASICO:MATERIA}}", $data[]);
-			$content=$this->renderView($content, "{{BASICO:FECHA}}", $data[]);
-			$content=$this->renderView($content, "{{BASICO:AMIGO}}", $data[]);
-			$content=$this->renderView($content, "{{BASICO:TEMA}}", $data[]);
-			$content=$this->renderView($content, "{{BASICO:DESCRIPCION}}", $data[]);*/
+			$content=$this->renderView($content, "{{BASICO:MATERIA}}", $data[0][6]);
+			$content=$this->renderView($content, "{{BASICO:FECHA}}", $data[0][4]);
+			$content=$this->renderView($content, "{{BASICO:AMIGO}}", $data[0][3]);
+			$content=$this->renderView($content, "{{BASICO:TEMA}}", $data[0][1]);
+			$content=$this->renderView($content, "{{BASICO:DESCRIPCION}}", $data[0][2]);
 
 			$menu=$this->getTemplate("Core/View/assets/menu_admin.html");
 			$view=$this->renderView($view, "{{COMPUESTO:CONTENIDO}}", $content);
@@ -188,8 +183,16 @@
 			$this->showView($view);
 		}
 
-		public function updateC($name,$description,$idAmigo,$fecha,$idMateria){
-			echo "holiwis";
+		public function updateC($id, $name,$description,$idAmigo,$fecha,$idMateria){
+			$adminModel=new AdminDB();
+			$rta=$adminModel->updateCourse($id, $name,$description,$idAmigo,$fecha,$idMateria);
+			$this->courses();
+		}
+
+		public function deleteCourse($id){
+			$adminModel=new AdminDB();
+			$rta=$adminModel->deleteCourse($id);
+			$this->courses();
 		}
 
 		public function courseRegister($name,$description,$idAmigo,$fecha,$idMateria){
