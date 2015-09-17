@@ -87,6 +87,10 @@ class AdminDB extends Model{
 		}
 	}
 
+	public function changeAgenda($id,$array){
+
+	}
+
 	public function addCurso($name,$description,$idAmigo,$fecha,$idMateria){
 		$this->connect();
 		$query = $this->query("INSERT INTO Curso(nombre,descripcion,idAmigoAcademico,fecha,estado,idMateria) VALUES('".$name."','".$description."','".$idAmigo."','".$fecha."','activo','".$idMateria."')");
@@ -94,6 +98,16 @@ class AdminDB extends Model{
 		return $query;
 	}
 	
+	public function getCourse($id){
+		$this->connect();
+		$query = $this->query("SELECT * FROM Curso WHERE id = '".$id."'");
+		$this->terminate();
+		$array = array();
+		while($row = mysqli_fetch_array($query)){
+			array_push($array,$row);
+		}
+		return $array;
+	}
 	
 }
 
