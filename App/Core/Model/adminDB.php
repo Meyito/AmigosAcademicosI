@@ -22,6 +22,16 @@ class AdminDB extends Model{
 		$this->terminate();
 		return $query;
 	}
+	public function getMaterias(){
+		$this->connect();
+		$query = $this->query("SELECT * FROM Materias");
+		$this->terminate();
+		$array = array();
+		while($row = mysqli_fetch_array($query)){
+			array_push($array,$row);
+		}
+		return $array;
+	}
 	public function addAmigo($id,$password,$name,$semester,$email,$avatar,$array){
 		$this->connect();
 		$query = $this->query("INSERT INTO Usuario VALUES ('".$id."','".$name."','".$password."','".$email."',".$semester.",2,'".$avatar."','activo')");
@@ -68,7 +78,7 @@ class AdminDB extends Model{
 				array_push($schedule,$row);
 			}
 			array_push($array,$schedule);
-
+			$this->terminate();
 			return $array;
 		}
 		else{
