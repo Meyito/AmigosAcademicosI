@@ -33,8 +33,8 @@ class AdminDB extends Model{
 				$query = $this->query("INSERT INTO Agenda VALUES ('".$id."',".$day.",".$hour.")");
 				$iter++;
 			}
-			$this->terminate();
 		}
+		$this->terminate();
 		return $query;	
 	}
 	public function deleteUser($id){
@@ -53,7 +53,26 @@ class AdminDB extends Model{
 
 	public function getAmigo($id){
 		$this->connect();
-		$query = $this->query("SELECT * FROM Usuario WHERE id = '".$id."' AND tipo = 2");
+		$query = $this->query("SELECT id,contrasenia,correoElectronico FROM Usuario WHERE id = '".$id."' AND tipo = 2");
+		$iter = 0;
+		$array = array();
+		while($row = mysqli_fetch_array($query)){
+			$iter++;
+			array_push($array,$row);
+		}
+		if($iter>0){
+			$schedule = array();
+			$query = $this->query("SELECT dia,hora FROM Agenda WHERE id='".$id."' ");
+			while($row = mysqli_fetch_array($query)){
+				array_push($schedule,$row);
+			}
+			array_push($array,$schedule);
+			return $array;
+		}
+		else{
+			$this->terminate();
+			return false;
+		}
 	}
 	
 	
