@@ -58,6 +58,17 @@ class UserDB extends Model{
 		return $array;
 	}
 
+	public function getCourses(){
+		$this->connect();
+		$query = $this->query("SELECT * FROM Curso");
+		$this->terminate();
+		$array = array();
+		while($row = mysqli_fetch_array($query)){
+			array_push($array,$row);
+		}
+		return $array;
+	}
+
 }
 
 ?>
