@@ -43,9 +43,29 @@ class helperDB extends Model{
 	}
 	public function udpateAsesoria($id,$idAmigo,$idMateria,$date){
 		$this->connect();
-		$this->query("UPDATE Asesoria SET idAmigoAcademico = '".$idAmigo."',fecha = '".$date."',idMateria = '".$materia."'");
+		$this->query("UPDATE Asesoria SET idAmigoAcademico = '".$idAmigo."',fecha = '".$date."',idMateria = '".$materia."' WHERE id='".$id."'");
 		$this->terminate();
 		return $query;
+	}
+	public function getAsesoria($id){
+		$this->connect();
+		$this->query("SELECT * FROM Asesorias WHERE id = '".$id."'");
+		$this->terminate();
+		$array = array();
+		while($row = mysqli_fetch_array($query)){
+			array_push($array,$row);
+		}
+		return $array;
+	}
+	public function getAsesorias(){
+		$this->connect();
+		$this->query("SELECT * FROM Asesorias");
+		$this->terminate();
+		$array = array();
+		while($row = mysqli_fetch_array($query)){
+			array_push($array,$row);
+		}
+		return $array;
 	}
 }
 
