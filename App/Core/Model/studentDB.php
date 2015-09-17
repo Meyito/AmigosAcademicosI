@@ -17,6 +17,12 @@ class studentDB extends Model{
 		$this->terminate();
 		return $query;
 	}
+
+	public function getAsesoriasForQualify($idEstudiante){
+		$this->connect();
+		$query = $this->query("SELECT idAsesoria FROM EstudianteAsesoria WHERE idEstudiante = '".$idEstudiante."' AND calificacion = NULL");
+
+	}
 }
 
 ?>
