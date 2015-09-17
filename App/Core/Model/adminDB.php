@@ -63,7 +63,7 @@ class AdminDB extends Model{
 
 	public function getAmigo($id){
 		$this->connect();
-		$query = $this->query("SELECT id,contrasenia,correoElectronico FROM Usuario WHERE id = '".$id."' AND tipo = 2");
+		$query = $this->query("SELECT * FROM Usuario WHERE id = '".$id."' AND tipo = 2");
 		$iter = 0;
 		$array = array();
 		while($row = mysqli_fetch_array($query)){
@@ -88,7 +88,10 @@ class AdminDB extends Model{
 	}
 
 	public function addCurso($name,$description,$idAmigo,$fecha,$idMateria){
-
+		$this->connect();
+		$query = $this->query("");
+		$this->terminate();
+		return $query;
 	}
 	
 	
