@@ -15,9 +15,14 @@
 					if($_POST["password"]!=$_POST["password2"]){
 						echo "cotraseñas diferentes";
 					}else{
-						$adminC->registerAA($_POST["codigo"], $_POST["email"], $_POST["password"], $_POST["horario"]);	
+						$adminC->registerAA($_POST["codigo"], $_POST["password"], $_POST["nombre"], $_POST["semestre"], $_POST["email"], $_POST["horario"]);	
 					}
-					
+				}else if($_POST["accion"]=="registrarCurso"){
+					$adminC->courseRegister($_POST["tema"], $_POST["descripción"], $_POST["amigo"], $_POST["fecha"], $_POST["materia"]);
+				}else if($_POST["accion"]=="actualizarCurso"){
+					$adminC->updateC($_POST["tema"], $_POST["descripción"], $_POST["amigo"], $_POST["fecha"], $_POST["materia"]);
+				}else if($_POST["accion"]=="eliminarCurso"){
+					echo "haga algo";
 				}
 
 			}else if(isset($_GET["accion"])){
@@ -38,7 +43,7 @@
 				}else if($_GET["accion"]=="addCourse"){
 					$adminC->createCourse();
 				}else if($_GET["accion"]=="editarCurso"){
-					echo $_GET["id"];
+					$adminC->updateCourse($_GET["id"]);
 				}else if($_GET["accion"]=="addCourse"){
 					$adminC->createCourse();
 				}

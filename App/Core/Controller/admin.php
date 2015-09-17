@@ -129,23 +129,18 @@
 			$adminModel=new AdminDB();
 			$data=$adminModel->getAmigo($id);
 
-			//prueba
-			//$data=[1150990, "1234", "amelisdl@gmail.com"];
-			//
-
 			$_POST["id"]=$id;
-			$_POST["password"]=$data[1];
-			$template=$this->renderView($template, "{{BASICO:CODIGO}}", $data[0]);
-			$template=$this->renderView($template, "{{BASICO:EMAIL}}", $data[2]);			
-			//horario//
-
+			$_POST["password"]=$data[0][1];
+			$template=$this->renderView($template, "{{BASICO:CODIGO}}", $data[0][0]);
+			$template=$this->renderView($template, "{{BASICO:EMAIL}}", $data[0][2]);
+			//$template=$this->renderView($template, "{{BASICO:NOMBRE}}", $data[0][3]);
+			//$template=$this->renderView($template, "{{BASICO:SEMESTRE}}", $data[0][4]);			
+			//horario $data [1]// 
+			
 			return $template;
-			//return $data;
 		}
 
-		public function registerAA($codigo, $email, $password, $horario){
-			$name="holi";
-			$semester=5;
+		public function registerAA($codigo, $password, $nombre, $sem, $email, $horario){
 			$avatar="Static/img/avatars/h1.png";
 			$password=$this->encryptPassword($password);
 			$adminModel=new AdminDB();
@@ -153,7 +148,7 @@
 			
 			//$data=$adminModel->getAmigo($codigo);
 			if($data==false){
-				$result=$adminModel->addAmigo($codigo,$password,$name,$semester,$email,$avatar,$horario);
+				$result=$adminModel->addAmigo($codigo,$password,$nombre,$sem,$email,$avatar,$horario);
 				print_r("Exito");
 			}else{
 				//ALERTA ERROR, USUARIO YA REGISTRADO
@@ -172,8 +167,40 @@
 			$this->showView($index);
 		}
 
-		public function updateCourse(){
-			
+		public function updateCourse($id){
+			$view=$this->base();
+			$content=$this->getTemplate("Core/View/contenedores/editar_curso.html");//cambiar
+
+			$adminModel=new AdminDB();
+			//$datos=$adminModel->getCourse($id);
+			$hora="03:30";
+			$content=$this->renderView($content, "{{BASICO:HORA}}", $hora);
+			$content=$this->renderView($content, "{{id}}", $id);
+			/*$content=$this->renderView($content, "{{BASICO:MATERIA}}", $data[]);
+			$content=$this->renderView($content, "{{BASICO:FECHA}}", $data[]);
+			$content=$this->renderView($content, "{{BASICO:AMIGO}}", $data[]);
+			$content=$this->renderView($content, "{{BASICO:TEMA}}", $data[]);
+			$content=$this->renderView($content, "{{BASICO:DESCRIPCION}}", $data[]);*/
+
+			$menu=$this->getTemplate("Core/View/assets/menu_admin.html");
+			$view=$this->renderView($view, "{{COMPUESTO:CONTENIDO}}", $content);
+			$view=$this->renderView($view, "{{CICLO:ITEM_SIDEBAR}}", $menu);
+			$this->showView($view);
+		}
+
+		public function updateC($name,$description,$idAmigo,$fecha,$idMateria){
+			echo "holiwis";
+		}
+
+		public function courseRegister($name,$description,$idAmigo,$fecha,$idMateria){
+			$adminModel=new AdminDB();
+			$rta=$adminModel->addCurso($name,$description,$idAmigo,$fecha,$idMateria);
+			if($rta==false){
+				//alerta de error
+			}else{
+				//alerta de exito
+			}
+			$this->createCourse();
 		}
 	}
 ?>
