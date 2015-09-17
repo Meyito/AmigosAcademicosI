@@ -20,7 +20,7 @@
 			$content=$this->renderView($content, "{{CICLO:AMIGOS_HORA6}}",$amigos);
 			//
 			$courses=$this->getCourses2();
-			$content=$this->renderView($content, "{{CICLO:CURSOS}}",$temas);
+			$content=$this->renderView($content, "{{CICLO:CURSOS}}",$courses);
 			$menu=$this->getTemplate("Core/View/assets/menu_admin.html");
 			$index=$this->renderView($index, "{{COMPUESTO:CONTENIDO}}", $content);
 			$index=$this->renderView($index, "{{CICLO:ITEM_SIDEBAR}}", $menu);
@@ -37,8 +37,9 @@
 			$list="";
 			for($i=0; $i<count($data); $i++){
 				$aux=$template;
-				$aux=$this->renderView($aux, "{{BASICO:NOMBRE_CURSO}}", $data[$i][1]);
-				$aux=$this->renderView($aux, "{{BASICO:FECHA_CURSO}}", $data[$i][4]);
+				$aux=$this->renderView($aux, "{{BASICO:AMIGO}}", "Denis Gonzales");
+				$aux=$this->renderView($aux, "{{BASICO:TEMA}}", $data[$i][1]);
+				$aux=$this->renderView($aux, "{{BASICO:FECHA}}", $data[$i][4]);
 				$aux=$this->renderView($aux, "{{id}}", $data[$i][0]);
 				$list=$list.$aux;
 			}
