@@ -10,10 +10,6 @@ class studentDB extends Model{
 		$this->terminate();
 		return $query;
 	}
-
-	public function qualifyAsesoria(){
-		
-	}
 }
 
 ?>
