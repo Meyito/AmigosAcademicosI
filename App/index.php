@@ -10,7 +10,17 @@
 	if(isset($_SESSION["tipo"])){
 		if($_SESSION["tipo"]=="Administrador"){
 			$adminC=new Admin();
-			if(isset($_GET["accion"])){
+			if(isset($_POST["accion"])){
+				if($_POST["accion"]=="registrarAA"){
+					if($_POST["password"]!=$_POST["password2"]){
+						echo "cotraseñas diferentes";
+					}else{
+						$adminC->registerAA($_POST["codigo"], $_POST["email"], $_POST["password"], $_POST["horario"]);	
+					}
+					
+				}
+
+			}else if(isset($_GET["accion"])){
 				if($_GET["accion"]=="amigos"){
 					$adminC->showAA();
 				}else if($_GET["accion"]=="temas"){
@@ -22,18 +32,15 @@
 				}else if($_GET["accion"]=="logout"){
 					$adminC->logout();
 				}else if($_GET["accion"]=="editarAA"){
-					echo $_GET["id"];
-				}
-
-
-
-
-				else if($_GET["accion"]=="registrarAA"){
-					$adminC->aaRegister();
-				}else if($_GET["accion"]=="registrarCurso"){
+					$adminC->aaUpdate($_GET["id"]);
+				}else if($_GET["accion"]=="registrarAA"){
+					$adminC->aaViewRegister();
+				}else if($_GET["accion"]=="addCourse"){
 					$adminC->createCourse();
-				}else if($_GET["accion"]=="administrarTema"){
-					$adminC->topics();
+				}else if($_GET["accion"]=="editarCurso"){
+					echo $_GET["id"];
+				}else if($_GET["accion"]=="addCourse"){
+					$adminC->createCourse();
 				}
 			}else{
 				$adminC->index();

@@ -41,7 +41,7 @@
 		}
 
 		public function login($name, $password){
-			//$pass=$this->encryptPassword($password);
+			$password=$this->encryptPassword($password);
 
 			$userModel=new UserDB();
 			//$data=$userModel->login($name, $pass);
@@ -83,6 +83,7 @@
 			$template = $this->getTemplate("Core/View/base.html");
 			$template = $this->renderView($template, "{{BASICO:NOMBRE}}", $_SESSION["nombre"]);
 			$template = $this->renderView($template, "{{BASICO:TIPO_USUARIO}}", $_SESSION["tipo"]);
+			$template = $this->renderView($template, "{{BASICO:AVATAR}}", $_SESSION["avatar"]);
 			return $template;
 		}
 

@@ -8,14 +8,13 @@ Editar:
   
   BASICO:NOMBRE_CURSO         -> Nombre del curso
   BASICO:FECHA_CURSO					-> Fecha del curso
-  BASICO:LINK_EDITAR_AMIGO    -> Link desde donde es posible editar dicho curso
-
+  {{id}}   -> id del curso
 
 -->
                   <tr>
                     <td>{{BASICO:NOMBRE_CURSO}}</td>
                     <td>{{BASICO:FECHA_CURSO}}</td>
                     <td>
-                      <a href="{{BASICO:LINK_EDITAR_CURSO}}" class="btn btn-danger">Editar</a>
+                      <a href="index.php?accion=editarCurso&id={{id}}" class="btn btn-danger">Editar</a>
                     </td>
                   </tr>

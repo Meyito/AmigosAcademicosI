@@ -2,6 +2,7 @@
 
 	require_once "Core/Controller/controller.php";
 	include_once "Core/Model/adminDB.php";
+	include_once "Core/Model/userDB.php";
 
 	class Admin extends Controller{
 
@@ -47,16 +48,16 @@
 		}
 
 		public function getAA(){
-			//$adminModel=new AdminDB();
-			//$data=$adminModel->getAmigos();
+			$userModel=new UserDB();
+			$data=$userModel->getAmigos();
 
-			//prueba
+			/*prueba
 			$data=array();
 			$aa=[12, "Denis", "activo"];
 			array_push($data, $aa);
 			$aa=[24, "Yurley", "inactivo"];
 			array_push($data, $aa);
-			//
+			*/
 
 			$lista="";
 			$template=$this->getTemplate("Core/View/assets/lista_amigos.html");
@@ -75,9 +76,34 @@
 			$view=$this->base();
 			$content=$this->getTemplate("Core/View/contenedores/administrar_cursos.html");
 			$menu=$this->getTemplate("Core/View/assets/menu_admin.html");
+			$courses=$this->getCourses();
+			$content=$this->renderView($content, "{{CICLO:CURSOS}}", $courses);
 			$view=$this->renderView($view, "{{COMPUESTO:CONTENIDO}}", $content);
 			$view=$this->renderView($view, "{{CICLO:ITEM_SIDEBAR}}", $menu);
 			$this->showView($view);
+		}
+
+		public function getCourses(){
+			$template=$this->getTemplate("Core/View/assets/lista_cursos_editable.html");
+			/*$adminModel=new AdminDB();
+			$data=$adminModel->getCourses();*/
+			
+			$data=array();
+			$aa=[1, "12-9-15", "objetos"];
+			array_push($data, $aa);
+			$aa=[1, "12-9-15", "objetos"];
+			array_push($data, $aa);
+
+			$aux="";
+			$list="";
+			for($i=0; $i<count($data); $i++){
+				$aux=$template;
+				$aux=$this->renderView($aux, "{{BASICO:NOMBRE_CURSO}}", $data[$i][1]);
+				$aux=$this->renderView($aux, "{{BASICO:FECHA_CURSO}}", $data[$i][2]);
+				$aux=$this->renderView($aux, "{{id}}", $data[$i][0]);
+				$list=$list.$aux;
+			}
+			return $list;
 		}
 
 		public function aaViewRegister(){
@@ -100,11 +126,11 @@
 
 		public function getUpdate($id){
 			$template=$this->getTemplate("Core/View/contenedores/editar_amigo_academico.html");
-			//$adminModel=new AdminDB();
-			//$data=$adminModel->getAmigo();
+			$adminModel=new AdminDB();
+			$data=$adminModel->getAmigo($id);
 
 			//prueba
-			$data=[1150990, "1234", "amelisdl@gmail.com"];
+			//$data=[1150990, "1234", "amelisdl@gmail.com"];
 			//
 
 			$_POST["id"]=$id;
@@ -114,14 +140,17 @@
 			//horario//
 
 			return $template;
+			//return $data;
 		}
 
 		public function registerAA($codigo, $email, $password, $horario){
 			$name="holi";
 			$semester=5;
 			$avatar="Static/img/avatars/h1.png";
+			$password=$this->encryptPassword($password);
 			$adminModel=new AdminDB();
 			$data=false;
+			
 			//$data=$adminModel->getAmigo($codigo);
 			if($data==false){
 				$result=$adminModel->addAmigo($codigo,$password,$name,$semester,$email,$avatar,$horario);
