@@ -87,8 +87,20 @@ class AdminDB extends Model{
 		}
 	}
 
-	public function changeAgenda($id,$array){
-
+	public function changeAgenda($idAmigo,$array){
+		$this->connect();
+		$query = $this->query("DELETE FROM Agenda WHERE idAmigoAcademico = '".$idAmigo."'");
+		if($query){
+			$iter = 0;
+			while($iter<count($array)){
+				$day = $array[$iter]/10;
+				$hour = $array[$iter]%10;
+				$query = $this->query("INSERT INTO Agenda VALUES ('".$idAmigo."',".$day.",".$hour.")");
+				$iter++;
+			}
+		}
+		$this->terminate();
+		return $query;
 	}
 
 	public function addCurso($name,$description,$idAmigo,$fecha,$idMateria){

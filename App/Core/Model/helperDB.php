@@ -16,6 +16,12 @@ class helperDB extends Model{
 		$this->terminate();
 		return $query;
 	}
+	public function updateCourse($id,$name,$description,$idAmigo,$fecha,$idMateria){
+		$this->connect();
+		$query = $this->query("UPDATE Curso SET nombre = '".$name."',descripcion = '".$description."',idAmigoAcademico = '".$idAmigo."',fecha = '".$fecha."',idMateria = '".$idMateria."' WHERE id = '".$id."'");
+		$this->terminate();
+		return $query;
+	}
 }
 
 ?>
