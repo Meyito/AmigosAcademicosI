@@ -6,9 +6,14 @@ class studentDB extends Model{
 
 	public function addStudent($id,$password,$name,$semester,$email,$avatar){
 		$this->connect();
-		$query = $this->query("INSERT INTO Usuario('".$id."','".$name."','".$password."','".$email."',".$semester.",3,'".$avatar."','activo')");
+		$query = $this->query("INSERT INTO Usuario VALUES('".$id."','".$name."','".$password."','".$email."',".$semester.",3,'".$avatar."','activo')");
 		$this->terminate();
 		return $query;
+	}
+
+	public function qualifyAsesoria($idEstudiante,$idAsesoria,$calification){
+		$this->connect();
+		$query = $this->query("UPDATE EstudianteAsesoria set calificacion = ".$calification." WHERE idEstudiante = '".$idEstudiante."',idAsesoria = '".$idAsesoria."'");
 	}
 }
 
