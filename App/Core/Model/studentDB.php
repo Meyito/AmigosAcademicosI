@@ -14,6 +14,8 @@ class studentDB extends Model{
 	public function qualifyAsesoria($idEstudiante,$idAsesoria,$calification){
 		$this->connect();
 		$query = $this->query("UPDATE EstudianteAsesoria set calificacion = ".$calification." WHERE idEstudiante = '".$idEstudiante."' AND idAsesoria = '".$idAsesoria."'");
+		$this->terminate();
+		return $query;
 	}
 }
 
