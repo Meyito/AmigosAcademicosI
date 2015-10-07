@@ -84,11 +84,13 @@ mysqli_query($connect,$query);
 $query = "CREATE TABLE EstudianteAsesoria(
 			idEstudiante varchar(7) NOT NULL,
 			idAsesoria int NOT NULL,
-			descripcion varchar(144) NOT NULL,
+			observacion varchar(144) NOT NULL,
 			calificacion int,
+			idTema int NOT NULL,
 			PRIMARY KEY(idEstudiante,idAsesoria),
 			FOREIGN KEY(idEstudiante) REFERENCES Usuario(id),
-			FOREIGN KEY(idAsesoria) REFERENCES Asesoria(id)
+			FOREIGN KEY(idAsesoria) REFERENCES Asesoria(id),
+			FOREIGN KEY(idTema) REFERENCES Tema(id)
 			)";
 mysqli_query($connect,$query);
 
