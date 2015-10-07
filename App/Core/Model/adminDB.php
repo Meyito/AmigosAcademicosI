@@ -109,21 +109,21 @@ class AdminDB extends Model{
 		$this->terminate();
 		return $query;
 	}
-	public function deleteCourse($id){
+	public function deleteCurso($id){
 		$this->connect();
 		$query = $this->query("DELETE FROM Curso WHERE id = '".$id."'");
 		$this->terminate();
 		return $query;
 	}
 
-	public function updateCourse($id,$name,$description,$idAmigo,$fecha,$idMateria){
+	public function updateCurso($id,$name,$description,$idAmigo,$fecha,$idMateria){
 		$this->connect();
 		$query = $this->query("UPDATE Curso SET nombre = '".$name."',descripcion = '".$description."',idAmigoAcademico = '".$idAmigo."',fecha = '".$fecha."',idMateria = '".$idMateria."' WHERE id = '".$id."'");
 		$this->terminate();
 		return $query;
 	}
 
-	public function getCourse($id){
+	public function getCurso($id){
 		$this->connect();
 		$query = $this->query("SELECT * FROM Curso WHERE id = '".$id."'");
 		$this->terminate();

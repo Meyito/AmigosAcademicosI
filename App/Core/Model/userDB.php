@@ -58,7 +58,7 @@ class UserDB extends Model{
 		return $array;
 	}
 
-	public function getCourses(){
+	public function getCursos(){
 		$this->connect();
 		$query = $this->query("SELECT * FROM Curso");
 		$this->terminate();
