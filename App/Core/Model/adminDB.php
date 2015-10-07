@@ -47,7 +47,7 @@ class AdminDB extends Model{
 		$this->terminate();
 		return $query;	
 	}
-	public function deleteUser($id){
+	public function deleteUsuario($id){
 		$this->connect();
 		$query = $this->query("DELETE FROM Usuario WHERE id = '".$id."'");
 		$this->terminate();

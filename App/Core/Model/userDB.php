@@ -40,7 +40,7 @@ class UserDB extends Model{
 		
 	}
 
-	public function updateUser($id,$password,$name,$semester,$email,$avatar){
+	public function updateUsuario($id,$password,$name,$semester,$email,$avatar){
 		$this->connect();
 		$query = $this->query("UPDATE Usuario SET id = '".$id."',nombre = '".$name."',contrasenia = '".$password."',correoElectronico = '".$email."',semestre = ".$semester.",avatar = '".$avatar."' WHERE id='".$id."' ");
 		$this->terminate();
