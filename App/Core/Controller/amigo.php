@@ -7,7 +7,7 @@
 	class Amigo extends Controller{
 
 		public function index(){
-			$index=$this->base();
+			$index=$this->base("Core/View/assets/menu_amigo.html");
 			$content=$this->getTemplate("Core/View/contenedores/inicio_amigo_academico.html");
 
 			//temporal
@@ -20,56 +20,46 @@
 			$content=$this->renderView($content, "{{CICLO:AMIGOS_HORA5}}",$amigos);
 			$content=$this->renderView($content, "{{CICLO:AMIGOS_HORA6}}",$amigos);
 			//
-			$courses=$this->getCourses2();
+			$courses=$this->getCursos2();
 			$content=$this->renderView($content, "{{CICLO:CURSOS}}",$courses);
-			$menu=$this->getTemplate("Core/View/assets/menu_amigo.html");
 			$index=$this->renderView($index, "{{COMPUESTO:CONTENIDO}}", $content);
-			$index=$this->renderView($index, "{{CICLO:ITEM_SIDEBAR}}", $menu);
 			$this->showView($index);
 		}
 
 		public function changeAvatar(){
-			$view=$this->base();
+			$view=$this->base("Core/View/assets/menu_amigo.html");
 			$content=$this->getTemplate("Core/View/contenedores/proximamente.html");
-			$menu=$this->getTemplate("Core/View/assets/menu_amigo.html");
 			$view=$this->renderView($view, "{{COMPUESTO:CONTENIDO}}", $content);
-			$view=$this->renderView($view, "{{CICLO:ITEM_SIDEBAR}}", $menu);
 			$this->showView($view);
 		}
 
 		public function help(){
-			$view=$this->base();
+			$view=$this->base("Core/View/assets/menu_amigo.html");
 			$content=$this->getTemplate("Core/View/contenedores/proximamente.html");
-			$menu=$this->getTemplate("Core/View/assets/menu_amigo.html");
 			$view=$this->renderView($view, "{{COMPUESTO:CONTENIDO}}", $content);
-			$view=$this->renderView($view, "{{CICLO:ITEM_SIDEBAR}}", $menu);
 			$this->showView($view);
 		}
 
 		public function adviceRegister(){
-			$index=$this->base();
+			$index=$this->base("Core/View/assets/menu_amigo.html");
 			$content=$this->getTemplate("Core/View/contenedores/registrar_asistencia_asesoria.html");
-			$menu=$this->getTemplate("Core/View/assets/menu_amigo.html");
 			$index=$this->renderView($index, "{{COMPUESTO:CONTENIDO}}", $content);
-			$index=$this->renderView($index, "{{CICLO:ITEM_SIDEBAR}}", $menu);
 			$this->showView($index);
 		}
 
 		public function courseAssistantR(){
-			$index=$this->base();
+			$index=$this->base("Core/View/assets/menu_amigo.html");
 			$content=$this->getTemplate("Core/View/contenedores/registrar_asistencia_lista_curso.html");
-			$menu=$this->getTemplate("Core/View/assets/menu_amigo.html");
-			$course=$this->getCourses();
+			$course=$this->getCursos();
 			$content=$this->renderView($content, "{{CICLO:CURSOS}}", $course);
 			$index=$this->renderView($index, "{{COMPUESTO:CONTENIDO}}", $content);
-			$index=$this->renderView($index, "{{CICLO:ITEM_SIDEBAR}}", $menu);
 			$this->showView($index);
 		}
 
-		public function getCourses(){
+		public function getCursos(){
 			$template=$this->getTemplate("Core/View/assets/lista_cursos_asistencia.html");
 			$userModel=new UserDB();
-			$data=$userModel->getCourses();
+			$data=$userModel->getCursos();
 
 			$aux="";
 			$list="";
@@ -83,10 +73,10 @@
 			return $list;
 		}
 
-		public function getCourses2(){
+		public function getCursos2(){
 			$template=$this->getTemplate("Core/View/assets/lista_cursos.html");
 			$userModel=new UserDB();
-			$data=$userModel->getCourses();
+			$data=$userModel->getCursos();
 
 			$aux="";
 			$list="";
@@ -102,15 +92,13 @@
 		}
 
 		public function registrarAsisC($id){
-			$index=$this->base();
+			$index=$this->base("Core/View/assets/menu_amigo.html");
 
 			$adminModel=new AdminDB();
 			$data=$adminModel->getCourse($id);
 			$content=$this->getTemplate("Core/View/contenedores/registrar_asistencia_curso.html");
 			$content=$this->renderView($content, "{{NOMBRE_CURSO}}", $data[0][1]);
-			$menu=$this->getTemplate("Core/View/assets/menu_amigo.html");
 			$index=$this->renderView($index, "{{COMPUESTO:CONTENIDO}}", $content);
-			$index=$this->renderView($index, "{{CICLO:ITEM_SIDEBAR}}", $menu);
 			$index=$this->renderView($index, "{{COMPUESTO:LIBRERIAS_JS}}", "document.getElementById('tipoComentario1').addEventListener('click', cambiarTipoComentario, false);
       document.getElementById('tipoComentario2').addEventListener('click', cambiarTipoComentario, false);
       document.getElementById('0').addEventListener('keyup', copiarTextArea, false);");

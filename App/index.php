@@ -25,6 +25,12 @@
 					$adminC->updateC($_POST["id"], $_POST["tema"], $_POST["descripción"], $_POST["amigo"], $_POST["fecha"], $_POST["materia"]);
 				}else if($_POST["accion"]=="eliminarCurso"){
 					$adminC->deleteCourse($_POST["id"]);
+				}else if($_POST["accion"]=="actualizarAA"){
+					if($_POST["password"]!=$_POST["password2"]){
+						echo "cotraseñas diferentes";
+					}else{
+						$adminC->updateAA($_POST["codigo"], $_POST["password"], $_POST["nombre"], $_POST["semestre"], $_POST["email"], $_POST["horario"]);	
+					}
 				}
 
 			}else if(isset($_GET["accion"])){

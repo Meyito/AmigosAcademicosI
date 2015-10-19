@@ -21,7 +21,6 @@ class UserDB extends Model{
 		else{
 			return false;
 		}
-
 	}
 	public function isAvailable($id){
 		$this->connect();

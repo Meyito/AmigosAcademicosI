@@ -7,9 +7,8 @@
 	class Student extends Controller{
 
 		public function index(){
-			$index=$this->base();
+			$index=$this->base("Core/View/assets/menu_estudiante.html");
 			$content=$this->getTemplate("Core/View/contenedores/inicio_estudiante.html");
-			$menu=$this->getTemplate("Core/View/assets/menu_estudiante.html");
 			//temporal
 			$amigos=$this->getTemplate("Core/View/assets/estatico_tmp_amigosHora.html");
 			$content=$this->renderView($content, "{{CICLO:AMIGOS_HORA2}}",$amigos);
@@ -23,39 +22,34 @@
 			$content=$this->renderView($content, "{{COMPUESTO:MODAL_ASESORIA}}",$amigos);
 			//
 			$index=$this->renderView($index, "{{COMPUESTO:CONTENIDO}}", $content);
-			$index=$this->renderView($index, "{{CICLO:ITEM_SIDEBAR}}", $menu);
 			$this->showView($index);
 		}
 
 		public function topics(){
-			$index=$this->base();
+			$index=$this->base("Core/View/assets/menu_estudiante.html");
 			$content=$this->getTemplate("Core/View/contenedores/estudiante_ver_temas.html");
-			$menu=$this->getTemplate("Core/View/assets/menu_estudiante.html");
 			
 			//cambiar
 			$content=$this->renderView($content, "{{CICLO:TEMAS}}", "");
 			//
 
 			$index=$this->renderView($index, "{{COMPUESTO:CONTENIDO}}", $content);
-			$index=$this->renderView($index, "{{CICLO:ITEM_SIDEBAR}}", $menu);
 			$this->showView($index);
 		}
 
 		public function courses(){
-			$index=$this->base();
+			$index=$this->base("Core/View/assets/menu_estudiante.html");
 			$content=$this->getTemplate("Core/View/contenedores/estudiante_vista_cursos.html");
-			$menu=$this->getTemplate("Core/View/assets/menu_estudiante.html");
-			$courses=$this->getCourses();
+			$courses=$this->getCursos();
 			$content=$this->renderView($content, "{{CICLO:CURSOS}}", $courses);
 			$index=$this->renderView($index, "{{COMPUESTO:CONTENIDO}}", $content);
-			$index=$this->renderView($index, "{{CICLO:ITEM_SIDEBAR}}", $menu);
 			$this->showView($index);
 		}
 		
-		public function getCourses(){
+		public function getCursos(){
 			$template=$this->getTemplate("Core/View/assets/lista_cursos_estudiante.html");
 			$userModel=new UserDB();
-			$data=$userModel->getCourses();
+			$data=$userModel->getCursos();
 
 			$aux="";
 			$list="";
@@ -70,20 +64,16 @@
 		}
 
 		public function changeAvatar(){
-			$view=$this->base();
+			$view=$this->base("Core/View/assets/menu_estudiante.html");
 			$content=$this->getTemplate("Core/View/contenedores/proximamente.html");
-			$menu=$this->getTemplate("Core/View/assets/menu_estudiante.html");
 			$view=$this->renderView($view, "{{COMPUESTO:CONTENIDO}}", $content);
-			$view=$this->renderView($view, "{{CICLO:ITEM_SIDEBAR}}", $menu);
 			$this->showView($view);
 		}
 
 		public function help(){
-			$view=$this->base();
+			$view=$this->base("Core/View/assets/menu_estudiante.html");
 			$content=$this->getTemplate("Core/View/contenedores/proximamente.html");
-			$menu=$this->getTemplate("Core/View/assets/menu_estudiante.html");
 			$view=$this->renderView($view, "{{COMPUESTO:CONTENIDO}}", $content);
-			$view=$this->renderView($view, "{{CICLO:ITEM_SIDEBAR}}", $menu);
 			$this->showView($view);
 		}
 

@@ -20,14 +20,14 @@
           <br>
 					<h3>Editar amigo académico</h3>
           <form action="index.php" method="POST">
-            <input type="hidden" name="registrarAA" value="registrarAA">
+            <input type="hidden" name="accion" value="actualizarAA">
   					<div class="row academic">
   						<div class="col-sm-6">
   	            <div class="input-group">
   	              <span class="input-group-addon" id="code">
   	                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
   	              </span>
-  	              <input type="number" name="codigo" class="form-control" value="{{BASICO:CODIGO}}" aria-describedby="code" required>
+  	              <input type="number" name="codigo" class="form-control" value="{{BASICO:CODIGO}}" aria-describedby="code" readonly>
   	            </div>
   	            <div class="input-group">
   	              <span class="input-group-addon" id="email">

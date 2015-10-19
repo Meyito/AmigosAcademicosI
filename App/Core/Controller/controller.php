@@ -79,11 +79,13 @@
 			$_SESSION["avatar"]=$data["avatar"];
 		}
 
-		public function base(){
+		public function base($route){
 			$template = $this->getTemplate("Core/View/base.html");
 			$template = $this->renderView($template, "{{BASICO:NOMBRE}}", $_SESSION["nombre"]);
 			$template = $this->renderView($template, "{{BASICO:TIPO_USUARIO}}", $_SESSION["tipo"]);
 			$template = $this->renderView($template, "{{BASICO:AVATAR}}", $_SESSION["avatar"]);
+			$menu=$this->getTemplate($route);
+			$template = $this->renderView($template, "{{CICLO:ITEM_SIDEBAR}}", $menu);
 			return $template;
 		}
 

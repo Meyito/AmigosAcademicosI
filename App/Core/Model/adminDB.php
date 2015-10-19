@@ -38,7 +38,7 @@ class AdminDB extends Model{
 		if($query){
 			$iter = 0;
 			while($iter<count($array)){
-				$day = $array[$iter]/10;
+				$day = floor($array[$iter]/10);
 				$hour = $array[$iter]%10;
 				$query = $this->query("INSERT INTO Agenda VALUES ('".$id."',".$day.",".$hour.")");
 				$iter++;
@@ -47,6 +47,15 @@ class AdminDB extends Model{
 		$this->terminate();
 		return $query;	
 	}
+
+	public function updateAmigo($id, $password, $name, $semester, $email, $horario){
+		$this->changeAgenda($id, $horario);
+		$this->connect();		
+		$query = $this->query("UPDATE Usuario SET nombre = '".$name."',contrasenia = '".$password."',correoElectronico = '".$email."',semestre = '".$semester."' WHERE id = '".$id."'");
+		$this->terminate();
+		return $query;
+	}
+
 	public function deleteUsuario($id){
 		$this->connect();
 		$query = $this->query("DELETE FROM Usuario WHERE id = '".$id."'");
@@ -54,6 +63,7 @@ class AdminDB extends Model{
 		return $query;
 	}
 
+	//Deprecated >.<
 	public function changeStateAmigo($id,$estado){
 		$this->connect();
 		$query = $this->query("UPDATE Usuario SET estado = '".$estado."' WHERE id = '".$id."' AND tipo = 2");
@@ -93,7 +103,7 @@ class AdminDB extends Model{
 		if($query){
 			$iter = 0;
 			while($iter<count($array)){
-				$day = $array[$iter]/10;
+				$day = floor($array[$iter]/10);
 				$hour = $array[$iter]%10;
 				$query = $this->query("INSERT INTO Agenda VALUES ('".$idAmigo."',".$day.",".$hour.")");
 				$iter++;
@@ -109,6 +119,7 @@ class AdminDB extends Model{
 		$this->terminate();
 		return $query;
 	}
+
 	public function deleteCurso($id){
 		$this->connect();
 		$query = $this->query("DELETE FROM Curso WHERE id = '".$id."'");
