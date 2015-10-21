@@ -24,7 +24,20 @@ class AdminDB extends Model{
 	}
 	public function getMaterias(){
 		$this->connect();
-		$query = $this->query("SELECT * FROM Materias");
+		$query = $this->query("SELECT * FROM Materia");
+		$this->terminate();
+		$array = array();
+
+		while($row = mysqli_fetch_array($query)){
+			array_push($array,$row);
+		}
+		return $array;
+	}
+
+	//v0.1
+	public function getTemas(){
+		$this->connect();
+		$query = $this->query("SELECT id,nombre FROM Tema");
 		$this->terminate();
 		$array = array();
 		while($row = mysqli_fetch_array($query)){
@@ -32,6 +45,18 @@ class AdminDB extends Model{
 		}
 		return $array;
 	}
+
+	public function getAmigos(){
+		$this->connect();
+		$query = $this->query("SELECT id, nombre FROM Usuario WHERE tipo = 2");
+		$this->terminate();
+		$array = array();
+		while($row = mysqli_fetch_array($query)){
+			array_push($array,$row);
+		}
+		return $array;
+	}
+
 	public function addAmigo($id,$password,$name,$semester,$email,$avatar,$array){
 		$this->connect();
 		$query = $this->query("INSERT INTO Usuario VALUES ('".$id."','".$name."','".$password."','".$email."',".$semester.",2,'".$avatar."','activo')");

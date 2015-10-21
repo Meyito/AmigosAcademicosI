@@ -61,7 +61,7 @@
 		}
 
 		public function help(){
-			$view=$this->base();
+			$view=$this->base("Core/View/assets/menu_admin.html");
 			$content=$this->getTemplate("Core/View/contenedores/proximamente.html");
 			$view=$this->renderView($view, "{{COMPUESTO:CONTENIDO}}", $content);
 			$this->showView($view);
@@ -191,8 +191,76 @@
 		public function createCourse(){
 			$index=$this->base("Core/View/assets/menu_admin.html");
 			$content=$this->getTemplate("Core/View/contenedores/registrar_curso.html");
+
+			$content=$this->listarMaterias($content, -1);			
+			$content=$this->listarAmigos($content, -1);
+
+			//Temas Provisional
+			$content=$this->listarTemas($content, -1);
+			
 			$index=$this->renderView($index, "{{COMPUESTO:CONTENIDO}}", $content);
 			$this->showView($index);
+		}
+
+		public function listarMaterias($content, $id){
+			$adminModel=new AdminDB();
+			$materias=$adminModel->getMaterias();
+			$mat="";
+			$template=$this->getTemplate("Core/View/assets/option.html");
+			for($i=0; $i<count($materias); $i++){
+				$aux=$template;
+				$aux=$this->renderView($aux, "{{VALUE}}", $materias[$i][0]);
+				$aux=$this->renderView($aux, "{{DATA}}", $materias[$i][1]);
+
+				if($materias[$i][0]==$id){
+					$aux=$this->renderView($aux, "{{SELECTED}}", "selected");
+				}
+				$mat=$mat.$aux;
+			}
+			$content=$this->renderView($content, "{{CICLO:MATERIAS}}", $mat);
+
+			return $content;
+		}
+
+		//Temporal
+		public function listarTemas($content, $id){
+			$adminModel=new AdminDB();
+			$template=$this->getTemplate("Core/View/assets/option.html");
+			$temas=$adminModel->getTemas();
+			$tm="";
+			for($i=0; $i<count($temas); $i++){
+				$aux=$template;
+				$aux=$this->renderView($aux, "{{VALUE}}", $temas[$i][0]);
+				$aux=$this->renderView($aux, "{{DATA}}", $temas[$i][1]);
+
+				if($temas[$i][0]==$id){
+					$aux=$this->renderView($aux, "{{SELECTED}}", "selected");
+				}
+				$tm=$tm.$aux;
+			}
+			$content=$this->renderView($content, "{{CICLO:TEMAS}}", $tm);
+
+			return $content;
+		}
+
+		public function listarAmigos($content, $id){
+			$adminModel=new AdminDB();
+			$template=$this->getTemplate("Core/View/assets/option.html");
+			$amigos=$adminModel->getAmigos();
+			$am="";
+			for($i=0; $i<count($amigos); $i++){
+				$aux=$template;
+				$aux=$this->renderView($aux, "{{VALUE}}", $amigos[$i][0]);
+				$aux=$this->renderView($aux, "{{DATA}}", $amigos[$i][1]);
+
+				if($amigos[$i][0]==$id){
+					$aux=$this->renderView($aux, "{{SELECTED}}", "selected");
+				}
+				$am=$am.$aux;
+			}
+			$content=$this->renderView($content, "{{CICLO:AMIGOS}}", $am);
+
+			return $content;
 		}
 
 		public function updateCourse($id){
@@ -200,15 +268,19 @@
 			$content=$this->getTemplate("Core/View/contenedores/editar_curso.html");//cambiar
 
 			$adminModel=new AdminDB();
-			$data=$adminModel->getCourse($id);
+			$data=$adminModel->getCurso($id);
+
+			$content=$this->listarMaterias($content, $data[0][6]);			
+			$content=$this->listarAmigos($content, $data[0][3]);
+			$content=$this->listarTemas($content, $data[0][1]);
 
 			$hora="03:30";
 			$content=$this->renderView($content, "{{BASICO:HORA}}", $hora);
 			$content=$this->renderView($content, "{{id}}", $id);
-			$content=$this->renderView($content, "{{BASICO:MATERIA}}", $data[0][6]);
+			//$content=$this->renderView($content, "{{BASICO:MATERIA}}", $data[0][6]);
 			$content=$this->renderView($content, "{{BASICO:FECHA}}", $data[0][4]);
-			$content=$this->renderView($content, "{{BASICO:AMIGO}}", $data[0][3]);
-			$content=$this->renderView($content, "{{BASICO:TEMA}}", $data[0][1]);
+			//$content=$this->renderView($content, "{{BASICO:AMIGO}}", $data[0][3]);
+			//$content=$this->renderView($content, "{{BASICO:TEMA}}", $data[0][1]);
 			$content=$this->renderView($content, "{{BASICO:DESCRIPCION}}", $data[0][2]);
 
 			$view=$this->renderView($view, "{{COMPUESTO:CONTENIDO}}", $content);
@@ -217,7 +289,7 @@
 
 		public function updateC($id, $name,$description,$idAmigo,$fecha,$idMateria){
 			$adminModel=new AdminDB();
-			$rta=$adminModel->updateCourse($id, $name,$description,$idAmigo,$fecha,$idMateria);
+			$rta=$adminModel->updateCurso($id, $name,$description,$idAmigo,$fecha,$idMateria);
 			$this->courses();
 		}
 
@@ -235,13 +307,14 @@
 
 		public function courseRegister($name,$description,$idAmigo,$fecha,$idMateria){
 			$adminModel=new AdminDB();
+
 			$rta=$adminModel->addCurso($name,$description,$idAmigo,$fecha,$idMateria);
 			if($rta==false){
 				//alerta de error
 			}else{
 				//alerta de exito
 			}
-			$this->createCourse();
+			$this->courses();
 		}
 	}
 ?>

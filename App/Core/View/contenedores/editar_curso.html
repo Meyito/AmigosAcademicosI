@@ -20,7 +20,10 @@
                     <span class="input-group-addon" id="materia">
                       <span class="glyphicon glyphicon-education" aria-hidden="true"></span>
                     </span>
-                    <input type="text" name="materia" class="form-control" value="{{BASICO:MATERIA}}" aria-describedby="materia" required>
+                    <!--input type="text" name="materia" class="form-control" value="{{BASICO:MATERIA}}" aria-describedby="materia" required-->
+                    <select name="materia" class="form-control" required>
+                      {{CICLO:MATERIAS}}
+                    </select>
                   </div>
                 </div>
                 <div class="col-sm-6 col-md-5">
@@ -44,7 +47,10 @@
                     <span class="input-group-addon" id="amigo">
                       <span class="glyphicon glyphicon-education" aria-hidden="true"></span>
                     </span>
-                    <input type="text" name="amigo" class="form-control" value="{{BASICO:AMIGO}}" aria-describedby="amigo" required>
+                    <!--input type="text" name="amigo" class="form-control" value="{{BASICO:AMIGO}}" aria-describedby="amigo" required-->
+                    <select name="amigo" class="form-control" required>
+                      {{CICLO:AMIGOS}}
+                    </select>
                   </div>
                 </div>
                 <div class="col-sm-12 col-md-10 col-md-offset-1">
@@ -52,7 +58,10 @@
                     <span class="input-group-addon" id="tema">
                       <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
                     </span>
-                    <input type="text" name="tema" class="form-control" value="{{BASICO:TEMA}}" aria-describedby="tema" required>
+                    <!--input type="text" name="tema" class="form-control" value="{{BASICO:TEMA}}" aria-describedby="tema" required-->
+                    <select name="tema" class="form-control" required>
+                      {{CICLO:TEMAS}}
+                    </select>
                   </div>
                   <textarea name="descripción" id="Descripción" rows="5" class="form-control" placeholder="Descripción">{{BASICO:DESCRIPCION}}</textarea>
                 </div>
