@@ -10,8 +10,6 @@
 			$index=$this->base("Core/View/assets/menu_admin.html");
 			$content=$this->getTemplate("Core/View/contenedores/inicio_amigo_academico.html");
 			//temporal
-			$temas=$this->getTemplate("Core/View/assets/estatico_tmp_temasInicio.html");
-			$content=$this->renderView($content, "{{CICLO:TEMAS_SEMANA}}",$temas);
 			$amigos=$this->getTemplate("Core/View/assets/estatico_tmp_amigosHora.html");
 			$content=$this->renderView($content, "{{CICLO:AMIGOS_HORA2}}",$amigos);
 			$content=$this->renderView($content, "{{CICLO:AMIGOS_HORA3}}",$amigos);
@@ -19,10 +17,12 @@
 			$content=$this->renderView($content, "{{CICLO:AMIGOS_HORA5}}",$amigos);
 			$content=$this->renderView($content, "{{CICLO:AMIGOS_HORA6}}",$amigos);
 			//
+			$temas=$this->getTemas();
+			$content=$this->renderView($content, "{{CICLO:TEMAS_SEMANA}}",$temas);
 			$courses=$this->getCursos2();
 			$content=$this->renderView($content, "{{CICLO:CURSOS}}",$courses);
 			$index=$this->renderView($index, "{{COMPUESTO:CONTENIDO}}", $content);
-			//gethorario, get cursos, get temas para renderizar la vista.
+			//gethorario para renderizar la vista.
 			$this->showView($index);
 		}
 
@@ -35,10 +35,26 @@
 			$list="";
 			for($i=0; $i<count($data); $i++){
 				$aux=$template;
-				$aux=$this->renderView($aux, "{{BASICO:AMIGO}}", "Denis Gonzales");
+				$aux=$this->renderView($aux, "{{BASICO:AMIGO}}", $data[$i][3]);
 				$aux=$this->renderView($aux, "{{BASICO:TEMA}}", $data[$i][1]);
 				$aux=$this->renderView($aux, "{{BASICO:FECHA}}", $data[$i][4]);
 				$aux=$this->renderView($aux, "{{id}}", $data[$i][0]);
+				$list=$list.$aux;
+			}
+			return $list;
+		}
+
+		public function getTemas(){
+			$template=$this->getTemplate("Core/View/assets/temas_semana.html");
+			$userModel=new UserDB();
+			$data=$userModel->getTemasActivos();
+
+			$aux="";
+			$list="";
+			for($i=0; $i<count($data); $i++){
+				$aux=$template;
+				$aux=$this->renderView($aux, "{{BASICO:MATERIA}}", $data[$i][2]);
+				$aux=$this->renderView($aux, "{{BASICO:TEMA}}", $data[$i][1]);
 				$list=$list.$aux;
 			}
 			return $list;
@@ -49,7 +65,7 @@
 			$content=$this->getTemplate("Core/View/contenedores/proximamente.html");
 			$menu=$this->getTemplate("Core/View/assets/menu_admin.html");
 			$view=$this->renderView($view, "{{COMPUESTO:CONTENIDO}}", $content);
-			$view=$this->renderView($view, "{{CICLO:ITEM_SIDEBAR}}", $menu);
+			//$view=$this->renderView($view, "{{CICLO:ITEM_SIDEBAR}}", $menu);
 			$this->showView($view);
 		}
 
