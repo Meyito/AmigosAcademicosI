@@ -13,7 +13,14 @@ class studentDB extends Model{
 
 	public function qualifyAsesoria($idEstudiante,$idAsesoria,$qualification){
 		$this->connect();
-		$query = $this->query("UPDATE EstudianteAsesoria set calificacion = ".$qualification." WHERE idEstudiante = '".$idEstudiante."' AND idAsesoria = '".$idAsesoria."'");
+		$query = $this->query("UPDATE EstudianteAsesoria set calificacion = ".$qualification." WHERE idEstudiante = '".$idEstudiante."' AND idAsesoria = ".$idAsesoria."");
+		$this->terminate();
+		return $query;
+	}
+
+	public function qualifyCurso($idEstudiante,$idCurso,$qualification){
+		$this->connect();
+		$query = $this->query("UPDATE EstudianteCurso set calificacion = ".$qualification." WHERE idEstudiante = '".$idEstudiante."' AND idCurso = ".$idCurso."");
 		$this->terminate();
 		return $query;
 	}

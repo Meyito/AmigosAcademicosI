@@ -64,6 +64,7 @@ mysqli_query($connect,$query);
 $query = "CREATE TABLE EstudianteCurso(
 			idEstudiante varchar(7) NOT NULL,
 			idCurso int NOT NULL,
+			calificacion int,
 			PRIMARY KEY(idEstudiante,idCurso),
 			FOREIGN KEY(idEstudiante) REFERENCES Usuario(id),
 			FOREIGN KEY(idCurso) REFERENCES Curso(id)
