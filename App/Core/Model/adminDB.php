@@ -34,7 +34,6 @@ class AdminDB extends Model{
 		return $array;
 	}
 
-	//v0.1
 	public function getTemas(){
 		$this->connect();
 		$query = $this->query("SELECT id,nombre FROM Tema");

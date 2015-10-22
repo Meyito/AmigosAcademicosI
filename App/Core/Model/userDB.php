@@ -69,10 +69,9 @@ class UserDB extends Model{
 		return $array;
 	}
 
-	//DANIEEEL, aqui un join para que en vez del idMateria me traiga el nombre :3
 	public function getTemasActivos(){
 		$this->connect();
-		$query = $this->query("SELECT id,nombre, idMateria FROM Tema WHERE estado = 1");
+		$query = $this->query("SELECT t.id,t.nombre,m.nombre  FROM Tema t,Materia m WHERE t.estado = 1 AND t.idMateria = m.id");
 		$this->terminate();
 		$array = array();
 		while($row = mysqli_fetch_array($query)){
