@@ -122,15 +122,16 @@
 
 			$aux="";
 			$list="";
+
 			for($i=0; $i<count($data); $i++){
 				$aux=$template;
-				$aux=$this->renderView($aux, "{{BASICO:AMIGO}}", $data[$i][3]);
+				$aux=$this->renderView($aux, "{{BASICO:AMIGO}}", $data[$i]["nombre"]);
 				$aux=$this->renderView($aux, "{{BASICO:TEMA}}", $data[$i][1]);
-				$aux=$this->renderView($aux, "{{BASICO:FECHA}}", $data[$i][4]);
-				$aux=$this->renderView($aux, "{{id}}", $data[$i][0]);
+				$aux=$this->renderView($aux, "{{BASICO:FECHA}}", $data[$i]["fecha"]);
+				$aux=$this->renderView($aux, "{{id}}", $data[$i]["id"]);
 				$list=$list.$aux;
 			}
-			return $list;
+		    return $list;
 		}
 
 		public function listarMaterias($content, $id){

@@ -40,7 +40,7 @@
 			for($i=0; $i<count($data); $i++){
 				$aux=$template;
 				$aux=$this->renderView($aux, "{{BASICO:NOMBRE_CURSO}}", $data[$i][1]);
-				$aux=$this->renderView($aux, "{{BASICO:FECHA_CURSO}}", $data[$i][4]);
+				$aux=$this->renderView($aux, "{{BASICO:FECHA_CURSO}}", $data[$i]["fecha"]);
 				$aux=$this->renderView($aux, "{{id}}", $data[$i][0]);
 				$list=$list.$aux;
 			}

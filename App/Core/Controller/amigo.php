@@ -86,7 +86,7 @@
 			$index=$this->base("Core/View/assets/menu_amigo.html");
 
 			$adminModel=new AdminDB();
-			$data=$adminModel->getCourse($id);
+			$data=$adminModel->getCurso($id);
 			$content=$this->getTemplate("Core/View/contenedores/registrar_asistencia_curso.html");
 			$content=$this->renderView($content, "{{NOMBRE_CURSO}}", $data[0][1]);
 			$index=$this->renderView($index, "{{COMPUESTO:CONTENIDO}}", $content);

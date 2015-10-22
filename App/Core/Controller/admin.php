@@ -36,7 +36,9 @@
 
 		public function topics(){
 			$view=$this->base("Core/View/assets/menu_admin.html");
-			$content=$this->getTemplate("Core/View/contenedores/proximamente.html");
+			$content=$this->getTemplate("Core/View/contenedores/estudiante_ver_temas.html");
+			$temas=$this->getTemas();
+			$content=$this->renderView($content, "{{CICLO:TEMAS}}", $temas);
 			$view=$this->renderView($view, "{{COMPUESTO:CONTENIDO}}", $content);
 			$this->showView($view);
 		}
