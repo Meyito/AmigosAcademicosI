@@ -169,47 +169,6 @@
 			$this->showView($index);
 		}
 
-		public function listarMaterias($content, $id){
-			$adminModel=new AdminDB();
-			$materias=$adminModel->getMaterias();
-			$mat="";
-			$template=$this->getTemplate("Core/View/assets/option.html");
-			for($i=0; $i<count($materias); $i++){
-				$aux=$template;
-				$aux=$this->renderView($aux, "{{VALUE}}", $materias[$i][0]);
-				$aux=$this->renderView($aux, "{{DATA}}", $materias[$i][1]);
-
-				if($materias[$i][0]==$id){
-					$aux=$this->renderView($aux, "{{SELECTED}}", "selected");
-				}
-				$mat=$mat.$aux;
-			}
-			$content=$this->renderView($content, "{{CICLO:MATERIAS}}", $mat);
-
-			return $content;
-		}
-
-		//Temporal
-		public function listarTemas($content, $id){
-			$adminModel=new AdminDB();
-			$template=$this->getTemplate("Core/View/assets/option.html");
-			$temas=$adminModel->getTemas();
-			$tm="";
-			for($i=0; $i<count($temas); $i++){
-				$aux=$template;
-				$aux=$this->renderView($aux, "{{VALUE}}", $temas[$i][0]);
-				$aux=$this->renderView($aux, "{{DATA}}", $temas[$i][1]);
-
-				if($temas[$i][0]==$id){
-					$aux=$this->renderView($aux, "{{SELECTED}}", "selected");
-				}
-				$tm=$tm.$aux;
-			}
-			$content=$this->renderView($content, "{{CICLO:TEMAS}}", $tm);
-
-			return $content;
-		}
-
 		public function listarAmigos($content, $id){
 			$adminModel=new AdminDB();
 			$template=$this->getTemplate("Core/View/assets/option.html");
@@ -229,6 +188,7 @@
 
 			return $content;
 		}
+		
 
 		public function updateCourse($id){
 			$view=$this->base("Core/View/assets/menu_admin.html");

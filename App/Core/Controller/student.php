@@ -14,10 +14,8 @@
 		public function topics(){
 			$index=$this->base("Core/View/assets/menu_estudiante.html");
 			$content=$this->getTemplate("Core/View/contenedores/estudiante_ver_temas.html");
-			
-			//cambiar
-			$content=$this->renderView($content, "{{CICLO:TEMAS}}", "");
-			//
+			$temas=$this->getTemas();
+			$content=$this->renderView($content, "{{CICLO:TEMAS}}", $temas);
 
 			$index=$this->renderView($index, "{{COMPUESTO:CONTENIDO}}", $content);
 			$this->showView($index);

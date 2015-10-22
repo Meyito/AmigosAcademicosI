@@ -28,6 +28,8 @@
 		public function adviceRegister(){
 			$index=$this->base("Core/View/assets/menu_amigo.html");
 			$content=$this->getTemplate("Core/View/contenedores/registrar_asistencia_asesoria.html");
+			$content=$this->listarMaterias($content, -1);
+			$content=$this->listarTemas($content, -1);
 			$index=$this->renderView($index, "{{COMPUESTO:CONTENIDO}}", $content);
 			$this->showView($index);
 		}
@@ -35,13 +37,13 @@
 		public function courseAssistantR(){
 			$index=$this->base("Core/View/assets/menu_amigo.html");
 			$content=$this->getTemplate("Core/View/contenedores/registrar_asistencia_lista_curso.html");
-			$course=$this->getCursos();
-			$content=$this->renderView($content, "{{CICLO:CURSOS}}", $course);
+			$courses=$this->getCursos3();
+			$content=$this->renderView($content, "{{CICLO:CURSOS}}", $courses);
 			$index=$this->renderView($index, "{{COMPUESTO:CONTENIDO}}", $content);
 			$this->showView($index);
 		}
 
-		public function getCursos(){
+		public function getCursos3(){
 			$template=$this->getTemplate("Core/View/assets/lista_cursos_asistencia.html");
 			$userModel=new UserDB();
 			$data=$userModel->getCursos();
@@ -74,6 +76,10 @@
 				$list=$list.$aux;
 			}
 			return $list;
+		}
+
+		public function registrarAsesoria(){
+			echo "Registro asesoria";
 		}
 
 		public function registrarAsisC($id){
