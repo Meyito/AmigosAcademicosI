@@ -10,13 +10,14 @@
 			$index=$this->base("Core/View/assets/menu_admin.html");
 			$content=$this->getTemplate("Core/View/contenedores/inicio_amigo_academico.html");
 			//temporal
-			$amigos=$this->getTemplate("Core/View/assets/estatico_tmp_amigosHora.html");
+			/*$amigos=$this->getTemplate("Core/View/assets/estatico_tmp_amigosHora.html");
 			$content=$this->renderView($content, "{{CICLO:AMIGOS_HORA2}}",$amigos);
 			$content=$this->renderView($content, "{{CICLO:AMIGOS_HORA3}}",$amigos);
 			$content=$this->renderView($content, "{{CICLO:AMIGOS_HORA4}}",$amigos);
 			$content=$this->renderView($content, "{{CICLO:AMIGOS_HORA5}}",$amigos);
 			$content=$this->renderView($content, "{{CICLO:AMIGOS_HORA6}}",$amigos);
-			//
+			//*/
+			$content=$this->setHorario($content);
 			$temas=$this->getTemas();
 			$content=$this->renderView($content, "{{CICLO:TEMAS_SEMANA}}",$temas);
 			$courses=$this->getCursos2();
@@ -24,6 +25,41 @@
 			$index=$this->renderView($index, "{{COMPUESTO:CONTENIDO}}", $content);
 			//gethorario para renderizar la vista.
 			$this->showView($index);
+		}
+
+		public function setHorario($content){
+			$adminModel=new AdminDB();
+			$dias=array(
+				array("", "", "", "", "", ""),
+				array("", "", "", "", "", ""),
+				array("", "", "", "", "", ""),
+				array("", "", "", "", "", ""),
+				array("", "", "", "", "", "")
+			);
+
+			$data=$adminModel->getAgenda();
+			//print_r($data);
+			$nombre="";
+			for($i=0; $i<count($data); $i++){
+				$nombre=$data[$i][1]; //Inidce del nombre
+				$i++;
+				for($j=0; $j<count($data[$i]); $j++){
+					$x=$data[$i][$j][0]-1;
+					$y=$data[$i][$j][1]-2;
+					$aux=$dias[$x][$y];
+					$dias[$x][$y]=$aux.$nombre." - ";
+				}
+			}
+
+			for($j=0; $j<6; $j++){
+				$aux="";
+				for($i=0; $i<5; $i++){
+					$aux=$aux."<td>".$dias[$i][$j]."</td>";
+				}
+				$content=$this->renderView($content, "{{CICLO:AMIGOS_HORA".($j+2)."}}",$aux);
+			}
+
+			return $content;
 		}
 
 		public function getCursos2(){
@@ -317,7 +353,7 @@
 
 		public function deleteCourse($id){
 			$adminModel=new AdminDB();
-			$rta=$adminModel->deleteCourse($id);
+			$rta=$adminModel->deleteCurso($id);
 			$this->courses();
 		}
 
