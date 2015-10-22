@@ -114,35 +114,6 @@ class AdminDB extends Model{
 		}
 	}
 
-	//Aqui necesito la agenda de Todos los amigos,
-	//su nombre, y un array con el horario, posicion 0 el dia, posicion 1 la hora :3
-	/*
-	public function getAgenda(){
-		$this->connect();
-		$query = $this->query("SELECT * FROM Usuario WHERE id = 123 AND tipo = 2");
-		$iter = 0;
-		$array = array();
-		while($row = mysqli_fetch_array($query)){
-			$iter++;
-			array_push($array,$row);
-		}
-		if($iter>0){
-			$schedule = array();
-			$query = $this->query("SELECT dia,hora FROM Agenda WHERE idAmigoAcademico= 123 ");
-			
-			while($row = mysqli_fetch_array($query)){
-				array_push($schedule,$row);
-			}
-			array_push($array,$schedule);
-			$this->terminate();
-			return $array;
-		}
-		else{
-			$this->terminate();
-			return false;
-		}
-	}
-	*/
 	public function getAgenda(){
 		$this->connect();
 		$query = $this->query("SELECT id,nombre FROM Usuario WHERE tipo = 2");
