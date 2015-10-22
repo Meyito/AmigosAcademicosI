@@ -88,14 +88,6 @@ class AdminDB extends Model{
 		return $query;
 	}
 
-	//Deprecated >.<
-	public function changeStateAmigo($id,$estado){
-		$this->connect();
-		$query = $this->query("UPDATE Usuario SET estado = '".$estado."' WHERE id = '".$id."' AND tipo = 2");
-		$this->terminate();
-		return $query;
-	}
-
 	public function getAmigo($id){
 		$this->connect();
 		$query = $this->query("SELECT * FROM Usuario WHERE id = '".$id."' AND tipo = 2");
@@ -124,6 +116,7 @@ class AdminDB extends Model{
 
 	//Aqui necesito la agenda de Todos los amigos,
 	//su nombre, y un array con el horario, posicion 0 el dia, posicion 1 la hora :3
+	/*
 	public function getAgenda(){
 		$this->connect();
 		$query = $this->query("SELECT * FROM Usuario WHERE id = 123 AND tipo = 2");
@@ -149,7 +142,38 @@ class AdminDB extends Model{
 			return false;
 		}
 	}
-
+	*/
+	public function getAgenda(){
+		$this->connect();
+		$query = $this->query("SELECT id,nombre FROM Usuario WHERE tipo = 2");
+		$iter = 0;
+		$array = array();
+		while($row = mysqli_fetch_array($query)){
+			$iter++;
+			array_push($array,$row);
+		}
+		if($iter>0){
+			$index = 0;
+			while($iter>0){
+				$schedule = array();
+				$id = $array[$index]['id'];
+				$query = $this->query("SELECT dia,hora FROM Agenda WHERE idAmigoAcademico='".$id."'");
+				while($row = mysqli_fetch_array($query)){
+					array_push($schedule,$row);
+				}
+				array_push($array[$index],$schedule);
+				$iter--;
+				$index++;
+			}
+			$this->terminate();
+			return $array;
+		}
+		else{
+			$this->terminate();
+			return false;
+		}
+		//NO OLVIDAR TERMINAR LA CONEXION
+	}
 	public function changeAgenda($idAmigo,$array){
 		$this->connect();
 		$query = $this->query("DELETE FROM Agenda WHERE idAmigoAcademico = '".$idAmigo."'");
