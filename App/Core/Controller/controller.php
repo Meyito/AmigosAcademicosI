@@ -160,18 +160,17 @@
 			);
 
 			$data=$adminModel->getAgenda();
-			//print_r($data);
 			$nombre="";
+
 			for($i=0; $i<count($data); $i++){
-				$nombre=$data[$i][1]; //Inidce del nombre
-				$i++;
-				for($j=0; $j<count($data[$i]); $j++){
-					$x=$data[$i][$j][0]-1;
-					$y=$data[$i][$j][1]-2;
+				$nombre=$data[$i][1];
+				for($j=0; $j<count($data[$i][2]); $j++){
+					$x=$data[$i][2][$j][0]-1;
+					$y=$data[$i][2][$j][1]-2;
 					$aux=$dias[$x][$y];
 					$dias[$x][$y]=$aux.$nombre." - ";
 				}
-			}
+			}			
 
 			for($j=0; $j<6; $j++){
 				$aux="";
