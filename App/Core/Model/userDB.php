@@ -57,6 +57,7 @@ class UserDB extends Model{
 		return $array;
 	}
 
+	//ORDENALOS POR FECHA PORFI :3
 	public function getCursos(){
 		$this->connect();
 		$query = $this->query("SELECT * FROM Curso");
