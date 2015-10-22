@@ -49,7 +49,7 @@ mysqli_query($connect,$query);
 
 $query = "CREATE TABLE Curso(
 			id int AUTO_INCREMENT NOT NULL,
-			nombre varchar(40) NOT NULL,
+			idTema varchar(40) NOT NULL,
 			descripcion varchar(144),
 			idAmigoAcademico varchar(7) NOT NULL,
 			fecha Date NOT NULL,
@@ -57,7 +57,8 @@ $query = "CREATE TABLE Curso(
 			idMateria varchar(7) NOT NULL,
 			PRIMARY KEY(id),
 			FOREIGN KEY(idAmigoAcademico) REFERENCES Usuario(id),
-			FOREIGN KEY(idMateria) REFERENCES Materia(id)
+			FOREIGN KEY(idMateria) REFERENCES Materia(id),
+			FOREIGN KEY(idTema) REFERENCES Tema(id)
 			)";
 mysqli_query($connect,$query);
 
