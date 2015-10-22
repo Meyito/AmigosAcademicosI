@@ -100,9 +100,90 @@
 			$password=$this->encryptPassword($password);
 			$studentModel=new StudentDB();
 			$avatar="Static/img/avatars/h1.png";
-			$rta=$studentModel->addStudent($codigo,$password,$nombre,$semestre,$correo,$avatar);
+			$rta=$studentModel->addEstudiante($codigo,$password,$nombre,$semestre,$correo,$avatar);
 			$this->login($codigo, $password);
 		}
+
+		public function indexP($index){
+			$content=$this->getTemplate("Core/View/contenedores/inicio_amigo_academico.html");
+			$content=$this->getHorario($content);
+			$temas=$this->getTemas();
+			$content=$this->renderView($content, "{{CICLO:TEMAS_SEMANA}}",$temas);
+			$courses=$this->getCursos2();
+			$content=$this->renderView($content, "{{CICLO:CURSOS}}",$courses);
+			$index=$this->renderView($index, "{{COMPUESTO:CONTENIDO}}", $content);
+			$this->showView($index);
+		}
+
+		public function getCursos2(){
+			$template=$this->getTemplate("Core/View/assets/lista_cursos.html");
+			$userModel=new UserDB();
+			$data=$userModel->getCursos();
+
+			$aux="";
+			$list="";
+			for($i=0; $i<count($data); $i++){
+				$aux=$template;
+				$aux=$this->renderView($aux, "{{BASICO:AMIGO}}", $data[$i][3]);
+				$aux=$this->renderView($aux, "{{BASICO:TEMA}}", $data[$i][1]);
+				$aux=$this->renderView($aux, "{{BASICO:FECHA}}", $data[$i][4]);
+				$aux=$this->renderView($aux, "{{id}}", $data[$i][0]);
+				$list=$list.$aux;
+			}
+			return $list;
+		}
+
+		public function getTemas(){
+			$template=$this->getTemplate("Core/View/assets/temas_semana.html");
+			$userModel=new UserDB();
+			$data=$userModel->getTemasActivos();
+
+			$aux="";
+			$list="";
+			for($i=0; $i<count($data); $i++){
+				$aux=$template;
+				$aux=$this->renderView($aux, "{{BASICO:MATERIA}}", $data[$i][2]);
+				$aux=$this->renderView($aux, "{{BASICO:TEMA}}", $data[$i][1]);
+				$list=$list.$aux;
+			}
+			return $list;
+		}
+
+		public function getHorario($content){
+			$adminModel=new AdminDB();
+			$dias=array(
+				array("", "", "", "", "", ""),
+				array("", "", "", "", "", ""),
+				array("", "", "", "", "", ""),
+				array("", "", "", "", "", ""),
+				array("", "", "", "", "", "")
+			);
+
+			$data=$adminModel->getAgenda();
+			//print_r($data);
+			$nombre="";
+			for($i=0; $i<count($data); $i++){
+				$nombre=$data[$i][1]; //Inidce del nombre
+				$i++;
+				for($j=0; $j<count($data[$i]); $j++){
+					$x=$data[$i][$j][0]-1;
+					$y=$data[$i][$j][1]-2;
+					$aux=$dias[$x][$y];
+					$dias[$x][$y]=$aux.$nombre." - ";
+				}
+			}
+
+			for($j=0; $j<6; $j++){
+				$aux="";
+				for($i=0; $i<5; $i++){
+					$aux=$aux."<td>".$dias[$i][$j]."</td>";
+				}
+				$content=$this->renderView($content, "{{CICLO:AMIGOS_HORA".($j+2)."}}",$aux);
+			}
+
+			return $content;
+		}
+
 	}
 
 ?>

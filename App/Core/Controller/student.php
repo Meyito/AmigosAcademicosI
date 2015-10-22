@@ -8,21 +8,7 @@
 
 		public function index(){
 			$index=$this->base("Core/View/assets/menu_estudiante.html");
-			$content=$this->getTemplate("Core/View/contenedores/inicio_estudiante.html");
-			//temporal
-			$amigos=$this->getTemplate("Core/View/assets/estatico_tmp_amigosHora.html");
-			$content=$this->renderView($content, "{{CICLO:AMIGOS_HORA2}}",$amigos);
-			$content=$this->renderView($content, "{{CICLO:AMIGOS_HORA3}}",$amigos);
-			$content=$this->renderView($content, "{{CICLO:AMIGOS_HORA4}}",$amigos);
-			$content=$this->renderView($content, "{{CICLO:AMIGOS_HORA5}}",$amigos);
-			$content=$this->renderView($content, "{{CICLO:AMIGOS_HORA6}}",$amigos);
-			$amigos=$this->getTemplate("Core/View/assets/estatico_tmp_notificaciones.html");
-			$content=$this->renderView($content, "{{CICLO:NOTIFICACION_ASESORIA}}",$amigos);
-			$amigos=$this->getTemplate("Core/View/assets/modal_calificacion.html");
-			$content=$this->renderView($content, "{{COMPUESTO:MODAL_ASESORIA}}",$amigos);
-			//
-			$index=$this->renderView($index, "{{COMPUESTO:CONTENIDO}}", $content);
-			$this->showView($index);
+			$this->indexP($index);
 		}
 
 		public function topics(){

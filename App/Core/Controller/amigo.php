@@ -8,22 +8,7 @@
 
 		public function index(){
 			$index=$this->base("Core/View/assets/menu_amigo.html");
-			$content=$this->getTemplate("Core/View/contenedores/inicio_amigo_academico.html");
-
-			//temporal
-			$temas=$this->getTemplate("Core/View/assets/estatico_tmp_temasInicio.html");
-			$content=$this->renderView($content, "{{CICLO:TEMAS_SEMANA}}",$temas);
-			$amigos=$this->getTemplate("Core/View/assets/estatico_tmp_amigosHora.html");
-			$content=$this->renderView($content, "{{CICLO:AMIGOS_HORA2}}",$amigos);
-			$content=$this->renderView($content, "{{CICLO:AMIGOS_HORA3}}",$amigos);
-			$content=$this->renderView($content, "{{CICLO:AMIGOS_HORA4}}",$amigos);
-			$content=$this->renderView($content, "{{CICLO:AMIGOS_HORA5}}",$amigos);
-			$content=$this->renderView($content, "{{CICLO:AMIGOS_HORA6}}",$amigos);
-			//
-			$courses=$this->getCursos2();
-			$content=$this->renderView($content, "{{CICLO:CURSOS}}",$courses);
-			$index=$this->renderView($index, "{{COMPUESTO:CONTENIDO}}", $content);
-			$this->showView($index);
+			$this->indexP($index);
 		}
 
 		public function changeAvatar(){
