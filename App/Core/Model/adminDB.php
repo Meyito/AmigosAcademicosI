@@ -172,7 +172,6 @@ class AdminDB extends Model{
 			$this->terminate();
 			return false;
 		}
-		//NO OLVIDAR TERMINAR LA CONEXION
 	}
 	public function changeAgenda($idAmigo,$array){
 		$this->connect();
