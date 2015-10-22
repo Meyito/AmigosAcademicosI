@@ -49,7 +49,7 @@ mysqli_query($connect,$query);
 
 $query = "CREATE TABLE Curso(
 			id int AUTO_INCREMENT NOT NULL,
-			idTema varchar(40) NOT NULL,
+			idTema int NOT NULL,
 			descripcion varchar(144),
 			idAmigoAcademico varchar(7) NOT NULL,
 			fecha Date NOT NULL,
