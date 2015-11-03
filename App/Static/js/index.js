@@ -154,5 +154,28 @@ function ajustarCalificacion (actual) {
 function cargarAlerta (identificador) {
 	document.getElementById("asesoria").value = identificador;
 }
+
+function cargarSelect(){
+	var str=document.getElementById("materias").value;
+
+	var parameters = {
+            "q":str
+          };
+
+          $.ajax({
+                data:  parameters,
+                url:   'Core/Model/selectTema.php',
+                type:  'post',
+                beforeSend: function () {
+                },
+                success:  function (response) {
+                  $("#temas").html(response);
+                  console.log(response);
+              }
+          });
+}
+
 /*Escuchadores*/
+document.getElementById("materias").addEventListener("change", cargarSelect);
 window.addEventListener("resize", sidebarAdjust, false);
+window.addEventListener("load", cargarSelect);

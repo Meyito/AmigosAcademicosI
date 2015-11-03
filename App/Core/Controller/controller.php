@@ -154,11 +154,10 @@
 			return $content;
 		}
 
-		//Temporal
-		public function listarTemas($content, $id){
+		public function listarTemas($content, $id, $materia){
 			$adminModel=new AdminDB();
 			$template=$this->getTemplate("Core/View/assets/option.html");
-			$temas=$adminModel->getTemas();
+			$temas=$adminModel->getTema($materia);
 			$tm="";
 			for($i=0; $i<count($temas); $i++){
 				$aux=$template;

@@ -1,6 +1,6 @@
 <?php
 
-include_once "Core/Model/model.php";
+include_once "model.php";
 
 class AdminDB extends Model{
 
@@ -111,6 +111,17 @@ class AdminDB extends Model{
 			$this->terminate();
 			return false;
 		}
+	}
+
+	public function getTema($materia){
+		$this->connect();
+		$query = $this->query("SELECT id,nombre FROM Tema WHERE idMateria='".$materia."'");
+		$this->terminate();
+		$array = array();
+		while($row = mysqli_fetch_array($query)){
+			array_push($array,$row);
+		}
+		return $array;
 	}
 
 	public function getAgenda(){

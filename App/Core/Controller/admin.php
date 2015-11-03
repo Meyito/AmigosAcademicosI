@@ -163,9 +163,6 @@
 
 			$content=$this->listarMaterias($content, -1);			
 			$content=$this->listarAmigos($content, -1);
-
-			//Temas Provisional
-			$content=$this->listarTemas($content, -1);
 			
 			$index=$this->renderView($index, "{{COMPUESTO:CONTENIDO}}", $content);
 			$this->showView($index);
@@ -201,7 +198,7 @@
 
 			$content=$this->listarMaterias($content, $data[0][6]);			
 			$content=$this->listarAmigos($content, $data[0][3]);
-			$content=$this->listarTemas($content, $data[0][1]);
+			$content=$this->listarTemas($content, $data[0][1], $data[0][6]);
 
 			$hora="03:30";
 			$content=$this->renderView($content, "{{BASICO:HORA}}", $hora);
