@@ -29,22 +29,22 @@ class helperDB extends Model{
 		return $query;
 
 	}
-	public function updateCourse($id,$name,$description,$idAmigo,$fecha,$idMateria){
+	public function updateCourse($id,$description,$idAmigo,$fecha,$idMateria,$idTema){
 		$this->connect();
-		$query = $this->query("UPDATE Curso SET nombre = '".$name."',descripcion = '".$description."',idAmigoAcademico = '".$idAmigo."',fecha = '".$fecha."',idMateria = '".$idMateria."' WHERE id = '".$id."'");
+		$query = $this->query("UPDATE Curso SET idTema = '".$idTema."',descripcion = '".$description."',idAmigoAcademico = '".$idAmigo."',fecha = '".$fecha."',idMateria = '".$idMateria."' WHERE id = '".$id."'");
 		$this->terminate();
 		return $query;
 	}
-	public function addAsesoria($idAmigo,$idMateria){
+	public function addAsesoria($idAmigo,$idMateria,$idTema){
 		$this->connect();
-		$query = $this->query("INSERT INTO Asesoria(idAmigoAcademico,fecha,idMateria) VALUES('".$idAmigo."',CURDATE(),'".$idMateria."')");
+		$query = $this->query("INSERT INTO Asesoria(idAmigoAcademico,fecha,idMateria,idTema) VALUES('".$idAmigo."',CURDATE(),'".$idMateria."',".$idTema.")");
 		$id= $this->lastId();
 		$this->terminate();
 		return $id;
 	}
-	public function udpateAsesoria($id,$idAmigo,$idMateria,$date){
+	public function udpateAsesoria($id,$idAmigo,$idMateria,$date,$idTema){
 		$this->connect();
-		$this->query("UPDATE Asesoria SET idAmigoAcademico = '".$idAmigo."',fecha = '".$date."',idMateria = '".$materia."' WHERE id='".$id."'");
+		$this->query("UPDATE Asesoria SET idAmigoAcademico = '".$idAmigo."',fecha = '".$date."',idMateria = '".$materia."',idTema = ".$idTema." WHERE id='".$id."'");
 		$this->terminate();
 		return $query;
 	}
