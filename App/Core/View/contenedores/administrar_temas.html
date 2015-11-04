@@ -5,6 +5,32 @@ Editar:
                         -> La plantilla se encuentra es assets/temas_admin.html
   [[FORM_NUEVO]]       -> Insertar manualmente el formulario que se encarga de la creación de un tema nuevo.
 
+
+IMPORTANTE:
+
+Para que este template funcione, se necesita modificar en base.html:
+
+  COMPUESTO:LIBRERIAS_JS  -> Reemplazar tal cual por lo siguiente:
+
+$(document).ready(function() {
+        $('#temas').DataTable( {
+            "language": {
+                "lengthMenu": "Mostrando _MENU_ temas por página",
+                "zeroRecords": "Ningún resultado coincide con la búsqueda",
+                "info": "Mostrando página _PAGE_ de _PAGES_",
+                "search": "Buscar:",
+                "paginate": {
+                "first":      "Primero",
+                "last":       "Último",
+                "next":       "Siguiente",
+                "previous":   "Anterior"
+            },
+                "infoEmpty": "No hay resultados disponibles",
+                "infoFiltered": "(filtrado de _MAX_ registros totales)"
+            }
+        } );
+    } );
+
 --> 
 
           <div class="col-lg-10 col-md-9 col-sm-9 text-center">
