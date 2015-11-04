@@ -171,69 +171,69 @@ mysqli_query($connect,$query);
 //Temas
 
 //Fundamentos de Programacion
-$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Concepto de Encapsulamiento','1155104',1)";
+$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Concepto de Encapsulamiento','1155104',2)";
 mysqli_query($connect,$query);
 $query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Constructores','1155104',1)";
 mysqli_query($connect,$query);
-$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Metodos','1155104',1)";
+$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Metodos','1155104',2)";
 mysqli_query($connect,$query);
 
 //Matematicas Discretas
-$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Calculo Proposicional','1155102',1)";
+$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Calculo Proposicional','1155102',2)";
 mysqli_query($connect,$query);
 $query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Calculo de Predicados','1155102',1)";
 mysqli_query($connect,$query);
-$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Teoria de Conjuntos','1155102',1)";
+$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Teoria de Conjuntos','1155102',2)";
 mysqli_query($connect,$query);
-$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Relaciones y Funciones','1155102',1)";
+$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Relaciones y Funciones','1155102',2)";
 mysqli_query($connect,$query);
-$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Algebra de Boole','1155102',1)";
+$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Algebra de Boole','1155102',2)";
 mysqli_query($connect,$query);
-$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Conteo y Analisis Combinatorio','1155102',1)";
+$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Conteo y Analisis Combinatorio','1155102',2)";
 mysqli_query($connect,$query);
 
 //Estructuras de Datos
-$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Vectores','1155304',1)";
+$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Vectores','1155304',2)";
 mysqli_query($connect,$query);
-$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Listas Simples','1155304',1)";
+$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Listas Simples','1155304',2)";
 mysqli_query($connect,$query);
-$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Listas Dobles y Dobles Circulares','1155304',1)";
+$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Listas Dobles y Dobles Circulares','1155304',2)";
 mysqli_query($connect,$query);
 $query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Pilas y Colas','1155304',1)";
 mysqli_query($connect,$query);
-$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Recursion','1155304',1)";
+$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Recursion','1155304',2)";
 mysqli_query($connect,$query);
-$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Arboles Binarios','1155304',1)";
+$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Arboles Binarios','1155304',2)";
 mysqli_query($connect,$query);
-$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Metodos de Ordenamiento','1155304',1)";
+$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Metodos de Ordenamiento','1155304',2)";
 mysqli_query($connect,$query);
 
 //Programacion Orientada a Objetos II
-$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Hilos','1155305',1)";
+$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Hilos','1155305',2)";
 mysqli_query($connect,$query);
 $query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Sockets','1155305',1)";
 mysqli_query($connect,$query);
 
 //Programacion Orientada a Objetos
-$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Modularidad','1155204',1)";
+$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Modularidad','1155204',2)";
 mysqli_query($connect,$query);
-$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Abstraccion de Objetos','1155204',1)";
+$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Abstraccion de Objetos','1155204',2)";
 mysqli_query($connect,$query);
 $query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Herencia','1155204',1)";
 mysqli_query($connect,$query);
-$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Concepto de Clase','1155204',1)";
+$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Concepto de Clase','1155204',2)";
 mysqli_query($connect,$query);
-$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Diagrama de Clases UML','1155204',1)";
+$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Diagrama de Clases UML','1155204',2)";
 mysqli_query($connect,$query);
 
 //Ondas y Particulas
-$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Conceptos Basicos de la Relatividad','1155403',1)";
+$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Conceptos Basicos de la Relatividad','1155403',2)";
 mysqli_query($connect,$query);
-$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Movimiento Oscilatorio','1155403',1)";
+$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Movimiento Oscilatorio','1155403',2)";
 mysqli_query($connect,$query);
-$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Ondas Mecanicas','1155403',1)";
+$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Ondas Mecanicas','1155403',2)";
 mysqli_query($connect,$query);
-$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Ondas Electromagneticas','1155403',1)";
+$query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Ondas Electromagneticas','1155403',2)";
 mysqli_query($connect,$query);
 
 
