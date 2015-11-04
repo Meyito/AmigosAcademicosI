@@ -72,6 +72,44 @@ class AdminDB extends Model{
 		return $query;	
 	}
 
+	public function addPeriodoAmigo($idAmigoAcademico,$idPeriodo){
+		$this->connect();
+		$query = $this->query("INSERT INTO AmigoPeriodo VALUES('".$idAmigoAcademico."',".$idPeriodo.")");
+		$this->terminate();
+		return $query;
+	}
+
+	public function deletePeriodoAmigo($idAmigoAcademico,$idPeriodo){
+		$this->connect();
+		$query = $this->query("DELETE FROM AmigoPeriodo WHERE idAmigoAcademico = '".$idAmigoAcademico."' AND idPeriodo = ".$idPeriodo."");
+		$this->terminate();
+		return $query;
+	}
+
+	public function addPeriodo($descripcion){
+		$this->connect();
+		$query = $this->query("SELECT FROM Periodo WHERE descripcion = '".$descripcion."'");
+		$count = 0;
+		while($row = mysqli_fetch_array($query)){
+			$count++;
+		}
+		if($count<1){
+			$query = $this->query("INSERT INTO Periodo(descripcion) VALUES('".$descripcion."')");
+			$this->terminate();
+			if($query){
+				return true;
+			}
+		}
+		$this->terminate();
+		return false;
+	}
+	public function deletePeriodo($id){
+		$this->connect();
+		$query = $this->query("DELETE FROM Periodo WHERE id = '".$id."'");
+		$this->terminate();
+		return $query;
+	}
+
 	public function updateAmigo($id, $password, $name, $semester, $email, $horario){
 		$this->changeAgenda($id, $horario);
 		$this->connect();		
@@ -184,9 +222,9 @@ class AdminDB extends Model{
 		return $query;
 	}
 
-	public function updateCurso($id,$name,$description,$idAmigo,$fecha,$idMateria){
+	public function updateCurso($id,$name,$description,$idAmigo,$fecha,$idMateria,$idTema){
 		$this->connect();
-		$query = $this->query("UPDATE Curso SET nombre = '".$name."',descripcion = '".$description."',idAmigoAcademico = '".$idAmigo."',fecha = '".$fecha."',idMateria = '".$idMateria."' WHERE id = '".$id."'");
+		$query = $this->query("UPDATE Curso SET nombre = '".$name."',descripcion = '".$description."',idAmigoAcademico = '".$idAmigo."',fecha = '".$fecha."',idMateria = '".$idMateria."',idTema = ".$idTema." WHERE id = '".$id."'");
 		$this->terminate();
 		return $query;
 	}
