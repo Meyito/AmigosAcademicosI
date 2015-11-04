@@ -12,6 +12,9 @@ function sidebarAdjust(){
 	c = document.getElementById("navbar");
 	d = document.getElementById("footer");
 	b.style.height = (a.offsetHeight-c.offsetHeight-d.offsetHeight)+"px";
+	$(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
 }
 
 
@@ -175,9 +178,6 @@ function cargarSelect(){
           });
 }
 function conteoInicial(){
-	$(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
 	if(document.getElementById("lunes2")){
 		for(i = 0; i < 25; i++){
         	if(document.getElementById(valores[i]).checked){
