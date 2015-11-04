@@ -1,6 +1,6 @@
 <?php
 
-include_once = "Core/Model/model.php";
+include_once  "Core/Model/model.php";
 
 class helperDB extends Model{
 
@@ -16,9 +16,9 @@ class helperDB extends Model{
 		$this->terminate();
 		return $query;
 	}
-	public function addAsistenciaAsesoria($idEstudiante,idAesoria,$description){
+	public function addAsistenciaAsesoria($idEstudiante, $idAsesoria, $description){
 		$this->connect();
-		$query = $this->query("INSERT INTO EstudianteAsesoria(idEstudiante,idAsesoria,descripcion) VALUES('".$idEstudiante."','".$idAsesoria."','".$description."')");
+		$query = $this->query("INSERT INTO EstudianteAsesoria(idEstudiante,idAsesoria,observacion) VALUES('".$idEstudiante."','".$idAsesoria."','".$description."')");
 		$this->terminate();
 		return $query;
 	}
@@ -38,8 +38,9 @@ class helperDB extends Model{
 	public function addAsesoria($idAmigo,$idMateria){
 		$this->connect();
 		$query = $this->query("INSERT INTO Asesoria(idAmigoAcademico,fecha,idMateria) VALUES('".$idAmigo."',CURDATE(),'".$idMateria."')");
+		$id= $this->lastId();
 		$this->terminate();
-		return $query;
+		return $id;
 	}
 	public function udpateAsesoria($id,$idAmigo,$idMateria,$date){
 		$this->connect();

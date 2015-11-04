@@ -1,7 +1,7 @@
 <?php
 
 	require_once "Core/Controller/controller.php";
-	//include_once "Core/Modelo/AmigoBD.php";
+	include_once "Core/Model/helperDB.php";
 	include_once "Core/Model/userDB.php";
 
 	class Amigo extends Controller{
@@ -62,7 +62,24 @@
 		}
 
 		public function registrarAsesoria($materia, $tema, $codigos, $tipoC, $comentarios){
-			echo "Registro asesoria";
+			
+			$amigoDB=new helperDB();
+
+			$idAsesoria=$amigoDB->addAsesoria($_SESSION["codigo"], $materia);
+
+			$coment="";
+			if($tipoC!=1){
+				$coment=$comentarios[0];
+			}
+
+			for($i=0; $i<count($codigos); $i++){
+				if($tipoC==1){
+					$coment=$comentarios[$i];
+				}
+
+				$amigoDB->addAsistenciaAsesoria($codigos[$i], $idAsesoria, $coment);
+			}
+			$this->adviceRegister();
 		}
 
 		public function registrarAsisC($id){

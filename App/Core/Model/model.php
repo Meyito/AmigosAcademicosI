@@ -17,6 +17,10 @@ class Model{
 		mysqli_close($this->connection);
 	}
 
+	public function lastId(){
+		return mysqli_insert_id($this->connection);
+	}
+
 }
 
 ?>
