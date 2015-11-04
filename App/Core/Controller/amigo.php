@@ -61,25 +61,7 @@
 			return $list;
 		}
 
-		public function getCursos2(){
-			$template=$this->getTemplate("Core/View/assets/lista_cursos.html");
-			$userModel=new UserDB();
-			$data=$userModel->getCursos();
-
-			$aux="";
-			$list="";
-			for($i=0; $i<count($data); $i++){
-				$aux=$template;
-				$aux=$this->renderView($aux, "{{BASICO:AMIGO}}", "Denis Gonzales");
-				$aux=$this->renderView($aux, "{{BASICO:TEMA}}", $data[$i][1]);
-				$aux=$this->renderView($aux, "{{BASICO:FECHA}}", $data[$i][4]);
-				$aux=$this->renderView($aux, "{{id}}", $data[$i][0]);
-				$list=$list.$aux;
-			}
-			return $list;
-		}
-
-		public function registrarAsesoria(){
+		public function registrarAsesoria($materia, $tema, $codigos, $tipoC, $comentarios){
 			echo "Registro asesoria";
 		}
 
