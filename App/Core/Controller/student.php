@@ -1,14 +1,42 @@
 <?php
 
 	require_once "Core/Controller/controller.php";
-	//include_once "Core/Modelo/StudentBD.php";
+	include_once "Core/Model/studentDB.php";
 	include_once "Core/Model/userDB.php";
 
 	class Student extends Controller{
 
 		public function index(){
 			$index=$this->base("Core/View/assets/menu_estudiante.html");
-			$this->indexP($index);
+			$content=$this->getTemplate("Core/View/contenedores/inicio_estudiante.html");
+			$content=$this->getHorario($content);
+			$index=$this->renderView($index, "{{COMPUESTO:CONTENIDO}}", $content);
+
+			$asesorias=$this->getNotificaciones();
+			$index=$this->renderView($index, "{{CICLO:NOTIFICACION_ASESORIA}}", $asesorias);
+			$this->showView($index);
+		}
+
+		public function getNotificaciones(){
+			$base=$this->getTemplate("Core/View/assets/notificacion_asesoria.html");
+			$studentModel=new studentDB();
+
+			$data=$studentModel->getAsesoriasToQualify($_SESSION["codigo"]);
+			$aux="";
+			$tm="";
+
+			for($i=0; $i<count($data); $i++){
+				$tm=$base;
+				$tm=$this->renderView($tm, "{{BASICO:IDENTIFICADOR}}", $base[$i][0]);
+				$tm=$this->renderView($tm, "{{BASICO:AMIGO}}", $base[$i][1]);
+				$tm=$this->renderView($tm, "{{BASICO:FECHA}}", $base[$i][2]);
+				$tm=$this->renderView($tm, "{{BASICO:TEMA}}", $base[$i][3]);
+				$tm=$this->renderView($tm, "{{BASICO:MATERIA}}", $base[$i][4]);
+
+				$aux .= $tm;
+			}
+
+			return $aux;
 		}
 
 		public function topics(){

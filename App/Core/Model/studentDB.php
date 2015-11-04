@@ -27,8 +27,11 @@ class studentDB extends Model{
 
 	public function getAsesoriasToQualify($idEstudiante){
 		$this->connect();
-		$query = $this->query("SELECT idAsesoria FROM EstudianteAsesoria WHERE idEstudiante = '".$idEstudiante."' AND calificacion = NULL");
-
+		$query = $this->query("SELECT e.idAsesoria, u.nombre, a.fecha, t.nombre, m.nombre FROM Materia m, Tema t, Asesoria a, EstudianteAsesoria e, Usuario u 
+			WHERE e.idEstudiante = '".$idEstudiante."' AND calificacion = IS NULL AND a.id=e.idAsesoria AND a.idAmigoAcademico=u.id AND a.idMateria=m.id AND a.idTema=t.id ");
+		//"SELECT e.idAsesoria, u.nombre, a.fecha, m.nombre FROM Materia m, Tema t, Asesoria a, EstudianteAsesoria e, Usuario u WHERE e.idEstudiante = '1212' AND e.calificacion IS NULL AND a.id=e.idAsesoria AND a.idAmigoAcademico=u.id AND a.idMateria=m.id");
+		$this->terminate();
+		return $query;
 	}
 }
 

@@ -6,7 +6,7 @@ class helperDB extends Model{
 
 	public function addAsistenciaCurso($idEstudiante,$idCurso){
 		$this->connect();
-		$query->query("INSERT INTO EstudianteCurso VALUES('".$idEstudiante."',".$idCurso.")");
+		$query=$this->query("INSERT INTO EstudianteCurso(idEstudiante, idCurso) VALUES('".$idEstudiante."',".$idCurso.")");
 		$this->terminate();
 		return $query;
 	}
