@@ -57,14 +57,6 @@
 			$userModel=new UserDB();
 			$data=$userModel->getAmigos();
 
-			/*prueba
-			$data=array();
-			$aa=[12, "Denis", "activo"];
-			array_push($data, $aa);
-			$aa=[24, "Yurley", "inactivo"];
-			array_push($data, $aa);
-			*/
-
 			$lista="";
 			$template=$this->getTemplate("Core/View/assets/lista_amigos.html");
 			$aux="";
@@ -165,6 +157,9 @@
 			$content=$this->listarAmigos($content, -1);
 			
 			$index=$this->renderView($index, "{{COMPUESTO:CONTENIDO}}", $content);
+
+			$aux=$this->getTemplate("Static/js/ninjaScripts/AjaxTemas-Cursos.js");
+			$index=$this->renderView($index, "{{COMPUESTO:LIBRERIAS_JS}}", $aux);
 			$this->showView($index);
 		}
 
@@ -210,6 +205,8 @@
 			$content=$this->renderView($content, "{{BASICO:DESCRIPCION}}", $data[0][2]);
 
 			$view=$this->renderView($view, "{{COMPUESTO:CONTENIDO}}", $content);
+			$aux=$this->getTemplate("Static/js/ninjaScripts/AjaxTemas-Cursos.js");
+			$view=$this->renderView($view, "{{COMPUESTO:LIBRERIAS_JS}}", $aux);
 			$this->showView($view);
 		}
 

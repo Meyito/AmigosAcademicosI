@@ -29,8 +29,9 @@
 			$index=$this->base("Core/View/assets/menu_amigo.html");
 			$content=$this->getTemplate("Core/View/contenedores/registrar_asistencia_asesoria.html");
 			$content=$this->listarMaterias($content, -1);
-			$content=$this->listarTemas($content, -1);
 			$index=$this->renderView($index, "{{COMPUESTO:CONTENIDO}}", $content);
+			$aux=$this->getTemplate("Static/js/ninjaScripts/AjaxTemas-Cursos.js");
+			$index=$this->renderView($index, "{{COMPUESTO:LIBRERIAS_JS}}", $aux);
 			$this->showView($index);
 		}
 
