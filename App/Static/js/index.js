@@ -18,7 +18,7 @@ function sidebarAdjust(){
 
 /*Función que edita el DOM para agregar un input para código adicional en el registro de cursos*/
 function agregarCampo(){
-	text = '<input name="codigo[]" type="text" class="form-control" placeholder="Código"><span class="input-group-btn"><button class="btn btn-default btn-add" type="button" onclick="agregarCampo()">&nbsp;+&nbsp;</button></span>';
+	text = '<input name="codigo[]" type="text" class="form-control" placeholder="Código" required><span class="input-group-btn"><button class="btn btn-default btn-add" type="button" onclick="agregarCampo()">&nbsp;+&nbsp;</button></span>';
 	campos = document.getElementById("campos");
 	div = document.createElement("div");
 	div.innerHTML = text;
