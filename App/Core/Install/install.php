@@ -112,6 +112,61 @@ $query = "CREATE TABLE AmigoPeriodo(
 			FOREIGN KEY(idPeriodo) REFERENCES Periodo(id)
 			)";
 
+//Datos de Inicializacion de la Aplicacion
+
+
+//Usuarios
+$query = "INSERT INTO Usuario(id,nombre,contrasenia,correoElectronico,tipo,avatar,estado) VALUES("1150001","Janeth Parada",sha1("1234"),"janethpc@ufps.edu.co",1,"Static/img/avatars/h1.png","activo")";
+mysqli_query($connect,$query);
+
+//Materias
+
+//SEMESTRE 1
+$query = "INSERT INTO Materia VALUES("1155101","Calculo Diferencial",1)";
+mysqli_query($connect,$query);
+$query = "INSERT INTO Materia VALUES("1155102","Matematicas Discretas",1)";
+mysqli_query($connect,$query);
+$query = "INSERT INTO Materia VALUES("1155104","Fundamentos de Programacion",1)";
+mysqli_query($connect,$query);
+$query = "INSERT INTO Materia VALUES("1155105","Introduccion a Ingenieria de Sistemas",1)";
+mysqli_query($connect,$query);
+
+//SEMESTRE 2
+$query = "INSERT INTO Materia VALUES("1155201","Calculo Integral",2)";
+mysqli_query($connect,$query);
+$query = "INSERT INTO Materia VALUES("1155202","Algebra Lineal",2)";
+mysqli_query($connect,$query);
+$query = "INSERT INTO Materia VALUES("1155203","Fisica Mecanica",2)";
+mysqli_query($connect,$query);
+$query = "INSERT INTO Materia VALUES("1155204","Programacion Orientada a Objetos",2)";
+mysqli_query($connect,$query);
+$query = "INSERT INTO Materia VALUES("1155209","Seminario Integrador I",2)";
+mysqli_query($connect,$query);
+
+//SEMESTRE 3
+$query = "INSERT INTO Materia VALUES("1155301","Calculo Vectorial",3)";
+mysqli_query($connect,$query);
+$query = "INSERT INTO Materia VALUES("1155303","Fisica Electromagnetica",3)";
+mysqli_query($connect,$query);
+$query = "INSERT INTO Materia VALUES("1155304","Estructuras de Datos",3)";
+mysqli_query($connect,$query);
+$query = "INSERT INTO Materia VALUES("1155305","Programacion Orientada a Objetos II",3)";
+mysqli_query($connect,$query);
+$query = "INSERT INTO Materia VALUES("1155306","Seminario de Investigacion I",3)";
+mysqli_query($connect,$query);
+
+//SEMESTRE 4
+$query = "INSERT INTO Materia VALUES("1155401","Ecuaciones Diferenciales",4)";
+mysqli_query($connect,$query);
+$query = "INSERT INTO Materia VALUES("1155402","Probabilidad y Estadistica",4)";
+mysqli_query($connect,$query);
+$query = "INSERT INTO Materia VALUES("1155403","Ondas y Particulas",4)";
+mysqli_query($connect,$query);
+$query = "INSERT INTO Materia VALUES("1155404","Analisis de Algoritmos",4)";
+mysqli_query($connect,$query);
+$query = "INSERT INTO Materia VALUES("1155405","Teoria de La Computacion",4)";
+mysqli_query($connect,$query);
+
 mysqli_close($connect);
 
 ?>

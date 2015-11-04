@@ -109,6 +109,16 @@ class AdminDB extends Model{
 		$this->terminate();
 		return $query;
 	}
+	public function getPeriodos(){
+		$this->connect();
+		$array = array();
+		$query = $this->query("SELECT * FROM Periodo");
+		$this->terminate();
+		while($row = mysqli_fetch_array($query)){
+			array_push($array,$row);
+		}
+		return $array;
+	}
 
 	public function updateAmigo($id, $password, $name, $semester, $email, $horario){
 		$this->changeAgenda($id, $horario);
