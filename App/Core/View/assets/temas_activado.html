@@ -1,0 +1,13 @@
+<!--Plantilla del boton activo/inactivo en la sección tema, cuando se encuentra activado.
+
+
+  Editar:
+  
+  [[FORM_ACTIVAR]]            -> Archivo php que se encarga de activar/desactivar temas 
+  BASICO:ID_ACTIVAR           -> ID del tema, con el que se identifica en la base de datos, para su identificación.
+-->						
+
+						<form action="[[FORM_ACTIVAR]]" method="POST">
+                          <input type="hidden" value="{{BASICO:ID_ACTIVAR}}" name="activado">
+                          <input type="submit" class="btn btn-danger" value="Desactivar">
+                        </form>

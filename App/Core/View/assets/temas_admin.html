@@ -1,0 +1,24 @@
+<!--Plantilla para los temas en la vista administrador.
+
+
+  Editar:
+  
+  BASICO:MATERIA            -> Nombre de la materia 
+  BASICO:TEMA               -> Tema a estudiar
+  COMPUESTO:TEMAS_ACTIVADO  -> Aqui se inserta el botón de activado o desactivado, según como se encuentre actualmente. Si el tema está activado, insertar la plantilla assets/temas_activado.html, en caso contrario, assets/temas_desactivado.html
+  [[FORM_ELIMINAR]]         -> Editar manualmente por el formulario que se encarga de la eliminación
+  BASICO:ID_ELIMINAR        -> ID que identifica al tema, para proceder a su eliminación
+-->
+                  <tr>
+                      <td>{{BASICO:MATERIA}}</td>
+                      <td>{{BASICO:TEMA}}</td>
+                      <td>
+                        {{COMPUESTO:TEMAS_ACTIVADO}}
+                      </td>
+                      <td>
+                        <form action="[[FORM_ELIMINAR]]" method="POST">
+                          <input type="hidden" name="valor" value="{{BASICO:ID_ELIMINAR}}">
+                          <input type="submit" class="btn btn-danger" value="Eliminar">
+                        </form>
+                      </td>
+                   </tr>
