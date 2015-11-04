@@ -77,9 +77,11 @@ $query = "CREATE TABLE Asesoria(
 			idAmigoAcademico varchar(7) NOT NULL,
 			fecha Date NOT NULL,
 			idMateria varchar(7) NOT NULL,
+			idTema int NOT NULL,
 			PRIMARY KEY(id),
 			FOREIGN KEY(idMateria) REFERENCES Materia(id),
-			FOREIGN KEY(idAmigoAcademico) REFERENCES Usuario(id)
+			FOREIGN KEY(idAmigoAcademico) REFERENCES Usuario(id),
+			FOREIGN KEY(idTema) REFERENCES Tema(id)
 			)";
 mysqli_query($connect,$query);
 
@@ -88,13 +90,27 @@ $query = "CREATE TABLE EstudianteAsesoria(
 			idAsesoria int NOT NULL,
 			observacion varchar(144) NOT NULL,
 			calificacion int,
-			idTema int NOT NULL,
 			PRIMARY KEY(idEstudiante,idAsesoria),
 			FOREIGN KEY(idEstudiante) REFERENCES Usuario(id),
-			FOREIGN KEY(idAsesoria) REFERENCES Asesoria(id),
-			FOREIGN KEY(idTema) REFERENCES Tema(id)
+			FOREIGN KEY(idAsesoria) REFERENCES Asesoria(id)
 			)";
 mysqli_query($connect,$query);
+
+$query = "CREATE TABLE Periodo(
+			id int AUTO_INCREMENT NOT NULL,
+			descripcion varchar(10) NOT NULL,
+			PRIMARY KEY(id)
+			)";
+
+mysqli_query($connect,$query);
+
+$query = "CREATE TABLE AmigoPeriodo(
+			idAmigoAcademico varchar(7) NOT NULL,
+			idPeriodo int NOT NULL,
+			PRIMARY KEY(idAmigoAcademico,idPeriodo),
+			FOREIGN KEY(idAmigoAcademico) REFERENCES Usuario(id),
+			FOREIGN KEY(idPeriodo) REFERENCES Periodo(id)
+			)";
 
 mysqli_close($connect);
 
