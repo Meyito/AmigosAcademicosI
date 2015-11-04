@@ -2,8 +2,8 @@
 
 
 var cont = 1; //Variable usada en las pestañas de agregar asesoria
-
-
+var cant = 0;
+var valores = ["lunes2", "martes2", "miercoles2", "jueves2", "viernes2","lunes3", "martes3", "miercoles3", "jueves3", "viernes3","lunes4", "martes4", "miercoles4", "jueves4", "viernes4","lunes5", "martes5", "miercoles5", "jueves5", "viernes5","lunes6", "martes6", "miercoles6", "jueves6", "viernes6"];
 
 /*Función grafica: Ajusta el sidebar al tamaño de la pantalla*/
 function sidebarAdjust(){
@@ -174,6 +174,35 @@ function cargarSelect(){
               }
           });
 }
+function conteoInicial(){
+	if(document.getElementById("lunes2")){
+		for(i = 0; i < 25; i++){
+        	if(document.getElementById(valores[i]).checked){
+        	  cant++;
+        	}
+    	}
+	}
+}
 
+
+
+function conteo(id){
+    setTimeout(function(){
+        if(document.getElementById(id).checked){
+            if(cant<20){
+              cant++;
+            }else{
+              $('#excedido').modal('show');
+              document.getElementById(id).checked = false;
+            }
+        }else{
+            cant--;
+        }
+    }, 300);       
+}
+
+
+
+conteoInicial();
 /*Escuchadores*/
 window.addEventListener("resize", sidebarAdjust, false);
