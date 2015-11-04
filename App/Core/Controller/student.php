@@ -16,7 +16,6 @@
 			$content=$this->getTemplate("Core/View/contenedores/estudiante_ver_temas.html");
 			$temas=$this->getTemas();
 			$content=$this->renderView($content, "{{CICLO:TEMAS}}", $temas);
-
 			$index=$this->renderView($index, "{{COMPUESTO:CONTENIDO}}", $content);
 			$this->showView($index);
 		}
@@ -41,7 +40,8 @@
 				$aux=$template;
 				$aux=$this->renderView($aux, "{{BASICO:NOMBRE_CURSO}}", $data[$i][1]);
 				$aux=$this->renderView($aux, "{{BASICO:FECHA_CURSO}}", $data[$i]["fecha"]);
-				$aux=$this->renderView($aux, "{{id}}", $data[$i][0]);
+				$aux=$this->renderView($aux, "{{BASICO:NOMBRE_AMIGO}}", $data[$i][4]);
+				//$aux=$this->renderView($aux, "{{id}}", $data[$i][0]);
 				$list=$list.$aux;
 			}
 			return $list;

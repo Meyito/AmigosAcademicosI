@@ -54,7 +54,8 @@
 			for($i=0; $i<count($data); $i++){
 				$aux=$template;
 				$aux=$this->renderView($aux, "{{BASICO:NOMBRE_CURSO}}", $data[$i][1]);
-				$aux=$this->renderView($aux, "{{BASICO:FECHA_CURSO}}", $data[$i][4]);
+				$aux=$this->renderView($aux, "{{BASICO:FECHA_CURSO}}", $data[$i][2]);
+				$aux=$this->renderView($aux, "{{BASICO:NOMBRE_AMIGO}}", $data[$i][4]);
 				$aux=$this->renderView($aux, "{{id}}", $data[$i][0]);
 				$list=$list.$aux;
 			}
@@ -89,11 +90,22 @@
 			$data=$adminModel->getCurso($id);
 			$content=$this->getTemplate("Core/View/contenedores/registrar_asistencia_curso.html");
 			$content=$this->renderView($content, "{{NOMBRE_CURSO}}", $data[0][1]);
+			$content=$this->renderView($content, "{{id}}", $id);
 			$index=$this->renderView($index, "{{COMPUESTO:CONTENIDO}}", $content);
-			$index=$this->renderView($index, "{{COMPUESTO:LIBRERIAS_JS}}", "document.getElementById('tipoComentario1').addEventListener('click', cambiarTipoComentario, false);
-      document.getElementById('tipoComentario2').addEventListener('click', cambiarTipoComentario, false);
-      document.getElementById('0').addEventListener('keyup', copiarTextArea, false);");
+			$aux=$this->getTemplate("Static/js/ninjaScripts/registrarAsistenciaCurso.js");
+			$index=$this->renderView($index, "{{COMPUESTO:LIBRERIAS_JS}}", $aux);
 			$this->showView($index);
+		}
+
+		public function registrarAsistenciaCurso($idCurso, $codigos){
+
+			$amigoDB=new helperDB();
+
+			for($i=0; $i<count($codigos); $i++){
+				$amigoDB->addAsistenciaCurso($codigos[$i],$idCurso);
+			}
+
+			$this->registrarAsisC($idCurso);
 		}
 	}
 ?>

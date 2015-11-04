@@ -9,7 +9,9 @@
             <p>(Los estudiantes deben estar previamente registrados en la plataforma)</p>
             <div class="row">
               <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-                <form action="[[ARCHIVO_PHP]]" method="post">
+                <form action="index.php" method="post">
+                  <input type="hidden" name="accion" value="registrarAsistenciaCurso">
+                  <input type="hidden" name="idCurso" value="{{id}}">
                   <div id="campos">
                     <div class="input-group">
                       <input name="codigo[]" type="text" class="form-control" placeholder="Código">
