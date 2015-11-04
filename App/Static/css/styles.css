@@ -40,6 +40,9 @@ hr{
 .login{
 	margin-top: 106px;
 }
+.item-sidebar .glyphicon{
+	font-size: 25px;
+}
 .signup{
 	margin-top: 30px;
 }
@@ -256,6 +259,9 @@ footer p{
 	.item-sidebar{
 		padding-top: 13px;
 		padding-bottom: 13px;
+	}
+	.item-sidebar .glyphicon{
+		font-size: 21px;
 	}
 	
 }
