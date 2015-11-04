@@ -176,6 +176,4 @@ function cargarSelect(){
 }
 
 /*Escuchadores*/
-document.getElementById("materias").addEventListener("change", cargarSelect);
 window.addEventListener("resize", sidebarAdjust, false);
-window.addEventListener("load", cargarSelect);
