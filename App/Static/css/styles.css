@@ -251,10 +251,7 @@ footer p{
 		padding-top: 13px;
 		padding-bottom: 13px;
 	}
-	.titulo-oculto{
-		font-size: 16px;
-		padding-top: 12px;
-	}
+	
 }
 @media (max-width: 767px) {
 	.sidebar{
@@ -265,5 +262,8 @@ footer p{
 	}
 	.titulo-oculto{
 		display: none;
+	}
+	.nabvar-toggle{
+		margin-top: 16px;
 	}
 }
