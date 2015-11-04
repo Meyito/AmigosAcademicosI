@@ -96,13 +96,13 @@
   						<div class="col-sm-6">
   	            <div class="input-group">
   	              <span class="input-group-addon" id="code">
-  	                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+  	                <span class="glyphicon glyphicon-user" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Ingrese su código estudiantil"></span>
   	              </span>
   	              <input type="number" class="form-control" placeholder="Código" aria-describedby="code" required>
   	            </div>
   	            <div class="input-group">
   	              <span class="input-group-addon" id="email">
-  	                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+  	                <span class="glyphicon glyphicon-envelope" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Ingrese un email valido. EJ: correo@ejemplo.com"></span>
   	              </span>
   	              <input type="email" class="form-control" placeholder="Correo Electronico" aria-describedby="email" required>
   	            </div>
@@ -110,13 +110,13 @@
   	          <div class="col-sm-6">
   	            <div class="input-group">
   	              <span class="input-group-addon" id="password">
-  	                <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+  	                <span class="glyphicon glyphicon-lock" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Ingrese una contraseña alfanumerica"></span>
   	              </span>
   	              <input type="password" class="form-control" placeholder="Contraseña" aria-describedby="password" required>
   	            </div>
   	            <div class="input-group">
   	              <span class="input-group-addon" id="password">
-  	                <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+  	                <span class="glyphicon glyphicon-lock" aria-hidden="true"  data-toggle="tooltip" data-placement="top" title="Para evitar errores, repita su contraseña una vez mas"></span>
   	              </span>
   	              <input type="password" class="form-control" placeholder="Repite la Contraseña" aria-describedby="password" required>
   	            </div>
@@ -300,6 +300,9 @@
     <script src="js/index.js"></script>
     <script>
       sidebarAdjust();
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
       var cant = 0;
       var valores = ["lunes2", "martes2", "miercoles2", "jueves2", "viernes2","lunes3", "martes3", "miercoles3", "jueves3", "viernes3","lunes4", "martes4", "miercoles4", "jueves4", "viernes4","lunes5", "martes5", "miercoles5", "jueves5", "viernes5","lunes6", "martes6", "miercoles6", "jueves6", "viernes6"];
       for(i = 0; i < 25; i++){
@@ -320,8 +323,9 @@
           }else{
             cant--;
           }
-        }, 300);       
-      }
+        }, 300);
+       
+       }
     </script>
   </body>
 </html>

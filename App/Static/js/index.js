@@ -175,6 +175,9 @@ function cargarSelect(){
           });
 }
 function conteoInicial(){
+	$(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
 	if(document.getElementById("lunes2")){
 		for(i = 0; i < 25; i++){
         	if(document.getElementById(valores[i]).checked){
