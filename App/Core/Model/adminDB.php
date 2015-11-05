@@ -232,16 +232,16 @@ class AdminDB extends Model{
 		return $query;
 	}
 
-	public function updateCurso($id,$name,$description,$idAmigo,$fecha,$idMateria,$idTema){
+	public function updateCurso($id,$description,$idAmigo,$fecha,$idMateria,$idTema){
 		$this->connect();
-		$query = $this->query("UPDATE Curso SET nombre = '".$name."',descripcion = '".$description."',idAmigoAcademico = '".$idAmigo."',fecha = '".$fecha."',idMateria = '".$idMateria."',idTema = ".$idTema." WHERE id = '".$id."'");
+		$query = $this->query("UPDATE Curso SET descripcion = '".$description."', idAmigoAcademico = '".$idAmigo."',fecha = '".$fecha."',idMateria = '".$idMateria."',idTema = ".$idTema." WHERE id = '".$id."'");
 		$this->terminate();
 		return $query;
 	}
 
 	public function getCurso($id){
 		$this->connect();
-		$query = $this->query("SELECT * FROM Curso WHERE id = '".$id."'");
+		$query = $this->query("SELECT t.nombre FROM Tema t, Curso c WHERE c.id = '".$id."' AND t.id=c.idTema");
 		$this->terminate();
 		$array = array();
 		while($row = mysqli_fetch_array($query)){

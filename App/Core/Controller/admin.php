@@ -210,9 +210,9 @@
 			$this->showView($view);
 		}
 
-		public function updateC($id, $name,$description,$idAmigo,$fecha,$idMateria){
+		public function updateC($id,$description,$idAmigo,$fecha,$idMateria, $idTema){
 			$adminModel=new AdminDB();
-			$rta=$adminModel->updateCurso($id, $name,$description,$idAmigo,$fecha,$idMateria);
+			$rta=$adminModel->updateCurso($id,$description,$idAmigo,$fecha,$idMateria, $idTema);
 			$this->courses();
 		}
 

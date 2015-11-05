@@ -22,7 +22,7 @@
 				}else if($_POST["accion"]=="registrarCurso"){
 					$adminC->courseRegister($_POST["tema"], $_POST["descripción"], $_POST["amigo"], $_POST["fecha"], $_POST["materia"]);
 				}else if($_POST["accion"]=="actualizarCurso"){
-					$adminC->updateC($_POST["id"], $_POST["tema"], $_POST["descripción"], $_POST["amigo"], $_POST["fecha"], $_POST["materia"]);
+					$adminC->updateC($_POST["id"], $_POST["descripción"], $_POST["amigo"], $_POST["fecha"], $_POST["materia"], $_POST["tema"]);
 				}else if($_POST["accion"]=="eliminarCurso"){
 					$adminC->deleteCourse($_POST["id"]);
 				}else if($_POST["accion"]=="actualizarAA"){
@@ -86,6 +86,8 @@
 					$amigoC->registrarAsesoria($_POST["materia"], $_POST["tema"], $_POST["codigo"], $_POST["tipoComentario"], $_POST["comentario"]);
 					//print_r($_POST);
 					/*Array ( [accion] => registrarAsesoria [materia] => 1151 [tema] => 1 [codigo] => Array ( [0] => 23 [1] => 23123 [2] => 1123123 [3] => 123123 ) [tipoComentario] => 1 [comentario] => Array ( [0] => holiwis [1] => vamos [2] => a ver [3] => como funciona ) )*/
+				}else if($_POST["accion"]=="registrarAsistenciaCurso"){
+					$amigoC->registrarAsistenciaCurso($_POST["idCurso"], $_POST["codigo"]);
 				}
 			}else if(isset($_GET["accion"])){
 				if($_GET["accion"]=="logout"){

@@ -51,6 +51,7 @@
 
 			$aux="";
 			$list="";
+
 			for($i=0; $i<count($data); $i++){
 				$aux=$template;
 				$aux=$this->renderView($aux, "{{BASICO:NOMBRE_CURSO}}", $data[$i][1]);
@@ -66,7 +67,7 @@
 			
 			$amigoDB=new helperDB();
 
-			$idAsesoria=$amigoDB->addAsesoria($_SESSION["codigo"], $materia);
+			$idAsesoria=$amigoDB->addAsesoria($_SESSION["codigo"], $materia, $tema);
 
 			$coment="";
 			if($tipoC!=1){
@@ -88,8 +89,9 @@
 
 			$adminModel=new AdminDB();
 			$data=$adminModel->getCurso($id);
+
 			$content=$this->getTemplate("Core/View/contenedores/registrar_asistencia_curso.html");
-			$content=$this->renderView($content, "{{NOMBRE_CURSO}}", $data[0][1]);
+			$content=$this->renderView($content, "{{NOMBRE_CURSO}}", $data[0][0]);
 			$content=$this->renderView($content, "{{id}}", $id);
 			$index=$this->renderView($index, "{{COMPUESTO:CONTENIDO}}", $content);
 			$aux=$this->getTemplate("Static/js/ninjaScripts/registrarAsistenciaCurso.js");
