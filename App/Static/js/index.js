@@ -137,7 +137,6 @@ function copiarTextArea(){
 	}
 }
 
-
 function ajustarCalificacion (actual) {
 	s = new Array();
 	s[0] = document.getElementById("star-1");

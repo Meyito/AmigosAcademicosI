@@ -10,33 +10,42 @@
 			$index=$this->base("Core/View/assets/menu_estudiante.html");
 			$content=$this->getTemplate("Core/View/contenedores/inicio_estudiante.html");
 			$content=$this->getHorario($content);
+			$content=$this->getNotificaciones($content);			
 			$index=$this->renderView($index, "{{COMPUESTO:CONTENIDO}}", $content);
-
-			$asesorias=$this->getNotificaciones();
-			$index=$this->renderView($index, "{{CICLO:NOTIFICACION_ASESORIA}}", $asesorias);
 			$this->showView($index);
 		}
 
-		public function getNotificaciones(){
+		public function getNotificaciones($content){
 			$base=$this->getTemplate("Core/View/assets/notificacion_asesoria.html");
 			$studentModel=new studentDB();
 
 			$data=$studentModel->getAsesoriasToQualify($_SESSION["codigo"]);
+
+			if(count($data)==0){
+				$content=$this->renderView($content, "{{CICLO:NOTIFICACION_ASESORIA}}", "");
+				$content=$this->renderView($content, "{{COMPUESTO:MODAL_ASESORIA}}", "");
+				return $content;
+			}
+
 			$aux="";
 			$tm="";
 
 			for($i=0; $i<count($data); $i++){
 				$tm=$base;
-				$tm=$this->renderView($tm, "{{BASICO:IDENTIFICADOR}}", $base[$i][0]);
-				$tm=$this->renderView($tm, "{{BASICO:AMIGO}}", $base[$i][1]);
-				$tm=$this->renderView($tm, "{{BASICO:FECHA}}", $base[$i][2]);
-				$tm=$this->renderView($tm, "{{BASICO:TEMA}}", $base[$i][3]);
-				$tm=$this->renderView($tm, "{{BASICO:MATERIA}}", $base[$i][4]);
+				$tm=$this->renderView($tm, "{{BASICO:IDENTIFICADOR}}", $data[$i][0]);
+				$tm=$this->renderView($tm, "{{BASICO:AMIGO}}", $data[$i][1]);
+				$tm=$this->renderView($tm, "{{BASICO:FECHA}}", $data[$i][2]);
+				$tm=$this->renderView($tm, "{{BASICO:TEMA}}", $data[$i][3]);
+				$tm=$this->renderView($tm, "{{BASICO:MATERIA}}", $data[$i][4]);
 
 				$aux .= $tm;
 			}
 
-			return $aux;
+			$content=$this->renderView($content, "{{CICLO:NOTIFICACION_ASESORIA}}", $aux);
+			$aux=$this->getTemplate("Core/View/assets/modal_calificacion.html");
+			$content=$this->renderView($content, "{{COMPUESTO:MODAL_ASESORIA}}", $aux);
+
+			return $content;
 		}
 
 		public function topics(){
@@ -90,8 +99,10 @@
 		}
 
 
-		public function rateAdvice(){
-
+		public function rateAdvice($idAsesoria, $calificacion, $comentario){
+			$studentModel=new studentDB();
+			$studentModel->qualifyAsesoria($_SESSION["codigo"],$idAsesoria,count($calificacion), $comentario);
+			$this->index();
 		}
 
 		public function rateCourse(){

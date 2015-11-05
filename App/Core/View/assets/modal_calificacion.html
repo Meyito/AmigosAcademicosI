@@ -13,8 +13,9 @@
 								        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 								        <h4 class="modal-title" id="myModalLabel">Calificar asesoria</h4>
 								      </div>
-								      <form action="[[ARCHIVO_PHP]]" method="POST">
+								      <form action="index.php" method="POST">
 								        <div class="modal-body">
+								        <input type="hidden" name="accion" value="calificarAsesoria">
 								          <input type="hidden" name="asesoria" id="asesoria" value="">
 								          <div class="text-center">
 								            <div class="star checkbox-inline">
@@ -53,7 +54,7 @@
 								          
 								        </div>
 								        <div class="modal-footer">
-								          <input type="button" class="btn btn-danger" value="Guardar">
+								          <input type="submit" class="btn btn-danger" value="Guardar">
 								        </div>
 								      </form>
 								    </div>

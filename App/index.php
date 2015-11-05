@@ -64,7 +64,11 @@
 			}
 		}else if($_SESSION["tipo"]=="Estudiante"){
 			$studentC=new Student();
-			if(isset($_GET["accion"])){
+			if(isset($_POST["accion"])){
+				if($_POST["accion"]=="calificarAsesoria"){
+					$studentC->rateAdvice($_POST["asesoria"], $_POST["calificacion"], $_POST["comentarios"]);
+				}
+			}else if(isset($_GET["accion"])){
 				if($_GET["accion"]=="logout"){
 					$studentC->logout();
 				}else if($_GET["accion"]=="temas"){
@@ -84,8 +88,6 @@
 			if(isset($_POST["accion"])){
 				if($_POST["accion"]=="registrarAsesoria"){
 					$amigoC->registrarAsesoria($_POST["materia"], $_POST["tema"], $_POST["codigo"], $_POST["tipoComentario"], $_POST["comentario"]);
-					//print_r($_POST);
-					/*Array ( [accion] => registrarAsesoria [materia] => 1151 [tema] => 1 [codigo] => Array ( [0] => 23 [1] => 23123 [2] => 1123123 [3] => 123123 ) [tipoComentario] => 1 [comentario] => Array ( [0] => holiwis [1] => vamos [2] => a ver [3] => como funciona ) )*/
 				}else if($_POST["accion"]=="registrarAsistenciaCurso"){
 					$amigoC->registrarAsistenciaCurso($_POST["idCurso"], $_POST["codigo"]);
 				}
