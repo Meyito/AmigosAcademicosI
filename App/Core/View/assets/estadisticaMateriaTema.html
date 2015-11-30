@@ -28,7 +28,7 @@
           httpRequest.open('GET', path);
           httpRequest.send(); 
       }
-      fetchJSONFile("getData.php?"+string, callbackOrigin, function(data){
+      fetchJSONFile("index.php?"+string, callbackOrigin, function(data){
           callbackOrigin(data);
       });
 
