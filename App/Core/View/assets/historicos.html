@@ -1,0 +1,102 @@
+//COMUNES
+    google.load('visualization', '1', {'packages':['corechart']});
+
+    function obtenerJSONDataAsync(string, callbackOrigin){
+      function fetchJSONFile(path, callbackOrigin, callback) {
+            var httpRequest = new XMLHttpRequest();
+            httpRequest.onreadystatechange = function() {
+                if (httpRequest.readyState === 4) {
+                    if (httpRequest.status === 200) {
+                        var data = httpRequest.responseText;
+                        if (callback) callback(data);
+                    }
+                }
+            };
+          httpRequest.open('GET', path);
+          httpRequest.send(); 
+      }
+      fetchJSONFile("index.php?"+string, callbackOrigin, function(data){
+          callbackOrigin(data);
+      });
+
+    }
+
+
+    //HISTORICO POR MATERIAS
+    google.setOnLoadCallback(drawHistoricaMateriasDecorator);
+    function drawHistoricaMateriasDecorator(){
+      obtenerJSONDataAsync("peticion=HistoricaMaterias", drawHistoricaMaterias);
+    }
+    function drawHistoricaMaterias(jsonData) {
+      var data = new google.visualization.DataTable(jsonData);
+      var chart = new google.visualization.BarChart(document.getElementById('HistoricaMaterias'));
+      var options = {
+        height: 300
+      };
+      chart.draw(data, options);
+      sidebarAdjust();
+    }
+
+
+
+    //HISTORICO PERIODO PREVIO I
+    google.setOnLoadCallback(drawPeriodoPrevioIDecorator);
+    function drawPeriodoPrevioIDecorator(){
+      obtenerJSONDataAsync("peticion=periodoPrevioI", drawPeriodoPrevioI);
+    }
+    function drawPeriodoPrevioI(jsonData) {
+      var data = new google.visualization.DataTable(jsonData);
+      var chart = new google.visualization.ColumnChart(document.getElementById('HistoricaCursosI'));
+      var options = {
+        height: 300,
+        legend: { position: "none" },
+        hAxis: {
+          title: 'Cursos'
+        },
+        vAxis: {
+          title: 'Estudiantes'
+        }
+      };
+      chart.draw(data, options);
+      sidebarAdjust();
+    }
+
+    //HISTORICO PERIODO PREVIO II
+    google.setOnLoadCallback(drawPeriodoPrevioIIDecorator);
+    function drawPeriodoPrevioIIDecorator(){
+      obtenerJSONDataAsync("peticion=periodoPrevioII", drawPeriodoPrevioII);
+    }
+    function drawPeriodoPrevioII(jsonData) {
+      var data = new google.visualization.DataTable(jsonData);
+      var chart = new google.visualization.ColumnChart(document.getElementById('HistoricaCursosII'));
+      var options = {
+        height: 300,
+        legend: { position: "none" },
+        hAxis: {
+          title: 'Cursos'
+        },
+        vAxis: {
+          title: 'Estudiantes'
+        }
+      };
+      chart.draw(data, options);
+      sidebarAdjust();
+    }
+
+
+    //Comparativa
+    function comparativaDecorator(){
+      obtenerJSONDataAsync("peticion=comparativa", comparativa);
+    }
+    comparativaDecorator();
+    function comparativa(data){
+      jsonData = JSON.parse(data);
+      var build = "";
+      var comp = document.getElementById("comparativa");
+      build += "<thead><tr><td>Semestre</td><td>"+jsonData["Periodo1"].nombre+"</td><td>"+jsonData["Periodo2"].nombre+"</td></tr></thead><tbody>";
+      build += "<tr><td>Promedio de Calificación:</td><td>"+jsonData["Periodo1"].calificacion+"</td><td>"+jsonData["Periodo2"].calificacion+"</td></tr>";
+      build += "<tr><td>Total de asistentes a Amigos Académicos:</td><td>"+jsonData["Periodo1"].asistentes+"</td><td>"+jsonData["Periodo2"].asistentes+"</td></tr>";
+      build += "<tr><td>Total de estudiantes:</td><td>"+jsonData["Periodo1"].estudiantes+"</td><td>"+jsonData["Periodo2"].estudiantes+"</td></tr>";
+      build += "<tr><td>Procentaje asistentes/estudiantes:</td><td>"+jsonData["Periodo1"].porcentaje+"</td><td>"+jsonData["Periodo2"].porcentaje+"</td></tr></tbody>";
+      comp.innerHTML = build;
+    }

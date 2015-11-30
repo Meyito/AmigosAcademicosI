@@ -180,11 +180,83 @@ if($_GET["peticion"] == "promedioAACalificacionCurso"){
 		        {"label":"Total","type":"number"}
 		      ],
 		  "rows": [
-		        {"c":[{"v":"Asistentes al programa"},{"v":3}]},
-		        {"c":[{"v":"Población total"},{"v":1}]}
+		        {"c":[{"v":"Asistentes al programa"},{"v":110}]},
+		        {"c":[{"v":"Población total"},{"v":560}]}
 		      ]
 		}';
 	echo $string;
+
+}else if($_GET["peticion"] == "HistoricaMaterias"){
+	$string = '{
+		  "cols": [
+		        {"label":"Materia","type":"string"},
+		        {"label":"NOMBRE SEMESTRE I","type":"number"},
+		        {"label":"NOMBRE SEMESTRE II","type":"number"}
+		      ],
+		  "rows": [
+		        {"c":[{"v":"Poo"},{"v":34},{"v":34}]},
+		        {"c":[{"v":"Estructuras"},{"v":11},{"v":34}]},
+		        {"c":[{"v":"Bases"},{"v":33},{"v":34}]},
+		        {"c":[{"v":"Etica"},{"v":59},{"v":34}]},
+		        {"c":[{"v":"Religión"},{"v":81},{"v":34}]},
+		        {"c":[{"v":"Edu. Fisica"},{"v":13},{"v":34}]}
+		      ]
+		}';
+
+
+		echo $string;
+}else if($_GET["peticion"] == "periodoPrevioI"){
+	$string = '{
+		  "cols": [
+		        {"label":"NOMBRE SEMESTRE I","type":"string"},
+		        {"label":"No. Estudiantes","type":"number"}
+		      ],
+		  "rows": [
+		        {"c":[{"v":"Curso 1"},{"v":3}]},
+		        {"c":[{"v":"Curso 2"},{"v":1}]},
+		        {"c":[{"v":"Curso 3"},{"v":3}]},
+		        {"c":[{"v":"Curso 4"},{"v":5}]},
+		        {"c":[{"v":"Curso 5"},{"v":8}]},
+		        {"c":[{"v":"Curso 6"},{"v":1}]}
+		      ]
+		}';
+	echo $string;
+
+}else if($_GET["peticion"] == "periodoPrevioII"){
+	$string = '{
+		  "cols": [
+		        {"label":"NOMBRE SEMESTRE II","type":"string"},
+		        {"label":"No. Estudiantes","type":"number"}
+		      ],
+		  "rows": [
+		        {"c":[{"v":"Curso 1"},{"v":3}]},
+		        {"c":[{"v":"Curso 2"},{"v":1}]},
+		        {"c":[{"v":"Curso 3"},{"v":3}]},
+		        {"c":[{"v":"Curso 4"},{"v":5}]},
+		        {"c":[{"v":"Curso 5"},{"v":8}]},
+		        {"c":[{"v":"Curso 6"},{"v":1}]}
+		      ]
+		}';
+	echo $string;
+}else if($_GET["peticion"] == "comparativa"){
+	/*Nombre periodo1 y 2, es algo como la fecha o "Semestre*/
+	$string = '{
+  "Periodo1": {
+  	"nombre": "Primer Semestre 2015",
+    "calificacion": "4.3",
+    "asistentes": "122",
+    "estudiantes": "450",
+    "porcentaje": "45"
+  },
+  "Periodo2": {
+  	"nombre": "Segundo Semestre 2015",
+    "calificacion": "4.3",
+    "asistentes": "122",
+    "estudiantes": "450",
+    "porcentaje": "45"
+  }
+}';
+		echo $string;
 }
 
 

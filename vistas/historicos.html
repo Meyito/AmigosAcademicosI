@@ -111,6 +111,57 @@
                 </div>
               </div>
             </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="panel panel-default center-block center-text">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Comparativa periodo Previo II</h3>
+                  </div>
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-md-10 col-md-offset-1">
+                        <div id="HistoricaCursosI"></div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="panel panel-default center-block center-text">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Comparativa periodo Previo I</h3>
+                  </div>
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-md-10 col-md-offset-1">
+                        <div id="HistoricaCursosII"></div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+                <div class="panel panel-default center-block center-text">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Comparativa periodo Previo I</h3>
+                  </div>
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-md-10 col-md-offset-1">
+                        <div id="HistoricaComparativa">
+                          <table class="table table-striped" id="comparativa">
+                            
+                          </table>
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+            </div>
+            
+            
           </div>
         </div>
     </div>
@@ -136,18 +187,14 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/index.js"></script>
-    <script>
-      $(function () {
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.10/js/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript">
+       $(function () {
         $('[data-toggle="tooltip"]').tooltip()
       })
       sidebarAdjust();
-
-  </script>
-  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-  <script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.10.10/js/dataTables.bootstrap.min.js"></script>
-    <script type="text/javascript">
-      
 
     //COMUNES
     google.load('visualization', '1', {'packages':['corechart']});
@@ -180,12 +227,78 @@
     }
     function drawHistoricaMaterias(jsonData) {
       var data = new google.visualization.DataTable(jsonData);
-      var chart = new google.visualization.PieChart(document.getElementById('totalEstudiantesChart'));
+      var chart = new google.visualization.BarChart(document.getElementById('HistoricaMaterias'));
       var options = {
         height: 300
       };
       chart.draw(data, options);
       sidebarAdjust();
+    }
+
+
+
+    //HISTORICO PERIODO PREVIO I
+    google.setOnLoadCallback(drawPeriodoPrevioIDecorator);
+    function drawPeriodoPrevioIDecorator(){
+      obtenerJSONDataAsync("peticion=periodoPrevioI", drawPeriodoPrevioI);
+    }
+    function drawPeriodoPrevioI(jsonData) {
+      var data = new google.visualization.DataTable(jsonData);
+      var chart = new google.visualization.ColumnChart(document.getElementById('HistoricaCursosI'));
+      var options = {
+        height: 300,
+        legend: { position: "none" },
+        hAxis: {
+          title: 'Cursos'
+        },
+        vAxis: {
+          title: 'Estudiantes'
+        }
+      };
+      chart.draw(data, options);
+      sidebarAdjust();
+    }
+
+    //HISTORICO PERIODO PREVIO II
+    google.setOnLoadCallback(drawPeriodoPrevioIIDecorator);
+    function drawPeriodoPrevioIIDecorator(){
+      obtenerJSONDataAsync("peticion=periodoPrevioII", drawPeriodoPrevioII);
+    }
+    function drawPeriodoPrevioII(jsonData) {
+      var data = new google.visualization.DataTable(jsonData);
+      var chart = new google.visualization.ColumnChart(document.getElementById('HistoricaCursosII'));
+      var options = {
+        height: 300,
+        legend: { position: "none" },
+        hAxis: {
+          title: 'Cursos'
+        },
+        vAxis: {
+          title: 'Estudiantes'
+        }
+      };
+      chart.draw(data, options);
+      sidebarAdjust();
+    }
+
+
+var glob;
+    //Comparativa
+    function comparativaDecorator(){
+      obtenerJSONDataAsync("peticion=comparativa", comparativa);
+    }
+    comparativaDecorator();
+    function comparativa(data){
+      jsonData = JSON.parse(data);
+      glob = jsonData;
+      var build = "";
+      var comp = document.getElementById("comparativa");
+      build += "<thead><tr><td>Semestre</td><td>"+jsonData["Periodo1"].nombre+"</td><td>"+jsonData["Periodo2"].nombre+"</td></tr></thead><tbody>";
+      build += "<tr><td>Promedio de Calificación:</td><td>"+jsonData["Periodo1"].calificacion+"</td><td>"+jsonData["Periodo2"].calificacion+"</td></tr>";
+      build += "<tr><td>Total de asistentes a Amigos Académicos:</td><td>"+jsonData["Periodo1"].asistentes+"</td><td>"+jsonData["Periodo2"].asistentes+"</td></tr>";
+      build += "<tr><td>Total de estudiantes:</td><td>"+jsonData["Periodo1"].estudiantes+"</td><td>"+jsonData["Periodo2"].estudiantes+"</td></tr>";
+      build += "<tr><td>Procentaje asistentes/estudiantes:</td><td>"+jsonData["Periodo1"].porcentaje+"</td><td>"+jsonData["Periodo2"].porcentaje+"</td></tr></tbody>";
+      comp.innerHTML = build;
     }
     </script>
   </body>
