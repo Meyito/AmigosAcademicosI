@@ -6,6 +6,14 @@ mysqli_close($connect);
 
 $connect = mysqli_connect("localhost","root","","AA") or die(mysqli_error($connect));
 
+$query = "CREATE TABLE Periodo(
+			id int AUTO_INCREMENT NOT NULL,
+			descripcion varchar(10) NOT NULL,
+			cantidadEstudiantes int NOT NULL,
+			PRIMARY KEY(id)
+			)";
+
+mysqli_query($connect,$query);
 
 $query  = "CREATE TABLE Usuario(
 			id varchar(7) NOT NULL,
@@ -28,6 +36,17 @@ $query = "CREATE TABLE Materia(
 			)";
 mysqli_query($connect,$query);
 
+$query  = "CREATE TABLE MateriaHistorico(
+			idMateria varchar(7) NOT NULL,
+			idPeriodo int NOT NULL,
+			asistencias int NOT NULL,
+			promedio float(7) NOT NULL,
+			PRIMARY KEY(idMateria, idPeriodo),
+			FOREIGN KEY(idMateria) REFERENCES Materia(id),
+			FOREIGN KEY(idPeriodo) REFERENCES Periodo(id)
+			)";
+mysqli_query($connect,$query);
+
 $query = "CREATE TABLE Tema(
 			id int AUTO_INCREMENT NOT NULL,
 			nombre varchar(40) NOT NULL,
@@ -35,6 +54,18 @@ $query = "CREATE TABLE Tema(
 			estado int NOT NULL,
 			PRIMARY KEY(id),
 			FOREIGN KEY(idMateria) REFERENCES Materia(id)
+			)";
+mysqli_query($connect,$query);
+
+$query  = "CREATE TABLE AsistenciaHistorico(
+			idTema int NOT NULL,
+			idPeriodo int NOT NULL,
+			tipo ENUM('Asesoria', 'Curso') NOT NULL,
+			asistencia int NOT NULL,
+			promedio float(7) NOT NULL,
+			PRIMARY KEY(idTema, idPeriodo, tipo),
+			FOREIGN KEY(idTema) REFERENCES Tema(id),
+			FOREIGN KEY(idPeriodo) REFERENCES Periodo(id)
 			)";
 mysqli_query($connect,$query);
 
@@ -55,6 +86,7 @@ $query = "CREATE TABLE Curso(
 			fecha Date NOT NULL,
 			estado varchar(15) NOT NULL,
 			idMateria varchar(7) NOT NULL,
+			promedioCalificacion float(7),
 			PRIMARY KEY(id),
 			FOREIGN KEY(idAmigoAcademico) REFERENCES Usuario(id),
 			FOREIGN KEY(idMateria) REFERENCES Materia(id),
@@ -78,6 +110,7 @@ $query = "CREATE TABLE Asesoria(
 			fecha Date NOT NULL,
 			idMateria varchar(7) NOT NULL,
 			idTema int NOT NULL,
+			promedioCalificacion float(7),
 			PRIMARY KEY(id),
 			FOREIGN KEY(idMateria) REFERENCES Materia(id),
 			FOREIGN KEY(idAmigoAcademico) REFERENCES Usuario(id),
@@ -88,20 +121,13 @@ mysqli_query($connect,$query);
 $query = "CREATE TABLE EstudianteAsesoria(
 			idEstudiante varchar(7) NOT NULL,
 			idAsesoria int NOT NULL,
-			observacion varchar(144) NOT NULL,
+			observacionAmigo varchar(144) NOT NULL,
+			observacionEstudiante varchar(144) NOT NULL,
 			calificacion int,
 			PRIMARY KEY(idEstudiante,idAsesoria),
 			FOREIGN KEY(idEstudiante) REFERENCES Usuario(id),
 			FOREIGN KEY(idAsesoria) REFERENCES Asesoria(id)
 			)";
-mysqli_query($connect,$query);
-
-$query = "CREATE TABLE Periodo(
-			id int AUTO_INCREMENT NOT NULL,
-			descripcion varchar(10) NOT NULL,
-			PRIMARY KEY(id)
-			)";
-
 mysqli_query($connect,$query);
 
 $query = "CREATE TABLE AmigoPeriodo(
@@ -111,6 +137,7 @@ $query = "CREATE TABLE AmigoPeriodo(
 			FOREIGN KEY(idAmigoAcademico) REFERENCES Usuario(id),
 			FOREIGN KEY(idPeriodo) REFERENCES Periodo(id)
 			)";
+mysqli_query($connect,$query);
 
 //Datos de Inicializacion de la Aplicacion
 

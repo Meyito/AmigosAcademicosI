@@ -13,10 +13,11 @@
 
 		public function statistics(){
 			$view=$this->base("Core/View/assets/menu_admin.html");
-			$content=$this->getTemplate("Core/View/contenedores/proximamente.html");
-			$menu=$this->getTemplate("Core/View/assets/menu_admin.html");
+			$content=$this->getTemplate("Core/View/contenedores/estadisticas_admin.html");
 			$view=$this->renderView($view, "{{COMPUESTO:CONTENIDO}}", $content);
-			//$view=$this->renderView($view, "{{CICLO:ITEM_SIDEBAR}}", $menu);
+			$view=$this->renderView($view, "{{COMPUESTO:CONTENIDO}}", $content);
+			$js=$this->getTemplate("Core/View/assets/estadisticas.html");
+			$view=$this->renderView($view, "{{COMPUESTO:LIBRERIAS_JS}}", $js);
 			$this->showView($view);
 		}
 

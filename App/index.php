@@ -7,6 +7,8 @@
 	require "Core/Controller/student.php";
 	require "Core/Controller/amigo.php";
 
+	require "Core/Controller/estadisticas.php";
+
 	$control=new controller();
 
 	if(isset($_SESSION["tipo"])){
@@ -61,6 +63,10 @@
 				}
 			}else{
 				$adminC->index();
+
+				//$stats=new Estadisticas();
+				//$stats->getAsistenciaCursoAmigo("1150013");
+
 			}
 		}else if($_SESSION["tipo"]=="Estudiante"){
 			$studentC=new Student();
