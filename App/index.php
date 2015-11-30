@@ -65,6 +65,8 @@
 					$adminC->historic();
 				}else if($_GET["accion"]=="estadisticaIndividual" && isset($_GET["materia"])){
 					$adminC->estadistica2();
+				}else if($_GET["accion"]=="estadisticaIndividual" && isset($_GET["amigo"])){
+					$adminC->estadistica3();
 				}
 			}else if(isset($_GET["peticion"])){
 
@@ -191,7 +193,25 @@ $string = '{
 				}else if($_GET["peticion"]=="EstadisticaMateriaTema"){
 					$string=$stats->getEstadisticaMateriaTema($_GET["materia"]);
 					echo $string;
-
+				}else if($_GET["peticion"]=="EstadisticaPorAmigo"){
+					$string=$stats->getEstadisticaAmigo($_GET["amigo"]);
+					echo $string;
+				}else if($_GET["peticion"] == "calificacionAsesorias"){
+	$string = '{
+				  "1": {
+				    "calificacion": "4",
+				    "comentario": "Muy buena metodologia"
+				  },
+				  "2": {
+				    "calificacion": "4",
+				    "comentario": "Muy buena metodologia"
+				  },
+				  "3": {
+				    "calificacion": "4",
+				    "comentario": "Muy buena metodologia"
+				  }
+				}';
+					echo $string;
 				}
 			}else{
 				$adminC->index();

@@ -46,7 +46,6 @@
 
 			$rta = '{ "cols": ['.json_encode($label1).','.json_encode($label2).'],"rows": [ '.$data.']}';
 
-			print_r($rta);
 			return $rta;
 		}
 
@@ -174,6 +173,18 @@
 
 		}
 
+		public function getEstadisticaAmigo($id){
+			$st=new StatsDB();
+
+			$label1 = array('label' => 'Materia', 'type' => 'string');
+			$label2 = array('label' => 'No. Asesorias', 'type' => 'number');
+			
+			$data = $st -> getEstadisticaAmigo($id);
+
+			$rta = '{ "cols": ['.json_encode($label1).','.json_encode($label2).'],"rows": [ '.$data.']}';
+
+			return $rta;
+		}
 
 
 
