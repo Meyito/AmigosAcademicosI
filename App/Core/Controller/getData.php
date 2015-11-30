@@ -1,8 +1,11 @@
 <?php
 
-	require "estadisticas.php";
+	require_once "Core/Controller/estadisticas.php";
 
 	$stats=new Estadisticas();
+
+// $_GET["peticion"] indica que es lo que está solicitando
+// $_GET["asistenciaCursoAA"]  indica el amigo academico del que se desean ver los cursos
 
 if($_GET["peticion"] == "promedioAACalificacionCurso"){
 
@@ -27,11 +30,11 @@ if($_GET["peticion"] == "promedioAACalificacionCurso"){
 
 	if($_GET["asistenciaCursoAA"] == "Todos"){
 
-		//$string = $stats->getAsistenciaCursos();
+		$string = $stats->getAsistenciaCursos();
 		
 	}else{
 
-		//$string = $stats->getAsistenciaCursoAmigo($_GET["asistenciaCursoAA"]);
+		$string = $stats->getAsistenciaCursoAmigo($_GET["asistenciaCursoAA"]);
 	}
 	echo $string;
 
@@ -52,6 +55,7 @@ if($_GET["peticion"] == "promedioAACalificacionCurso"){
 		        {"c":[{"p":"I689", "v":"Tengo hambre"},{"v":1}]}
 		      ]
 		}';
+	$string = $stats->getAsistenciasMateria();
 	echo $string;
 
 }else if($_GET["peticion"] == "calificacionMateriaPromedio"){
