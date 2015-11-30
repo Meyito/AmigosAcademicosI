@@ -1,6 +1,4 @@
-
-
-    //COMUNES
+ //COMUNES
     google.load('visualization', '1', {'packages':['corechart']});
 
     function obtenerJSONDataAsync(string, callbackOrigin){
@@ -28,7 +26,7 @@
     var seleccionarAmigoAcademico = "Todos";
     google.setOnLoadCallback(drawAsistenciaCursoDecorator);
     function drawAsistenciaCursoDecorator(){
-      obtenerJSONDataAsync("peticion=asistenciaCursosAA&&asistenciaCursoAA="+seleccionarAmigoAcademico, drawAsistenciaCurso);
+      obtenerJSONDataAsync("peticion=asistenciaCursosAA&asistenciaCursoAA="+seleccionarAmigoAcademico, drawAsistenciaCurso);
     }
     function drawAsistenciaCurso(jsonData) {
       var data = new google.visualization.DataTable(jsonData);
@@ -48,7 +46,7 @@
       sidebarAdjust();
     }
     function cargarCalificacionPromedioCursoDecorator(){
-      obtenerJSONDataAsync("peticion=promedioAACalificacionCurso&&promedioCursoAA="+seleccionarAmigoAcademico, cargarCalificacionPromedioCurso);
+      obtenerJSONDataAsync("peticion=promedioAACalificacionCurso&promedioCursoAA="+seleccionarAmigoAcademico, cargarCalificacionPromedioCurso);
     }
     function cargarCalificacionPromedioCurso(data){
       var span = document.getElementById("calificacionPromedioCurso");
@@ -109,6 +107,7 @@
         for (var i = 0; i < selection.length; i++) {
           var item = selection[i];
           id = _data["rows"][item.row]["c"][0]["p"];
+          location.href='index.php?accion=estadisticaIndividual&materia='+id;
         }
       }
 
