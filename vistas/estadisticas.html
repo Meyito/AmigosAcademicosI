@@ -476,8 +476,8 @@
         var id;
         for (var i = 0; i < selection.length; i++) {
           var item = selection[i];
-          console.log(_data["rows"][item.row]["c"][1]["v"]);
-          id = _data["rows"][item.row]["c"][0]["p"];
+          id = _data["rows"][item.row]["c"][1]["v"];
+          location.href='index.php?accion=estadisticaIndividual&amigo='+id;
         }
       }
 

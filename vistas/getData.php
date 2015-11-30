@@ -279,6 +279,42 @@ IMPORTANTE: en $_GET["materia"] viene la materia para la cual se cargarán los t
 		      ]
 		}';
 	echo $string;
+
+}else if($_GET["peticion"]=="EstadisticaPorAmigo"){
+	/*
+IMPORTANTE: en $_GET["amigo"] viene el ID del amigo al cual revisaremos sus asesorias
+	*/
+	$string = '{
+		  "cols": [
+		        {"label":"Materia","type":"string"},
+		        {"label":"No. Asesorias","type":"number"}
+		      ],
+		  "rows": [
+		        {"c":[{"v":"POO"},{"v":3}]},
+		        {"c":[{"v":"Calculo"},{"v":1}]},
+		        {"c":[{"v":"Discretas"},{"v":3}]},
+		        {"c":[{"v":"Estructuras"},{"v":5}]},
+		        {"c":[{"v":"Introducción"},{"v":8}]},
+		        {"c":[{"v":"Tengo hambre"},{"v":1}]}
+		      ]
+		}';
+		echo $string;
+}else if($_GET["peticion"] == "calificacionAsesorias"){
+	$string = '{
+				  "1": {
+				    "calificacion": "4",
+				    "comentario": "Muy buena metodologia"
+				  },
+				  "2": {
+				    "calificacion": "3",
+				    "comentario": "Muy buena metodologia"
+				  },
+				  "3": {
+				    "calificacion": "2",
+				    "comentario": "Muy buena metodologia"
+				  }
+				}';
+				echo $string;
 }
 
 
