@@ -261,3 +261,9 @@ footer p{
 		font-size: 22px;
 	}
 }
+
+
+
+.chart *{
+	background-color: #ecf0f1!important;
+}

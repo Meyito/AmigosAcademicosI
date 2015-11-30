@@ -1,0 +1,261 @@
+
+
+    //COMUNES
+    google.load('visualization', '1', {'packages':['corechart']});
+
+    function obtenerJSONDataAsync(string, callbackOrigin){
+      function fetchJSONFile(path, callbackOrigin, callback) {
+            var httpRequest = new XMLHttpRequest();
+            httpRequest.onreadystatechange = function() {
+                if (httpRequest.readyState === 4) {
+                    if (httpRequest.status === 200) {
+                        var data = httpRequest.responseText;
+                        if (callback) callback(data);
+                    }
+                }
+            };
+          httpRequest.open('GET', path);
+          httpRequest.send(); 
+      }
+      fetchJSONFile("getData.php?"+string, callbackOrigin, function(data){
+          callbackOrigin(data);
+      });
+
+    }
+
+
+    //GRAFICO ASISTENCIA POR CURSO
+    var seleccionarAmigoAcademico = "Todos";
+    google.setOnLoadCallback(drawAsistenciaCursoDecorator);
+    function drawAsistenciaCursoDecorator(){
+      obtenerJSONDataAsync("peticion=asistenciaCursosAA&&asistenciaCursoAA="+seleccionarAmigoAcademico, drawAsistenciaCurso);
+    }
+    function drawAsistenciaCurso(jsonData) {
+      var data = new google.visualization.DataTable(jsonData);
+      var chart = new google.visualization.ColumnChart(document.getElementById('AsistenciaPorCursoChart'));
+      var options    = {
+        legend: { position: 'none' },
+        hAxis: {
+          title: 'Cursos'
+        },
+        vAxis: {
+          title: 'Número de estudiantes'
+        },
+        fontSize: 10
+      };
+      chart.draw(data, options);
+      cargarCalificacionPromedioCursoDecorator();
+      sidebarAdjust();
+    }
+    function cargarCalificacionPromedioCursoDecorator(){
+      obtenerJSONDataAsync("peticion=promedioAACalificacionCurso&&promedioCursoAA="+seleccionarAmigoAcademico, cargarCalificacionPromedioCurso);
+    }
+    function cargarCalificacionPromedioCurso(data){
+      var span = document.getElementById("calificacionPromedioCurso");
+      var jsonData = JSON.parse(data);
+      span.innerHTML = jsonData.promedio;
+    }
+    function cambiarVistaPorAmigo(){
+      var select = document.getElementById("seleccionarAsistenciaPorCurso");
+      for(i = 0; i < select.childNodes.length; i++){
+        if(select.options[i].selected){
+          seleccionarAmigoAcademico = select.options[i].value;
+          drawAsistenciaCursoDecorator();
+        }
+      }
+    }
+
+    function llenarSelectAsistenciaCursoDecorator(){
+      obtenerJSONDataAsync("peticion=selectAsistenciaCurso", llenarSelectAsistenciaCurso);
+    }
+    llenarSelectAsistenciaCursoDecorator();
+    function llenarSelectAsistenciaCurso(data){
+      var jsonData = JSON.parse(data);
+      var options = '<option value="Todos">Todos</option>';
+      for(i=0;i<jsonData.length;i++){
+        var obj = jsonData[i];
+        options += '<option value="'+obj["id"]+'">'+obj["nombre"]+'</option>';
+      }
+      document.getElementById("seleccionarAsistenciaPorCurso").innerHTML = options;
+
+    } 
+
+
+    //GRAFICO ASISTENCIA POR MATERIA Y TEMA
+    google.setOnLoadCallback(drawAsistenciaMateriaDecorator);
+    function drawAsistenciaMateriaDecorator(){
+      obtenerJSONDataAsync("peticion=asistenciaMateria", drawAsistenciaMateria);
+    }
+    function drawAsistenciaMateria(jsonData) {
+      var data = new google.visualization.DataTable(jsonData);
+      var chart = new google.visualization.BarChart(document.getElementById('AsistenciaPorMateriaChart'));
+      var options    = {
+        legend: { position: 'none' },
+        hAxis: {
+          title: 'Cursos'
+        },
+        vAxis: {
+          title: 'Número de estudiantes'
+        },
+        fontSize: 10
+      };
+      chart.draw(data, options);
+      sidebarAdjust();
+      google.visualization.events.addListener(chart, 'select', selectHandler);
+      function selectHandler() {
+        var _data = JSON.parse(jsonData);
+        var selection = chart.getSelection();
+        var id;
+        for (var i = 0; i < selection.length; i++) {
+          var item = selection[i];
+          id = _data["rows"][item.row]["c"][0]["p"];
+        }
+      }
+
+      cargarCalificacionPromedioMateriasDecorator();
+    }
+    function cargarCalificacionPromedioMateriasDecorator(){
+      obtenerJSONDataAsync("peticion=calificacionMateriaPromedio", cargarCalificacionPromedioMaterias);
+    }
+    function cargarCalificacionPromedioMaterias(data){
+      var span = document.getElementById("calificacionPromedioMaterias");
+      var jsonData = JSON.parse(data);
+      span.innerHTML = jsonData.promedio;
+    }
+
+
+
+
+    //ESTUDIANTES CON MAS FRECUENCIA
+
+    function selectFrecuenciaMateria(){
+      var selectMaterias = document.getElementById("estudiantesFrecuenciaMaterias");
+      var selectTemas = document.getElementById("estudiantesFrecuenciaTemas");
+      for(i = 0; i < (selectMaterias.childNodes.length); i++){
+        if(selectMaterias.options[i].selected){
+          if(selectMaterias.options[i].value == "todo"){
+            selectTemas.disabled = true;
+          }else{
+            cargarFrecuenciaTemasDecorator(selectMaterias.options[i].value);
+            selectTemas.disabled = false;
+          }
+          break;
+        }
+      }
+    }
+   
+
+    function cargarFrecuenciaMateriasDecorator(){
+      obtenerJSONDataAsync("peticion=ListaMaterias", cargarFrecuenciaMaterias);
+    }
+    cargarFrecuenciaMateriasDecorator();
+    function cargarFrecuenciaMaterias(data){
+      var selectMaterias = document.getElementById("estudiantesFrecuenciaMaterias");
+      var materias = '<option value="todo">Todas las materias</option>';
+      jsonData = JSON.parse(data);
+      for(i=0;i<jsonData.length;i++){
+        var obj = jsonData[i];
+        materias += '<option value="'+obj["id"]+'">'+obj["nombre"]+'</option>';
+      }
+      selectMaterias.innerHTML = materias;
+    }
+
+    function cargarFrecuenciaTemasDecorator(idMateria){
+      obtenerJSONDataAsync("peticion=ListaTemas&&idMateria="+idMateria, cargarFrecuenciaTemas);
+    }
+    function cargarFrecuenciaTemas(data){
+      var temas = '<option value="todo">Todos los temas</option>';
+      var selectTemas = document.getElementById("estudiantesFrecuenciaTemas");
+      jsonData = JSON.parse(data);
+      for(i=0;i<jsonData.length;i++){
+        var obj = jsonData[i];
+        temas += '<option value="'+obj["id"]+'">'+obj["nombre"]+'</option>';
+      }
+      selectTemas.innerHTML = temas;
+    }
+
+    function cargarTablaFrecuenciaDecorator(idMateria, idTema){
+      obtenerJSONDataAsync("peticion=TablaFrecuencia&&materia="+idMateria+"&&tema="+idTema, cargarTablaFrecuencia);
+    }
+    function recargarTablaFrecuencia(){
+      cargarTablaFrecuenciaDecorator(document.getElementById("estudiantesFrecuenciaMaterias").value, document.getElementById("estudiantesFrecuenciaTemas").value);
+    }
+    cargarTablaFrecuenciaDecorator(document.getElementById("estudiantesFrecuenciaMaterias").value, document.getElementById("estudiantesFrecuenciaTemas").value);
+    var tabla;
+    function cargarTablaFrecuencia(data){
+      var jsonData = JSON.parse(data);
+      var msg = '<thead><tr><th>Estudiante</th><th>Número de Asistencias</th></tr></thead><tfoot><tr><th>Estudiante</th><th>Número de Asistencias</th></tr></tfoot>';
+      for(i=0;i<jsonData.length;i++){
+        var obj = jsonData[i];
+        msg += '<tr><td>'+obj["nombre"]+'</td><td>'+obj["asesorias"]+'</td></tr>';
+      }
+      document.getElementById("Estudiantes-frecuencia").innerHTML = msg;
+      if(tabla != undefined){
+        tabla.destroy();
+      }
+          
+          tabla = $('#Estudiantes-frecuencia').DataTable({
+              "order": [[ 1, "desc" ]],
+              "language": {
+                  "lengthMenu": "Mostrar _MENU_ estudiantes por página",
+                  "zeroRecords": "No encontrado",
+                  "paginate": {
+                      "first":      "Primero",
+                      "last":       "Último",
+                      "next":       "Siguiente",
+                      "previous":   "Anterior"
+                  },
+                  "info": "Mostrando página _PAGE_ de _PAGES_",
+                  "infoEmpty": "No hay resultados disponibles",
+                  "infoFiltered": "(fitrado de _MAX_ estudiantes)"
+              }
+          });
+    }
+
+
+
+
+    //GRAFICO ASISTENCIA POR AMIGO ACADEMICO
+    google.setOnLoadCallback(drawAsesoriaPorAmigoDecorator);
+    function drawAsesoriaPorAmigoDecorator(){
+      obtenerJSONDataAsync("peticion=asesoriaAmigo", drawAsesoriaPorAmigo);
+    }
+    function drawAsesoriaPorAmigo(jsonData) {
+      var data = new google.visualization.DataTable(jsonData);
+      var chart = new google.visualization.PieChart(document.getElementById('AsistenciaPorAmigoChart'));
+      var options = {
+        height: 300
+      };
+      chart.draw(data, options);
+      sidebarAdjust();
+      google.visualization.events.addListener(chart, 'select', selectHandler);
+      function selectHandler() {
+        var _data = JSON.parse(jsonData);
+        var selection = chart.getSelection();
+        var id;
+        for (var i = 0; i < selection.length; i++) {
+          var item = selection[i];
+          console.log(_data["rows"][item.row]["c"][1]["v"]);
+          id = _data["rows"][item.row]["c"][0]["p"];
+        }
+      }
+
+    }
+
+
+
+    //COMPARATIVA FRENTE A POBLACION ACADEMICA
+    google.setOnLoadCallback(drawtotalEstudiantesDecorator);
+    function drawtotalEstudiantesDecorator(){
+      obtenerJSONDataAsync("peticion=totalEstudiantes", drawtotalEstudiantes);
+    }
+    function drawtotalEstudiantes(jsonData) {
+      var data = new google.visualization.DataTable(jsonData);
+      var chart = new google.visualization.PieChart(document.getElementById('totalEstudiantesChart'));
+      var options = {
+        height: 300
+      };
+      chart.draw(data, options);
+      sidebarAdjust();
+
+    }
