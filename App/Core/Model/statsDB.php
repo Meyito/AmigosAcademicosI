@@ -298,14 +298,10 @@ class StatsDB extends Model{
 		$this->terminate();
 		
 		$rta="";
-		$nc = array();
-		$asis = array();
 
 		while($row = mysqli_fetch_array($query)){
 			$name = $this->getAmigo($row[1]);
-			$nc["v"] = $name;
-			$asis["v"] = $row[0];
-			$aux='{"c":['.json_encode($nc).','.json_encode($asis).']}';
+			$aux='{"c":[{"v":"'.$name.'"},{"v":'.$row[0].'}]}';
 			$rta.=($aux.",");
 		}
 
@@ -320,13 +316,9 @@ class StatsDB extends Model{
 		$this->terminate();
 		
 		$rta="";
-		$nc = array();
-		$asis = array();
 
 		while($row = mysqli_fetch_array($query)){
-			$nc["v"] = "Asistentes al programa";
-			$asis["v"] = $row[0];
-			$rta='{"c":['.json_encode($nc).','.json_encode($asis).']}';
+			$rta='{"c":[{"v":"Población Total"},{"v":'.$row[0].'}]}';
 		}
 		return $rta;
 	}
@@ -337,13 +329,9 @@ class StatsDB extends Model{
 		$this->terminate();
 		
 		$rta="";
-		$nc = array();
-		$asis = array();
 
 		while($row = mysqli_fetch_array($query)){
-			$nc["v"] = "Población total";
-			$asis["v"] = $row[0];
-			$rta='{"c":['.json_encode($nc).','.json_encode($asis).']}';
+			$rta='{"c":[{"v":"Población Total"},{"v":'.$row[0].'}]}';
 		}
 		return $rta;
 	}

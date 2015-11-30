@@ -146,6 +146,20 @@
 			return $rta;
 		}
 
+		public function getHistoricaMateria(){
+			$st=new StatsDB();
+
+			$label1 = array('label' => 'Materia', 'type' => 'string');
+			$label2 = array('label' => 'NOMBRE SEMESTRE I', 'type' => 'number');
+			$label3 = array('label' => 'NOMBRE SEMESTRE II', 'type' => 'number');
+			
+			$data = $st -> getAsistentesPrograma();
+
+			$rta = '{ "cols": ['.json_encode($label1).','.json_encode($label2).','.json_encode($label3).'],"rows": [ '.$data.']}';
+
+			return $rta;
+		}
+
 
 
 

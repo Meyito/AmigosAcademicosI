@@ -61,6 +61,8 @@
 					$adminC->changeAvatar();
 				}else if($_GET["accion"]=="help"){
 					$adminC->help();
+				}else if($_GET["accion"]=="historicos"){
+					$adminC->historic();
 				}
 			}else if(isset($_GET["peticion"])){
 
@@ -96,8 +98,7 @@
 				}else if($_GET["peticion"] == "ListaTemas"){
 					$string=$stats->getListaTemas($_GET["idMateria"]);
 					echo $string;
-				}
-				else if($_GET["peticion"] == "TablaFrecuencia"){
+				}else if($_GET["peticion"] == "TablaFrecuencia"){
 					if($_GET["materia"] == "todo"){
 						$string=$stats->getFrecuenciaEstudiantes();
 					}else if($_GET["materia"] != "todo" && $_GET["tema"] == "todo"){
@@ -115,13 +116,79 @@
 				}else if($_GET["peticion"] == "totalEstudiantes"){
 					$string=$stats->getPorcentajeEstudiantes();
 					echo $string;
-				}
+				}else if($_GET["peticion"] == "HistoricaMaterias"){
+	$string = '{
+		  "cols": [
+		        {"label":"Materia","type":"string"},
+		        {"label":"SEMII2014","type":"number"},
+		        {"label":"SEMI2015","type":"number"}
+		      ],
+		  "rows": [
+		        {"c":[{"v":"Programación Orientada a Objetos"},{"v":34},{"v":34}]},
+		        {"c":[{"v":"Estructuras de Datos"},{"v":11},{"v":34}]},
+		        {"c":[{"v":"Fundamentos de Programación"},{"v":33},{"v":34}]},
+		        {"c":[{"v":"Calculo Diferencial"},{"v":59},{"v":34}]},
+		        {"c":[{"v":"Física Mecánica"},{"v":81},{"v":34}]},
+		        {"c":[{"v":"Ondas y Particulas"},{"v":13},{"v":34}]}
+		      ]
+		}';
+
+					//$string=$stats->getHistoricaMateria();
+					echo $string;
+				}else if($_GET["peticion"] == "periodoPrevioI"){
+	$string = '{
+		  "cols": [
+		        {"label":"SEMI2015","type":"string"},
+		        {"label":"No. Estudiantes","type":"number"}
+		      ],
+		  "rows": [
+		        {"c":[{"v":"Lógica Proposicional"},{"v":3}]},
+		        {"c":[{"v":"Listas Simples"},{"v":1}]},
+		        {"c":[{"v":"Hilos"},{"v":3}]},
+		        {"c":[{"v":"Teoria de Conjuntos"},{"v":5}]},
+		        {"c":[{"v":"Vectores"},{"v":8}]},
+		        {"c":[{"v":"Sockets"},{"v":1}]}
+		      ]
+		}';
+					echo $string;
+				}else if($_GET["peticion"] == "periodoPrevioII"){
+	$string = '{
+		  "cols": [
+		        {"label":"NOMBRE SEMESTRE II","type":"string"},
+		        {"label":"No. Estudiantes","type":"number"}
+		      ],
+		  "rows": [
+		        {"c":[{"v":"Genericidad"},{"v":3}]},
+		        {"c":[{"v":"Algebra de Boole"},{"v":1}]},
+		        {"c":[{"v":"Sockets"},{"v":3}]},
+		        {"c":[{"v":"Pilas y Colas"},{"v":5}]},
+		        {"c":[{"v":"Herencia"},{"v":8}]},
+		        {"c":[{"v":"Matrices"},{"v":1}]}
+		      ]
+		}';
+					echo $string;
+				}else if($_GET["peticion"] == "comparativa"){
+	/*Nombre periodo1 y 2, es algo como la fecha o "Semestre*/
+	$string = '{
+  "Periodo1": {
+  	"nombre": "Primer Semestre 2015",
+    "calificacion": "4.3",
+    "asistentes": "122",
+    "estudiantes": "450",
+    "porcentaje": "45"
+  },
+  "Periodo2": {
+  	"nombre": "Segundo Semestre 2014",
+    "calificacion": "4.3",
+    "asistentes": "122",
+    "estudiantes": "450",
+    "porcentaje": "45"
+  }
+}';
+		echo $string;
+}
 			}else{
 				$adminC->index();
-
-				//$stats=new Estadisticas();
-				//$stats->getAsistenciaCursoAmigo("1150013");
-
 			}
 		}else if($_SESSION["tipo"]=="Estudiante"){
 			$studentC=new Student();
