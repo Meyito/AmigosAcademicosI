@@ -63,6 +63,8 @@
 					$adminC->help();
 				}else if($_GET["accion"]=="historicos"){
 					$adminC->historic();
+				}else if($_GET["accion"]=="estadisticaIndividual" && isset($_GET["materia"])){
+					$adminC->estadistica2();
 				}
 			}else if(isset($_GET["peticion"])){
 
@@ -169,8 +171,8 @@
 					echo $string;
 				}else if($_GET["peticion"] == "comparativa"){
 	/*Nombre periodo1 y 2, es algo como la fecha o "Semestre*/
-	$string = '{
-  "Periodo1": {
+$string = '{
+  	"Periodo1": {
   	"nombre": "Primer Semestre 2015",
     "calificacion": "4.3",
     "asistentes": "122",
@@ -185,8 +187,12 @@
     "porcentaje": "45"
   }
 }';
-		echo $string;
-}
+					echo $string;
+				}else if($_GET["peticion"]=="EstadisticaMateriaTema"){
+					$string=$stats->getEstadisticaMateriaTema($_GET["materia"]);
+					echo $string;
+
+				}
 			}else{
 				$adminC->index();
 			}

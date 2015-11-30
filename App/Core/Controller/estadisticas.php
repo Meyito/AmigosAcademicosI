@@ -160,6 +160,20 @@
 			return $rta;
 		}
 
+		public function getEstadisticaMateriaTema($id){
+			$st=new StatsDB();
+
+			$label1 = array('label' => 'Tema', 'type' => 'string');
+			$label2 = array('label' => 'No. Estudiantes', 'type' => 'number');
+			
+			$data = $st -> getEstadisticaMateriaTema($id);
+
+			$rta = '{ "cols": ['.json_encode($label1).','.json_encode($label2).'],"rows": [ '.$data.']}';
+
+			return $rta;
+
+		}
+
 
 
 

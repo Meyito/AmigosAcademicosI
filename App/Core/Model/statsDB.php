@@ -349,6 +349,42 @@ class StatsDB extends Model{
 		return $name;
 	}
 
+	public function getEstadisticaMateriaTema($id){
+		$this->connect();
+		$query = $this->query("SELECT count(ea.idAsesoria), a.idTema FROM EstudianteAsesoria ea, Asesoria a WHERE a.id=ea.idAsesoria AND a.idMateria='".$id."'GROUP BY a.idTema");
+
+		$this->terminate();
+		
+		$rta="";
+		$nc = array();
+		$asis = array();
+
+		while($row = mysqli_fetch_array($query)){
+			$name=$this->getTema($row[1]);
+			$nc["v"] = $name;
+			$asis["v"] = $row[0];
+			$aux='{"c":['.json_encode($nc).','.json_encode($asis).']}';
+			$rta.=($aux.",");
+		}
+
+		$rta = trim($rta,",");
+		
+		return $rta;
+	}
+
+	public function getTema($id){
+		$this->connect();
+		$query = $this->query("SELECT nombre FROM Tema WHERE id='".$id."'");
+		$this->terminate();
+
+		$name="";
+		while($row = mysqli_fetch_array($query)){
+			$name = $row[0];
+		}
+
+		return $name;
+	}
+
 
 }
 ?>

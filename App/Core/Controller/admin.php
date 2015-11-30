@@ -21,6 +21,16 @@
 			$this->showView($view);
 		}
 
+		public function estadistica2(){
+			$view=$this->base("Core/View/assets/menu_admin.html");
+			$content=$this->getTemplate("Core/View/contenedores/estadisticaMateriaTema.html");
+			$view=$this->renderView($view, "{{COMPUESTO:CONTENIDO}}", $content);
+			$view=$this->renderView($view, "{{COMPUESTO:CONTENIDO}}", $content);
+			$js=$this->getTemplate("Core/View/assets/estadisticaMateriaTema.html");
+			$view=$this->renderView($view, "{{COMPUESTO:LIBRERIAS_JS}}", $js);
+			$this->showView($view);
+		}
+
 		public function historic(){
 			$view=$this->base("Core/View/assets/menu_admin.html");
 			$content=$this->getTemplate("Core/View/contenedores/historicos.html");
