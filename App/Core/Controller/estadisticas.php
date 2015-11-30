@@ -127,7 +127,7 @@
 			$data = $st -> getAsesoriasAmigo();
 
 			$rta = '{ "cols": ['.json_encode($label1).','.json_encode($label2).'],"rows": [ '.$data.']}';
-
+			//print_r($data);
 			return $rta;
 		}
 
@@ -182,7 +182,6 @@
 			$data = $st -> getEstadisticaAmigo($id);
 
 			$rta = '{ "cols": ['.json_encode($label1).','.json_encode($label2).'],"rows": [ '.$data.']}';
-
 			return $rta;
 		}
 

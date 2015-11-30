@@ -220,8 +220,6 @@
       obtenerJSONDataAsync("peticion=asesoriaAmigo", drawAsesoriaPorAmigo);
     }
     function drawAsesoriaPorAmigo(jsonData) {
-      console.log("SiBuenas");
-      console.log(jsonData);
       var data = new google.visualization.DataTable(jsonData);
       var chart = new google.visualization.PieChart(document.getElementById('AsistenciaPorAmigoChart'));
       var options = {
@@ -236,7 +234,7 @@
         var id;
         for (var i = 0; i < selection.length; i++) {
           var item = selection[i];
-          id = _data["rows"][item.row]["c"][1]["v"];
+          id = _data["rows"][item.row].c[0].p;
           location.href='index.php?accion=estadisticaIndividual&amigo='+id;
         }
       }

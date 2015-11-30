@@ -301,7 +301,7 @@ class StatsDB extends Model{
 
 		while($row = mysqli_fetch_array($query)){
 			$name = $this->getAmigo($row[1]);
-			$aux='{"c":[{"v":"'.$name.'"},{"v":'.$row[0].'}]}';
+			$aux='{"c":[{"p":"'.$row[1].'", "v":"'.$name.'"},{"v":'.$row[0].'}]}';
 			$rta.=($aux.",");
 		}
 
@@ -387,19 +387,15 @@ class StatsDB extends Model{
 
 	public function getEstadisticaAmigo($id){
 		$this->connect();
-		$query = $this->query("SELECT COUNT(ea.idEstudiante), a.idMateria FROM EstudianteAsesoria ea, Asesoria a WHERE a.id=ea.idAsesoria AND a.idAmigoAcademico='".$id."'GROUP BY a.idMateria");
+		$query = $this->query("SELECT COUNT(ea.idEstudiante), a.idMateria FROM EstudianteAsesoria ea, Asesoria a WHERE a.id=ea.idAsesoria AND a.idAmigoAcademico='".$id."' GROUP BY a.idMateria");
 
 		$this->terminate();
-		
+
 		$rta="";
-		$nc = array();
-		$asis = array();
 
 		while($row = mysqli_fetch_array($query)){
 			$name = $this->getMateria($row[1]);
-			$nc["v"] = $name;
-			$asis["v"] = $row[0];
-			$aux='{"c":['.json_encode($nc).','.json_encode($asis).']}';
+			$aux='{"c":[{"v":"'.$name.'"},{"v":'.$row[0].'}]}';
 			$rta.=($aux.",");
 		}
 
