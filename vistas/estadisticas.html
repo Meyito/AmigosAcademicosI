@@ -257,7 +257,7 @@
           httpRequest.open('GET', path);
           httpRequest.send(); 
       }
-      fetchJSONFile("index.php?"+string, callbackOrigin, function(data){
+      fetchJSONFile("getData.php?"+string, callbackOrigin, function(data){
           callbackOrigin(data);
       });
 
@@ -349,6 +349,7 @@
         for (var i = 0; i < selection.length; i++) {
           var item = selection[i];
           id = _data["rows"][item.row]["c"][0]["p"];
+          location.href='index.php?accion=estadisticaIndividual&&materia='+id;
         }
       }
 

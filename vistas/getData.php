@@ -257,6 +257,28 @@ if($_GET["peticion"] == "promedioAACalificacionCurso"){
   }
 }';
 		echo $string;
+
+
+}else if($_GET["peticion"]== "EstadisticaMateriaTema"){
+	/*
+IMPORTANTE: en $_GET["materia"] viene la materia para la cual se cargarán los temas
+	*/
+
+	$string = '{
+		  "cols": [
+		        {"label":"Tema","type":"string"},
+		        {"label":"No. Estudiantes","type":"number"}
+		      ],
+		  "rows": [
+		        {"c":[{"v":"Herencia"},{"v":3}]},
+		        {"c":[{"v":"Polimorfismo"},{"v":1}]},
+		        {"c":[{"v":"Hola"},{"v":3}]},
+		        {"c":[{"v":"Duele"},{"v":5}]},
+		        {"c":[{"v":"Mi"},{"v":8}]},
+		        {"c":[{"v":"Cabeza"},{"v":1}]}
+		      ]
+		}';
+	echo $string;
 }
 
 

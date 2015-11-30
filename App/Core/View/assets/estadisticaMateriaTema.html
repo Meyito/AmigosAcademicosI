@@ -1,0 +1,59 @@
+//COMUNES
+    function getVarsUrl(){
+        var url= location.search.replace("?", "");
+        var arrUrl = url.split("&");
+        var urlObj={};   
+        for(var i=0; i<arrUrl.length; i++){
+            var x= arrUrl[i].split("=");
+            urlObj[x[0]]=x[1]
+        }
+        return urlObj;
+    }
+
+
+
+    google.load('visualization', '1', {'packages':['corechart']});
+
+    function obtenerJSONDataAsync(string, callbackOrigin){
+      function fetchJSONFile(path, callbackOrigin, callback) {
+            var httpRequest = new XMLHttpRequest();
+            httpRequest.onreadystatechange = function() {
+                if (httpRequest.readyState === 4) {
+                    if (httpRequest.status === 200) {
+                        var data = httpRequest.responseText;
+                        if (callback) callback(data);
+                    }
+                }
+            };
+          httpRequest.open('GET', path);
+          httpRequest.send(); 
+      }
+      fetchJSONFile("getData.php?"+string, callbackOrigin, function(data){
+          callbackOrigin(data);
+      });
+
+    }
+
+
+    //HISTORICO POR MATERIAS
+    google.setOnLoadCallback(drawEstadisticaMateriaTemaDecorator);
+    function drawEstadisticaMateriaTemaDecorator(){
+      var variables = getVarsUrl();
+      obtenerJSONDataAsync("peticion=EstadisticaMateriaTema&materia="+variables.materia, drawEstadisticaMateriaTema);
+    }
+    function drawEstadisticaMateriaTema(jsonData) {
+      var data = new google.visualization.DataTable(jsonData);
+      var chart = new google.visualization.BarChart(document.getElementById('estadisticaMateriaTema'));
+      var options = {
+        height: 300,
+        legend: { position: "none" },
+        hAxis: {
+          title: 'No. Estudiantes'
+        },
+        vAxis: {
+          title: 'Temas'
+        }
+      };
+      chart.draw(data, options);
+      sidebarAdjust();
+    }
