@@ -1,6 +1,6 @@
 <?php
 
-	require_once "Core/Controller/controller.php";
+	require_once "controller.php";
 	include_once "Core/Model/statsDB.php";
 
 	include_once "Core/Model/adminDB.php";

@@ -61,6 +61,14 @@
 				}else if($_GET["accion"]=="help"){
 					$adminC->help();
 				}
+			}else if(isset($_GET["peticion"])){
+				if($_GET["peticion"] == "promedioAACalificacionCurso"){
+					if($_GET["promedioCursoAA"] == "Todos"){
+
+					}else{
+
+					}
+				}
 			}else{
 				$adminC->index();
 

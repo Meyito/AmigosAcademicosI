@@ -1,11 +1,8 @@
 <?php
 
-	/*require "./estadisticas.php";
+	require "estadisticas.php";
 
-	$stats=new Estadisticas();*/
-
-// $_GET["peticion"] indica que es lo que está solicitando
-// $_GET["asistenciaCursoAA"]  indica el amigo academico del que se desean ver los cursos
+	$stats=new Estadisticas();
 
 if($_GET["peticion"] == "promedioAACalificacionCurso"){
 
