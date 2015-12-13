@@ -102,6 +102,7 @@
 		public function rateAdvice($idAsesoria, $calificacion, $comentario){
 			$studentModel=new studentDB();
 			$studentModel->qualifyAsesoria($_SESSION["codigo"],$idAsesoria,count($calificacion), $comentario);
+			$studentModel->calificacionPromedioA($idAsesoria);
 			$this->index();
 		}
 

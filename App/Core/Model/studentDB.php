@@ -13,9 +13,20 @@ class studentDB extends Model{
 
 	public function qualifyAsesoria($idEstudiante,$idAsesoria,$qualification, $observation){
 		$this->connect();
-		$query = $this->query("UPDATE EstudianteAsesoria set calificacion = ".$qualification.", observacion = '".$observation."' WHERE idEstudiante = '".$idEstudiante."' AND idAsesoria = ".$idAsesoria."");
+		$query = $this->query("UPDATE EstudianteAsesoria set calificacion = ".$qualification.", observacionEstudiante = '".$observation."' WHERE idEstudiante = '".$idEstudiante."' AND idAsesoria = ".$idAsesoria."");
 		$this->terminate();
 		return $query;
+	}
+
+	public function calificacionPromedioA($id){
+		$this->connect();
+		$query = $this->query("SELECT AVG(calificacion) FROM EstudianteAsesoria WHERE idAsesoria='".$id."'");
+		$avg;
+		while($row = mysqli_fetch_array($query)){
+			$avg=$row[0];
+		}
+		$query2 = $this->query("UPDATE Asesoria SET promedioCalificacion = ".$avg." WHERE id = '".$id."'");
+		return $query2;
 	}
 
 	public function qualifyCurso($idEstudiante,$idCurso,$qualification){
