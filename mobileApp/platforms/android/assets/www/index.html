@@ -1,0 +1,165 @@
+<!DOCTYPE html> 
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Amigos Académicos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/jquery.mobile.min.css"/>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <script src="js/jquery.min.js"></script>
+	<script>
+		var root = "http://localhost:8080/AmigosAcademicosI/App/app.php?"; //Cambiar por la ruta raiz
+
+	    $(document).bind('mobileinit',function(){
+	        $.mobile.changePage.defaults.changeHash = false;
+	        $.mobile.hashListeningEnabled = false;
+	        $.mobile.pushStateEnabled = false;
+	    });
+
+	</script> 
+	<script src="js/jquery.mobile.min.js"></script>
+</head>
+<body> 
+
+
+	<!--PAGINA INICIAL DE INICIO DE SESIÓN-->
+	<div data-role="page" id="loginScreen">
+		<div data-role="header">
+			<h1 class="header-h1" style="text-align:center">
+				<img src="css/images/logo.png" alt="Amigos Académicos">				
+			</h1>
+		</div>
+		<div data-role="content">	
+			<form id="login" >	      
+	      		<label> Código: </label>
+	      		<input type="number" id="codigo" name="codigo" placeholder="Código" required>	      
+	      		<label> Contraseña: </label>
+	     		<input type="password" id="password" name="password" placeholder="Contraseña" required>
+				<br>
+				<div class="botones-login">
+                	<a class="access" href="#registroScreen" data-rel="page" data-transition="pop">¿Aún no estas registrado?</a>
+				</div>
+	      		<input type="submit" value="Iniciar Sesión" id="botonLogin">      
+	    	</form>		
+		</div>	
+		<div class="footer" data-role="footer">
+			<img src="css/images/logos.png" alt="">
+		</div>	 
+	</div>
+	 
+
+
+	<!--REGISTRO-->
+	<div data-role="page" id="registroScreen">
+		<div data-role="header">
+			<h1 class="header-h1">
+				<img src="css/images/logo.png" alt="Amigos Académicos">				
+			</h1>
+		</div>
+		<div data-role="content">	
+			<form id="registro" >	      
+	      		<label> Código: </label>
+	      		<input type="number" id="codigoR" name="codigo" placeholder="Código" required>	
+	      		<label> Nombre Completo: </label>
+	      		<input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+	      		<label> Correo Electrónico:</label>
+	      		<input type="email" id="correo" name="correo" placeholder="Email" required>	
+	      		<label> Semestre: </label>
+	      		<input type="number" id="semestre" name="semestre" placeholder="Semestre" required>      
+	      		<label> Contraseña: </label>
+	     		<input type="password" id="passwordR" name="password" placeholder="Contraseña" required>
+	     		<label> Repita su contraseña: </label>
+	     		<input type="password" id="password2" name="password2" placeholder="Repita su contraseña" required>
+				<br>
+				<div class="botones-login">
+                	<a class="access" href="#loginScreen" data-rel="page" data-transition="pop">¿Ya tienes cuenta?</a>
+				</div>
+	      		<input type="submit" value="Registrar" id="botonRegistro">      
+	    	</form>		
+		</div>	
+		<div class="footer" data-role="footer">
+			<img src="css/images/logos.png" alt="">
+		</div>
+	</div>
+
+
+
+
+	<!--AVISO DATOS INCORRECTOS EN EL LOGIN-->
+	<div data-role="dialog" id="errorLoginDialog">
+
+		<div data-role="header">
+			<h1>Error</h1>
+		</div>
+
+		<div data-role="content">	
+			<h2>Tus datos no coinciden</h2>
+			<p>Verifica tu cuenta y contraseña, e intenta de nuevo</p>
+		</div>
+	</div>
+
+
+	<!--AVISO PASSWORDS NO COINCIDEN-->
+	<div data-role="dialog" id="errorPasswordDialog">
+
+		<div data-role="header">
+			<h1>Error</h1>
+		</div>
+
+		<div data-role="content">	
+			<h2>Las contraseñas no coinciden</h2>
+			<p>Verifica que escribiste la misma contraseña en ambos campos e intenta de nuevo.</p>
+		</div>
+	</div>
+
+
+	<!--AVISO REGISTRO EXITOSO-->
+	<div data-role="dialog" id="successSignupDialog">
+
+		<div data-role="header">
+			<h1>Registro Exitoso</h1>
+		</div>
+		<div data-role="content">	
+			<h2>¡Tu cuenta se ha creado correctamente!</h2>
+			<p>Ya puedes iniciar sesión en la plataforma y en la web.</p>
+			<div class="botones-login">
+				<a href="#loginScreen" data-rel="page" data-transition="pop">Inicia Sesión</a>
+			</div>
+			
+		</div>
+	</div>
+
+	<!--AVISO ERROR EN EL REGISTRO-->
+	<div data-role="dialog" id="errorSignupDialog">
+
+		<div data-role="header">
+			<h1>Error</h1>
+		</div>
+
+		<div data-role="content">	
+			<h2>¡UPS!</h2>
+			<p>No se ha podido registrar. Revisa tus datos e intentalo de nuevo.</p>
+		</div>
+	</div>
+
+
+
+	<!--NO HAY RED--> 
+	<div data-role="dialog" id="errorRedScreen">
+
+		<div data-role="header">
+			<h1>Error</h1>
+		</div>
+
+		<div data-role="content">	
+			<h2> Sin Conexión </h2>
+			<h3> Verifique su conexión a la red.</h3>
+		</div>
+	</div>
+
+
+	
+<script src="js/sesion.js"></script>
+</body>
+</html>
