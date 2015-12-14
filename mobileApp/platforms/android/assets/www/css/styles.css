@@ -43,7 +43,6 @@
 	font-weight: 300;
 }
 [data-role=page]{
-	min-height: 100% !important; 
 	position:relative !important;
 }
 [data-role=content]{
@@ -104,7 +103,7 @@
 .sidebarBTN{
 	color: #EEE;
 	cursor: pointer;
-	text-decoration-line: none!Important;
+	text-decoration: none!Important;
 }
 .horario{
 	width: 100%;
@@ -124,4 +123,8 @@
 }
 .tabla-cursos td, .tabla-cursos th{
 	text-align: center;
+}
+.ui-slider-bg{
+	background-color: #e74c3c!important;
+	border-bottom-left-radius: 0!important;
 }

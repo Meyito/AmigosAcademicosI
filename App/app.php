@@ -94,8 +94,51 @@
 					)
 			);
 			echo json_encode($output);
-		}else{
-
+		}else if($_POST["mobile"]=="calificacion"){
+			//Recibe un $_POST["codigo"] con el código del usuario para el que voy a cargar las calificaciones
+			//Que tiene pendientes por realizar. Retorna identificador de la asesoria, Materia, Tema, Amigo y Fecha. Usar el mismo para cursos.
+			
+			//IMPORTANTE: Si no hay nada por calificar, hacer solo echo "ok";
+			$output = array(
+				"1" => array(
+					"id" => "132",
+					"materia" => "POO",
+					"tema" => "Herencia",
+					"amigo" => "Denis Isidro",
+					"fecha" => "64-Diciemre-2012, 3:00PM"
+					),
+				"2" => array(
+					"id" => "132",
+					"materia" => "Calculo",
+					"tema" => "Curso Integrales",
+					"amigo" => "Denis Isidro",
+					"fecha" => "64-Diciemre-2012, 3:00PM"
+					),
+				"3" => array(
+					"id" => "132",
+					"materia" => "POO",
+					"tema" => "Herencia",
+					"amigo" => "Denis Isidro",
+					"fecha" => "64-Diciemre-2012, 3:00PM"
+					),
+				"4" => array(
+					"id" => "132",
+					"materia" => "POO",
+					"tema" => "Herencia",
+					"amigo" => "Denis Isidro",
+					"fecha" => "64-Diciemre-2012, 3:00PM"
+					)
+			);
+			
+			echo json_encode($output);	
+		}else if($_POST["mobile"]=="registrarCalificacion"){
+			//En este punto se inserta en la base de datos la calificación de una asesoria. Se recibe
+			//$_POST["idAsesoria"] que guarda el identificador de la asesoria
+			//$_POST["puntaje"] Valor numerico de la calificacion, de 1 a 5
+        	//$_POST["comentario"] Comentario de la asesoría
+        	//$_POST["estudiante"] Código del estudiante
+        	//devuelve echo "ok" si funciona, echo "error" en caso contrario
+        	echo "ok";
 		}
 	}
 

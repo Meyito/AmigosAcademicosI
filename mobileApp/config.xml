@@ -2,11 +2,19 @@
 <widget id="co.edu.ufps.amigosacademicos" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>AmigosAcademicos</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        Sistema de información para el programa Amigos Académicos de la Universidad Francisco de Paula Santander
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="gersonlazaro@gersonlazaro.com" href="https://github.com/Meyito/AmigosAcademicosI/">
+        Gerson Lázaro - Melissa Delgado - Daniel Vega
     </author>
+    <icon src="res/icon.png" />
+    <platform name="android">
+        <!-- you can use any density that exists in the Android project -->
+        <splash src="res/splash-land-hdpi.9.png" density="land-hdpi"/>
+        <splash src="res/splash-land-ldpi.9.png" density="land-ldpi"/>
+        <splash src="res/splash-land-mdpi.9.png" density="land-mdpi"/>
+        <splash src="res/splash-land-xhdpi.9.png" density="land-xhdpi"/>
+    </platform>
     <content src="index.html" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <access origin="*" />

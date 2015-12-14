@@ -5,14 +5,20 @@
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
+    <preference name="SplashScreen" value="res/spash.9.png" />
     <allow-intent href="market:*" />
     <name>AmigosAcademicos</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        Sistema de información para el programa Amigos Académicos de la Universidad Francisco de Paula Santander
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="gersonlazaro@gersonlazaro.com" href="https://github.com/Meyito/AmigosAcademicosI/">
+        Gerson Lázaro - Melissa Delgado - Daniel Vega
     </author>
+    <icon src="res/icon.png" />
+    <splash platform="android" qualifier="ldpi" src="res/ldpi.png" />
+    <splash platform="android" qualifier="mdpi" src="res/mdpi.png" />
+    <splash platform="android" qualifier="hdpi" src="res/hdpi.png" />
+    <splash platform="android" qualifier="xhdpi" src="res/xhdpi.png" />
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />

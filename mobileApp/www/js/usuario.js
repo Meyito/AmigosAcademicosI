@@ -3,6 +3,7 @@ $( document ).ready(function() {
   		cargarHorario();
   		cargarTemas();
   		cargarCursos();
+  		cargarCalificadores();
 });
 
 function verificarSesion () {
@@ -65,9 +66,21 @@ $(document).on("pagecreate", "#cursosScreen", function(){
 	});
 });
 
+/***************SIDEBAR ESTUDIANTE CALIFICACION*****************/
+$(document).on("pagecreate", "#calificacionScreen", function(){
+	$(document).on("swiperight", "#calificacionScreen", function(e){
+		if($(".ui-page-active").jqmData("panel") !== "open"){
+			if(e.type == "swiperight"){
+				$('#sidebar4').panel("open");
+			}
+		}
+	});
+});
+
 $("#cerrarSesion").click(cerrarSesion);
 $("#cerrarSesion1").click(cerrarSesion);
 $("#cerrarSesion2").click(cerrarSesion);
+$("#cerrarSesion3").click(cerrarSesion);
 
 
 
@@ -92,6 +105,7 @@ function cargarHorario () {
         url:   root,
         type:  'post',
         success:  function (response) {
+
         	var data = JSON.parse(response);
         	var dataToStore = JSON.stringify(data);
         	localStorage.setItem('horarioEstudiante', dataToStore);
@@ -124,6 +138,7 @@ function cargarTemas(){
         url:   root,
         type:  'post',
         success:  function (response) {
+
         	var data = JSON.parse(response);
         	var dataToStore = JSON.stringify(data);
         	localStorage.setItem('temasEstudiante', dataToStore);
@@ -168,3 +183,87 @@ function construirCursos (data) {
    	}
    	$("#tablaCursos").html(struct)
 }
+
+
+
+
+/************CALIFICACIONES***************/
+function cargarCalificadores(){
+	var parametros = {
+        "mobile" : 'calificacion',
+        "codigo" : localStorage.getItem("CodigoUsuario")
+    };
+    $.ajax({
+		data:  parametros,
+        url:   root,
+        type:  'post',
+        success:  function (response) {
+
+        	if(response=="ok"){
+        		try{
+        			$("#calificaciones").html("<div data-role='collapsible'><h4>No hay calificaciones pendientes</h4><p>Vuelve mas tarde.</p></div>").collapsibleset("refresh")
+        		}catch(e){
+        			console.log("Excepción controlada");
+        		}
+        	}else{
+        		var data = JSON.parse(response);
+        		var struct = "";
+        		for(var val in data){
+        			struct += "<div data-role='collapsible'><h4>"+data[val].materia+" - "+data[val].tema+ " - " + data[val].amigo +" - "+ data[val].fecha+"</h4><button class='ui-btn' onclick=\"popupCalificar('"+data[val].id+"')\">Calificar Esta asesoría</button></div>";
+        		}
+        		try{
+        			$("#calificaciones").html(struct).collapsibleset("refresh")
+        		}catch(e){
+        			console.log("Excepción controlada");
+        		}
+        	}
+        	
+        	
+        }	
+	});
+}
+$("#verifyAsesoria").click(cargarCalificadores)
+
+function popupCalificar (value) {
+	$("#calificacionID").val(value)
+	$( ":mobile-pagecontainer" ).pagecontainer( "change", "#popupCalificacion", { 
+    	role: "dialog"
+    });
+}
+
+
+
+/*******CALIFICAR ASESORIA*******/
+
+ $('#calificacionForm').submit(function() {  
+ 	var parametros = {
+   		"mobile" : 'registrarCalificacion',
+        "idAsesoria" : $("#calificacionID").val(),
+        "puntaje" : $("#puntaje").val(),
+        "comentario" : $("#comentario").val(),
+        "estudiante" : localStorage.getItem("CodigoUsuario")
+    };
+    $.ajax({
+            data:  parametros,
+            url:   root,
+            type:  'post',
+            success:  function (response) {
+                if(response=="error"){
+                   	$( ":mobile-pagecontainer" ).pagecontainer( "change", "#errorRedScreen", { 
+   				    	role: "dialog"
+				    });
+                }else{
+                   	$( ":mobile-pagecontainer" ).pagecontainer( "change", "#successCalificacion", { 
+   				    	role: "dialog"
+				    });
+                }
+            },
+            error : function(xhr, status) {
+			    $( ":mobile-pagecontainer" ).pagecontainer( "change", "#errorRedScreen", { 
+					role: "dialog",
+				   	transition: "pop"
+			    });
+			}
+        });
+ 	return false;
+});
