@@ -121,23 +121,7 @@
 					$string=$stats->getPorcentajeEstudiantes();
 					echo $string;
 				}else if($_GET["peticion"] == "HistoricaMaterias"){
-	$string = '{
-		  "cols": [
-		        {"label":"Materia","type":"string"},
-		        {"label":"SEMII2014","type":"number"},
-		        {"label":"SEMI2015","type":"number"}
-		      ],
-		  "rows": [
-		        {"c":[{"v":"Programación Orientada a Objetos"},{"v":34},{"v":34}]},
-		        {"c":[{"v":"Estructuras de Datos"},{"v":11},{"v":34}]},
-		        {"c":[{"v":"Fundamentos de Programación"},{"v":33},{"v":34}]},
-		        {"c":[{"v":"Calculo Diferencial"},{"v":59},{"v":34}]},
-		        {"c":[{"v":"Física Mecánica"},{"v":81},{"v":34}]},
-		        {"c":[{"v":"Ondas y Particulas"},{"v":13},{"v":34}]}
-		      ]
-		}';
-
-					//$string=$stats->getHistoricaMateria();
+					$string=$stats->getHistoricaMateria();
 					echo $string;
 				}else if($_GET["peticion"] == "periodoPrevioI"){
 	$string = '{
@@ -221,6 +205,8 @@ $string = '{
 			if(isset($_POST["accion"])){
 				if($_POST["accion"]=="calificarAsesoria"){
 					$studentC->rateAdvice($_POST["asesoria"], $_POST["calificacion"], $_POST["comentarios"]);
+				}elseif($_POST["accion"]=="calificarCurso"){
+					$studentC->rateCourse($_POST["asesoria"], $_POST["calificacion"]);
 				}
 			}else if(isset($_GET["accion"])){
 				if($_GET["accion"]=="logout"){
@@ -258,6 +244,8 @@ $string = '{
 					$amigoC->courseAssistantR();
 				}else if($_GET["accion"]=="asistenciaCursos"){
 					$amigoC->registrarAsisC($_GET["id"]);
+				}else if($_GET["accion"]=="estadisticas"){
+					$amigoC->estadistica();
 				}
 			}else{
 				$amigoC->index();	

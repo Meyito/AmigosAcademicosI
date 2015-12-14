@@ -10,7 +10,8 @@
 			$index=$this->base("Core/View/assets/menu_estudiante.html");
 			$content=$this->getTemplate("Core/View/contenedores/inicio_estudiante.html");
 			$content=$this->getHorario($content);
-			$content=$this->getNotificaciones($content);			
+			$content=$this->getNotificaciones($content);
+			$content=$this->getNotificacionesCursos($content);			
 			$index=$this->renderView($index, "{{COMPUESTO:CONTENIDO}}", $content);
 			$this->showView($index);
 		}
@@ -44,6 +45,39 @@
 			$content=$this->renderView($content, "{{CICLO:NOTIFICACION_ASESORIA}}", $aux);
 			$aux=$this->getTemplate("Core/View/assets/modal_calificacion.html");
 			$content=$this->renderView($content, "{{COMPUESTO:MODAL_ASESORIA}}", $aux);
+
+			return $content;
+		}
+
+		public function getNotificacionesCursos($content){
+			$base=$this->getTemplate("Core/View/assets/notificacion_curso.html");
+			$studentModel=new studentDB();
+
+			$data=$studentModel->getCursosToQualify($_SESSION["codigo"]);
+
+			if(count($data)==0){
+				$content=$this->renderView($content, "{{CICLO:NOTIFICACION_CURSO}}", "");
+				$content=$this->renderView($content, "{{COMPUESTO:MODAL_CURSO}}", "");
+				return $content;
+			}
+
+			$aux="";
+			$tm="";
+
+			for($i=0; $i<count($data); $i++){
+				$tm=$base;
+				$tm=$this->renderView($tm, "{{BASICO:IDENTIFICADOR}}", $data[$i][0]);
+				$tm=$this->renderView($tm, "{{BASICO:AMIGO}}", $data[$i][1]);
+				$tm=$this->renderView($tm, "{{BASICO:FECHA}}", $data[$i][2]);
+				$tm=$this->renderView($tm, "{{BASICO:TEMA}}", $data[$i][3]);
+				$tm=$this->renderView($tm, "{{BASICO:MATERIA}}", $data[$i][4]);
+
+				$aux .= $tm;
+			}
+
+			$content=$this->renderView($content, "{{CICLO:NOTIFICACION_CURSO}}", $aux);
+			$aux=$this->getTemplate("Core/View/assets/modal_calificacion_curso.html");
+			$content=$this->renderView($content, "{{COMPUESTO:MODAL_CURSO}}", $aux);
 
 			return $content;
 		}
@@ -106,8 +140,11 @@
 			$this->index();
 		}
 
-		public function rateCourse(){
-
+		public function rateCourse($idCurso, $calificacion){
+			$studentModel=new studentDB();
+			$studentModel->qualifyCurso($_SESSION["codigo"],$idCurso,count($calificacion));
+			$studentModel->calificacionPromedioA($idCurso);
+			$this->index();
 		}
 	}
 ?>

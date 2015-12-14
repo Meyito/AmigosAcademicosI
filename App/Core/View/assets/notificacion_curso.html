@@ -1,0 +1,21 @@
+<!--Plantilla para las notificaciones de asesorias por calificar
+
+
+  Editar:
+  
+  BASICO:IDENTIFICADOR	-> Cada notificación pertenece a una asesoria diferente y cada asesoria debe tener un identificador
+  											-> Depende de como lo manejen en la base de datos el identificador puede ser texto o numerico
+  											-> Pero lo importante es pasar ese identificador para reconocer la asesoria que se está calificando.
+  BASICO:MATERIA        -> Nombre de la materia 
+  BASICO:TEMA           -> Tema a estudiar
+  BASICO:AMIGO					-> Nombre del amigo academico de la asesoria
+  BASICO:FECHA					-> Fecha de la asesoria
+
+-->
+								<a href="" data-toggle="modal" data-target="#notificacion" onclick="cargarAlerta('{{BASICO:IDENTIFICADOR}}')">
+                  <div class="alert alert-danger" role="alert">
+                    <p><strong>Calificar Curso: </strong>{{BASICO:MATERIA}} - {{BASICO:TEMA}} - {{BASICO:AMIGO}}. {{BASICO:FECHA}}</p>
+                  </div>
+                </a>
+
+

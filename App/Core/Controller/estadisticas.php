@@ -148,14 +148,26 @@
 		public function getHistoricaMateria(){
 			$st=new StatsDB();
 
+			$periodos=$st->getLastPeriods();
+
 			$label1 = array('label' => 'Materia', 'type' => 'string');
-			$label2 = array('label' => 'NOMBRE SEMESTRE I', 'type' => 'number');
-			$label3 = array('label' => 'NOMBRE SEMESTRE II', 'type' => 'number');
+			$label2 = array('label' => $periodos[2][1], 'type' => 'number');
+			$label3 = array('label' => $periodos[1][1], 'type' => 'number');
 			
-			$data = $st -> getAsistentesPrograma();
+		 	$data = $st -> getAsistentesMateria($periodos[2][0], $periodos[1][0]);
 
-			$rta = '{ "cols": ['.json_encode($label1).','.json_encode($label2).','.json_encode($label3).'],"rows": [ '.$data.']}';
+		 	print_r($data);
 
+			$rta = '{ "cols": ['.json_encode($label1).','.json_encode($label2).','.json_encode($label3).'],';
+			$rta .= '"rows": [
+		        {"c":[{"v":"Programación Orientada a Objetos"},{"v":34},{"v":34}]},
+		        {"c":[{"v":"Estructuras de Datos"},{"v":11},{"v":34}]},
+		        {"c":[{"v":"Fundamentos de Programación"},{"v":33},{"v":34}]},
+		        {"c":[{"v":"Calculo Diferencial"},{"v":59},{"v":34}]},
+		        {"c":[{"v":"Física Mecánica"},{"v":81},{"v":34}]},
+		        {"c":[{"v":"Ondas y Particulas"},{"v":13},{"v":34}]}
+		      ]
+		}';
 			return $rta;
 		}
 
@@ -184,8 +196,6 @@
 			$rta = '{ "cols": ['.json_encode($label1).','.json_encode($label2).'],"rows": [ '.$data.']}';
 			return $rta;
 		}
-
-
 
 	}
 

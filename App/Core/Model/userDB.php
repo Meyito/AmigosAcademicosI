@@ -60,8 +60,7 @@ class UserDB extends Model{
 	public function getCursos(){
 		$this->connect();
 		$query = $this->query("SELECT c.id, t.nombre,c.fecha,m.nombre,u.nombre FROM Curso c,Tema t,Materia m,Usuario u 
-								WHERE t.id = c.idTema AND m.id = c.idMateria AND u.id = c.idAmigoAcademico 
-								ORDER BY c.fecha");
+								WHERE t.id = c.idTema AND m.id = c.idMateria AND u.id = c.idAmigoAcademico AND c.fecha >= CURDATE()								ORDER BY c.fecha");
 		$this->terminate();
 		$array = array();
 		while($row = mysqli_fetch_array($query)){

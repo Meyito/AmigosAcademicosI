@@ -310,6 +310,33 @@ class StatsDB extends Model{
 		return $rta;
 	}
 
+	public function getAsistentesMateria($id1, $id2){
+		$this->connect();
+		$query = $this->query("SELECT m.nombre, h.asistencias FROM Materia m, MateriaHistorico h 
+					WHERE h.idMateria=m.id AND h.idPeriodo='".$id1."'");
+
+		$datos=array();
+		while($row = mysqli_fetch_array($query)){
+			$datos[$row[0]]=array();
+			array_push($datos[$row[0]], $row[1]);
+		}
+
+		$query2 = $this->query("SELECT m.nombre, h.asistencias FROM Materia m, MateriaHistorico h 
+					WHERE h.idMateria=m.id AND h.idPeriodo='".$id2."'");
+
+		while($row = mysqli_fetch_array($query2)){
+			if(!array_key_exists($row[0], $datos)){
+				$datos[$row[0]]=array();
+				array_push($datos[$row[0]], 0);
+			}
+			array_push($datos[$row[0]], $row[1]);
+		}
+
+		$this->terminate();
+
+		return $datos;
+	}
+
 	public function getAsistentesPrograma(){
 		$this->connect();
 		$query = $this->query("SELECT COUNT( DISTINCT idEstudiante) FROM EstudianteAsesoria");
@@ -400,6 +427,19 @@ class StatsDB extends Model{
 		}
 
 		$rta = trim($rta,",");
+		return $rta;
+	}
+
+	public function getLastPeriods(){
+		$this->connect();
+		$query = $this->query("SELECT * FROM Periodo ORDER BY id DESC LIMIT 3");
+		$this->terminate();
+
+		$rta=array();
+		while($row = mysqli_fetch_array($query)){
+			array_push($rta, $row);
+		}
+
 		return $rta;
 	}
 
