@@ -156,18 +156,22 @@
 			
 		 	$data = $st -> getAsistentesMateria($periodos[2][0], $periodos[1][0]);
 
-		 	print_r($data);
+		 	$rta = '{ "cols": ['.json_encode($label1).','.json_encode($label2).','.json_encode($label3).'],';
+		 	$rta .= '"rows": [';
+		 	while ($asist = current($data)) {
+		 		$cad='{"c":[{"v":"'.key($data).'"},{"v":'.$asist[0].'},{"v":';
+			    if (count($asist)==2) {
+			        $cad .= $asist[1].'}]},';
+			    }else{
+			    	$cad .= '0}]},';
+			    }
+			    $rta .= $cad;
+			    next($data);
+			}
 
-			$rta = '{ "cols": ['.json_encode($label1).','.json_encode($label2).','.json_encode($label3).'],';
-			$rta .= '"rows": [
-		        {"c":[{"v":"Programación Orientada a Objetos"},{"v":34},{"v":34}]},
-		        {"c":[{"v":"Estructuras de Datos"},{"v":11},{"v":34}]},
-		        {"c":[{"v":"Fundamentos de Programación"},{"v":33},{"v":34}]},
-		        {"c":[{"v":"Calculo Diferencial"},{"v":59},{"v":34}]},
-		        {"c":[{"v":"Física Mecánica"},{"v":81},{"v":34}]},
-		        {"c":[{"v":"Ondas y Particulas"},{"v":13},{"v":34}]}
-		      ]
-		}';
+			$rta = trim($rta,",");
+
+			$rta .= ' ]		}';
 			return $rta;
 		}
 
@@ -195,6 +199,75 @@
 
 			$rta = '{ "cols": ['.json_encode($label1).','.json_encode($label2).'],"rows": [ '.$data.']}';
 			return $rta;
+		}
+
+		public function getCursosPrevio2(){
+			$st=new StatsDB();
+
+			$periodos=$st->getLastPeriods();
+
+			$rta= '{ "cols": [
+		        {"label":"'.$periodos[2][1].'","type":"string"},
+		        {"label":"No. Estudiantes","type":"number"} ],
+		         "rows": [';
+
+			$data = $st->getCursosSem($periodos[2][0]);
+
+			while ($asist = current($data)) {
+		 		$cad='{"c":[{"v":"'.key($data).'"},{"v":'.$asist[0].'}]},';
+			    $rta .= $cad;
+			    next($data);
+			}
+
+			$rta = trim($rta, ",");
+			$rta .= ']}';
+
+			return $rta;
+		}
+
+		public function getCursosPrevio(){
+			$st=new StatsDB();
+
+			$periodos=$st->getLastPeriods();
+
+			$rta= '{ "cols": [
+		        {"label":"'.$periodos[1][1].'","type":"string"},
+		        {"label":"No. Estudiantes","type":"number"} ],
+		         "rows": [';
+
+			$data = $st->getCursosSem($periodos[1][0]);
+
+			while ($asist = current($data)) {
+		 		$cad='{"c":[{"v":"'.key($data).'"},{"v":'.$asist[0].'}]},';
+			    $rta .= $cad;
+			    next($data);
+			}
+
+			$rta = trim($rta, ",");
+			$rta .= ']}';
+
+			return $rta;
+		}
+
+		public function getComparativa(){
+			$st=new StatsDB();
+			/*Nombre periodo1 y 2, es algo como la fecha o "Semestre*/
+$string = '{
+  	"Periodo1": {
+  	"nombre": "Primer Semestre 2015",
+    "calificacion": "4.3",
+    "asistentes": "122",
+    "estudiantes": "450",
+    "porcentaje": "45"
+  },
+  "Periodo2": {
+  	"nombre": "Segundo Semestre 2014",
+    "calificacion": "4.3",
+    "asistentes": "122",
+    "estudiantes": "450",
+    "porcentaje": "45"
+  }
+}';
 		}
 
 	}

@@ -443,6 +443,22 @@ class StatsDB extends Model{
 		return $rta;
 	}
 
+	public function getCursosSem($sem){
+		$this->connect();
+		$query = $this->query("SELECT t.nombre, h.asistencia FROM Tema t, AsistenciaHistorico h
+						WHERE h.tipo='Curso' AND t.id=h.idTema AND h.idPeriodo='".$sem."'");
+
+		$this->terminate();
+
+		$rta=array();
+
+		while($row=mysqli_fetch_array($query)){
+			$rta[$row[0]]=$row[1];
+		}
+
+		return $rta;
+	}
+
 
 }
 ?>

@@ -124,55 +124,13 @@
 					$string=$stats->getHistoricaMateria();
 					echo $string;
 				}else if($_GET["peticion"] == "periodoPrevioI"){
-	$string = '{
-		  "cols": [
-		        {"label":"SEMI2015","type":"string"},
-		        {"label":"No. Estudiantes","type":"number"}
-		      ],
-		  "rows": [
-		        {"c":[{"v":"Lógica Proposicional"},{"v":3}]},
-		        {"c":[{"v":"Listas Simples"},{"v":1}]},
-		        {"c":[{"v":"Hilos"},{"v":3}]},
-		        {"c":[{"v":"Teoria de Conjuntos"},{"v":5}]},
-		        {"c":[{"v":"Vectores"},{"v":8}]},
-		        {"c":[{"v":"Sockets"},{"v":1}]}
-		      ]
-		}';
+					$string=$stats->getCursosPrevio2();
 					echo $string;
 				}else if($_GET["peticion"] == "periodoPrevioII"){
-	$string = '{
-		  "cols": [
-		        {"label":"NOMBRE SEMESTRE II","type":"string"},
-		        {"label":"No. Estudiantes","type":"number"}
-		      ],
-		  "rows": [
-		        {"c":[{"v":"Genericidad"},{"v":3}]},
-		        {"c":[{"v":"Algebra de Boole"},{"v":1}]},
-		        {"c":[{"v":"Sockets"},{"v":3}]},
-		        {"c":[{"v":"Pilas y Colas"},{"v":5}]},
-		        {"c":[{"v":"Herencia"},{"v":8}]},
-		        {"c":[{"v":"Matrices"},{"v":1}]}
-		      ]
-		}';
+					$string=$stats->getCursosPrevio();
 					echo $string;
 				}else if($_GET["peticion"] == "comparativa"){
-	/*Nombre periodo1 y 2, es algo como la fecha o "Semestre*/
-$string = '{
-  	"Periodo1": {
-  	"nombre": "Primer Semestre 2015",
-    "calificacion": "4.3",
-    "asistentes": "122",
-    "estudiantes": "450",
-    "porcentaje": "45"
-  },
-  "Periodo2": {
-  	"nombre": "Segundo Semestre 2014",
-    "calificacion": "4.3",
-    "asistentes": "122",
-    "estudiantes": "450",
-    "porcentaje": "45"
-  }
-}';
+					$string=$stats->getComparativa();
 					echo $string;
 				}else if($_GET["peticion"]=="EstadisticaMateriaTema"){
 					$string=$stats->getEstadisticaMateriaTema($_GET["materia"]);
