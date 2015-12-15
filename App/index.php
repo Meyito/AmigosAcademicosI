@@ -74,34 +74,36 @@
 
 				if($_GET["peticion"] == "promedioAACalificacionCurso"){
 					if($_GET["promedioCursoAA"] == "Todos"){
-		
-					$numero = $stats->getPromedioCursos();
+						$numero = $stats->getPromedioCursos();
 					}else{
 						$numero = $stats->getPromedioCursoAmigo($_GET["idPromAmigo"]);
 					}
 					echo $numero;
 
 				}else if($_GET["peticion"] == "asistenciaCursosAA"){
-
 					if($_GET["asistenciaCursoAA"] == "Todos"){
 						$string = $stats->getAsistenciaCursos();
 					}else{
 						$string = $stats->getAsistenciaCursoAmigo($_GET["asistenciaCursoAA"]);
 					}
 					echo $string;
+
 				}else if($_GET["peticion"] == "asistenciaMateria"){
 					$string = $stats->getAsistenciasMateria();
 					echo $string;
+
 				}else if($_GET["peticion"] == "calificacionMateriaPromedio"){
-					$string = '{"promedio" : 3.12}';
 					$string =$stats->getPromedioMateria();
 					echo $string;
+
 				}else if($_GET["peticion"] == "ListaMaterias"){
 					$string=$stats->getListaMaterias();
 					echo $string;
+
 				}else if($_GET["peticion"] == "ListaTemas"){
 					$string=$stats->getListaTemas($_GET["idMateria"]);
 					echo $string;
+
 				}else if($_GET["peticion"] == "TablaFrecuencia"){
 					if($_GET["materia"] == "todo"){
 						$string=$stats->getFrecuenciaEstudiantes();
@@ -111,50 +113,47 @@
 						$string=$stats->getFrecuenciaEstudiantesTema($_GET["tema"]);
 					}
 					echo $string;
+
 				}else if($_GET["peticion"] == "selectAsistenciaCurso"){
 					$string=$stats->getAmigos();
 					echo $string;
+
 				}else if($_GET["peticion"] == "asesoriaAmigo"){
 					$string=$stats->getAsesoriasAmigo();
 					echo $string;
+
 				}else if($_GET["peticion"] == "totalEstudiantes"){
 					$string=$stats->getPorcentajeEstudiantes();
 					echo $string;
+
 				}else if($_GET["peticion"] == "HistoricaMaterias"){
 					$string=$stats->getHistoricaMateria();
 					echo $string;
+
 				}else if($_GET["peticion"] == "periodoPrevioI"){
 					$string=$stats->getCursosPrevio2();
 					echo $string;
+
 				}else if($_GET["peticion"] == "periodoPrevioII"){
 					$string=$stats->getCursosPrevio();
 					echo $string;
+
 				}else if($_GET["peticion"] == "comparativa"){
 					$string=$stats->getComparativa();
-					
 					echo $string;
+
 				}else if($_GET["peticion"]=="EstadisticaMateriaTema"){
 					$string=$stats->getEstadisticaMateriaTema($_GET["materia"]);
 					echo $string;
+
 				}else if($_GET["peticion"]=="EstadisticaPorAmigo"){
 					$string=$stats->getEstadisticaAmigo($_GET["amigo"]);
 					echo $string;
+
 				}else if($_GET["peticion"] == "calificacionAsesorias"){
-	$string = '{
-				  "1": {
-				    "calificacion": "4",
-				    "comentario": "Muy buena metodologia"
-				  },
-				  "2": {
-				    "calificacion": "4",
-				    "comentario": "Muy buena metodologia"
-				  },
-				  "3": {
-				    "calificacion": "4",
-				    "comentario": "Muy buena metodologia"
-				  }
-				}';
+					$string=$stats->getComentariosAsesorias($_GET["amigo"]);
 					echo $string;
+					
 				}
 			}else{
 				$adminC->index();

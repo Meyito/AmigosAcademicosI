@@ -345,7 +345,7 @@ class StatsDB extends Model{
 		$rta="";
 
 		while($row = mysqli_fetch_array($query)){
-			$rta='{"c":[{"v":"Población Total"},{"v":'.$row[0].'}]}';
+			$rta='{"c":[{"v":"Asistentes al programa"},{"v":'.$row[0].'}]}';
 		}
 		return $rta;
 	}
@@ -493,6 +493,21 @@ class StatsDB extends Model{
 		}
 
 		return $prom;
+	}
+
+	public function getComentariosAsesorias($idAmigo){
+		$this->connect();
+		$query=$this->query("SELECT e.calificacion, e.observacionEstudiante FROM EstudianteAsesoria e, Asesoria a
+						WHERE e.idAsesoria=a.id AND e.observacionEstudiante IS NOT NULL AND a.idAmigoAcademico='".$idAmigo."'");
+		$this->terminate();
+
+		$rta=array();
+
+		while($row=mysqli_fetch_array($query)){
+			array_push($rta, $row);
+		}
+
+		return $rta;
 	}
 
 

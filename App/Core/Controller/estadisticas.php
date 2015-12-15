@@ -127,7 +127,6 @@
 			$data = $st -> getAsesoriasAmigo();
 
 			$rta = '{ "cols": ['.json_encode($label1).','.json_encode($label2).'],"rows": [ '.$data.']}';
-			//print_r($data);
 			return $rta;
 		}
 
@@ -138,7 +137,7 @@
 			$label2 = array('label' => 'Total', 'type' => 'number');
 			
 			$data1 = $st -> getAsistentesPrograma();
-			$data2 = $st -> getAsesoriasAmigo();
+			$data2 = $st -> getTotalEstudiantes();
 
 			$rta = '{ "cols": ['.json_encode($label1).','.json_encode($label2).'],"rows": [ '.$data1.', '.$data2.']}';
 
@@ -276,6 +275,26 @@
     			"estudiantes": "'.$data2[2].'",
     			"porcentaje": "'.$porc2.'%"
   			}}';
+
+			return $rta;
+		}
+
+		public function getComentariosAsesorias($idAmigo){
+			$st=new StatsDB();
+
+			$rta = '{';
+
+			$data = $st->getComentariosAsesorias($idAmigo);
+
+			for($i=1; $i<=count($data); $i++){
+				$rta .= '"'.$i.'": {
+							"calificacion": "'.$data[$i-1][0].'",
+							"comentario": "'.$data[$i-1][1].'"
+						},';
+			}
+
+			$rta = trim($rta, ",");
+			$rta .= '}';
 
 			return $rta;
 		}
