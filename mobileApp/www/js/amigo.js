@@ -8,6 +8,10 @@ $( document ).ready(function() {
 });
 
 
+$.timer(800000, function(){
+   alert("hola, pasaron 2 segundos");
+})
+
 /***************SIDEBAR REGISTRO ASESORIA*****************/
 $(document).on("pagecreate", "#registroAsesoriaScreen", function(){
 	$(document).on("swiperight", "#registroAsesoriaScreen", function(e){
@@ -38,36 +42,6 @@ $(document).on("pagecreate", "#registroCursoScreen", function(){
 		}
 	});
 });
-
-
-function cargarMateriasRegistroAsesoria () {
-	if(localStorage.getItem("MateriasRegistroAsesoria")!=null){
-		construirMateriasRegistroAsesoria(JSON.parse(localStorage.getItem("MateriasRegistroAsesoria")));
-	}
-	var parametros = {
-		"mobile" : 'cargarMaterias'
-    };
-    $.ajax({
-	    data:  parametros,
-	    url:   root,
-	    type:  'post',
-	    success:  function (response) {
-	    	var data = JSON.parse(response);
-	    	var dataToStore = JSON.stringify(data);
-        	localStorage.setItem('MateriasRegistroAsesoria', dataToStore);
-	    	construirMateriasRegistroAsesoria (data);
-	    	
-	    }
-	});
-}
-
-function construirMateriasRegistroAsesoria (data) {
-	var struct = "<option>Seleccionar Materia</option>";
-	for(var val in data){
-		struct += "<option value='"+val+"'>"+data[val]+"</option>";
-	}
-	$("#materiaAse").html(struct)
-}
 
 $("#materiaAse").change(cargarTemasRegistroAsesoria)
 

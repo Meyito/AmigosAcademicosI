@@ -49,6 +49,16 @@ $(document).on("pagecreate", "#temasScreen", function(){
 		}
 	});
 });
+/***************SIDEBAR ESTUDIANTE CURSOS*****************/
+$(document).on("pagecreate", "#cursosScreen", function(){
+	$(document).on("swiperight", "#cursosScreen", function(e){
+		if($(".ui-page-active").jqmData("panel") !== "open"){
+			if(e.type == "swiperight"){
+				$('#sidebar3').panel("open");
+			}
+		}
+	});
+});
 
 
 $("#cerrarSesion").click(cerrarSesion);
@@ -248,3 +258,33 @@ function popupCalificar (value) {
 
 
 
+
+
+function cargarMateriasRegistroAsesoria () {
+	if(localStorage.getItem("MateriasRegistroAsesoria")!=null){
+		construirMateriasRegistroAsesoria(JSON.parse(localStorage.getItem("MateriasRegistroAsesoria")));
+	}
+	var parametros = {
+		"mobile" : 'cargarMaterias'
+    };
+    $.ajax({
+	    data:  parametros,
+	    url:   root,
+	    type:  'post',
+	    success:  function (response) {
+	    	var data = JSON.parse(response);
+	    	var dataToStore = JSON.stringify(data);
+        	localStorage.setItem('MateriasRegistroAsesoria', dataToStore);
+	    	construirMateriasRegistroAsesoria (data);
+	    	
+	    }
+	});
+}
+
+function construirMateriasRegistroAsesoria (data) {
+	var struct = "<option>Seleccionar Materia</option>";
+	for(var val in data){
+		struct += "<option value='"+val+"'>"+data[val]+"</option>";
+	}
+	$("#materiaAse").html(struct)
+}

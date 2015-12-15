@@ -23,11 +23,342 @@
 <body id="1">
 
 
+	<div data-role="page" id="inicio">
+		<div data-role="header">
+			<a class="open" href="#sidebar"><img src="css/images/menu.png" alt="Menú"></a>
+			<h1 class="header-h1" style="text-align:right;margin-right:10px">
+				<img src="css/images/logo.png" alt="Amigos Académicos">				
+			</h1>
+		</div>
+		<div data-role="content">
+			<div class="horario">
+				<h3>Horario de Amigos Académicos</h3>
+				<table data-role="table" data-mode="columntoggle" id="tabla" class="ui-responsive table-stroke">
+					<thead>
+						<tr>
+							<th>Hora</th>
+							<th data-priority="2">Lunes</th>
+							<th data-priority="3">Martes</th>
+							<th data-priority="4">Miercoles</th>
+							<th data-priority="5">Jueves</th>
+							<th data-priority="6">Viernes</th>
+						</tr>
+					</thead>
+					<tbody>	
+						<tr>
+							<td>2:00PM</td>
+							<td id="12"></td>
+							<td id="22"></td>
+							<td id="32"></td>
+							<td id="42"></td>
+							<td id="52"></td>
+						</tr>
+						<tr>
+							<td>3:00PM</td>
+							<td id="13"></td>
+							<td id="23"></td>
+							<td id="33"></td>
+							<td id="43"></td>
+							<td id="53"></td>
+						</tr>
+						<tr>
+							<td>4:00PM</td>
+							<td id="14"></td>
+							<td id="24"></td>
+							<td id="34"></td>
+							<td id="44"></td>
+							<td id="54"></td>
+						</tr>
+						<tr>
+							<td>5:00PM</td>
+							<td id="15"></td>
+							<td id="25"></td>
+							<td id="35"></td>
+							<td id="45"></td>
+							<td id="55"></td>
+						</tr>
+						<tr>
+							<td>6:00PM</td>
+							<td id="16"></td>
+							<td id="26"></td>
+							<td id="36"></td>
+							<td id="46"></td>
+							<td id="56"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="footer" data-role="footer">
+			<img src="css/images/logos.png" alt="">
+		</div>
+		<div data-role="panel" id="sidebar" class="sidebar" data-position="left">
+			<div class="recuadro-sidebar rs1">
+				<h2 class="userName"></h2>
+				<h4 class="userType"></h4>
+			</div>
+			<a href="#inicio" class="sidebarBTN">
+				<div class="recuadro-sidebar">
+					<h3>Ver Horario</h3>
+				</div>
+			</a>
+			<a href="#temasScreen" class="sidebarBTN">
+				<div class="recuadro-sidebar">
+					<h3>Temas Semanales</h3>
+				</div>
+			</a>
+			<a href="#cursosScreen" class="sidebarBTN">
+				<div class="recuadro-sidebar">
+					<h3>Cursos</h3>
+				</div>
+			</a>
+			<a href="#amigosScreen" class="sidebarBTN">
+				<div class="recuadro-sidebar">
+					<h3>Amigos Académicos</h3>
+				</div>
+			</a>
+			<a class="sidebarBTN" id="cerrarSesion">
+				<div class="recuadro-sidebar">
+					<h3>Cerrar Sesión</h3>
+				</div>
+			</a>
+		</div>
+	</div>
+
+
+
+	<div data-role="page" id="temasScreen">
+		<div data-role="header">
+			<a class="open" href="#sidebar2"><img src="css/images/menu.png" alt="Menú"></a>
+			<h1 class="header-h1" style="text-align:right;margin-right:10px">
+				<img src="css/images/logo.png" alt="Amigos Académicos">				
+			</h1>
+		</div>
+		<div data-role="content">
+			<table id="tablaTemas" class="ui-responsive table-stroke table-temas">
+				<tbody id="tablaTemas">
+					
+				</tbody>
+			</table>
+			<a class="ui-btn" id="nuevoTema" href="#crearTemaScreen">Crear nuevo Tema</a>
+		</div>
+		<div class="footer" data-role="footer">
+			<img src="css/images/logos.png" alt="">
+		</div>
+		<div data-role="panel" id="sidebar2" class="sidebar" data-position="left">
+			<div class="recuadro-sidebar rs1">
+				<h2 class="userName"></h2>
+				<h4 class="userType"></h4>
+			</div>
+			<a href="#inicio" class="sidebarBTN"  onclick="console.log('si pasa')">
+				<div class="recuadro-sidebar">
+					<h3>Ver Horario</h3>
+				</div>
+			</a>
+			<a href="#temasScreen" class="sidebarBTN">
+				<div class="recuadro-sidebar">
+					<h3>Temas Semanales</h3>
+				</div>
+			</a>
+			<a href="#cursosScreen" class="sidebarBTN">
+				<div class="recuadro-sidebar">
+					<h3>Cursos</h3>
+				</div>
+			</a>
+			<a href="#amigosScreen" class="sidebarBTN">
+				<div class="recuadro-sidebar">
+					<h3>Amigos Académicos</h3>
+				</div>
+			</a>
+			<a class="sidebarBTN" id="cerrarSesion1">
+				<div class="recuadro-sidebar">
+					<h3>Cerrar Sesión</h3>
+				</div>
+			</a>
+		</div>
+	</div>
+
+
+
+
+
+	<div data-role="page" id="cursosScreen">
+		<div data-role="header">
+			<a class="open" href="#sidebar3"><img src="css/images/menu.png" alt="Menú"></a>
+			<h1 class="header-h1" style="text-align:right;margin-right:10px">
+				<img src="css/images/logo.png" alt="Amigos Académicos">				
+			</h1>
+		</div>
+		<div data-role="content">
+		</div>
+		<div class="footer" data-role="footer">
+			<img src="css/images/logos.png" alt="">
+		</div>
+		<div data-role="panel" id="sidebar3" class="sidebar" data-position="left">
+			<div class="recuadro-sidebar rs1">
+				<h2 class="userName"></h2>
+				<h4 class="userType"></h4>
+			</div>
+			<a href="#inicio" class="sidebarBTN">
+				<div class="recuadro-sidebar">
+					<h3>Ver Horario</h3>
+				</div>
+			</a>
+			<a href="#temasScreen" class="sidebarBTN">
+				<div class="recuadro-sidebar">
+					<h3>Temas Semanales</h3>
+				</div>
+			</a>
+			<a href="#cursosScreen" class="sidebarBTN">
+				<div class="recuadro-sidebar">
+					<h3>Cursos</h3>
+				</div>
+			</a>
+			<a href="#amigosScreen" class="sidebarBTN">
+				<div class="recuadro-sidebar">
+					<h3>Amigos Académicos</h3>
+				</div>
+			</a>
+			<a class="sidebarBTN" id="cerrarSesion2">
+				<div class="recuadro-sidebar">
+					<h3>Cerrar Sesión</h3>
+				</div>
+			</a>
+		</div>
+	</div>
+
+
+	
+
+
+	<div data-role="page" id="amigosScreen">
+		<div data-role="header">
+			<a class="open" href="#sidebarAmigos"><img src="css/images/menu.png" alt="Menú"></a>
+			<h1 class="header-h1" style="text-align:right;margin-right:10px">
+				<img src="css/images/logo.png" alt="Amigos Académicos">				
+			</h1>
+		</div>
+		<div data-role="content">
+		</div>
+		<div class="footer" data-role="footer">
+			<img src="css/images/logos.png" alt="">
+		</div>
+		<div data-role="panel" id="sidebarAmigos" class="sidebar" data-position="left">
+			<div class="recuadro-sidebar rs1">
+				<h2 class="userName"></h2>
+				<h4 class="userType"></h4>
+			</div>
+			<a href="#inicio" class="sidebarBTN">
+				<div class="recuadro-sidebar">
+					<h3>Ver Horario</h3>
+				</div>
+			</a>
+			<a href="#temasScreen" class="sidebarBTN">
+				<div class="recuadro-sidebar">
+					<h3>Temas Semanales</h3>
+				</div>
+			</a>
+			<a href="#cursosScreen" class="sidebarBTN">
+				<div class="recuadro-sidebar">
+					<h3>Cursos</h3>
+				</div>
+			</a>
+			<a href="#amigosScreen" class="sidebarBTN">
+				<div class="recuadro-sidebar">
+					<h3>Amigos Académicos</h3>
+				</div>
+			</a>
+			<a class="sidebarBTN" id="cerrarSesion3">
+				<div class="recuadro-sidebar">
+					<h3>Cerrar Sesión</h3>
+				</div>
+			</a>
+		</div>
+	</div>
+
+
+
+
+	<div data-role="page" id="crearTemaScreen">
+		<div data-role="header">
+			<a class="open" href="#sidebarcrearTema"><img src="css/images/menu.png" alt="Menú"></a>
+			<h1 class="header-h1" style="text-align:right;margin-right:10px">
+				<img src="css/images/logo.png" alt="Amigos Académicos">				
+			</h1>
+		</div>
+		<div data-role="content">
+			<h3>Añadir Nuevo Tema</h3>
+			<form id="formNuevoTema">
+				<select name="materiaAse" id="materiaAse" required></select>
+				<input type="text" name="temaNombre" id="temaNombre" placeholder="Nombre del Tema">
+				<input type="submit" value="Registrar Tema">
+			</form>
+			
+		</div>
+		<div class="footer" data-role="footer">
+			<img src="css/images/logos.png" alt="">
+		</div>
+		<div data-role="panel" id="sidebarcrearTema" class="sidebar" data-position="left">
+			<div class="recuadro-sidebar rs1">
+				<h2 class="userName"></h2>
+				<h4 class="userType"></h4>
+			</div>
+			<a href="#inicio" class="sidebarBTN">
+				<div class="recuadro-sidebar">
+					<h3>Ver Horario</h3>
+				</div>
+			</a>
+			<a href="#temasScreen" class="sidebarBTN">
+				<div class="recuadro-sidebar">
+					<h3>Temas Semanales</h3>
+				</div>
+			</a>
+			<a href="#cursosScreen" class="sidebarBTN">
+				<div class="recuadro-sidebar">
+					<h3>Cursos</h3>
+				</div>
+			</a>
+			<a href="#amigosScreen" class="sidebarBTN">
+				<div class="recuadro-sidebar">
+					<h3>Amigos Académicos</h3>
+				</div>
+			</a>
+			<a class="sidebarBTN" id="cerrarSesion4">
+				<div class="recuadro-sidebar">
+					<h3>Cerrar Sesión</h3>
+				</div>
+			</a>
+		</div>
+	</div>
+
+
+
+
+	<div data-role="dialog" id="registroCorrectoScreen">
+		<div data-role="header">
+			<h1>Correcto!</h1>
+		</div>
+		<div data-role="content">
+			<h3> El registro se ha realizado con exito.</h3>
+		</div>
+	</div>
+
+
+	<div data-role="dialog" id="errorRedScreen">
+
+		<div data-role="header">
+			<h1>Error</h1>
+		</div>
+
+		<div data-role="content">	
+			<h2> Sin Conexión </h2>
+			<h3> Verifique su conexión a la red.</h3>
+		</div>
+	</div>
 
 	<script src="js/usuario.js"></script>
-	<script src="js/amigo.js"></script>
+	<script src="js/admin.js"></script>
 </body>
 </html>
 
 
- 
