@@ -10,7 +10,6 @@ class Model{
 	}
 
 	public function query($sql){
-		//print_r($sql);
 		return mysqli_query($this->connection,$sql);
 	}
 

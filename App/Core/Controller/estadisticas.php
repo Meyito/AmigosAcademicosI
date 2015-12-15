@@ -214,7 +214,7 @@
 			$data = $st->getCursosSem($periodos[2][0]);
 
 			while ($asist = current($data)) {
-		 		$cad='{"c":[{"v":"'.key($data).'"},{"v":'.$asist[0].'}]},';
+		 		$cad='{"c":[{"v":"'.key($data).'"},{"v":'.$asist.'}]},';
 			    $rta .= $cad;
 			    next($data);
 			}
@@ -238,7 +238,7 @@
 			$data = $st->getCursosSem($periodos[1][0]);
 
 			while ($asist = current($data)) {
-		 		$cad='{"c":[{"v":"'.key($data).'"},{"v":'.$asist[0].'}]},';
+		 		$cad='{"c":[{"v":"'.key($data).'"},{"v":'.$asist.'}]},';
 			    $rta .= $cad;
 			    next($data);
 			}
@@ -251,23 +251,33 @@
 
 		public function getComparativa(){
 			$st=new StatsDB();
-			/*Nombre periodo1 y 2, es algo como la fecha o "Semestre*/
-$string = '{
-  	"Periodo1": {
-  	"nombre": "Primer Semestre 2015",
-    "calificacion": "4.3",
-    "asistentes": "122",
-    "estudiantes": "450",
-    "porcentaje": "45"
-  },
-  "Periodo2": {
-  	"nombre": "Segundo Semestre 2014",
-    "calificacion": "4.3",
-    "asistentes": "122",
-    "estudiantes": "450",
-    "porcentaje": "45"
-  }
-}';
+
+			$periodos=$st->getLastPeriods();
+
+			$data1 = $st->getComparativa($periodos[2][0]);
+			$data2 = $st->getComparativa($periodos[1][0]);
+
+			$porc1 = ($data1[1]*100)/$data1[2];
+			$porc1 = round($porc1, 2);
+			$porc2 = ($data2[1]*100)/$data2[2];
+			$porc2 = round($porc2, 2);
+
+			$rta='{"Periodo1": {
+				"nombre": "'.$periodos[2][1].'",
+				"calificacion": "'.$data1[0].'",
+				"asistentes": "'.$data1[1].'",
+				"estudiantes": "'.$data1[2].'",
+				"porcentaje": "'.$porc1.'%"
+			},
+  			"Periodo2": {
+  				"nombre": "'.$periodos[1][1].'",
+    			"calificacion": "'.$data2[0].'",
+    			"asistentes": "'.$data2[1].'",
+    			"estudiantes": "'.$data2[2].'",
+    			"porcentaje": "'.$porc2.'%"
+  			}}';
+
+			return $rta;
 		}
 
 	}

@@ -131,6 +131,7 @@
 					echo $string;
 				}else if($_GET["peticion"] == "comparativa"){
 					$string=$stats->getComparativa();
+					
 					echo $string;
 				}else if($_GET["peticion"]=="EstadisticaMateriaTema"){
 					$string=$stats->getEstadisticaMateriaTema($_GET["materia"]);

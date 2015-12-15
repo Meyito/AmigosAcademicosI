@@ -10,6 +10,7 @@ $query = "CREATE TABLE Periodo(
 			id int AUTO_INCREMENT NOT NULL,
 			descripcion varchar(10) NOT NULL,
 			cantidadEstudiantes int NOT NULL,
+			asistenciasPeriodo int NOT NULL, 
 			PRIMARY KEY(id)
 			)";
 

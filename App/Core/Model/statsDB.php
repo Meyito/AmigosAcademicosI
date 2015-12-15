@@ -459,6 +459,42 @@ class StatsDB extends Model{
 		return $rta;
 	}
 
+	public function getComparativa($sem){
+		$prom=$this->getPromedio($sem);
+		$prom=round($prom,2);
+		$this->connect();
+		$query = $this->query("SELECT p.asistenciasPeriodo, p.cantidadEstudiantes FROM Periodo p
+						WHERE p.id='".$sem."'");
+
+		$this->terminate();
+
+		$rta=array();
+
+		array_push($rta, $prom);
+
+		while($row=mysqli_fetch_array($query)){
+			array_push($rta, $row[0]);
+			array_push($rta, $row[1]);
+		}
+
+		return $rta;
+	}
+
+	public function getPromedio($sem){
+		$this->connect();
+		$query=$this->query("SELECT AVG(promedio) FROM AsistenciaHistorico
+			WHERE tipo='Asesoria' AND idPeriodo='".$sem."'");
+		$this->terminate();
+
+		$prom;
+
+		while($row=mysqli_fetch_array($query)){
+			$prom=$row[0];
+		}
+
+		return $prom;
+	}
+
 
 }
 ?>
