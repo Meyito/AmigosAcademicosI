@@ -11,18 +11,109 @@
 			// Recibe: $_POST["codigo"] y $_POST["password"]
 
 			if($_POST["codigo"]=="1150972" && $_POST["password"]=="http"){
-				$output = array("nombre"=>"Gerson Lázaro", "codigo"=>"1150972", "tipo"=>"1");
+				$output = array("nombre"=>"Gerson Lázaro", "codigo"=>"1150972", "tipo"=>"2");
 
 				echo (json_encode($output));
 			}else{
 				echo "error";
 			}
+
+
+
 		}else if($_POST["mobile"]=="signup"){
 			//Los datos de registro llegan por post. Hace echo "ok" si el registro es exitoso, echo "error"
 			//en caso contrario
 			//Recibe: $_POST["codigo"],$_POST["nombre"],$_POST["semestre"],$_POST["correo"], $_POST["password"] y $_POST["password2"]
 			echo "ok";
-		}else if($_POST["mobile"]=="horario"){
+
+
+
+		}else if($_POST["mobile"]=="registrarCalificacion"){
+			//En este punto se inserta en la base de datos la calificación de una asesoria. Se recibe
+			//$_POST["idAsesoria"] que guarda el identificador de la asesoria
+			//$_POST["puntaje"] Valor numerico de la calificacion, de 1 a 5
+        	//$_POST["comentario"] Comentario de la asesoría
+        	//$_POST["estudiante"] Código del estudiante
+        	//devuelve echo "ok" si funciona, echo "error" en caso contrario
+        	echo "ok";
+
+
+
+		}else if($_POST["mobile"]=="registrarAsesoria"){
+			//Registra una asesoria en el sistema
+			//Recibe $_POST["materia"] Que trae el CODIGO de la materia
+			//$_POST["tema"] Que trae el ID del tema
+			//$_POST["codigo"] Código del ESTUDIANTE
+			//$_POST["comentario"] Comentario enviado
+			//Guarda en la BD y retorna echo "ok" o echo "error" segun corresponda 
+			echo "ok";
+
+		}else if($_POST["mobile"]=="registrarAsistenciaCurso"){
+			//Registra en la base de datos la asistencia a un curso
+			//Recibe $_POST["idCurso"] con el id del curso y
+			//$_POST["codigo"] con el código del estudiante
+			//Retorna echo "ok" o echo "error" según corresponda
+			echo "ok";
+
+		}else if($_POST["mobile"]=="registrarTema"){
+			//Registra un tema en la bd. Recibe $_POST["tema"] con el nombre del tema
+			// y $_POST["codigoMateria"] Con el código de la materia que representa al tema
+			//Retorna echo "ok" o echo "error" según corresponda
+			echo "ok";
+
+		}else if($_POST["mobile"]=="editarCurso"){
+			//Edita un curso existente en la BD
+			//Recibe por $_POST:
+			//"id" (ID propio del curso)
+			//"idMateria"
+			//"idTema"
+			//"idAmigo"
+			//"fecha"
+			//"hora"
+			//"descripcion"
+			//Retorna echo "ok" o echo "error" según corresponda
+			echo "ok";
+		}else if($_POST["mobile"]=="eliminarCurso"){
+			//Elimina el curso con el id que recibe el $_POST["id"]
+			//Retorna echo "ok" o echo "error" según corresponda
+			echo "ok";
+
+		}else if($_POST["mobile"]=="crearCurso"){
+			//Crea un curso en la BD con los datos recibidos
+			//Recibe por $_POST:
+			//"idMateria"
+			//"idTema"
+			//"idAmigo"
+			//"fecha"
+			//"hora"
+			//"descripcion"
+			//Retorna echo "ok" o echo "error" según corresponda
+
+			echo "ok";
+
+		}else if($_POST["mobile"]=="actualizarAmigo"){
+			//Actualiza un amigo en la BD. Los siguientes datos llegan por $_POST
+			//"mobile"
+			//"codigo"
+			//"nombre"
+			//"email"
+			//"semestre"
+			//Retorna echo "ok" o echo "error" según corresponda
+			echo "ok";
+
+		}else if($_POST["mobile"]=="nuevoAmigo"){
+			//Registra un nuevo amigo en la BD. Recibe por $_POST los siguientes valores:
+			//"mobile"
+			//"codigo"
+			//"nombre"
+			//"email"
+			//"semestre"
+			//Retorna echo "ok" o echo "error" según corresponda
+			echo "ok";
+		}
+	}else if(isset($_GET["mobile"])){
+
+		if($_GET["mobile"]=="horario"){
 			//Retorna un JSON donde la clave será la combinación de dia hora (12 Representa dia 1(lunes) a las 2pm)
 			//y el valor serán los Amigos académicos, separados por -. Ver ejemplo
 			$output = array(
@@ -54,7 +145,10 @@
 				"56" => "Denis Isidro - Yurley Rojas",
 			);
 			echo json_encode($output);
-		}else if($_POST["mobile"]=="temasSemana"){
+
+
+
+		}else if($_GET["mobile"]=="temasSemana"){
 			// Retorna la lista de temas de la semana con sus respectivas materias, como en el ejemplo siguiente:
 			// La clave es el tema, el valor la materia
 			$output = array(
@@ -64,7 +158,11 @@
 				"Inferencia" => "Matemáticas Discretas"
 			);
 			echo json_encode($output);
-		}else if($_POST["mobile"]=="proximosCursos"){
+
+
+
+
+		}else if($_GET["mobile"]=="proximosCursos"){
 			// Retorna los cursos con el formato indicado.
 			// como en el siguiente ejemplo.
 			// El nombre es el tema
@@ -117,8 +215,12 @@
 					)
 			);
 			echo json_encode($output);
-		}else if($_POST["mobile"]=="calificacion"){
-			//Recibe un $_POST["codigo"] con el código del usuario para el que voy a cargar las calificaciones
+
+
+
+
+		}else if($_GET["mobile"]=="calificacion"){
+			//Recibe un $_GET["codigo"] con el código del usuario para el que voy a cargar las calificaciones por realizar
 			//Que tiene pendientes por realizar. Retorna identificador de la asesoria, Materia, Tema, Amigo y Fecha. Usar el mismo para cursos.
 			
 			//IMPORTANTE: Si no hay nada por calificar, hacer solo echo "ok";
@@ -154,16 +256,11 @@
 			);
 			
 			echo json_encode($output);	
-		}else if($_POST["mobile"]=="registrarCalificacion"){
-			//En este punto se inserta en la base de datos la calificación de una asesoria. Se recibe
-			//$_POST["idAsesoria"] que guarda el identificador de la asesoria
-			//$_POST["puntaje"] Valor numerico de la calificacion, de 1 a 5
-        	//$_POST["comentario"] Comentario de la asesoría
-        	//$_POST["estudiante"] Código del estudiante
-        	//devuelve echo "ok" si funciona, echo "error" en caso contrario
-        	echo "ok";
 
-		}else if($_POST["mobile"]=="cargarMaterias"){
+
+
+
+		}else if($_GET["mobile"]=="cargarMaterias"){
 			//Aqui retorna una lista de materias con el siguiente formato (Código de la materia => nombre de la materia):
 			$output = array(
 				"115093" => "calculo",
@@ -172,11 +269,13 @@
 			);
 			echo json_encode($output);
 
-		}
-		else if($_POST["mobile"]=="cargarTemas"){
+
+
+
+		}else if($_GET["mobile"]=="cargarTemas"){
 			//Aqui retorna una lista de temas de una materia especifica con el siguiente formato 
 			//(id del tema => nombre del tema):
-			//IMPORTANTE: La materia de la que se obtienen los temas llega como $_POST["materia"]
+			//IMPORTANTE: La materia de la que se obtienen los temas llega como $_GET["materia"]
 			$output = array(
 				"115093" => "Herencia",
 				"113232" => "Polimorfismo",
@@ -184,22 +283,12 @@
 			);
 			echo json_encode($output);
 
-		}else if($_POST["mobile"]=="registrarAsesoria"){
-			//Registra una asesoria en el sistema
-			//Recibe $_POST["materia"] Que trae el CODIGO de la materia
-			//$_POST["tema"] Que trae el ID del tema
-			//$_POST["codigo"] Código del ESTUDIANTE
-			//$_POST["comentario"] Comentario enviado
-			//Guarda en la BD y retorna echo "ok" o echo "error" segun corresponda 
-			echo "ok";
 
-		}else if($_POST["mobile"]=="listarCursos"){
+
+		}else if($_GET["mobile"]=="listarCursos"){
 			//Lista el id del curso, el nombre (que será el nombre del tema), y la fecha
 			//Esto es para la sección agregar asistencia a cursos del amigo académico
 			//Donde se listan los cursos para que el amigo seleccione uno y agregue la asistencia
-			//Tengo una duda: Aqui salen todos los cursos o solo los de ese amigo?
-			//Recibe $_POST["codigo"] con el código del amigo, por si debe listar solo los de ese amigo
-			//Si debe listarlos todos puede ignorar ese $_POST
 			$output = array(
 				"1" => array(
 					"id" => "4",
@@ -223,20 +312,9 @@
 
 			echo json_encode($output);
 
-		}else if($_POST["mobile"]=="registrarAsistenciaCurso"){
-			//Registra en la base de datos la asistencia a un curso
-			//Recibe $_POST["idCurso"] con el id del curso y
-			//$_POST["codigo"] con el código del estudiante
-			//Retorna echo "ok" o echo "error" según corresponda
-			echo "ok";
 
-		}else if($_POST["mobile"]=="registrarTema"){
-			//Registra un tema en la bd. Recibe $_POST["tema"] con el nombre del tema
-			// y $_POST["codigoMateria"] Con el código de la materia que representa al tema
-			//Retorna echo "ok" o echo "error" según corresponda
-			echo "ok";
 
-		}else if($_POST["mobile"]=="cargarListaAmigos"){
+		}else if($_GET["mobile"]=="cargarListaAmigos"){
 			//Retorna una lista de codigo-nombre de amigos académicos
 
 			$output = array(
@@ -246,38 +324,10 @@
 			);
 			echo json_encode($output);
 
-		}else if($_POST["mobile"]=="editarCurso"){
-			//Edita un curso existente en la BD
-			//Recibe por $_POST:
-			//"id" (ID propio del curso)
-			//"idMateria"
-			//"idTema"
-			//"idAmigo"
-			//"fecha"
-			//"hora"
-			//"descripcion"
-			//Retorna echo "ok" o echo "error" según corresponda
-			echo "ok";
-		}else if($_POST["mobile"]=="eliminarCurso"){
-			//Elimina el curso con el id que recibe el $_POST["id"]
-			//Retorna echo "ok" o echo "error" según corresponda
-			echo "ok";
 
-		}else if($_POST["mobile"]=="crearCurso"){
-			//Crea un curso en la BD con los datos recibidos
-			//Recibe por $_POST:
-			//"idMateria"
-			//"idTema"
-			//"idAmigo"
-			//"fecha"
-			//"hora"
-			//"descripcion"
-			//Retorna echo "ok" o echo "error" según corresponda
 
-			echo "ok";
-
-		}else if($_POST["mobile"]=="obtenerDatosAA"){
-			//Obtiene los datos del amigo académico cuyo código es $_POST["codigoAA"]
+		}else if($_GET["mobile"]=="obtenerDatosAA"){
+			//Obtiene los datos del amigo académico cuyo código es $_GET["codigoAA"]
 			//Devolver con el siguiente formato
 			$output = array(
 				"codigo" => "1153423",
@@ -287,26 +337,8 @@
 			);
 			echo json_encode($output);
 
-		}else if($_POST["mobile"]=="actualizarAmigo"){
-			//Actualiza un amigo en la BD. Los siguientes datos llegan por $_POST
-			//"mobile"
-			//"codigo"
-			//"nombre"
-			//"email"
-			//"semestre"
-			//Retorna echo "ok" o echo "error" según corresponda
-			echo "ok";
-
-		}else if($_POST["mobile"]=="nuevoAmigo"){
-			//Registra un nuevo amigo en la BD. Recibe por $_POST los siguientes valores:
-			//"mobile"
-			//"codigo"
-			//"nombre"
-			//"email"
-			//"semestre"
-			//Retorna echo "ok" o echo "error" según corresponda
-			echo "ok";
 		}
 	}
+
 
 ?>

@@ -52,7 +52,7 @@ function cargarTemasRegistroAsesoria () {
 	    $.ajax({
 		    data:  parametros,
 		    url:   root,
-		    type:  'post',
+		    type:  'get',
 		    success:  function (response) {
 		    	var data = JSON.parse(response);
 		    	var struct = "<option>Seleccionar Tema</option>";
@@ -119,7 +119,7 @@ function listarCursos () {
     $.ajax({
 		data:  parametros,
 		url:   root,
-		type:  'post',
+		type:  'get',
 		success:  function (response) {
 			if(response == "empty"){
 				try{
@@ -165,7 +165,6 @@ $("#formAddAsistenciaCurso").submit(function(){
 		success:  function (response) {
 			if(response == "ok"){
 				$("#clic").click()
-				console.log("pasa");
 			}else{
 				$( ":mobile-pagecontainer" ).pagecontainer( "change", "#errorRedScreen", { 
 					role: "dialog"

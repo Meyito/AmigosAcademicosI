@@ -123,7 +123,7 @@ function cargarCursosAdmin(){
     $.ajax({
 		data:  parametros,
         url:   root,
-        type:  'post',
+        type:  'get',
         success:  function (response) {
         	var data = JSON.parse(response);
         	var dataToStore = JSON.stringify(data);
@@ -170,7 +170,7 @@ function cargarMateriasEditarCurso (materia, nombre) {
     $.ajax({
 	    data:  parametros,
 	    url:   root,
-	    type:  'post',
+	    type:  'get',
 	    success:  function (response) {
 	    	var data = JSON.parse(response);
 	    	var dataToStore = JSON.stringify(data);
@@ -211,7 +211,7 @@ function cargarTemasEditarCurso (idMateria, tema) {
     $.ajax({
 	    data:  parametros,
 	    url:   root,
-	    type:  'post',
+	    type:  'get',
 	    success:  function (response) {
 	    	var data = JSON.parse(response);
 	    	construirEditarTemasCurso(data, tema);
@@ -247,7 +247,7 @@ function recargarTemasEditMateria () {
     $.ajax({
 	    data:  parametros,
 	    url:   root,
-	    type:  'post',
+	    type:  'get',
 	    success:  function (response) {
 	    	var data = JSON.parse(response);
 	    	construirEditarTemasCurso(data, "");
@@ -392,7 +392,7 @@ function cargarTemasCrearCurso () {
     $.ajax({
 	    data:  parametros,
 	    url:   root,
-	    type:  'post',
+	    type:  'get',
 	    success:  function (response) {
 	    	var data = JSON.parse(response);
 	    	construirCrearTemasCurso(data);
@@ -476,7 +476,7 @@ function cargarAmigos(amigo){
     $.ajax({
 		data:  parametros,
         url:   root,
-        type:  'post',
+        type:  'get',
         success:  function (response) {
         	var data = JSON.parse(response);
         	var dataToStore = JSON.stringify(data);
@@ -507,7 +507,7 @@ function editarAmigo(codigoAmigo){
 	$.ajax({
 		data:  parametros,
         url:   root,
-        type:  'post',
+        type:  'get',
         success:  function (response) {
         	var data = JSON.parse(response);
         	$("#codigoEditAmigo").val(data.codigo);

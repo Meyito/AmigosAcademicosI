@@ -92,7 +92,7 @@ function cargarHorario () {
 	$.ajax({
 		data:  parametros,
         url:   root,
-        type:  'post',
+        type:  'get',
         success:  function (response) {
         	var data = JSON.parse(response);
         	var dataToStore = JSON.stringify(data);
@@ -124,7 +124,7 @@ function cargarTemas(){
     $.ajax({
 		data:  parametros,
         url:   root,
-        type:  'post',
+        type:  'get',
         success:  function (response) {
 
         	var data = JSON.parse(response);
@@ -155,7 +155,7 @@ function cargarCursos(){
     $.ajax({
 		data:  parametros,
         url:   root,
-        type:  'post',
+        type:  'get',
         success:  function (response) {
         	var data = JSON.parse(response);
         	var dataToStore = JSON.stringify(data);
@@ -185,7 +185,7 @@ function cargarCalificadores(){
     $.ajax({
 		data:  parametros,
         url:   root,
-        type:  'post',
+        type:  'get',
         success:  function (response) {
 
         	if(response=="ok"){
@@ -272,7 +272,7 @@ function cargarMateriasRegistroAsesoria () {
     $.ajax({
 	    data:  parametros,
 	    url:   root,
-	    type:  'post',
+	    type:  'get',
 	    success:  function (response) {
 	    	var data = JSON.parse(response);
 	    	var dataToStore = JSON.stringify(data);
