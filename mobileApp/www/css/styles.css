@@ -128,3 +128,18 @@
 	background-color: #e74c3c!important;
 	border-bottom-left-radius: 0!important;
 }
+thead, th{
+	background-color: #e74c3c;
+    color: #FFF;
+    text-shadow: 0 0 0 rgba(0,0,0,0);
+}
+table{
+	background-color: #FFF;	
+	border-collapse: collapse;
+}
+td{
+	border: 2px solid #EEE;
+}
+.ui-btn-icon-left:after, .ui-btn-icon-right:after, .ui-btn-icon-top:after, .ui-btn-icon-bottom:after, .ui-btn-icon-notext:after{
+	background-color: #e74c3c;
+}
