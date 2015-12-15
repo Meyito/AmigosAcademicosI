@@ -68,6 +68,8 @@
 				}else if($_GET["accion"]=="estadisticaIndividual" && isset($_GET["amigo"])){
 					$adminC->estadistica3();
 				}
+
+				/*PROCESAMIENTO DE LAS PETICIONES AJAX DE LAS ESTADISTICAS*/
 			}else if(isset($_GET["peticion"])){
 
 				$stats=new Estadisticas();
@@ -153,7 +155,7 @@
 				}else if($_GET["peticion"] == "calificacionAsesorias"){
 					$string=$stats->getComentariosAsesorias($_GET["amigo"]);
 					echo $string;
-					
+
 				}
 			}else{
 				$adminC->index();
@@ -204,6 +206,19 @@
 					$amigoC->registrarAsisC($_GET["id"]);
 				}else if($_GET["accion"]=="estadisticas"){
 					$amigoC->estadistica();
+				}
+			}else if(isset($_GET["peticion"])){
+
+				$stats=new Estadisticas();
+
+				if($_GET["peticion"]=="EstadisticaPorAmigo"){
+					$string=$stats->getEstadisticaAmigo($_SESSION["codigo"]);
+					echo $string;
+
+				}else if($_GET["peticion"] == "calificacionAsesorias"){
+					$string=$stats->getComentariosAsesorias($_SESSION["codigo"]);
+					echo $string;
+
 				}
 			}else{
 				$amigoC->index();	
