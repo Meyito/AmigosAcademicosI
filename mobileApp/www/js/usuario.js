@@ -1,11 +1,6 @@
-$( document ).ready(function() {
-  		verificarSesion();
-  		cargarHorario();
-  		cargarTemas();
-  		cargarCursos();
-  		cargarCalificadores();
-});
 
+
+/*****************VERIFICAR SESION*****************/
 function verificarSesion () {
 	if(localStorage.getItem('TipoUsuario') != $("body").attr("id")){
 		window.location.href = "index.html";
@@ -55,32 +50,14 @@ $(document).on("pagecreate", "#temasScreen", function(){
 	});
 });
 
-/***************SIDEBAR ESTUDIANTE CURSOS*****************/
-$(document).on("pagecreate", "#cursosScreen", function(){
-	$(document).on("swiperight", "#cursosScreen", function(e){
-		if($(".ui-page-active").jqmData("panel") !== "open"){
-			if(e.type == "swiperight"){
-				$('#sidebar3').panel("open");
-			}
-		}
-	});
-});
-
-/***************SIDEBAR ESTUDIANTE CALIFICACION*****************/
-$(document).on("pagecreate", "#calificacionScreen", function(){
-	$(document).on("swiperight", "#calificacionScreen", function(e){
-		if($(".ui-page-active").jqmData("panel") !== "open"){
-			if(e.type == "swiperight"){
-				$('#sidebar4').panel("open");
-			}
-		}
-	});
-});
 
 $("#cerrarSesion").click(cerrarSesion);
 $("#cerrarSesion1").click(cerrarSesion);
 $("#cerrarSesion2").click(cerrarSesion);
 $("#cerrarSesion3").click(cerrarSesion);
+$("#cerrarSesion4").click(cerrarSesion);
+$("#cerrarSesion5").click(cerrarSesion);
+$("#cerrarSesion6").click(cerrarSesion);
 
 
 
@@ -90,9 +67,9 @@ function cerrarSesion () {
 	verificarSesion();
 }
 
+
+
 /*************HORARIO****************/
-
-
 function cargarHorario () {
 	if(localStorage.getItem("horarioEstudiante")!=null){
 		construirHorario(JSON.parse(localStorage.getItem("horarioEstudiante")));
@@ -105,7 +82,6 @@ function cargarHorario () {
         url:   root,
         type:  'post',
         success:  function (response) {
-
         	var data = JSON.parse(response);
         	var dataToStore = JSON.stringify(data);
         	localStorage.setItem('horarioEstudiante', dataToStore);
@@ -147,10 +123,11 @@ function cargarTemas(){
 	});
 }
 function construirTemas(data){
-	var struct = "<tr><th>Materia</th><th>Tema</th></tr>";
+	var struct = "<thead><tr><th>Materia</th><th>Tema</th></tr></thead><tbody>";
 	for(var val in data){
    		struct += "<tr><td>"+data[val]+"</td><td>"+val+"</td></tr>";
    	}
+   	struct += "</tbody>";
     $("#tablaTemas").html(struct)
 }
 
@@ -267,3 +244,7 @@ function popupCalificar (value) {
         });
  	return false;
 });
+
+
+
+

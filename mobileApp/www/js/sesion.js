@@ -15,9 +15,9 @@ TipoUsuario 1 = Admin || 2 = Amigo || 3 = Estudiante
 	function cambiarVista(){
 		if(localStorage.getItem('TipoUsuario') != null){
   			if(localStorage.getItem('TipoUsuario') == "1"){
-
+  				window.location.href = "inicioAdmin.html";
   			}else if(localStorage.getItem('TipoUsuario') == "2"){
-
+  				window.location.href = "inicioAmigo.html";
   			}else if(localStorage.getItem('TipoUsuario') == "3"){
   				window.location.href = "inicioEstudiante.html";
   			}
@@ -106,4 +106,5 @@ TipoUsuario 1 = Admin || 2 = Amigo || 3 = Estudiante
 		return false;
 
 	});
+
 
