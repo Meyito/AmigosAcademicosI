@@ -8,9 +8,6 @@ $( document ).ready(function() {
 });
 
 
-$.timer(800000, function(){
-   alert("hola, pasaron 2 segundos");
-})
 
 /***************SIDEBAR REGISTRO ASESORIA*****************/
 $(document).on("pagecreate", "#registroAsesoriaScreen", function(){

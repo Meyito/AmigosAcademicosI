@@ -67,31 +67,53 @@
 		}else if($_POST["mobile"]=="proximosCursos"){
 			// Retorna los cursos con el formato indicado.
 			// como en el siguiente ejemplo.
+			// El nombre es el tema
+			// La fecha debe estar "AAAA-MM-DD" y la hora "HH:MM" en formato 24h
 			$output = array(
 				"1" => array(
-					"nombre" => "Curso Poo",
-					"amigo" => "Yurley Rojas",
-					"fecha" => "06-03-1224"
+					"id" => "1",
+					"nombre" => "Variables",
+					"descripcion" => "Descripción",
+					"amigo" => "Arturo Saavedra",
+					"fecha" => "2015-03-12",
+					"hora" => "15:00",
+					"materia" => "Discretas"
 					),
 				"2" => array(
+					"id" => "2",
 					"nombre" => "Curso Poo",
+					"descripcion" => "Descripción",
 					"amigo" => "Yurley Rojas",
-					"fecha" => "06-03-1224"
+					"fecha" => "3412-03-24",
+					"hora" => "03:00",
+					"materia" => "POO"
 					),
 				"3" => array(
+					"id" => "3",
 					"nombre" => "Curso Poo",
+					"descripcion" => "Descripción",
 					"amigo" => "Yurley Rojas",
-					"fecha" => "06-03-1224"
+					"fecha" => "3412-03-24",
+					"hora" => "15:00",
+					"materia" => "POO"
 					),
 				"4" => array(
+					"id" => "4",
 					"nombre" => "Curso Poo",
+					"descripcion" => "Descripción",
 					"amigo" => "Yurley Rojas",
-					"fecha" => "06-03-1224"
+					"fecha" => "3412-03-24",
+					"hora" => "15:00",
+					"materia" => "POO"
 					),
 				"5" => array(
-					"nombre" => "Herencia",
+					"id" => "5",
+					"nombre" => "Curso Poo",
+					"descripcion" => "Descripción",
 					"amigo" => "Yurley Rojas",
-					"fecha" => "06-03-1224"
+					"fecha" => "3412-03-24",
+					"hora" => "15:00",
+					"materia" => "POO"
 					)
 			);
 			echo json_encode($output);
@@ -211,6 +233,77 @@
 		}else if($_POST["mobile"]=="registrarTema"){
 			//Registra un tema en la bd. Recibe $_POST["tema"] con el nombre del tema
 			// y $_POST["codigoMateria"] Con el código de la materia que representa al tema
+			//Retorna echo "ok" o echo "error" según corresponda
+			echo "ok";
+
+		}else if($_POST["mobile"]=="cargarListaAmigos"){
+			//Retorna una lista de codigo-nombre de amigos académicos
+
+			$output = array(
+				"12321" => "Andrea Angarita",
+				"1134" => "Denis Isidro",
+				"145667" => "Arturo Saavedra"
+			);
+			echo json_encode($output);
+
+		}else if($_POST["mobile"]=="editarCurso"){
+			//Edita un curso existente en la BD
+			//Recibe por $_POST:
+			//"id" (ID propio del curso)
+			//"idMateria"
+			//"idTema"
+			//"idAmigo"
+			//"fecha"
+			//"hora"
+			//"descripcion"
+			//Retorna echo "ok" o echo "error" según corresponda
+			echo "ok";
+		}else if($_POST["mobile"]=="eliminarCurso"){
+			//Elimina el curso con el id que recibe el $_POST["id"]
+			//Retorna echo "ok" o echo "error" según corresponda
+			echo "ok";
+
+		}else if($_POST["mobile"]=="crearCurso"){
+			//Crea un curso en la BD con los datos recibidos
+			//Recibe por $_POST:
+			//"idMateria"
+			//"idTema"
+			//"idAmigo"
+			//"fecha"
+			//"hora"
+			//"descripcion"
+			//Retorna echo "ok" o echo "error" según corresponda
+
+			echo "ok";
+
+		}else if($_POST["mobile"]=="obtenerDatosAA"){
+			//Obtiene los datos del amigo académico cuyo código es $_POST["codigoAA"]
+			//Devolver con el siguiente formato
+			$output = array(
+				"codigo" => "1153423",
+				"nombre" => "Arturo Saavedra",
+				"email" => "arturosaavedra@gmail.com",
+				"semestre" => "25"
+			);
+			echo json_encode($output);
+
+		}else if($_POST["mobile"]=="actualizarAmigo"){
+			//Actualiza un amigo en la BD. Los siguientes datos llegan por $_POST
+			//"mobile"
+			//"codigo"
+			//"nombre"
+			//"email"
+			//"semestre"
+			//Retorna echo "ok" o echo "error" según corresponda
+			echo "ok";
+
+		}else if($_POST["mobile"]=="nuevoAmigo"){
+			//Registra un nuevo amigo en la BD. Recibe por $_POST los siguientes valores:
+			//"mobile"
+			//"codigo"
+			//"nombre"
+			//"email"
+			//"semestre"
 			//Retorna echo "ok" o echo "error" según corresponda
 			echo "ok";
 		}

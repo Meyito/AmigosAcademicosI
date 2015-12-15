@@ -68,6 +68,8 @@ $("#cerrarSesion3").click(cerrarSesion);
 $("#cerrarSesion4").click(cerrarSesion);
 $("#cerrarSesion5").click(cerrarSesion);
 $("#cerrarSesion6").click(cerrarSesion);
+$("#cerrarSesion7").click(cerrarSesion);
+$("#cerrarSesion8").click(cerrarSesion);
 
 
 
@@ -166,7 +168,7 @@ function cargarCursos(){
 function construirCursos (data) {
 	var struct = "";
    	for(var val in data){
-   		struct += "<tr><th colspan='2'>"+data[val].nombre+"</th></tr><tr><td>"+data[val].fecha+"</td><td>"+data[val].amigo+"</td></tr>";
+   		struct += "<tr><th colspan='2'>"+data[val].nombre+"</th></tr><tr><td>"+data[val].fecha+" "+data[val].hora+"</td><td>"+data[val].amigo+"</td></tr>";
    	}
    	$("#tablaCursos").html(struct)
 }
