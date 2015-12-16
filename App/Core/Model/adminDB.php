@@ -249,6 +249,94 @@ class AdminDB extends Model{
 		}
 		return $array;
 	}
+
+	public function reiniciarSistema($nsem, $cante){
+		$this->connect();
+		$query=$this->query("SELECT id FROM Periodo ORDER BY id DESC LIMIT 1");
+		$this->terminate();
+
+		$ultimoP=0;
+		while($row=mysqli_fetch_array($query)){
+			$ultimoP=$row[0];
+		}
+
+		$this->setAmigosHistoricos($ultimoP);
+		$this->setNuevoPeriodo($ultimoP, $nsem, $cante);
+		$this->setMateriarHistorico($ultimoP);
+		$this->setAsistenciaHistorico($ultimoP);
+		$this->limpiarTemas();
+
+		$this->connect();
+		$this->query("DELETE FROM EstudianteCurso");
+		$this->query("DELETE FROM EstudianteAsesoria");
+		$this->query("DELETE FROM Curso");
+		$this->query("DELETE FROM Asesoria");
+		$this->query("DELETE FROM Agenda");
+		$this->terminate();
+	}
+
+	public function limpiarTemas(){
+		$this->connect();
+		$query=$this->query("UPDATE Tema SET estado = 2 WHERE estado = 1");
+		$this->terminate();
+	}
+
+	public function setAsistenciaHistorico($idP){
+		$this->connect();
+		$query=$this->query("SELECT COUNT(DISTINCT idEstudiante), idTema, AVG(promedioCalificacion)  FROM EstudianteAsesoria, Asesoria WHERE idAsesoria=id GROUP BY idTema");
+
+		while($row=mysqli_fetch_array($query)){
+			$this->query("INSERT INTO AsistenciaHistorico VALUES ('".$row[1]."', '".$idP."', 'Asesoria', ".$row[0].", ".$row[2].")");
+		}
+
+		$query2=$this->query("SELECT COUNT(DISTINCT idEstudiante), idTema, AVG(promedioCalificacion) FROM EstudianteCurso, Curso WHERE idCurso=id GROUP BY idTema");
+
+		while($row=mysqli_fetch_array($query2)){
+			$this->query("INSERT INTO AsistenciaHistorico VALUES ('".$row[1]."', '".$idP."', 'Curso', ".$row[0].", ".$row[2].")");
+		}
+
+		$this->terminate();
+	}
+
+	public function setMateriarHistorico($idP){
+		$this->connect();
+		$query=$this->query("SELECT COUNT(DISTINCT idEstudiante), idMateria, AVG(promedioCalificacion)  FROM EstudianteAsesoria, Asesoria WHERE idAsesoria=id GROUP BY idMateria");
+
+		while($row=mysqli_fetch_array($query)){
+			$this->query("INSERT INTO MateriaHistorico VALUES ('".$row[1]."', '".$idP."', ".$row[0].", ".$row[2].")");
+		}
+
+		$this->terminate();
+	}
+
+	public function setAmigosHistoricos($idP){
+		$this->connect();
+		$query=$this->query("SELECT id FROM Usuario WHERE tipo=2 AND estado='activo'");
+
+		while($row=mysqli_fetch_array($query)){
+			$idA=$row[0];
+			$this->query("INSERT INTO AmigoPeriodo VALUES('".$idA."', '".$idP."')");
+			$this->query("UPDATE Usuario SET estado='inactivo' WHERE id='".$idA."'");
+		}
+
+		$this->terminate();
+	}
+
+	public function setNuevoPeriodo($ultimo, $nuevo, $cant){
+		$this->connect();
+		$query=$this->query("SELECT COUNT( DISTINCT idEstudiante) FROM EstudianteAsesoria");
+		$c=0;
+
+		while ($row=mysqli_fetch_array($query)) {
+			$c=$row[0];
+		}
+
+		$this->query("UPDATE Periodo SET asistenciasPeriodo=".$c." WHERE id='".$ultimo."'");
+
+		$this->query("INSERT INTO Periodo (descripcion, cantidadEstudiantes, asistenciasPeriodo) VALUES('".$nuevo."', ".$cant.", 0)");
+
+		$this->terminate();
+	}
 	
 }
 

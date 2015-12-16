@@ -328,5 +328,18 @@
 			}
 			$this->courses();
 		}
+
+		public function vistaReiniciarSistema(){
+			$view=$this->base("Core/View/assets/menu_admin.html");
+			//$content=$this->getTemplate("Core/View/contenedores/estadisticas_admin.html");
+			$view=$this->renderView($view, "{{COMPUESTO:LIBRERIAS_JS}}", "");
+			$this->showView($view);
+		}
+
+		public function reiniciar($nombreSem, $cante){
+			$adminModel=new AdminDB();
+			$adminModel->reiniciarSistema($nombreSem, $cante);
+			$this->index();
+		}
 	}
 ?>

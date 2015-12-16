@@ -42,6 +42,8 @@
 					$adminC->activarTema($_POST["activado"]);	
 				}else if($_POST["accion"]=="eliminarTema"){
 					$adminC->eliminarTema($_POST["valor"]);	
+				}else if($_POST["accion"]=="reiniciarSistema"){
+					$adminC->reiniciar($_POST["nombreBla Bla Bla"], $_POST["cante"]);
 				}
 
 			}else if(isset($_GET["accion"])){
@@ -76,6 +78,8 @@
 					$adminC->estadistica2();
 				}else if($_GET["accion"]=="estadisticaIndividual" && isset($_GET["amigo"])){
 					$adminC->estadistica3();
+				}else if($_GET["accion"]=="reiniciar"){
+					$adminC->vistaReiniciarSistema();
 				}
 
 				/*PROCESAMIENTO DE LAS PETICIONES AJAX DE LAS ESTADISTICAS*/
