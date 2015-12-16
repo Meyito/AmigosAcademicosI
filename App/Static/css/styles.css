@@ -90,7 +90,7 @@ hr{
 	color: #FFFFFF;
 	margin-bottom: -90px;
 	overflow-y: auto!Important;
-	padding-top: 15px;
+	padding-top: 5px;
 }
 .sidebar .row{
 	border-bottom: 1px solid #c0392b;
@@ -144,8 +144,8 @@ hr{
 	background-color: #EEE!important;
 }
 .item-sidebar{
-	padding-top: 20px;
-	padding-bottom: 20px;
+	padding-top: 16px;
+	padding-bottom: 16px;
 	transition: all .3s ease;
 }
 .item-sidebar:hover{
