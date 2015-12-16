@@ -82,11 +82,14 @@ hr{
 .img-responsive{
 	display: inline-block;
 }
+.navbar-collapse.collapse{
+	overflow-y: auto!Important;
+}
 .sidebar{
 	background-color: #e74c3c;
 	color: #FFFFFF;
 	margin-bottom: -90px;
-	overflow: scroll;
+	overflow-y: auto!Important;
 	padding-top: 15px;
 }
 .sidebar .row{

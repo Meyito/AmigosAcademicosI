@@ -7,11 +7,21 @@ var valores = ["lunes2", "martes2", "miercoles2", "jueves2", "viernes2","lunes3"
 
 /*Función grafica: Ajusta el sidebar al tamaño de la pantalla*/
 function sidebarAdjust(){
+
 	a = document.getElementById("front");
 	b = document.getElementById("sidebar");
 	c = document.getElementById("navbar");
 	d = document.getElementById("footer");
-	b.style.height = (a.offsetHeight-c.offsetHeight-d.offsetHeight)+"px";
+
+	setTimeout(function(){
+		b.style.height = (a.offsetHeight-c.offsetHeight-d.offsetHeight)+"px";
+    }, 300); 
+    setTimeout(function(){
+		b.style.height = (a.offsetHeight-c.offsetHeight-d.offsetHeight)+"px";
+    }, 600); 
+    setTimeout(function(){
+		b.style.height = (a.offsetHeight-c.offsetHeight-d.offsetHeight)+"px";
+    }, 1000);
 	$(function () {
         $('[data-toggle="tooltip"]').tooltip()
     })
