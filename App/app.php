@@ -176,6 +176,7 @@
 		if($_GET["mobile"]=="horario"){
 			//Retorna un JSON donde la clave será la combinación de dia hora (12 Representa dia 1(lunes) a las 2pm)
 			//y el valor serán los Amigos académicos, separados por -. Ver ejemplo
+			/*
 			$output = array(
 				"12" => "Denis Isidro - Yurley Rojas",
 				"13" => "Denis Isidro - Andrea Angarita",
@@ -204,6 +205,19 @@
 				"55" => "Denis Isidro - Andrea Angarita",
 				"56" => "Denis Isidro - Yurley Rojas",
 			);
+			*/
+			$array = $mobileQuery->horario();
+			$output = array();
+			$index = 0;
+			while($index<sizeof($array)){
+				if(array_key_exists($array[$index][0]+$array[$index][1]+"",$output)){
+					$output[$array[$index][0]+$array[$index][1]+""] += " - "+ $array[$index][2];
+				}
+				else{
+					$output[$array[$index][0]+$array[$index][1]+""] = $array[$index][2];
+				}
+				$index++;
+			}
 			echo json_encode($output);
 
 

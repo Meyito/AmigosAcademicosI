@@ -97,7 +97,13 @@ class MobileQuery extends Model{
 		}
 	}
 	public function horario(){
-
+		$this->connect();
+		$query = $this->query("SELECT a.dia,a.hora,u.nombre FROM Agenda a,Usuario u WHERE a.idAmigoAcademico = u.id");
+		$this->terminate();
+		while($row = mysqli_fetch_array($query)){
+			array_push($array,$row);
+		}
+		return $array;
 	}
 	public function temasSemana(){
 		$this->connect();
