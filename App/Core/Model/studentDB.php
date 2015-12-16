@@ -39,6 +39,7 @@ class studentDB extends Model{
 	public function calificacionPromedioC($id){
 		$this->connect();
 		$query = $this->query("SELECT AVG(calificacion) FROM EstudianteCurso WHERE idCurso='".$id."'");
+		$this->terminate();
 		$avg; 
 		while($row = mysqli_fetch_array($query)){
 			$avg=$row[0];

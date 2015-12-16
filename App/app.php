@@ -97,7 +97,7 @@
         	else{
         		echo "error";
         	}
-
+        	//REVISAR ESTE METODO
 		}else if($_POST["mobile"]=="editarCurso"){
 			//Edita un curso existente en la BD
 			//Recibe por $_POST:
@@ -109,12 +109,24 @@
 			//"hora"
 			//"descripcion"
 			//Retorna echo "ok" o echo "error" según corresponda
-			
+			$query = $mobileQuery->editarCurso($_POST["id"],$_POST["idMateria"],$_POST["idTema"],$_POST["idAmigo"],$_POST["fecha"],$_POST["descripcion"]);
+        	if($query){
+        		echo "exito";
+        	}
+        	else{
+        		echo "error";
+        	}
 		}else if($_POST["mobile"]=="eliminarCurso"){
 			//Elimina el curso con el id que recibe el $_POST["id"]
 			//Retorna echo "ok" o echo "error" según corresponda
-			echo "ok";
-
+			$query = $mobileQuery->eliminarCurso($_POST["id"]);
+        	if($query){
+        		echo "exito";
+        	}
+        	else{
+        		echo "error";
+        	}
+        	//REVISAR ESTE METODO
 		}else if($_POST["mobile"]=="crearCurso"){
 			//Crea un curso en la BD con los datos recibidos
 			//Recibe por $_POST:
@@ -136,7 +148,13 @@
 			//"email"
 			//"semestre"
 			//Retorna echo "ok" o echo "error" según corresponda
-			echo "ok";
+			$query = $mobileQuery->actualizarAmigo($_POST["codigo"],$_POST["nombre"],$_POST["email"],$_POST["semestre"]);
+        	if($query){
+        		echo "exito";
+        	}
+        	else{
+        		echo "error";
+        	}
 
 		}else if($_POST["mobile"]=="nuevoAmigo"){
 			//Registra un nuevo amigo en la BD. Recibe por $_POST los siguientes valores:
@@ -146,7 +164,13 @@
 			//"email"
 			//"semestre"
 			//Retorna echo "ok" o echo "error" según corresponda
-			echo "ok";
+			$query = $mobileQuery->nuevoAmigo($_POST["codigo"],$_POST["nombre"],$_POST["email"],$_POST["semestre"],$_POST["password"],$_POST["password2"]);
+        	if($query){
+        		echo "exito";
+        	}
+        	else{
+        		echo "error";
+        	}
 		}
 	}else if(isset($_GET["mobile"])){
 
@@ -188,12 +212,21 @@
 		}else if($_GET["mobile"]=="temasSemana"){
 			// Retorna la lista de temas de la semana con sus respectivas materias, como en el ejemplo siguiente:
 			// La clave es el tema, el valor la materia
+			$array = $mobileQuery->temasSemana();
+			$output = array();
+			$index = 0;
+			while($index<sizeof($array)){
+				$output[$array[$index][0]] = $array[$index][1];
+				$index++;
+			}
+			/*
 			$output = array(
 				"Herencia" => "POO",
 				"Polimorfismo" => "Fundamentos",
 				"Derivadas" => "Calculo",
 				"Inferencia" => "Matemáticas Discretas"
 			);
+			*/
 			echo json_encode($output);
 
 
