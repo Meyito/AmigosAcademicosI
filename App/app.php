@@ -354,7 +354,7 @@
 			//Aqui retorna una lista de temas de una materia especifica con el siguiente formato 
 			//(id del tema => nombre del tema):
 			//IMPORTANTE: La materia de la que se obtienen los temas llega como $_GET["materia"]
-			$array = $mobileQuery->cargarTemas($_POST["materia"]);
+			$array = $mobileQuery->cargarTemas($_GET["materia"]);
 			$output = array();
 			$index = 0;
 			while($index<sizeof($array)){
