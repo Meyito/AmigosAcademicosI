@@ -1,0 +1,25 @@
+<!--Asset para formar la tabla de amigos académicos.
+
+Editar:
+  
+  BASICO:NOMBRE_AMIGO         -> Nombre del amigo académico
+  BASICO:ID					  -> Código del amigo
+
+
+-->
+                  <tr class="activo">
+                    <td>{{BASICO:NOMBRE_AMIGO}}</td>
+                    <td>
+                      <a href="index.php?accion=verAAHistorico&id={{BASICO:ID}}" class="btn btn-danger">Ver datos</a>
+                    </td>
+                    <td>
+                    	<form action="index.php" method="POST">
+                    		<input type="hidden" name="accion" value="activarAAHistorico">
+                    		<input type="hidden" name="codigo" value="{{BASICO:ID}}">
+                    		<input type="submit" class="btn btn-danger" value="Activar">
+                    	</form>
+                    </td>
+                  </tr>
+
+
+
