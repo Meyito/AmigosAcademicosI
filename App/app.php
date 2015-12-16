@@ -380,7 +380,7 @@
 			$output = array();
 			$index = 0;
 			while($index<sizeof($array)){
-				$output[$index+1+""] = array(
+				$output[($index+1)+""] = array(
 									"id" => $array[$index][0],
 									"nombre" => $array[$index][1],
 									"fecha" => $array[$index][2]);
