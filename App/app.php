@@ -17,8 +17,7 @@
 			}else{
 				echo "error";
 			}
-
-*/
+			*/
 			$array = $mobileQuery->login($_POST["codigo"],sha1($_POST["password"]));
 			if(!$array){
 				echo "error";
@@ -332,11 +331,20 @@
 
 		}else if($_GET["mobile"]=="cargarMaterias"){
 			//Aqui retorna una lista de materias con el siguiente formato (Código de la materia => nombre de la materia):
+			$array = $mobileQuery->cargarMaterias();
+			$output = array();
+			$index = 0;
+			while($index<sizeof($array)){
+				$output[$array[$index][0]] = $array[$index][1];
+				$index++;
+			}
+			/*
 			$output = array(
 				"115093" => "calculo",
 				"113232" => "POO",
 				"343434" => "Discretas"
 			);
+			*/
 			echo json_encode($output);
 
 
@@ -346,11 +354,20 @@
 			//Aqui retorna una lista de temas de una materia especifica con el siguiente formato 
 			//(id del tema => nombre del tema):
 			//IMPORTANTE: La materia de la que se obtienen los temas llega como $_GET["materia"]
+			$array = $mobileQuery->cargarTemas($_POST["materia"]);
+			$output = array();
+			$index = 0;
+			while($index<sizeof($array)){
+				$output[$array[$index][0]] = $array[$index][1];
+				$index++;
+			}
+			/*
 			$output = array(
 				"115093" => "Herencia",
 				"113232" => "Polimorfismo",
 				"343434" => "Variables"
 			);
+			*/
 			echo json_encode($output);
 
 
@@ -386,12 +403,20 @@
 
 		}else if($_GET["mobile"]=="cargarListaAmigos"){
 			//Retorna una lista de codigo-nombre de amigos académicos
-
+			$array = $mobileQuery->cargarListaAmigos();
+			$output = array();
+			$index = 0;
+			while($index<sizeof($array)){
+				$output[$array[$index][0]] = $array[$index][1];
+				$index++;
+			}
+			/*
 			$output = array(
 				"12321" => "Andrea Angarita",
 				"1134" => "Denis Isidro",
 				"145667" => "Arturo Saavedra"
 			);
+			*/
 			echo json_encode($output);
 
 
@@ -399,12 +424,14 @@
 		}else if($_GET["mobile"]=="obtenerDatosAA"){
 			//Obtiene los datos del amigo académico cuyo código es $_GET["codigoAA"]
 			//Devolver con el siguiente formato
+			$array = $mobileQuery->obtenerDatosAA($_GET["codigoAA"]);
 			$output = array(
-				"codigo" => "1153423",
-				"nombre" => "Arturo Saavedra",
-				"email" => "arturosaavedra@gmail.com",
-				"semestre" => "25"
+				"codigo" => $array['id'],
+				"nombre" => $array['nombre'],
+				"email" => $array['correoElectronico'],
+				"semestre" => $array['semestre']
 			);
+			
 			echo json_encode($output);
 
 		}

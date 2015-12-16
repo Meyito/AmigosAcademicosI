@@ -116,18 +116,48 @@ class MobileQuery extends Model{
 
 	}
 	public function cargarMaterias(){
-
+		$this->connect();
+		$query = $this->query("SELECT id,nombre FROM Materia");
+		$this->terminate();
+		$array = array();
+		while($row = mysqli_fetch_array($query)){
+			array_push($array,$row);
+		}
+		return $array;
 	}
-	public function cargarTemas(){
-
+	public function cargarTemas($materia){
+		$this->connect();
+		$query = $this->query("SELECT id,nombre FROM Tema WHERE idMateria = '".$materia."'");
+		$this->terminate();
+		$array = array();
+		while($row = mysqli_fetch_array($query)){
+			array_push($array,$row);
+		}
+		return $array;
 	}
 	public function listarCursos(){
 
 	}
 	public function cargarListaAmigos(){
+		$this->connect();
+		$query = $this->query("SELECT id,nombre FROM Usuario WHERE tipo = 2 AND estado = 'activo'");
+		$this->terminate();
+		$array = array();
+		while($row = mysqli_fetch_array($query)){
+			array_push($array,$row);
+		}
+		return $array;
 
 	}
-	public function obternerDatosAA(){
+	public function obternerDatosAA($codigo){
+		$this->connect();
+		$query = $this->query("SELECT id,nombre,correoElectronico,semestre FROM Usuario WHERE id = '".$codigo."' AND tipo = 2 AND estado = 'activo'");
+		$this->terminate();
+		$array = array();
+		while($row = mysqli_fetch_array($query)){
+			array_push($array,$row);
+		}
+		return $array;
 		
 	}
 }
