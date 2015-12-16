@@ -64,7 +64,9 @@ class MobileQuery extends Model{
 		$this->terminate();
 		return $query;
 	}
-	public function editarCurso();
+	public function editarCurso(){
+		
+	}
 }
 
 ?>
