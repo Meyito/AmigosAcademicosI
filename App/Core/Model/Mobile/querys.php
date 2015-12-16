@@ -43,7 +43,7 @@ class MobileQuery extends Model{
 		$query = $this->query("INSERT INTO Asesoria(idAmigoAcademico,fecha,idMateria,idTema) VALUES('".$codigoAmigo."',CURDATE(),'".$materia."',".$tema.")");
 		if($query){
 			$query = $this->query("SELECT COUNT(*) FROM Asesoria")
-			$idAsesoria;
+			$idAsesoria = "";
 			while($row = mysqli_fetch_array($query)){
 				$idAsesoria = $row;
 			}
@@ -65,7 +65,7 @@ class MobileQuery extends Model{
 		return $query;
 	}
 	public function editarCurso(){
-		
+
 	}
 }
 
