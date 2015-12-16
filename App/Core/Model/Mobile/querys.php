@@ -43,7 +43,7 @@ class MobileQuery extends Model{
 		$query = $this->query("INSERT INTO Asesoria(idAmigoAcademico,fecha,idMateria,idTema) VALUES('".$codigoAmigo."',CURDATE(),'".$materia."',".$tema.")");
 		if($query){
 			$query = $this->query("SELECT COUNT(*) FROM Asesoria")
-			$idAsesoria = 0;
+			$idAsesoria;
 			while($row = mysqli_fetch_array($query)){
 				$idAsesoria = $row;
 			}
@@ -63,8 +63,8 @@ class MobileQuery extends Model{
 		$query = $this->query("INSERT INTO Tema(nombre,idMateria,estado) VALUES('".$nombre."','".$materia."',2)");
 		$this->terminate();
 		return $query;
-
 	}
+	public function editarCurso();
 }
 
 ?>

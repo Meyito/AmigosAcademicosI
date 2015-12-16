@@ -109,7 +109,7 @@
 			//"hora"
 			//"descripcion"
 			//Retorna echo "ok" o echo "error" según corresponda
-			echo "ok";
+			
 		}else if($_POST["mobile"]=="eliminarCurso"){
 			//Elimina el curso con el id que recibe el $_POST["id"]
 			//Retorna echo "ok" o echo "error" según corresponda
