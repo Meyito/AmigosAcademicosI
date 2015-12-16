@@ -49,7 +49,7 @@
         	//devuelve echo "ok" si funciona, echo "error" en caso contrario
         	$query = $mobileQuery->registrarCalificacion($_POST["idAsesoria"],$_POST["puntaje"],$_POST["comentario"],$_POST["estudiante"]);
         	if($query){
-        		echo "exito";
+        		echo "ok";
         	}
         	else{
         		echo "error";
@@ -66,7 +66,7 @@
 			//Guarda en la BD y retorna echo "ok" o echo "error" segun corresponda 
 			$query = $mobileQuery->registrarAsesoria($_POST["materia"],$_POST["tema"],$_POST["codigoAmigo"],$_POST["codigo"],$_POST["comentario"]);
         	if($query){
-        		echo "exito";
+        		echo "ok";
         	}
         	else{
         		echo "error";
@@ -79,7 +79,7 @@
 			//Retorna echo "ok" o echo "error" según corresponda
 			$query = $mobileQuery->registrarAsistenciaCurso($_POST["idCurso"],$_POST["codigo"]);
         	if($query){
-        		echo "exito";
+        		echo "ok";
         	}
         	else{
         		echo "error";
@@ -91,7 +91,7 @@
 			//Retorna echo "ok" o echo "error" según corresponda
 			$query = $mobileQuery->registrarTema($_POST["tema"],$_POST["codigoMateria"]);
         	if($query){
-        		echo "exito";
+        		echo "ok";
         	}
         	else{
         		echo "error";
@@ -110,7 +110,7 @@
 			//Retorna echo "ok" o echo "error" según corresponda
 			$query = $mobileQuery->editarCurso($_POST["id"],$_POST["idMateria"],$_POST["idTema"],$_POST["idAmigo"],$_POST["fecha"],$_POST["descripcion"]);
         	if($query){
-        		echo "exito";
+        		echo "ok";
         	}
         	else{
         		echo "error";
@@ -120,7 +120,7 @@
 			//Retorna echo "ok" o echo "error" según corresponda
 			$query = $mobileQuery->eliminarCurso($_POST["id"]);
         	if($query){
-        		echo "exito";
+        		echo "ok";
         	}
         	else{
         		echo "error";
@@ -149,7 +149,7 @@
 			//Retorna echo "ok" o echo "error" según corresponda
 			$query = $mobileQuery->actualizarAmigo($_POST["codigo"],$_POST["nombre"],$_POST["email"],$_POST["semestre"]);
         	if($query){
-        		echo "exito";
+        		echo "ok";
         	}
         	else{
         		echo "error";
@@ -165,7 +165,7 @@
 			//Retorna echo "ok" o echo "error" según corresponda
 			$query = $mobileQuery->nuevoAmigo($_POST["codigo"],$_POST["nombre"],$_POST["email"],$_POST["semestre"],$_POST["password"],$_POST["password2"]);
         	if($query){
-        		echo "exito";
+        		echo "ok";
         	}
         	else{
         		echo "error";
