@@ -1,0 +1,33 @@
+<!--
+
+	Muestra el perfil histórico de un amigo académico
+
+	BASICO:NOMBRE			-> Nombres y apellidos del amigo académico
+	BASICO:EMAIL			-> Email del amigo académico
+	CICLO:PERIODO			-> Una inserción por cada periodo como amigo académico
+							-> Reemplazando en assets/amigo_historico_periodo.html
+
+-->
+
+		  <div class="col-lg-10 col-md-9 col-sm-9">
+            <h3>Datos Historicos del amigo Académico</h3>
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <p>Nombre:</p>
+                <div class="well">
+                  {{BASICO:NOMBRE}}
+                </div>
+                <p>Email:</p>
+                <div class="well">
+                  {{BASICO:EMAIL}}
+                </div>
+                Periodos durante los cuales fue amigo académico:
+                <ul class="list-group">
+                	{{CICLO:PERIODO}}
+                </ul>
+                <div class="col-md-4 col-md-offset-4">
+                  <a href="index.php?accion=historicosAA" class="submit btn">Volver</a>
+                </div>
+              </div>
+            </div>
+          </div>
