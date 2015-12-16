@@ -15,13 +15,7 @@ function sidebarAdjust(){
 
 	setTimeout(function(){
 		b.style.height = (a.offsetHeight-c.offsetHeight-d.offsetHeight)+"px";
-    }, 300); 
-    setTimeout(function(){
-		b.style.height = (a.offsetHeight-c.offsetHeight-d.offsetHeight)+"px";
-    }, 600); 
-    setTimeout(function(){
-		b.style.height = (a.offsetHeight-c.offsetHeight-d.offsetHeight)+"px";
-    }, 1000);
+    }, 500); 
 	$(function () {
         $('[data-toggle="tooltip"]').tooltip()
     })
