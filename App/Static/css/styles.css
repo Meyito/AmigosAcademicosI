@@ -160,7 +160,7 @@ hr{
 	background-color: #c0392b;
 }
 .button-sidebar, .button-sidebar:hover, .button-sidebar:active{
-	color: #FFFFFF;
+	color: #FFFFFF!important;
 }
 .academic .input-group{
 	margin-bottom: 20px;
