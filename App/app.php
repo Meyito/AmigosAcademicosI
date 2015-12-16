@@ -19,7 +19,7 @@
 			}
 
 */
-			$array = $mobileQuery->login($_POST["codigo"],$_POST["password"]);
+			$array = $mobileQuery->login($_POST["codigo"],sha1($_POST["password"]));
 			if(!$array){
 				echo "error";
 			}
