@@ -150,7 +150,6 @@
 				$mat=$mat.$aux;
 			}
 			$content=$this->renderView($content, "{{CICLO:MATERIAS}}", $mat);
-
 			return $content;
 		}
 

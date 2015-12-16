@@ -7,7 +7,8 @@
   BASICO:ID_ACTIVAR           -> ID del tema, con el que se identifica en la base de datos, para su identificación.
 -->						
 
-						<form action="[[FORM_ACTIVAR]]" method="POST">
+						<form action="index.php" method="POST">
+						  <input type="hidden" name="accion" value="activarTema">
                           <input type="hidden" value="{{BASICO:ID_ACTIVAR}}" name="activado">
                           <input type="submit" class="btn btn-default" value="Activar">
                         </form>

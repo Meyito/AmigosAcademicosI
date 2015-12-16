@@ -80,6 +80,45 @@ class UserDB extends Model{
 		return $array;
 	}
 
+	public function getTemasAll(){
+		$this->connect();
+		$query = $this->query("SELECT t.id,t.nombre,m.nombre, t.estado FROM Tema t,Materia m WHERE t.idMateria = m.id");
+		$this->terminate();
+		$array = array();
+		while($row = mysqli_fetch_array($query)){
+			array_push($array,$row);
+		}
+		return $array;
+	}
+
+	public function agregarTemas($tema, $idMateria){
+		$this->connect();
+		$query=$this->query("INSERT INTO Tema(nombre,idMateria,estado) VALUES('".$tema."','".$idMateria."',1)");
+		$this->terminate();
+		return $query;
+	}
+
+	public function desactivarTema($idTema){
+		$this->connect();
+		$query=$this->query("UPDATE Tema SET estado = 2 WHERE id = '".$idTema."'");
+		$this->terminate();
+		return $query;
+	}
+
+	public function activarTema($idTema){
+		$this->connect();
+		$query=$this->query("UPDATE Tema SET estado = 1 WHERE id = '".$idTema."'");
+		$this->terminate();
+		return $query;
+	}
+
+	public function eliminarTema($idTema){
+		$this->connect();
+		$query=$this->query("DELETE FROM Tema WHERE id = '".$idTema."'");
+		$this->terminate();
+		return $query;
+	}
+
 }
 
 ?>

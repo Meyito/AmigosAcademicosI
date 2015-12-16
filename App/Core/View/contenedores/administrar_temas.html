@@ -34,14 +34,19 @@ Editar:
                 </table>
                 <div class="row">
                   <h3>Nuevo tema</h3>
-                  <form class="form-inline" method="POST" action="[[FORM_NUEVO]]">
+                  <form class="form-inline" method="POST" action="index.php">
+                    <input type="hidden" name="accion" value="agregarTema">
                     <div class="form-group">
                       <label for="tema-input">Tema</label>
-                      <input type="text" class="form-control" name="tema" id="tema-input" placeholder="Tema">
+                      <input type="text" class="form-control" name="tema" id="tema-input" placeholder="Tema" required>
                     </div>
                     <div class="form-group">
                       <label for="materia-input"> &nbsp;&nbsp;&nbsp;Materia&nbsp;&nbsp;&nbsp; </label>
-                      <input type="text" class="form-control" id="materia-input" placeholder="Materia">
+
+                      <!--input type="text" class="form-control" id="materia-input" placeholder="Materia"-->
+                      <select id="materias" name="materia" class="form-control" required>
+                        {{CICLO:MATERIAS}}
+                      </select>
                     </div>
                     <button type="submit" class="btn btn-danger">Agregar</button>
                   </form>

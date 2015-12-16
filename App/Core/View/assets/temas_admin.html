@@ -16,7 +16,8 @@
                         {{COMPUESTO:TEMAS_ACTIVADO}}
                       </td>
                       <td>
-                        <form action="[[FORM_ELIMINAR]]" method="POST">
+                        <form action="index.php" method="POST">
+                          <input type="hidden" name="accion" value="eliminarTema">
                           <input type="hidden" name="valor" value="{{BASICO:ID_ELIMINAR}}">
                           <input type="submit" class="btn btn-danger" value="Eliminar">
                         </form>

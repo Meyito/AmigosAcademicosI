@@ -34,9 +34,18 @@
 					}else{
 						$adminC->updateAA($_POST["codigo"], $_POST["password"], $_POST["nombre"], $_POST["semestre"], $_POST["email"], $_POST["horario"]);	
 					}
+				}else if($_POST["accion"]=="agregarTema"){
+					$adminC->agregarTema($_POST["tema"], $_POST["materia"]);	
+				}else if($_POST["accion"]=="desactivarTema"){
+					$adminC->desactivarTema($_POST["activado"]);	
+				}else if($_POST["accion"]=="activarTema"){
+					$adminC->activarTema($_POST["activado"]);	
+				}else if($_POST["accion"]=="eliminarTema"){
+					$adminC->eliminarTema($_POST["valor"]);	
 				}
 
 			}else if(isset($_GET["accion"])){
+
 				if($_GET["accion"]=="amigos"){
 					$adminC->showAA();
 				}else if($_GET["accion"]=="temas"){

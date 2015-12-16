@@ -68,11 +68,67 @@
 
 		public function topics(){
 			$view=$this->base("Core/View/assets/menu_admin.html");
-			$content=$this->getTemplate("Core/View/contenedores/estudiante_ver_temas.html");
-			$temas=$this->getTemas();
+			$content=$this->getTemplate("Core/View/contenedores/administrar_temas.html");
+			$temas=$this->getTopics();
 			$content=$this->renderView($content, "{{CICLO:TEMAS}}", $temas);
+			$content=$this->listarMaterias($content, -1);	
 			$view=$this->renderView($view, "{{COMPUESTO:CONTENIDO}}", $content);
+			$aux=$this->getTemplate("Static/js/ninjaScripts/dtTemas.js");
+			$view=$this->renderView($view, "{{COMPUESTO:LIBRERIAS_JS}}", $aux);
 			$this->showView($view);
+		}
+
+		public function agregarTema($tema, $idMateria){
+			$userModel=new UserDB();
+			$userModel->agregarTemas($tema, $idMateria);
+			$this->topics();
+		}
+
+		public function desactivarTema($idTema){
+			$userModel=new UserDB();
+			$userModel->desactivarTema($idTema);
+			$this->topics();
+		}
+
+		public function activarTema($idTema){
+			$userModel=new UserDB();
+			$userModel->activarTema($idTema);
+			$this->topics();
+		}
+
+		public function eliminarTema($idTema){
+			$userModel=new UserDB();
+			$userModel->eliminarTema($idTema);
+			$this->topics();
+		}
+
+		public function getTopics(){
+			$template=$this->getTemplate("Core/View/assets/temas_admin.html");
+			$active=$this->getTemplate("Core/View/assets/temas_activado.html");
+			$nactive=$this->getTemplate("Core/View/assets/temas_desactivado.html");
+			$userModel=new UserDB();
+			$data=$userModel->getTemasAll();
+
+			$aux="";
+			$list="";
+			for($i=0; $i<count($data); $i++){
+				$aux=$template;
+				$aux=$this->renderView($aux, "{{BASICO:MATERIA}}", $data[$i][2]);
+				$aux=$this->renderView($aux, "{{BASICO:TEMA}}", $data[$i][1]);
+				$aux=$this->renderView($aux, "{{BASICO:ID_ELIMINAR}}", $data[$i][0]);
+
+				
+				$x=$active;
+				if($data[$i][3]!=1){
+					$x=$nactive;	
+				}
+
+				$x=$this->renderView($x, "{{BASICO:ID_ACTIVAR}}", $data[$i][0]);
+
+				$aux=$this->renderView($aux, "{{COMPUESTO:TEMAS_ACTIVADO}}", $x);
+				$list=$list.$aux;
+			}
+			return $list;
 		}
 
 		public function showAA(){
