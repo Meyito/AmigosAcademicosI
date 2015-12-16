@@ -1,6 +1,15 @@
+/**
+*	Libreria con utilidades para todos los usuarios de la plataforma
+*	@author Gerson Lázaro - Melissa Delgado - Daniel Vega
+*	@date 15-12-2015
+*/
 
 
-/*****************VERIFICAR SESION*****************/
+
+/**
+*
+* Redirecciona a la página indicada según el tipo de usuario
+*/
 function verificarSesion () {
 	if(localStorage.getItem('TipoUsuario') != $("body").attr("id")){
 		window.location.href = "index.html";
@@ -27,40 +36,69 @@ function verificarSesion () {
 }
 
 
-
-/***************SIDEBAR ESTUDIANTE INICIO*****************/
-$(document).on("pagecreate", "#inicio", function(){
-	$(document).on("swiperight", "#inicio", function(e){
-		if($(".ui-page-active").jqmData("panel") !== "open"){
-			if(e.type == "swiperight"){
-				$('#sidebar').panel("open");
-			}
+/**
+*
+*	Método usado para comunicarse con ajax
+*/
+function peticionAsincrona(tipoHttp, boolLocalStorage, varLocalStorage, parametros, fSuccess, fError) {
+	if(boolLocalStorage){
+		if(localStorage.getItem(varLocalStorage)!=null){
+			fSuccess(localStorage.getItem(varLocalStorage));
 		}
-	});
-});
+	}
+	$.ajax({
+		data:  parametros,
+        url:   root,
+        type: tipoHttp,
+        success:  function (response) {
+        	if(boolLocalStorage){
+        		var data = JSON.parse(response);
+        		var dataToStore = JSON.stringify(data);
+        		localStorage.setItem(varLocalStorage, dataToStore);
+        	} 
+        	fSuccess(response);   	
+        },
+        error: function(xhr, status){
+        	fError();
+        }
+    });
+}
 
-/***************SIDEBAR ESTUDIANTE TEMAS*****************/
-$(document).on("pagecreate", "#temasScreen", function(){
-	$(document).on("swiperight", "#temasScreen", function(e){
-		if($(".ui-page-active").jqmData("panel") !== "open"){
-			if(e.type == "swiperight"){
-				$('#sidebar2').panel("open");
+
+
+
+/**
+*	Utilidades para activar el sidebar al hacer swipe de izquierda a derecha
+*	En este espacio SOLO estan los sidebar propios de todos los usuarios
+*	Los especificos de cada usuario estan en sus propios archivos *.js
+*/
+function swipeSidebar (idPage, idSidebar) {
+	$(document).on("pagecreate", "#"+idPage, function(){
+		$(document).on("swiperight", "#"+idPage, function(e){
+			if($(".ui-page-active").jqmData("panel") !== "open"){
+				if(e.type == "swiperight"){
+					$('#'+idSidebar).panel("open");
+				}
 			}
-		}
+		});
 	});
-});
-/***************SIDEBAR ESTUDIANTE CURSOS*****************/
-$(document).on("pagecreate", "#cursosScreen", function(){
-	$(document).on("swiperight", "#cursosScreen", function(e){
-		if($(".ui-page-active").jqmData("panel") !== "open"){
-			if(e.type == "swiperight"){
-				$('#sidebar3').panel("open");
-			}
-		}
-	});
-});
+}
+swipeSidebar("inicio", "sidebar");
+swipeSidebar("temasScreen", "sidebar2");
+swipeSidebar("cursosScreen", "sidebar3");
 
 
+
+
+
+/**
+*
+*	Activa los cierres de sesión desde las diferentes secciones
+*/
+function cerrarSesion () {
+	localStorage.clear();
+	verificarSesion();
+}
 $("#cerrarSesion").click(cerrarSesion);
 $("#cerrarSesion1").click(cerrarSesion);
 $("#cerrarSesion2").click(cerrarSesion);
@@ -74,67 +112,29 @@ $("#cerrarSesion8").click(cerrarSesion);
 
 
 
-function cerrarSesion () {
-	localStorage.clear();
-	verificarSesion();
-}
-
-
-
-/*************HORARIO****************/
+/**
+*	Carga el horario y lo construye en pantalla
+*/
 function cargarHorario () {
-	if(localStorage.getItem("horarioEstudiante")!=null){
-		construirHorario(JSON.parse(localStorage.getItem("horarioEstudiante")));
-	}
-	var parametros = {
-        "mobile" : 'horario'
-    };
-	$.ajax({
-		data:  parametros,
-        url:   root,
-        type:  'get',
-        success:  function (response) {
-        	var data = JSON.parse(response);
-        	var dataToStore = JSON.stringify(data);
-        	localStorage.setItem('horarioEstudiante', dataToStore);
-        	construirHorario(data);
-        }	
-	});
+	peticionAsincrona("get", true, "horarioEstudiante", {"mobile" : 'horario'}, construirHorario, function(){});
 }
-
-function construirHorario (data) {
+function construirHorario (response) {
+	var data = JSON.parse(response);
 	for(var val in data){
    		$("#"+val).html(data[val])
    	}
 }
 
 
-
-
-
-/********TEMAS DE LA SEMANA*********/
-function cargarTemas(){
-	if(localStorage.getItem("temasEstudiante")!=null){
-		construirTemas(JSON.parse(localStorage.getItem("temasEstudiante")));
-	}
-
-	var parametros = {
-        "mobile" : 'temasSemana'
-    };
-    $.ajax({
-		data:  parametros,
-        url:   root,
-        type:  'get',
-        success:  function (response) {
-
-        	var data = JSON.parse(response);
-        	var dataToStore = JSON.stringify(data);
-        	localStorage.setItem('temasEstudiante', dataToStore);
-	        construirTemas(data);
-        }	
-	});
+/**
+*	Carga la tabla de temas de la semana
+*/
+function cargarTemas () {
+	peticionAsincrona("get", true, "temasEstudiante",{"mobile" : 'temasSemana'}, construirTemas, function(){});
 }
-function construirTemas(data){
+
+function construirTemas(response){
+	var data = JSON.parse(response);
 	var struct = "<thead><tr><th>Materia</th><th>Tema</th></tr></thead><tbody>";
 	for(var val in data){
    		struct += "<tr><td>"+data[val]+"</td><td>"+val+"</td></tr>";
@@ -143,29 +143,16 @@ function construirTemas(data){
     $("#tablaTemas").html(struct)
 }
 
-/********PRÓXIMOS CURSOS*********/
-function cargarCursos(){
-	if(localStorage.getItem("cursosEstudiante")!=null){
-		construirCursos(JSON.parse(localStorage.getItem("cursosEstudiante")));
-	}
 
-	var parametros = {
-        "mobile" : 'proximosCursos'
-    };
-    $.ajax({
-		data:  parametros,
-        url:   root,
-        type:  'get',
-        success:  function (response) {
-        	var data = JSON.parse(response);
-        	var dataToStore = JSON.stringify(data);
-        	localStorage.setItem('cursosEstudiante', dataToStore);
-        	construirCursos(data);
-        }	
-	});
+/**
+*	Carga la tabla de próximos cursos
+*/
+function cargarCursos(){
+	peticionAsincrona("get", true, "cursosEstudiante", {"mobile" : 'proximosCursos'}, construirCursos, function(){}); 
 }
 
-function construirCursos (data) {
+function construirCursos (response) {
+	var data = JSON.parse(response);
 	var struct = "";
    	for(var val in data){
    		struct += "<tr><th colspan='2'>"+data[val].nombre+"</th></tr><tr><td>"+data[val].fecha+" "+data[val].hora+"</td><td>"+data[val].amigo+"</td></tr>";
@@ -175,118 +162,28 @@ function construirCursos (data) {
 
 
 
-
-/************CALIFICACIONES***************/
-function cargarCalificadores(){
-	var parametros = {
-        "mobile" : 'calificacion',
-        "codigo" : localStorage.getItem("CodigoUsuario")
-    };
-    $.ajax({
-		data:  parametros,
-        url:   root,
-        type:  'get',
-        success:  function (response) {
-
-        	if(response=="ok"){
-        		try{
-        			$("#calificaciones").html("<div data-role='collapsible'><h4>No hay calificaciones pendientes</h4><p>Vuelve mas tarde.</p></div>").collapsibleset("refresh")
-        		}catch(e){
-        			console.log("Excepción controlada");
-        		}
-        	}else{
-        		var data = JSON.parse(response);
-        		var struct = "";
-        		for(var val in data){
-        			struct += "<div data-role='collapsible'><h4>"+data[val].materia+" - "+data[val].tema+ " - " + data[val].amigo +" - "+ data[val].fecha+"</h4><button class='ui-btn' onclick=\"popupCalificar('"+data[val].id+"')\">Calificar Esta asesoría</button></div>";
-        		}
-        		try{
-        			$("#calificaciones").html(struct).collapsibleset("refresh")
-        		}catch(e){
-        			console.log("Excepción controlada");
-        		}
-        	}
-        	
-        	
-        }	
-	});
-}
-$("#verifyAsesoria").click(cargarCalificadores)
-
-function popupCalificar (value) {
-	$("#calificacionID").val(value)
-	$( ":mobile-pagecontainer" ).pagecontainer( "change", "#popupCalificacion", { 
-    	role: "dialog"
-    });
-}
-
-
-
-/*******CALIFICAR ASESORIA*******/
-
- $('#calificacionForm').submit(function() {  
- 	var parametros = {
-   		"mobile" : 'registrarCalificacion',
-        "idAsesoria" : $("#calificacionID").val(),
-        "puntaje" : $("#puntaje").val(),
-        "comentario" : $("#comentario").val(),
-        "estudiante" : localStorage.getItem("CodigoUsuario")
-    };
-    $.ajax({
-            data:  parametros,
-            url:   root,
-            type:  'post',
-            success:  function (response) {
-                if(response=="error"){
-                   	$( ":mobile-pagecontainer" ).pagecontainer( "change", "#errorRedScreen", { 
-   				    	role: "dialog"
-				    });
-                }else{
-                   	$( ":mobile-pagecontainer" ).pagecontainer( "change", "#successCalificacion", { 
-   				    	role: "dialog"
-				    });
-                }
-            },
-            error : function(xhr, status) {
-			    $( ":mobile-pagecontainer" ).pagecontainer( "change", "#errorRedScreen", { 
-					role: "dialog",
-				   	transition: "pop"
-			    });
-			}
-        });
- 	return false;
-});
-
-
-
-
-
-
+/**
+*	Cargar select con las materias
+*/
 function cargarMateriasRegistroAsesoria () {
-	if(localStorage.getItem("MateriasRegistroAsesoria")!=null){
-		construirMateriasRegistroAsesoria(JSON.parse(localStorage.getItem("MateriasRegistroAsesoria")));
-	}
-	var parametros = {
-		"mobile" : 'cargarMaterias'
-    };
-    $.ajax({
-	    data:  parametros,
-	    url:   root,
-	    type:  'get',
-	    success:  function (response) {
-	    	var data = JSON.parse(response);
-	    	var dataToStore = JSON.stringify(data);
-        	localStorage.setItem('MateriasRegistroAsesoria', dataToStore);
-	    	construirMateriasRegistroAsesoria (data);
-	    	
-	    }
-	});
+	peticionAsincrona("get", true, "listaMaterias", {"mobile" : 'cargarMaterias'}, construirMateriasRegistroAsesoria, function(){}); 
 }
 
-function construirMateriasRegistroAsesoria (data) {
+function construirMateriasRegistroAsesoria (response) {
+	var data = JSON.parse(response);
 	var struct = "<option>Seleccionar Materia</option>";
 	for(var val in data){
 		struct += "<option value='"+val+"'>"+data[val]+"</option>";
 	}
 	$("#materiaAse").html(struct)
+}
+
+
+/**
+*	Desplega información cuando se presenta un error de red
+*/
+function errorDeRed () {
+	$( ":mobile-pagecontainer" ).pagecontainer( "change", "#errorRedScreen", { 
+		role: "dialog"
+	});
 }

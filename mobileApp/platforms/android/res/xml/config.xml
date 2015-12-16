@@ -18,6 +18,7 @@
         Gerson Lázaro - Melissa Delgado - Daniel Vega
     </author>
     <icon src="res/icon.png" />
+    <preference name="SplashScreenDelay" value="3000" />
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />

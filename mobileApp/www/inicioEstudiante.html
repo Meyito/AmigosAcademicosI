@@ -9,12 +9,13 @@
   <link rel="stylesheet" href="css/styles.css"/>
   <script src="js/jquery.min.js"></script>
 	<script>
-		var root = "http://localhost:8080/AmigosAcademicosI/App/app.php?"; //Cambiar por la ruta raiz
+		var root = "http://sandbox1.ufps.edu.co/~ufps_88/app.php"; //Cambiar por la ruta raiz
 
 	    $(document).bind('mobileinit',function(){
 	        $.mobile.changePage.defaults.changeHash = false;
 	        $.mobile.hashListeningEnabled = false;
 	        $.mobile.pushStateEnabled = false;
+	          $.mobile.defaultPageTransition = "slidefade";
 	    });
 	</script> 
 	<script src="js/jquery.mobile.min.js"></script>
@@ -91,7 +92,7 @@
 			<img src="css/images/logos.png" alt="">
 		</div>
 		<div data-role="panel" id="sidebar" class="sidebar" data-position="left">
-			<div class="recuadro-sidebar rs1">
+			<div class="recuadro-sidebar rs1" onclick="inicializar()">
 				<h2 class="userName"></h2>
 				<h4 class="userType"></h4>
 			</div>
@@ -100,17 +101,17 @@
 					<h3>Horario</h3>
 				</div>
 			</a>
-			<a href="#calificacionScreen" class="sidebarBTN">
+			<a href="#calificacionScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Calificar asesorías</h3>
 				</div>
 			</a>
-			<a href="#temasScreen" class="sidebarBTN">
+			<a href="#temasScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Temas Semanales</h3>
 				</div>
 			</a>
-			<a href="#cursosScreen" class="sidebarBTN">
+			<a href="#cursosScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Cursos</h3>
 				</div>
@@ -142,7 +143,7 @@
 			<img src="css/images/logos.png" alt="">
 		</div>
 		<div data-role="panel" id="sidebar2" class="sidebar" data-position="left">
-			<div class="recuadro-sidebar rs1">
+			<div class="recuadro-sidebar rs1" onclick="inicializar()">
 				<h2 class="userName"></h2>
 				<h4 class="userType"></h4>
 			</div>
@@ -151,17 +152,17 @@
 					<h3>Horario</h3>
 				</div>
 			</a>
-			<a href="#calificacionScreen" class="sidebarBTN">
+			<a href="#calificacionScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Calificar asesorías</h3>
 				</div>
 			</a>
-			<a href="#temasScreen" class="sidebarBTN">
+			<a href="#temasScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Temas Semanales</h3>
 				</div>
 			</a>
-			<a href="#cursosScreen" class="sidebarBTN">
+			<a href="#cursosScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Cursos</h3>
 				</div>
@@ -193,7 +194,7 @@
 			<img src="css/images/logos.png" alt="">
 		</div>
 		<div data-role="panel" id="sidebar3" class="sidebar" data-position="left">
-			<div class="recuadro-sidebar rs1">
+			<div class="recuadro-sidebar rs1" onclick="inicializar()">
 				<h2 class="userName"></h2>
 				<h4 class="userType"></h4>
 			</div>
@@ -202,17 +203,17 @@
 					<h3>Horario</h3>
 				</div>
 			</a>
-			<a href="#calificacionScreen" class="sidebarBTN">
+			<a href="#calificacionScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Calificar asesorías</h3>
 				</div>
 			</a>
-			<a href="#temasScreen" class="sidebarBTN">
+			<a href="#temasScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Temas Semanales</h3>
 				</div>
 			</a>
-			<a href="#cursosScreen" class="sidebarBTN">
+			<a href="#cursosScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Cursos</h3>
 				</div>
@@ -241,7 +242,7 @@
 			<img src="css/images/logos.png" alt="">
 		</div>
 		<div data-role="panel" id="sidebar4" class="sidebar" data-position="left">
-			<div class="recuadro-sidebar rs1">
+			<div class="recuadro-sidebar rs1" onclick="inicializar()">
 				<h2 class="userName"></h2>
 				<h4 class="userType"></h4>
 			</div>
@@ -250,17 +251,17 @@
 					<h3>Horario</h3>
 				</div>
 			</a>
-			<a href="#calificacionScreen" class="sidebarBTN">
+			<a href="#calificacionScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Calificar asesorías</h3>
 				</div>
 			</a>
-			<a href="#temasScreen" class="sidebarBTN">
+			<a href="#temasScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Temas Semanales</h3>
 				</div>
 			</a>
-			<a href="#cursosScreen" class="sidebarBTN">
+			<a href="#cursosScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Cursos</h3>
 				</div>

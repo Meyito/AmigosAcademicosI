@@ -9,12 +9,13 @@
   <link rel="stylesheet" href="css/styles.css"/>
   <script src="js/jquery.min.js"></script>
 	<script>
-		var root = " http://sandbox1.ufps.edu.co/~ufps_88/app.php?"; //Cambiar por la ruta raiz
+		var root = "http://sandbox1.ufps.edu.co/~ufps_88/app.php"; //Cambiar por la ruta raiz
 
 	    $(document).bind('mobileinit',function(){
 	        $.mobile.changePage.defaults.changeHash = false;
 	        $.mobile.hashListeningEnabled = false;
 	        $.mobile.pushStateEnabled = false;
+	        $.mobile.defaultPageTransition = "slidefade";
 	    });
 
 	</script> 

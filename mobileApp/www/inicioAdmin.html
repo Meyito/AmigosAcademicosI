@@ -9,12 +9,13 @@
   <link rel="stylesheet" href="css/styles.css"/>
   <script src="js/jquery.min.js"></script>
 	<script>
-		var root = "http://localhost:8080/AmigosAcademicosI/App/app.php?"; //Cambiar por la ruta raiz
+		var root = "http://sandbox1.ufps.edu.co/~ufps_88/app.php"; //Cambiar por la ruta raiz
 
 	    $(document).bind('mobileinit',function(){
 	        $.mobile.changePage.defaults.changeHash = false;
 	        $.mobile.hashListeningEnabled = false;
 	        $.mobile.pushStateEnabled = false;
+	          $.mobile.defaultPageTransition = "slidefade";
 	    });
 
 	</script> 
@@ -93,26 +94,26 @@
 			<img src="css/images/logos.png" alt="">
 		</div>
 		<div data-role="panel" id="sidebar" class="sidebar" data-position="left">
-			<div class="recuadro-sidebar rs1">
+			<div class="recuadro-sidebar rs1" onclick="inicializar()">
 				<h2 class="userName"></h2>
 				<h4 class="userType"></h4>
 			</div>
-			<a href="#inicio" class="sidebarBTN">
+			<a href="#inicio" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Ver Horario</h3>
 				</div>
 			</a>
-			<a href="#temasScreen" class="sidebarBTN">
+			<a href="#temasScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Temas Semanales</h3>
 				</div>
 			</a>
-			<a href="#cursosScreen" class="sidebarBTN">
+			<a href="#cursosScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Cursos</h3>
 				</div>
 			</a>
-			<a href="#amigosScreen" class="sidebarBTN">
+			<a href="#amigosScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Amigos Académicos</h3>
 				</div>
@@ -146,26 +147,26 @@
 			<img src="css/images/logos.png" alt="">
 		</div>
 		<div data-role="panel" id="sidebar2" class="sidebar" data-position="left">
-			<div class="recuadro-sidebar rs1">
+			<div class="recuadro-sidebar rs1" onclick="inicializar()">
 				<h2 class="userName"></h2>
 				<h4 class="userType"></h4>
 			</div>
-			<a href="#inicio" class="sidebarBTN"  onclick="console.log('si pasa')">
+			<a href="#inicio" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Ver Horario</h3>
 				</div>
 			</a>
-			<a href="#temasScreen" class="sidebarBTN">
+			<a href="#temasScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Temas Semanales</h3>
 				</div>
 			</a>
-			<a href="#cursosScreen" class="sidebarBTN">
+			<a href="#cursosScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Cursos</h3>
 				</div>
 			</a>
-			<a href="#amigosScreen" class="sidebarBTN">
+			<a href="#amigosScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Amigos Académicos</h3>
 				</div>
@@ -201,26 +202,26 @@
 			<img src="css/images/logos.png" alt="">
 		</div>
 		<div data-role="panel" id="sidebar3" class="sidebar" data-position="left">
-			<div class="recuadro-sidebar rs1">
+			<div class="recuadro-sidebar rs1" onclick="inicializar()">
 				<h2 class="userName"></h2>
 				<h4 class="userType"></h4>
 			</div>
-			<a href="#inicio" class="sidebarBTN">
+			<a href="#inicio" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Ver Horario</h3>
 				</div>
 			</a>
-			<a href="#temasScreen" class="sidebarBTN">
+			<a href="#temasScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Temas Semanales</h3>
 				</div>
 			</a>
-			<a href="#cursosScreen" class="sidebarBTN">
+			<a href="#cursosScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Cursos</h3>
 				</div>
 			</a>
-			<a href="#amigosScreen" class="sidebarBTN">
+			<a href="#amigosScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Amigos Académicos</h3>
 				</div>
@@ -255,26 +256,26 @@
 			<img src="css/images/logos.png" alt="">
 		</div>
 		<div data-role="panel" id="sidebarAmigos" class="sidebar" data-position="left">
-			<div class="recuadro-sidebar rs1">
+			<div class="recuadro-sidebar rs1" onclick="inicializar()">
 				<h2 class="userName"></h2>
 				<h4 class="userType"></h4>
 			</div>
-			<a href="#inicio" class="sidebarBTN">
+			<a href="#inicio" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Ver Horario</h3>
 				</div>
 			</a>
-			<a href="#temasScreen" class="sidebarBTN">
+			<a href="#temasScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Temas Semanales</h3>
 				</div>
 			</a>
-			<a href="#cursosScreen" class="sidebarBTN">
+			<a href="#cursosScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Cursos</h3>
 				</div>
 			</a>
-			<a href="#amigosScreen" class="sidebarBTN">
+			<a href="#amigosScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Amigos Académicos</h3>
 				</div>
@@ -310,26 +311,26 @@
 			<img src="css/images/logos.png" alt="">
 		</div>
 		<div data-role="panel" id="sidebarcrearTema" class="sidebar" data-position="left">
-			<div class="recuadro-sidebar rs1">
+			<div class="recuadro-sidebar rs1" onclick="inicializar()">
 				<h2 class="userName"></h2>
 				<h4 class="userType"></h4>
 			</div>
-			<a href="#inicio" class="sidebarBTN">
+			<a href="#inicio" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Ver Horario</h3>
 				</div>
 			</a>
-			<a href="#temasScreen" class="sidebarBTN">
+			<a href="#temasScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Temas Semanales</h3>
 				</div>
 			</a>
-			<a href="#cursosScreen" class="sidebarBTN">
+			<a href="#cursosScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Cursos</h3>
 				</div>
 			</a>
-			<a href="#amigosScreen" class="sidebarBTN">
+			<a href="#amigosScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Amigos Académicos</h3>
 				</div>
@@ -381,29 +382,28 @@
 				<h2 class="userName"></h2>
 				<h4 class="userType"></h4>
 			</div>
-			<a href="#inicio" class="sidebarBTN">
+			<div class="recuadro-sidebar rs1" onclick="inicializar()">
+				<h2 class="userName"></h2>
+				<h4 class="userType"></h4>
+			</div>
+			<a href="#inicio" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Ver Horario</h3>
 				</div>
 			</a>
-			<a href="#temasScreen" class="sidebarBTN">
+			<a href="#temasScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Temas Semanales</h3>
 				</div>
 			</a>
-			<a href="#cursosScreen" class="sidebarBTN">
+			<a href="#cursosScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Cursos</h3>
 				</div>
 			</a>
-			<a href="#amigosScreen" class="sidebarBTN">
+			<a href="#amigosScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Amigos Académicos</h3>
-				</div>
-			</a>
-			<a class="sidebarBTN" id="cerrarSesion5">
-				<div class="recuadro-sidebar">
-					<h3>Cerrar Sesión</h3>
 				</div>
 			</a>
 		</div>
@@ -442,26 +442,26 @@
 			<img src="css/images/logos.png" alt="">
 		</div>
 		<div data-role="panel" id="sidebarCrearCurso" class="sidebar" data-position="left">
-			<div class="recuadro-sidebar rs1">
+			<div class="recuadro-sidebar rs1" onclick="inicializar()">
 				<h2 class="userName"></h2>
 				<h4 class="userType"></h4>
 			</div>
-			<a href="#inicio" class="sidebarBTN">
+			<a href="#inicio" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Ver Horario</h3>
 				</div>
 			</a>
-			<a href="#temasScreen" class="sidebarBTN">
+			<a href="#temasScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Temas Semanales</h3>
 				</div>
 			</a>
-			<a href="#cursosScreen" class="sidebarBTN">
+			<a href="#cursosScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Cursos</h3>
 				</div>
 			</a>
-			<a href="#amigosScreen" class="sidebarBTN">
+			<a href="#amigosScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Amigos Académicos</h3>
 				</div>
@@ -504,26 +504,26 @@
 			<img src="css/images/logos.png" alt="">
 		</div>
 		<div data-role="panel" id="sidebarEditarAmigo" class="sidebar" data-position="left">
-			<div class="recuadro-sidebar rs1">
+			<div class="recuadro-sidebar rs1" onclick="inicializar()">
 				<h2 class="userName"></h2>
 				<h4 class="userType"></h4>
 			</div>
-			<a href="#inicio" class="sidebarBTN">
+			<a href="#inicio" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Ver Horario</h3>
 				</div>
 			</a>
-			<a href="#temasScreen" class="sidebarBTN">
+			<a href="#temasScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Temas Semanales</h3>
 				</div>
 			</a>
-			<a href="#cursosScreen" class="sidebarBTN">
+			<a href="#cursosScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Cursos</h3>
 				</div>
 			</a>
-			<a href="#amigosScreen" class="sidebarBTN">
+			<a href="#amigosScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Amigos Académicos</h3>
 				</div>
@@ -565,26 +565,26 @@
 			<img src="css/images/logos.png" alt="">
 		</div>
 		<div data-role="panel" id="sidebarCrearAmigo" class="sidebar" data-position="left">
-			<div class="recuadro-sidebar rs1">
+			<div class="recuadro-sidebar rs1" onclick="inicializar()">
 				<h2 class="userName"></h2>
 				<h4 class="userType"></h4>
 			</div>
-			<a href="#inicio" class="sidebarBTN">
+			<a href="#inicio" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Ver Horario</h3>
 				</div>
 			</a>
-			<a href="#temasScreen" class="sidebarBTN">
+			<a href="#temasScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Temas Semanales</h3>
 				</div>
 			</a>
-			<a href="#cursosScreen" class="sidebarBTN">
+			<a href="#cursosScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Cursos</h3>
 				</div>
 			</a>
-			<a href="#amigosScreen" class="sidebarBTN">
+			<a href="#amigosScreen" class="sidebarBTN" onclick="inicializar()">
 				<div class="recuadro-sidebar">
 					<h3>Amigos Académicos</h3>
 				</div>

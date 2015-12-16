@@ -11,7 +11,7 @@
 			// Recibe: $_POST["codigo"] y $_POST["password"]
 
 			if($_POST["codigo"]=="1150972" && $_POST["password"]=="http"){
-				$output = array("nombre"=>"Gerson Lázaro", "codigo"=>"1150972", "tipo"=>"2");
+				$output = array("nombre"=>"Gerson Lázaro", "codigo"=>"1150972", "tipo"=>"1");
 
 				echo (json_encode($output));
 			}else{
