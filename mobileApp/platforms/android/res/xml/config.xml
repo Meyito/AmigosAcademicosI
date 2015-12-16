@@ -5,10 +5,6 @@
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
-    <splash density="land-hdpi" src="res/splash-land-hdpi.9.png" />
-    <splash density="land-ldpi" src="res/splash-land-ldpi.9.png" />
-    <splash density="land-mdpi" src="res/splash-land-mdpi.9.png" />
-    <splash density="land-xhdpi" src="res/splash-land-xhdpi.9.png" />
     <allow-intent href="market:*" />
     <name>AmigosAcademicos</name>
     <description>
@@ -18,7 +14,6 @@
         Gerson Lázaro - Melissa Delgado - Daniel Vega
     </author>
     <icon src="res/icon.png" />
-    <preference name="SplashScreenDelay" value="3000" />
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />

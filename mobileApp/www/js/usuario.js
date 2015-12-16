@@ -51,6 +51,7 @@ function peticionAsincrona(tipoHttp, boolLocalStorage, varLocalStorage, parametr
         url:   root,
         type: tipoHttp,
         success:  function (response) {
+        	console.log(response);
         	if(boolLocalStorage){
         		var data = JSON.parse(response);
         		var dataToStore = JSON.stringify(data);

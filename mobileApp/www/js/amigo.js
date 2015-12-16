@@ -131,7 +131,8 @@ $("#registrarAsesoria").submit(function() {
 		"materia" : $("#materiaAse").val(),
 		"tema" : $("#temaAse").val(),
 		"codigo" : $("#codigoAse").val(),
-		"comentario" : $("#comentarioAse").val() 
+		"comentario" : $("#comentarioAse").val(),
+		"codigoAmigo" : localStorage.getItem("CodigoUsuario")
 	   };
 	
 
