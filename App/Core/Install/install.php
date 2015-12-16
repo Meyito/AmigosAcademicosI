@@ -260,6 +260,12 @@ mysqli_query($connect,$query);
 $query = "INSERT INTO Tema(nombre,idMateria,estado) VALUES('Ondas Electromagneticas','1155403',2)";
 mysqli_query($connect,$query);
 
+//PERIODO
+$query = "INSERT INTO Periodo(descripcion,cantidadEstudiantes,asistenciasPeriodo) VALUES('IIS2014',0,0)";
+$query = "INSERT INTO Periodo(descripcion,cantidadEstudiantes,asistenciasPeriodo) VALUES('IS2015',0,0)";
+$query = "INSERT INTO Periodo(descripcion,cantidadEstudiantes,asistenciasPeriodo) VALUES('IIS2015',0,0)";
+mysqli_query($connect,$query);
+
 
 mysqli_close($connect);
 

@@ -48,7 +48,7 @@ class UserDB extends Model{
 	
 	public function getAmigos(){
 		$this->connect();
-		$query = $this->query("SELECT id,nombre,estado FROM Usuario WHERE tipo = 2");
+		$query = $this->query("SELECT id,nombre,estado FROM Usuario WHERE tipo = 2 AND estado='activo'");
 		$this->terminate();
 		$array = array();
 		while($row = mysqli_fetch_array($query)){

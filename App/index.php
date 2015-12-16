@@ -30,7 +30,7 @@
 					$adminC->deleteCourse($_POST["id"]);
 				}else if($_POST["accion"]=="actualizarAA"){
 					if($_POST["password"]!=$_POST["password2"]){
-						echo "cotraseñas diferentes";
+						echo "contraseñas diferentes";
 					}else{
 						$adminC->updateAA($_POST["codigo"], $_POST["password"], $_POST["nombre"], $_POST["semestre"], $_POST["email"], $_POST["horario"]);	
 					}
