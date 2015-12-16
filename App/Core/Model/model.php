@@ -6,7 +6,8 @@ class Model{
 
 	public function connect(){
 		//cambiar parametros de conexión de acuerdo con los parametros locales de cada uno
-		$this->connection = mysqli_connect("localhost","root","","AA") or die(mysqli_error($connection));
+		$this->connection = mysqli_connect("sandbox2.ufps.edu.co","ufps_88","ufps_uy","ufps_88") or die(("Error " . mysqli_error($connect)));
+
 	}
 
 	public function query($sql){

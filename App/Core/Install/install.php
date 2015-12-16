@@ -1,10 +1,6 @@
 <?php
-$connect = mysqli_connect("localhost","root","") or die(mysqli_error($connect));
-$create = "CREATE DATABASE AA";
-mysqli_query($connect,$create);
-mysqli_close($connect);
 
-$connect = mysqli_connect("localhost","root","","AA") or die(mysqli_error($connect));
+$connect = mysqli_connect("sandbox2.ufps.edu.co","ufps_88","ufps_uy","ufps_88") or die(("Error " . mysqli_error($connect)));
 
 $query = "CREATE TABLE Periodo(
 			id int AUTO_INCREMENT NOT NULL,
@@ -123,7 +119,7 @@ $query = "CREATE TABLE EstudianteAsesoria(
 			idEstudiante varchar(7) NOT NULL,
 			idAsesoria int NOT NULL,
 			observacionAmigo varchar(144) NOT NULL,
-			observacionEstudiante varchar(144) NOT NULL,
+			observacionEstudiante varchar(144),
 			calificacion int,
 			PRIMARY KEY(idEstudiante,idAsesoria),
 			FOREIGN KEY(idEstudiante) REFERENCES Usuario(id),

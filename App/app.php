@@ -1,7 +1,7 @@
 <?php
 
-
-	
+	include_once "Core/Model/Mobile/querys.php";
+	$mobileQuery = new MobileQuery();
 	if(isset($_POST["mobile"])){
 		if($_POST["mobile"]=="login"){
 
@@ -9,7 +9,7 @@
 			// y "tipo" (1=Admin | 2=AA | 3=User) si los datos son validos, echo "error"
 			// en caso contrario
 			// Recibe: $_POST["codigo"] y $_POST["password"]
-
+			/*
 			if($_POST["codigo"]=="1150972" && $_POST["password"]=="http"){
 				$output = array("nombre"=>"Gerson Lázaro", "codigo"=>"1150972", "tipo"=>"1");
 
@@ -18,14 +18,27 @@
 				echo "error";
 			}
 
-
+*/
+			$array = $mobileQuery->login($_POST["codigo"],$_POST["password"]);
+			if(!$array){
+				echo "error";
+			}
+			else{
+				$output = array("nombre"=>$array['nombre'], "codigo"=>$array['id'], "tipo"=>$array['tipo']);
+				echo (json_encode($output));
+			}
 
 		}else if($_POST["mobile"]=="signup"){
 			//Los datos de registro llegan por post. Hace echo "ok" si el registro es exitoso, echo "error"
 			//en caso contrario
 			//Recibe: $_POST["codigo"],$_POST["nombre"],$_POST["semestre"],$_POST["correo"], $_POST["password"] y $_POST["password2"]
-			echo "ok";
-
+			$query = $mobileQuery->registrar($_POST["codigo"],$_POST["nombre"],$_POST["correo"],$_POST["semestre"],$_POST["password"],$_POST["password2"]);
+			if($query){
+				echo "ok";
+			}
+			else{
+				echo "error";
+			}
 
 
 		}else if($_POST["mobile"]=="registrarCalificacion"){
@@ -35,7 +48,13 @@
         	//$_POST["comentario"] Comentario de la asesoría
         	//$_POST["estudiante"] Código del estudiante
         	//devuelve echo "ok" si funciona, echo "error" en caso contrario
-        	echo "ok";
+        	$query = $mobileQuery->registrarCalificacion($_POST["idAsesoria"],$_POST["puntaje"],$_POST["comentario"],$_POST["estudiante"]);
+        	if($query){
+        		echo "exito";
+        	}
+        	else{
+        		echo "error";
+        	}
 
 
 
@@ -46,20 +65,38 @@
 			//$_POST["codigo"] Código del ESTUDIANTE
 			//$_POST["comentario"] Comentario enviado
 			//Guarda en la BD y retorna echo "ok" o echo "error" segun corresponda 
-			echo "ok";
+			$query = $mobileQuery->registrarAsesoria($_POST["materia"],$_POST["tema"],$_POST["codigoAmigo"],$_POST["codigo"],$_POST["comentario"]);
+        	if($query){
+        		echo "exito";
+        	}
+        	else{
+        		echo "error";
+        	}
 
 		}else if($_POST["mobile"]=="registrarAsistenciaCurso"){
 			//Registra en la base de datos la asistencia a un curso
 			//Recibe $_POST["idCurso"] con el id del curso y
 			//$_POST["codigo"] con el código del estudiante
 			//Retorna echo "ok" o echo "error" según corresponda
-			echo "ok";
+			$query = $mobileQuery->registrarAsistenciaCurso($_POST["idCurso"],$_POST["codigo"]);
+        	if($query){
+        		echo "exito";
+        	}
+        	else{
+        		echo "error";
+        	}
 
 		}else if($_POST["mobile"]=="registrarTema"){
 			//Registra un tema en la bd. Recibe $_POST["tema"] con el nombre del tema
 			// y $_POST["codigoMateria"] Con el código de la materia que representa al tema
 			//Retorna echo "ok" o echo "error" según corresponda
-			echo "ok";
+			$query = $mobileQuery->registrarTema($_POST["tema"],$_POST["codigoMateria"]);
+        	if($query){
+        		echo "exito";
+        	}
+        	else{
+        		echo "error";
+        	}
 
 		}else if($_POST["mobile"]=="editarCurso"){
 			//Edita un curso existente en la BD
