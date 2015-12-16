@@ -376,6 +376,17 @@
 			//Lista el id del curso, el nombre (que será el nombre del tema), y la fecha
 			//Esto es para la sección agregar asistencia a cursos del amigo académico
 			//Donde se listan los cursos para que el amigo seleccione uno y agregue la asistencia
+			$array = $mobileQuery->listarCursos($_GET["amigo"]);
+			$output = array();
+			$index = 0;
+			while($index<sizeof($array)){
+				$output[$index+1+""] = array(
+									"id" => $array[$index][0],
+									"nombre" => $array[$index][1],
+									"fecha" => $array[$index][2]);
+				$index++;
+			}
+			/*
 			$output = array(
 				"1" => array(
 					"id" => "4",
@@ -393,11 +404,16 @@
 					"fecha" => "06-dic-2014"
 				),
 			);
-
+			*/
 			//Si no hay cursos:
 			//echo "empty";
-
-			echo json_encode($output);
+			if(empty($output)){
+				echo "empty";
+			}
+			else{
+				echo json_encode($output);
+			}
+			
 
 
 
