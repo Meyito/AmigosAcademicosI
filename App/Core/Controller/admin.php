@@ -331,7 +331,8 @@
 
 		public function vistaReiniciarSistema(){
 			$view=$this->base("Core/View/assets/menu_admin.html");
-			//$content=$this->getTemplate("Core/View/contenedores/estadisticas_admin.html");
+			$content=$this->getTemplate("Core/View/contenedores/reiniciar_Sistema.html");
+			$view=$this->renderView($view, "{{COMPUESTO:CONTENIDO}}", $content);
 			$view=$this->renderView($view, "{{COMPUESTO:LIBRERIAS_JS}}", "");
 			$this->showView($view);
 		}

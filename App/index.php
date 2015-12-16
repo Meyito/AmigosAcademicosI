@@ -43,7 +43,7 @@
 				}else if($_POST["accion"]=="eliminarTema"){
 					$adminC->eliminarTema($_POST["valor"]);	
 				}else if($_POST["accion"]=="reiniciarSistema"){
-					$adminC->reiniciar($_POST["nombreBla Bla Bla"], $_POST["cante"]);
+					$adminC->reiniciar($_POST["nombreSemestre"], $_POST["noEstudiantes"]);
 				}
 
 			}else if(isset($_GET["accion"])){
