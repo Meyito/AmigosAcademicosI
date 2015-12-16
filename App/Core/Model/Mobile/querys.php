@@ -137,7 +137,7 @@ class MobileQuery extends Model{
 	}
 	public function listarCursos($amigo){
 		$this->connect();
-		$query = $this->query("SELECT c.id,t.nombre,c.fecha FROM Curso c,Tema t WHERE c.idAmigoAcademico == '".$amigo."' AND c.idTema = t.id");
+		$query = $this->query("SELECT c.id,t.nombre,c.fecha FROM Curso c,Tema t WHERE c.idAmigoAcademico = '".$amigo."' AND c.idTema = t.id");
 		$this->terminate();
 		$array = array();
 		while($row = mysqli_fetch_array($query)){
