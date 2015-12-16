@@ -69,7 +69,7 @@ function calificacionExitosa(response){
 	if(response=="error"){
         errorDeRed ();
     }else{
-        inicializar();
+        cargarCalificadores();
         $( ":mobile-pagecontainer" ).pagecontainer( "change", "#successCalificacion", { 
    			role: "dialog"
 	    });

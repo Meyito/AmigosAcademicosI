@@ -74,9 +74,78 @@
               </div>
             </a>
               <div class="row text-center">
-                <a href="index.php?accion=cambiarAvatar" class="wh">
+                <div class="modal fade modal-cambio" style="color:black!important" tabindex="-1" role="dialog" aria-labelledby="modal-cambio">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Selecciona tu nuevo avatar</h4>
+                      </div>
+                      <form action="index.php" id="img_avatar" method="POST">
+                      <div class="modal-body">
+                        
+                          <input type="hidden" name="accion" value="cambiarAvatar">
+                          <input type="radio" name="avatar" value="h1" id="avatarh1" onclick='document.getElementById("chgAvatar").disabled=false'>
+                          <label for="avatarh1">
+                            <img src="Static/img/avatars/h1.png" alt="">
+                          </label>
+                          <input type="radio" name="avatar" value="h2" id="avatarh2" onclick='document.getElementById("chgAvatar").disabled=false'>
+                          <label for="avatarh2">
+                            <img src="Static/img/avatars/h2.png" alt="">
+                          </label>
+                          <input type="radio" name="avatar" value="h3" id="avatarh3" onclick='document.getElementById("chgAvatar").disabled=false'>
+                          <label for="avatarh3">
+                            <img src="Static/img/avatars/h3.png" alt="">
+                          </label>
+                          <input type="radio" name="avatar" value="h4" id="avatarh4" onclick='document.getElementById("chgAvatar").disabled=false'>
+                          <label for="avatarh4">
+                            <img src="Static/img/avatars/h4.png" alt="">
+                          </label>
+                          <input type="radio" name="avatar" value="h5" id="avatarh5" onclick='document.getElementById("chgAvatar").disabled=false'>
+                          <label for="avatarh5">
+                            <img src="Static/img/avatars/h5.png" alt="">
+                          </label>
+                          <input type="radio" name="avatar" value="h6" id="avatarh6" onclick='document.getElementById("chgAvatar").disabled=false'>
+                          <label for="avatarh6">
+                            <img src="Static/img/avatars/h6.png" alt="">
+                          </label>
+                          
+                          <br>
+                          <input type="radio" name="avatar" value="m1" id="avatarm1" onclick='document.getElementById("chgAvatar").disabled=false'>
+                          <label for="avatarm1">
+                            <img src="Static/img/avatars/m1.png" alt="">
+                          </label>
+                          <input type="radio" name="avatar" value="m2" id="avatarm2" onclick='document.getElementById("chgAvatar").disabled=false'>
+                          <label for="avatarm2">
+                            <img src="Static/img/avatars/m2.png" alt="">
+                          </label>
+                          <input type="radio" name="avatar" value="m3" id="avatarm3" onclick='document.getElementById("chgAvatar").disabled=false'>
+                          <label for="avatarm3"> 
+                            <img src="Static/img/avatars/m3.png" alt="">
+                          </label>
+                          <input type="radio" name="avatar" value="m4" id="avatarm4" onclick='document.getElementById("chgAvatar").disabled=false'>
+                          <label for="avatarm4">
+                            <img src="Static/img/avatars/m4.png" alt="">
+                          </label>
+                          <input type="radio" name="avatar" value="m5" id="avatarm5" onclick='document.getElementById("chgAvatar").disabled=false'>
+                          <label for="avatarm5">
+                            <img src="Static/img/avatars/m5.png" alt="">
+                          </label>
+                          <input type="radio" name="avatar" value="m6" id="avatarm6" onclick='document.getElementById("chgAvatar").disabled=false'>
+                          <label for="avatarm6">
+                            <img src="Static/img/avatars/m6.png" alt="">
+                          </label>
+                      </div>
+                      <div class="modal-footer">
+                        <input type="submit" class="btn submit" value="Cambiar Avatar" id="chgAvatar" disabled>
+                      </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <a  data-toggle="modal" data-target=".modal-cambio" class="wh">
                   <div class="col-xs-4 button-help-sidebar">
-                    <span class="glyphicon glyphicon-camera" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Cambiar avatar de usuario (proximamente)"></span>
+                    <span class="glyphicon glyphicon-camera" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Cambiar avatar de usuario"></span>
                   </div>
                 </a>
                 <a href="index.php?accion=help" class="wh">

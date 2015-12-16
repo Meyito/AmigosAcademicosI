@@ -239,7 +239,7 @@ function construirSelectCrearAmigos(response){
 }
 
 /**
-*	Carga la lista de amigos para construir el select
+*	Carga la lista de amigos para construir la tabla
 */
 function cargarAmigos(amigo){
 	var _amigo = amigo;
@@ -290,7 +290,7 @@ function construirEditarAmigos (response) {
 */
 function exitoEdicionAmigo (response) {
 	if(response=="ok"){
-		inicializar();
+		cargarAmigos("");
         $( ":mobile-pagecontainer" ).pagecontainer( "change", "#amigosScreen", { 
 			role: "page"
 		});
@@ -304,7 +304,7 @@ function exitoEdicionAmigo (response) {
 */
 function exitoCreacionTema(response){
 	if(response=="ok"){
-		inicializar();
+		cargarTemas();
 		$('#formNuevoTema').trigger("reset");
 		$( ":mobile-pagecontainer" ).pagecontainer( "change", "#registroCorrectoScreen", { 
 			role: "dialog"
@@ -319,7 +319,7 @@ function exitoCreacionTema(response){
 */
 function exitoEdicionCurso (response) {
 	if(response=="ok"){
-		inicializar();
+		cargarCursosAdmin();
 		$("editarCurso").trigger("reset");
 		$( ":mobile-pagecontainer" ).pagecontainer( "change", "#cursosScreen", { 
 			role: "page"
@@ -356,7 +356,9 @@ $("#crearAmigoForm").submit(function(){
 		"codigo": $("#codigoEditAmigo").val(),
 		"nombre": $("#nombreEditAmigo").val(),
 		"email": $("#emailEditAmigo").val(),
-		"semestre": $("#semestreEditAmigo").val()
+		"semestre": $("#semestreEditAmigo").val(),
+		"password": $("#passwordCrearAmigo").val(),
+		"password": $("#password2CrearAmigo").val()
 	};
 	peticionAsincrona("post", false, null, parametros, exitoEdicionAmigo, errorDeRed);
 	return false;

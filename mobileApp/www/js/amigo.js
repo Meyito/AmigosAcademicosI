@@ -60,7 +60,7 @@ function construirTemasRA (response) {
 *	Lista todos los cursos 
 */
 function listarCursos () {
-	peticionAsincrona("get", false, null, {"mobile" : 'listarCursos'}, listarCursosConstruir, function(){});
+	peticionAsincrona("get", false, null, {"mobile" : 'listarCursos', 'amigo': localStorage.getItem("CodigoUsuario")}, listarCursosConstruir, function(){});
 }
 
 function listarCursosConstruir (response) {
