@@ -41,12 +41,14 @@ class MobileQuery extends Model{
 		$this->connect();
 		$query = $this->query("INSERT INTO Asesoria(idAmigoAcademico,fecha,idMateria,idTema) VALUES('".$codigoAmigo."',CURDATE(),'".$materia."',".$tema.")");
 		if($query){
-			$query = $this->query("SELECT COUNT(*) FROM Asesoria");
+			$count = $this->query("SELECT COUNT(*) FROM Asesoria");
+			/*
 			$idAsesoria = "";
 			while($row = mysqli_fetch_array($query)){
 				$idAsesoria = $row;
 			}
-			$query = $this->query("INSERT INTO EstudianteAsesoria(idEstudiante,idAsesoria,observacionAmigo) VALUES('".$codigoEstudiante."',".$idAsesoria[0].",'".$comentario."')");
+			*/
+			$query = $this->query("INSERT INTO EstudianteAsesoria(idEstudiante,idAsesoria,observacionAmigo) VALUES('".$codigoEstudiante."',".$count.",'".$comentario."')");
 		}
 		$this->terminate();
 		return $query;
