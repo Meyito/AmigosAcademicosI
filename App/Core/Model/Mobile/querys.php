@@ -63,10 +63,9 @@ class MobileQuery extends Model{
 		$this->terminate();
 		return $query;
 	}
-	//REVISAR ESTE METODO
-	public function editarCurso($id,$idMateria,$idTema,$idAmigo,$fecha,$descripcion){
+	public function editarCurso($id,$idMateria,$idTema,$idAmigo,$fecha,$hora,$descripcion){
 		$this->connect();
-		$query = $this->query("UPDATE Curso SET idTema = ".$idTema.",descripcion = '".$descripcion."',idAmigoAcademico = '".$idAmigo."',fecha = '".$fecha."',idMateria = '".$idMateria."' WHERE id = ".$id." ");
+		$query = $this->query("UPDATE Curso SET idTema = ".$idTema.",descripcion = '".$descripcion."',idAmigoAcademico = '".$idAmigo."',fecha = '".$fecha."',hora = '".$hora."',idMateria = '".$idMateria."' WHERE id = ".$id." ");
 		$this->terminate();
 		return $query;
 	}
@@ -78,7 +77,7 @@ class MobileQuery extends Model{
 	}
 	public function crearCurso($idTema,$descripcion,$idAmigo,$fecha,$hora,$idMateria){
 		$this->connect();
-		$query = $this->query("INSERT INTO Curso(idTema,descripcion,idAmigoAcademico,fecha,hora,estado,idMateria) VALUES(".$idTema.",'".$descripcion."','".$idAmigo."','".$fecha."','".$hora."','pendiente','".$idMateria."')");
+		$query = $this->query("INSERT INTO Curso(idTema,descripcion,idAmigoAcademico,fecha,hora,estado,idMateria) VALUES(".$idTema.",'".$descripcion."','".$idAmigo."','".$fecha."','".$hora."','activo','".$idMateria."')");
 		$this->terminate();
 		return $query;
 	}
@@ -120,6 +119,15 @@ class MobileQuery extends Model{
 		return $array;
 	}
 	public function proximosCursos(){
+		$this->connect();
+		$query = $this->query("SELECT c.id,t.nombre,c.descripcion,u.nombre,c.fecha,TIME_FORMAT(c.hora,'%h:%i'),m.nombre FROM Curso c,Usuario u,Materia m,Tema t 
+							WHERE c.idAmigoAcademico = u.id AND c.idTema = t.id AND c.idMateria = m.id");
+		$this->terminate();
+		$array = array();
+		while($row = mysqli_fetch_array($query)){
+			array_push($array,$row);
+		}
+		return $array;
 
 	}
 	public function calificacion(){

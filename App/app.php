@@ -108,7 +108,7 @@
 			//"hora"
 			//"descripcion"
 			//Retorna echo "ok" o echo "error" según corresponda
-			$query = $mobileQuery->editarCurso($_POST["id"],$_POST["idMateria"],$_POST["idTema"],$_POST["idAmigo"],$_POST["fecha"],$_POST["descripcion"]);
+			$query = $mobileQuery->editarCurso($_POST["id"],$_POST["idMateria"],$_POST["idTema"],$_POST["idAmigo"],$_POST["fecha"],$_POST['hora'],$_POST["descripcion"]);
         	if($query){
         		echo "ok";
         	}
@@ -255,6 +255,21 @@
 			// como en el siguiente ejemplo.
 			// El nombre es el tema
 			// La fecha debe estar "AAAA-MM-DD" y la hora "HH:MM" en formato 24h
+			$array = $mobileQuery->proximosCursos();
+			$output = array();
+			$index = 0;
+			while($index<sizeof($array)){
+				$output[($index+1).""] = array(
+									"id" => $array[$index][0],
+									"nombre" => $array[$index][1],
+									"descripcion" => $array[$index][2],
+									"amigo" => $array[$index][3],
+									"fecha" => $array[$index][4],
+									"hora" => $array[$index][5],
+									"materia" => $array[$index][6]);
+				$index++;
+			}
+			/*
 			$output = array(
 				"1" => array(
 					"id" => "1",
@@ -302,6 +317,7 @@
 					"materia" => "POO"
 					)
 			);
+			*/
 			echo json_encode($output);
 
 
