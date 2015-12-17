@@ -112,17 +112,19 @@
 				$aux=$this->renderView($aux, "{{BASICO:NOMBRE_CURSO}}", $data[$i][1]);
 				$aux=$this->renderView($aux, "{{BASICO:FECHA_CURSO}}", $data[$i]["fecha"]);
 				$aux=$this->renderView($aux, "{{BASICO:NOMBRE_AMIGO}}", $data[$i][4]);
-				//$aux=$this->renderView($aux, "{{id}}", $data[$i][0]);
 				$list=$list.$aux;
 			}
 			return $list;
 		}
 
-		public function changeAvatar(){
-			$view=$this->base("Core/View/assets/menu_estudiante.html");
-			$content=$this->getTemplate("Core/View/contenedores/proximamente.html");
-			$view=$this->renderView($view, "{{COMPUESTO:CONTENIDO}}", $content);
-			$this->showView($view);
+		public function changeAvatar($img){
+			$img="Static/img/avatars/".$img.".png";
+
+			$userModel=new UserDB();
+			$userModel->cambiarAvatar($_SESSION["codigo"], $img);
+			$_SESSION["avatar"]=$img;
+
+			$this->index();
 		}
 
 		public function help(){

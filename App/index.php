@@ -42,6 +42,8 @@
 					$adminC->reiniciar($_POST["nombreSemestre"], $_POST["noEstudiantes"]);
 				}else if($_POST["accion"]=="activarAAHistorico"){
 					$adminC->activarAAHistorico($_POST["codigo"]);
+				}else if($_POST["accion"]=="cambiarAvatar"){
+					$adminC->changeAvatar($_POST["avatar"]);
 				}
 
 			}else if(isset($_GET["accion"])){
@@ -66,8 +68,6 @@
 					$adminC->updateCourse($_GET["id"]);
 				}else if($_GET["accion"]=="addCourse"){
 					$adminC->createCourse();
-				}else if($_GET["accion"]=="cambiarAvatar"){
-					$adminC->changeAvatar();
 				}else if($_GET["accion"]=="help"){
 					$adminC->help();
 				}else if($_GET["accion"]=="historicos"){
@@ -182,7 +182,10 @@
 					$studentC->rateAdvice($_POST["asesoria"], $_POST["calificacion"], $_POST["comentarios"]);
 				}elseif($_POST["accion"]=="calificarCurso"){
 					$studentC->rateCourse($_POST["asesoria"], $_POST["calificacion"]);
+				}else if($_POST["accion"]=="cambiarAvatar"){
+					$studentC->changeAvatar($_POST["avatar"]);
 				}
+
 			}else if(isset($_GET["accion"])){
 				if($_GET["accion"]=="logout"){
 					$studentC->logout();
@@ -190,8 +193,6 @@
 					$studentC->topics();
 				}else if($_GET["accion"]=="cursos"){
 					$studentC->courses();
-				}else if($_GET["accion"]=="cambiarAvatar"){
-					$studentC->changeAvatar();
 				}else if($_GET["accion"]=="help"){
 					$studentC->help();
 				}
@@ -205,12 +206,13 @@
 					$amigoC->registrarAsesoria($_POST["materia"], $_POST["tema"], $_POST["codigo"], $_POST["tipoComentario"], $_POST["comentario"]);
 				}else if($_POST["accion"]=="registrarAsistenciaCurso"){
 					$amigoC->registrarAsistenciaCurso($_POST["idCurso"], $_POST["codigo"]);
+				}else if($_POST["accion"]=="cambiarAvatar"){
+					$amigoC->changeAvatar($_POST["avatar"]);
 				}
+
 			}else if(isset($_GET["accion"])){
 				if($_GET["accion"]=="logout"){
 					$amigoC->logout();
-				}else if($_GET["accion"]=="cambiarAvatar"){
-					$amigoC->changeAvatar();
 				}else if($_GET["accion"]=="help"){
 					$amigoC->help();
 				}else if($_GET["accion"]=="asesoria"){

@@ -11,11 +11,14 @@
 			$this->indexP($index);
 		}
 
-		public function changeAvatar(){
-			$view=$this->base("Core/View/assets/menu_amigo.html");
-			$content=$this->getTemplate("Core/View/contenedores/proximamente.html");
-			$view=$this->renderView($view, "{{COMPUESTO:CONTENIDO}}", $content);
-			$this->showView($view);
+		public function changeAvatar($img){
+			$img="Static/img/avatars/".$img.".png";
+
+			$userModel=new UserDB();
+			$userModel->cambiarAvatar($_SESSION["codigo"], $img);
+			$_SESSION["avatar"]=$img;
+
+			$this->index();
 		}
 
 		public function help(){

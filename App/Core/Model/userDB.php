@@ -46,6 +46,13 @@ class UserDB extends Model{
 		return $query;
 	}
 	
+	public function cambiarAvatar($id,$avatar){
+		$this->connect();
+		$query = $this->query("UPDATE Usuario SET avatar = '".$avatar."' WHERE id='".$id."' ");
+		$this->terminate();
+		return $query;
+	}
+
 	public function getAmigos(){
 		$this->connect();
 		$query = $this->query("SELECT id,nombre,estado FROM Usuario WHERE tipo = 2 AND estado='activo'");
