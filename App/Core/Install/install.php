@@ -263,7 +263,9 @@ mysqli_query($connect,$query);
 
 //PERIODO
 $query = "INSERT INTO Periodo(descripcion,cantidadEstudiantes,asistenciasPeriodo) VALUES('IIS2014',0,0)";
+mysqli_query($connect,$query);
 $query = "INSERT INTO Periodo(descripcion,cantidadEstudiantes,asistenciasPeriodo) VALUES('IS2015',0,0)";
+mysqli_query($connect,$query);
 $query = "INSERT INTO Periodo(descripcion,cantidadEstudiantes,asistenciasPeriodo) VALUES('IIS2015',0,0)";
 mysqli_query($connect,$query);
 
