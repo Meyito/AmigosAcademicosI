@@ -395,7 +395,6 @@ $("#editCursoEditar").click(function(){
 		"hora" : $("#editCursoHora").val(),
 		"descripcion" : $("#editCursoComentario").val()
 	};
-	console.log(parametros);
 	peticionAsincrona("post", false, null, parametros, exitoEdicionCurso, errorDeRed);
 });
 

@@ -10,7 +10,6 @@
   <script src="js/jquery.min.js"></script>
 	<script>
 		var root = "http://sandbox1.ufps.edu.co/~ufps_88/app.php"; //Cambiar por la ruta raiz
-
 	    $(document).bind('mobileinit',function(){
 	        $.mobile.changePage.defaults.changeHash = false;
 	        $.mobile.hashListeningEnabled = false;
@@ -92,26 +91,26 @@
 			<img src="css/images/logos.png" alt="">
 		</div>
 		<div data-role="panel" id="sidebar" class="sidebar" data-position="left">
-			<div class="recuadro-sidebar rs1" onclick="inicializar()">
+			<div class="recuadro-sidebar rs1">
 				<h2 class="userName"></h2>
 				<h4 class="userType"></h4>
 			</div>
-			<a href="#inicio" class="sidebarBTN">
+			<a href="#inicio" class="sidebarBTN" onclick="cargarHorario()">
 				<div class="recuadro-sidebar">
 					<h3>Horario</h3>
 				</div>
 			</a>
-			<a href="#calificacionScreen" class="sidebarBTN" onclick="inicializar()">
+			<a href="#calificacionScreen" class="sidebarBTN" onclick="cargarCalificadores()">
 				<div class="recuadro-sidebar">
 					<h3>Calificar asesorías</h3>
 				</div>
 			</a>
-			<a href="#temasScreen" class="sidebarBTN" onclick="inicializar()">
+			<a href="#temasScreen" class="sidebarBTN" onclick="cargarTemas()">
 				<div class="recuadro-sidebar">
 					<h3>Temas Semanales</h3>
 				</div>
 			</a>
-			<a href="#cursosScreen" class="sidebarBTN" onclick="inicializar()">
+			<a href="#cursosScreen" class="sidebarBTN" onclick="cargarCursos()">
 				<div class="recuadro-sidebar">
 					<h3>Cursos</h3>
 				</div>
@@ -143,26 +142,26 @@
 			<img src="css/images/logos.png" alt="">
 		</div>
 		<div data-role="panel" id="sidebar2" class="sidebar" data-position="left">
-			<div class="recuadro-sidebar rs1" onclick="inicializar()">
+			<div class="recuadro-sidebar rs1">
 				<h2 class="userName"></h2>
 				<h4 class="userType"></h4>
 			</div>
-			<a href="#inicio" class="sidebarBTN">
+			<a href="#inicio" class="sidebarBTN" onclick="cargarHorario()">
 				<div class="recuadro-sidebar">
 					<h3>Horario</h3>
 				</div>
 			</a>
-			<a href="#calificacionScreen" class="sidebarBTN" onclick="inicializar()">
+			<a href="#calificacionScreen" class="sidebarBTN" onclick="cargarCalificadores()">
 				<div class="recuadro-sidebar">
 					<h3>Calificar asesorías</h3>
 				</div>
 			</a>
-			<a href="#temasScreen" class="sidebarBTN" onclick="inicializar()">
+			<a href="#temasScreen" class="sidebarBTN" onclick="cargarTemas()">
 				<div class="recuadro-sidebar">
 					<h3>Temas Semanales</h3>
 				</div>
 			</a>
-			<a href="#cursosScreen" class="sidebarBTN" onclick="inicializar()">
+			<a href="#cursosScreen" class="sidebarBTN" onclick="cargarCursos()">
 				<div class="recuadro-sidebar">
 					<h3>Cursos</h3>
 				</div>
@@ -194,26 +193,26 @@
 			<img src="css/images/logos.png" alt="">
 		</div>
 		<div data-role="panel" id="sidebar3" class="sidebar" data-position="left">
-			<div class="recuadro-sidebar rs1" onclick="inicializar()">
+			<div class="recuadro-sidebar rs1">
 				<h2 class="userName"></h2>
 				<h4 class="userType"></h4>
 			</div>
-			<a href="#inicio" class="sidebarBTN">
+			<a href="#inicio" class="sidebarBTN" onclick="cargarHorario()">
 				<div class="recuadro-sidebar">
 					<h3>Horario</h3>
 				</div>
 			</a>
-			<a href="#calificacionScreen" class="sidebarBTN" onclick="inicializar()">
+			<a href="#calificacionScreen" class="sidebarBTN" onclick="cargarCalificadores()">
 				<div class="recuadro-sidebar">
 					<h3>Calificar asesorías</h3>
 				</div>
 			</a>
-			<a href="#temasScreen" class="sidebarBTN" onclick="inicializar()">
+			<a href="#temasScreen" class="sidebarBTN" onclick="cargarTemas()">
 				<div class="recuadro-sidebar">
 					<h3>Temas Semanales</h3>
 				</div>
 			</a>
-			<a href="#cursosScreen" class="sidebarBTN" onclick="inicializar()">
+			<a href="#cursosScreen" class="sidebarBTN" onclick="cargarCursos()">
 				<div class="recuadro-sidebar">
 					<h3>Cursos</h3>
 				</div>
@@ -234,34 +233,36 @@
 			</h1>
 		</div>
 		<div data-role="content">
-			<h3>Calificación de Asesorias y Cursos</h3>
+			<h3>Calificación de Asesorias</h3>
 			<div id="calificaciones" data-role="collapsibleset"></div>
-			<button class="ui-btn" id="verifyAsesoria">Verificar si existen nuevas asesorias</button>
+			<h3>Calificación de Cursos</h3>
+			<div id="calificacionesCursos" data-role="collapsibleset"></div>
+			<button class="ui-btn" id="verifyAsesoria">Verificar si existen nuevas asesorias o cursos</button>
 		</div>
 		<div class="footer" data-role="footer">
 			<img src="css/images/logos.png" alt="">
 		</div>
 		<div data-role="panel" id="sidebar4" class="sidebar" data-position="left">
-			<div class="recuadro-sidebar rs1" onclick="inicializar()">
+			<div class="recuadro-sidebar rs1">
 				<h2 class="userName"></h2>
 				<h4 class="userType"></h4>
 			</div>
-			<a href="#inicio" class="sidebarBTN">
+			<a href="#inicio" class="sidebarBTN" onclick="cargarHorario()">
 				<div class="recuadro-sidebar">
 					<h3>Horario</h3>
 				</div>
 			</a>
-			<a href="#calificacionScreen" class="sidebarBTN" onclick="inicializar()">
+			<a href="#calificacionScreen" class="sidebarBTN" onclick="cargarCalificadores()">
 				<div class="recuadro-sidebar">
 					<h3>Calificar asesorías</h3>
 				</div>
 			</a>
-			<a href="#temasScreen" class="sidebarBTN" onclick="inicializar()">
+			<a href="#temasScreen" class="sidebarBTN" onclick="cargarTemas()">
 				<div class="recuadro-sidebar">
 					<h3>Temas Semanales</h3>
 				</div>
 			</a>
-			<a href="#cursosScreen" class="sidebarBTN" onclick="inicializar()">
+			<a href="#cursosScreen" class="sidebarBTN" onclick="cargarCursos()">
 				<div class="recuadro-sidebar">
 					<h3>Cursos</h3>
 				</div>
@@ -288,6 +289,24 @@
 				<br>
 				<label for="comentario">¿Quieres añadir un comentario?</label>
 				<textarea name="comentario" id="comentario"></textarea>
+				<input type="submit" value="Calificar asesoría">
+			</form>
+		</div>
+	</div>
+
+	<div data-role="dialog" id="popupCalificacionCurso">
+		<div data-role="header">
+			<h1>¿Como calificarias este Curso?</h1>
+		</div>
+
+		<div data-role="content">	
+			<form id="calificacionCursoForm">
+				<label for="puntaje">Califica el curso de 1 a 5</label>
+				<input type="hidden" value="" id="calificacionIDCurso">
+				<input type="range" name="puntajeCurso" id="puntajeCurso" value="3" min="1" max="5" step="1" data-highlight="true">
+				<br>
+				<label for="comentarioCurso">¿Quieres añadir un comentario?</label>
+				<textarea name="comentarioCurso" id="comentariocurso"></textarea>
 				<input type="submit" value="Calificar asesoría">
 			</form>
 		</div>
