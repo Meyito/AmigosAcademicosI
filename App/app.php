@@ -345,7 +345,7 @@
 			//Que tiene pendientes por realizar. Retorna identificador de la asesoria, Materia, Tema, Amigo y Fecha. Usar el mismo para cursos.
 			
 			//IMPORTANTE: Si no hay nada por calificar, hacer solo echo "ok";
-			$array = $mobileQuery->listarCursos($_GET["amigo"]);
+			$array = $mobileQuery->listarCursos($_GET["codigo"]);
 			$output = array();
 			$index = 0;
 			while($index<sizeof($array)){
@@ -399,7 +399,7 @@
 			//Que tiene pendientes por realizar. Retorna identificador de la asesoria, Materia, Tema, Amigo y Fecha. Usar el mismo para cursos.
 			
 			//IMPORTANTE: Si no hay nada por calificar, hacer solo echo "ok";
-			$array = $mobileQuery->listarCursos($_GET["amigo"]);
+			$array = $mobileQuery->listarCursos($_GET["codigo"]);
 			$output = array();
 			$index = 0;
 			while($index<sizeof($array)){
