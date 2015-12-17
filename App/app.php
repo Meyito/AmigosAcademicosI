@@ -40,14 +40,31 @@
 			}
 
 
-		}else if($_POST["mobile"]=="registrarCalificacion"){
+		}else if($_POST["mobile"]=="registrarCalificacionAsesoria"){
 			//En este punto se inserta en la base de datos la calificación de una asesoria. Se recibe
 			//$_POST["idAsesoria"] que guarda el identificador de la asesoria
 			//$_POST["puntaje"] Valor numerico de la calificacion, de 1 a 5
         	//$_POST["comentario"] Comentario de la asesoría
         	//$_POST["estudiante"] Código del estudiante
         	//devuelve echo "ok" si funciona, echo "error" en caso contrario
-        	$query = $mobileQuery->registrarCalificacion($_POST["idAsesoria"],$_POST["puntaje"],$_POST["comentario"],$_POST["estudiante"]);
+        	$query = $mobileQuery->registrarCalificacionAsesoria($_POST["idAsesoria"],$_POST["puntaje"],$_POST["comentario"],$_POST["estudiante"]);
+        	if($query){
+        		echo "ok";
+        	}
+        	else{
+        		echo "error";
+        	}
+
+
+
+		}else if($_POST["mobile"]=="registrarCalificacionCurso"){
+			//En este punto se inserta en la base de datos la calificación de una asesoria. Se recibe
+			//$_POST["idAsesoria"] que guarda el identificador de la asesoria
+			//$_POST["puntaje"] Valor numerico de la calificacion, de 1 a 5
+        	//$_POST["comentario"] Comentario de la asesoría
+        	//$_POST["estudiante"] Código del estudiante
+        	//devuelve echo "ok" si funciona, echo "error" en caso contrario
+        	$query = $mobileQuery->registrarCalificacionCurso($_POST["idCurso"],$_POST["puntaje"],$_POST["estudiante"]);
         	if($query){
         		echo "ok";
         	}
@@ -323,11 +340,78 @@
 
 
 
-		}else if($_GET["mobile"]=="calificacion"){
+		}else if($_GET["mobile"]=="calificacionAsesoria"){
 			//Recibe un $_GET["codigo"] con el código del usuario para el que voy a cargar las calificaciones por realizar
 			//Que tiene pendientes por realizar. Retorna identificador de la asesoria, Materia, Tema, Amigo y Fecha. Usar el mismo para cursos.
 			
 			//IMPORTANTE: Si no hay nada por calificar, hacer solo echo "ok";
+			$array = $mobileQuery->listarCursos($_GET["amigo"]);
+			$output = array();
+			$index = 0;
+			while($index<sizeof($array)){
+				$output[($index+1).""] = array(
+									"id" => $array[$index][0],
+									"materia" => $array[$index][1],
+									"tema" => $array[$index][2],
+									"amigo" => $array[$index][3],
+									"fecha" => $array[$index][4]);
+				$index++;
+			}
+			/*
+			$output = array(
+				"1" => array(
+					"id" => "132",
+					"materia" => "POO",
+					"tema" => "Herencia",
+					"amigo" => "Denis Isidro",
+					"fecha" => "64-12-2012"
+					),
+				"2" => array(
+					"id" => "132",
+					"materia" => "Calculo",
+					"tema" => "Curso Integrales",
+					"amigo" => "Denis Isidro",
+					"fecha" => "64-12-2012"
+					),
+				"3" => array(
+					"id" => "132",
+					"materia" => "POO",
+					"tema" => "Herencia",
+					"amigo" => "Denis Isidro",
+					"fecha" => "64-12-2012"
+					),
+				"4" => array(
+					"id" => "132",
+					"materia" => "POO",
+					"tema" => "Herencia",
+					"amigo" => "Denis Isidro",
+					"fecha" => "64-12-2012"
+					)
+			);
+			*/
+			echo json_encode($output);	
+
+
+
+
+		}else if($_GET["mobile"]=="calificacionCurso"){
+			//Recibe un $_GET["codigo"] con el código del usuario para el que voy a cargar las calificaciones por realizar
+			//Que tiene pendientes por realizar. Retorna identificador de la asesoria, Materia, Tema, Amigo y Fecha. Usar el mismo para cursos.
+			
+			//IMPORTANTE: Si no hay nada por calificar, hacer solo echo "ok";
+			$array = $mobileQuery->listarCursos($_GET["amigo"]);
+			$output = array();
+			$index = 0;
+			while($index<sizeof($array)){
+				$output[($index+1).""] = array(
+									"id" => $array[$index][0],
+									"materia" => $array[$index][1],
+									"tema" => $array[$index][2],
+									"amigo" => $array[$index][3],
+									"fecha" => $array[$index][4]);
+				$index++;
+			}
+			/*
 			$output = array(
 				"1" => array(
 					"id" => "132",
@@ -358,7 +442,7 @@
 					"fecha" => "64-Diciemre-2012, 3:00PM"
 					)
 			);
-			
+			*/
 			echo json_encode($output);	
 
 

@@ -31,9 +31,15 @@ class MobileQuery extends Model{
 			return false;
 		}
 	}
-	public function registrarCalificacion($idAsesoria,$puntaje,$comentario,$estudiante){
+	public function registrarCalificacionAsesoria($idAsesoria,$puntaje,$comentario,$estudiante){
 		$this->connect();
 		$query = $this->query("UPDATE EstudianteAsesoria SET calificacion = ".$puntaje.", observacionEstudiante = '".$comentario."' WHERE idAsesoria = ".$idAsesoria." AND idEstudiante = '".$estudiante."' ");
+		$this->terminate();
+		return $query;
+	}
+	public function registrarCalificacionCurso($idCurso,$puntaje,$estudiante){
+		$this->connect();
+		$query = $this->query("UPDATE EstudianteCurso SET calificacion = ".$puntaje." WHERE idCurso = ".$idCurso." AND idEstudiante = '".$estudiante."' ");
 		$this->terminate();
 		return $query;
 	}
@@ -130,8 +136,27 @@ class MobileQuery extends Model{
 		return $array;
 
 	}
-	public function calificacion(){
-
+	public function calificacionAsesoria($codigoEstudiante){
+		$this->connect();
+		$query = $this->query("SELECT a.id,m.nombre,t.nombre,u.nombre,a.fecha FROM Asesoria a,Usuario u,Tema t,Materia m,EstudianteAsesoria e
+							WHERE a.idTema = t.id AND a.idMateria = m.id AND a.idAmigoAcademico = u.id AND e.idAsesoria = a.id AND e.idEstudiante = '".$codigoEstudiante."' AND e.calificacion = NULL");
+		$this->terminate();
+		$array = array();
+		while($row = mysqli_fetch_array($query)){
+			array_push($array,$row);
+		}
+		return $array;
+	}
+	public function calificacionCurso($codigoEstudiante){
+		$this->connect();
+		$query = $this->query("SELECT c.id,m.nombre,t.nombre,u.nombre,c.fecha FROM Curso c,Usuario u,Tema t,Materia m,EstudianteCurso e
+							WHERE c.idTema = t.id AND c.idMateria = m.id AND c.idAmigoAcademico = u.id AND e.idCurso = c.id AND e.idEstudiante = '".$codigoEstudiante."' AND e.calificacion = NULL");
+		$this->terminate();
+		$array = array();
+		while($row = mysqli_fetch_array($query)){
+			array_push($array,$row);
+		}
+		return $array;
 	}
 	public function cargarMaterias(){
 		$this->connect();
