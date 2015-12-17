@@ -203,7 +203,7 @@ function construirCrearMateriasCurso(response){
 function cargarTemasCrearCurso () {
 	var parametros = {
 		"mobile" : 'cargarTemas',
-		"materia" : $("#crearCursoMaterial").val()
+		"materia" : $("#crearCursoMateria").val()
     };
     peticionAsincrona("get", false, null, parametros, construirCrearTemasCurso, function(){});
 }
