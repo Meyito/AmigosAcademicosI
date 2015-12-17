@@ -225,13 +225,13 @@
 			$adminModel=new AdminDB();
 			$data=false;
 			
-			//$data=$adminModel->getAmigo($codigo);
+			$data=$adminModel->getUsuario($codigo);
 			
 			if($data==false){
 				$result=$adminModel->addAmigo($codigo,$password,$nombre,$sem,$email,$avatar,$horario);
 			}else{
-				//ALERTA ERROR, USUARIO YA REGISTRADO
-				echo"error";
+				$adminModel->ascenderAmigo($codigo);
+				$result=$adminModel->updateAmigo($codigo, $password, $nombre, $sem, $email, $horario);
 			}
 
 			$this->showAA();

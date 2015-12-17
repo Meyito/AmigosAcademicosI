@@ -132,6 +132,12 @@ class AdminDB extends Model{
 		return $query;
 	}
 
+	public function ascenderAmigo($id){
+		$this->connect();
+		$query = $this->query("UPDATE Usuario SET tipo = 2 WHERE id = '".$id."'");
+		$this->terminate();
+	}
+
 	public function deleteUsuario($id){
 		$this->connect();
 		$query = $this->query("DELETE FROM Usuario WHERE id = '".$id."'");
@@ -168,14 +174,19 @@ class AdminDB extends Model{
 	public function getUsuario($id){
 		$this->connect();
 		$query = $this->query("SELECT * FROM Usuario WHERE id = '".$id."'");
+		$this->terminate();
 		$iter = 0;
 		$array = array();
 		while($row = mysqli_fetch_array($query)){
 			$iter++;
 			array_push($array,$row);
 		}
-		$this->terminate();
-		return $array;
+		
+		if($iter==0){
+			return false;
+		}else{
+			return $array;	
+		}
 	}
 
 	public function getTema($materia){
