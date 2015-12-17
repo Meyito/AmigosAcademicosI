@@ -359,7 +359,7 @@ $("#crearAmigoForm").submit(function(){
 		"email": $("#emailEditAmigo").val(),
 		"semestre": $("#semestreEditAmigo").val(),
 		"password": $("#passwordCrearAmigo").val(),
-		"password": $("#password2CrearAmigo").val()
+		"password2": $("#password2CrearAmigo").val()
 	};
 	peticionAsincrona("post", false, null, parametros, exitoEdicionAmigo, errorDeRed);
 	return false;
