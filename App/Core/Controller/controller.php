@@ -41,14 +41,24 @@
 			return str_replace($cadenaReemplazar, $reemplazo, $ubicacion);
 		}
 
+		/**
+		*	Método que se encarga de agregar una alerta al documento html
+		*	@param   $plantilla - plantilla sobre la cua se debe mostrar la alerta
+		*	@param   $titulo - titulo de la alerta
+		*	@param   $alerta - mensaje de la alerta
+		*	@return  un string del html de la plantilla que permite la ejecucion de la alerta
+		*/
+		public function alerta($plantilla, $titulo, $alerta)
+		{
+			return $plantilla."<script>alerta(\"".$titulo."\",\"".$alerta."\",3000);</script>";
+		}
+
 		public function login($name, $password){
 			$password=$this->encryptPassword($password);
 
 			$userModel=new UserDB();
-			//$data=$userModel->login($name, $pass);
 			$data=$userModel->login($name, $password);
 
-			//print_r($data);
 			if($data!=false){
 				//cargar los datos de sesion y de acuerdo al usuario cargar la vista asociada.
 				$this->setSession($data);
@@ -127,7 +137,7 @@
 				$aux=$template;
 				$aux=$this->renderView($aux, "{{BASICO:AMIGO}}", $data[$i]["nombre"]);
 				$aux=$this->renderView($aux, "{{BASICO:TEMA}}", $data[$i][1]);
-				$aux=$this->renderView($aux, "{{BASICO:FECHA}}", $data[$i]["fecha"]);
+				$aux=$this->renderView($aux, "{{BASICO:FECHA}}", $data[$i]["fecha"]."  ".$data[$i][5]);
 				$aux=$this->renderView($aux, "{{id}}", $data[$i]["id"]);
 				$list=$list.$aux;
 			}

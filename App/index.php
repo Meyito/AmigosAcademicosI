@@ -23,7 +23,7 @@
 						$adminC->registerAA($_POST["codigo"], $_POST["password"], $_POST["nombre"], $_POST["semestre"], $_POST["email"], $_POST["horario"]);	
 					}
 				}else if($_POST["accion"]=="registrarCurso"){
-					$adminC->courseRegister($_POST["tema"], $_POST["descripción"], $_POST["amigo"], $_POST["fecha"], $_POST["materia"]);
+					$adminC->courseRegister($_POST["tema"], $_POST["descripción"], $_POST["amigo"], $_POST["fecha"], $_POST["materia"], $_POST["hora"]);
 				}else if($_POST["accion"]=="actualizarCurso"){
 					$adminC->updateC($_POST["id"], $_POST["descripción"], $_POST["amigo"], $_POST["fecha"], $_POST["materia"], $_POST["tema"]);
 				}else if($_POST["accion"]=="eliminarCurso"){
@@ -246,7 +246,6 @@
 	}else if(isset($_POST["signUp"])){
 		if($_POST["password"]!=$_POST["password2"]){
 			$control->index();
-			//mensaje error;
 		}else{
 			$control->studentRegister($_POST["codigo"], $_POST["nombre"], $_POST["correo"], $_POST["semestre"], $_POST["password"]);
 		}

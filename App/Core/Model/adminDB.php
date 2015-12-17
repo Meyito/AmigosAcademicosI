@@ -246,9 +246,9 @@ class AdminDB extends Model{
 		return $query;
 	}
 
-	public function addCurso($idTema,$description,$idAmigo,$fecha,$idMateria){
+	public function addCurso($idTema,$description,$idAmigo,$fecha,$idMateria,$hora){
 		$this->connect();
-		$query = $this->query("INSERT INTO Curso(idTema,descripcion,idAmigoAcademico,fecha,estado,idMateria) VALUES(".$idTema.",'".$description."','".$idAmigo."','".$fecha."','activo','".$idMateria."')");
+		$query = $this->query("INSERT INTO Curso(idTema,descripcion,idAmigoAcademico,fecha,estado,idMateria,hora) VALUES(".$idTema.",'".$description."','".$idAmigo."','".$fecha."','activo','".$idMateria."', '".$hora."')");
 		$this->terminate();
 		return $query;
 	}
@@ -265,6 +265,17 @@ class AdminDB extends Model{
 		$query = $this->query("UPDATE Curso SET descripcion = '".$description."', idAmigoAcademico = '".$idAmigo."',fecha = '".$fecha."',idMateria = '".$idMateria."',idTema = ".$idTema." WHERE id = '".$id."'");
 		$this->terminate();
 		return $query;
+	}
+
+	public function getC($id){
+		$this->connect();
+		$query = $this->query("SELECT * FROM Curso  WHERE id = '".$id."'");
+		$this->terminate();
+		$array = array();
+		while($row = mysqli_fetch_array($query)){
+			array_push($array,$row);
+		}
+		return $array;
 	}
 
 	public function getCurso($id){

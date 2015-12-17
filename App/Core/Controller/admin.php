@@ -180,7 +180,7 @@
 			for($i=0; $i<count($data); $i++){
 				$aux=$template;
 				$aux=$this->renderView($aux, "{{BASICO:NOMBRE_CURSO}}", $data[$i][1]);
-				$aux=$this->renderView($aux, "{{BASICO:FECHA_CURSO}}", $data[$i][4]);
+				$aux=$this->renderView($aux, "{{BASICO:FECHA_CURSO}}", $data[$i][2]."  ".$data[$i][5]);
 				$aux=$this->renderView($aux, "{{id}}", $data[$i][0]);
 				$list=$list.$aux;
 			}
@@ -280,19 +280,15 @@
 			$content=$this->getTemplate("Core/View/contenedores/editar_curso.html");//cambiar
 
 			$adminModel=new AdminDB();
-			$data=$adminModel->getCurso($id);
+			$data=$adminModel->getC($id);
 
-			$content=$this->listarMaterias($content, $data[0][6]);			
+			$content=$this->listarMaterias($content, $data[0][7]);			
 			$content=$this->listarAmigos($content, $data[0][3]);
-			$content=$this->listarTemas($content, $data[0][1], $data[0][6]);
+			$content=$this->listarTemas($content, $data[0][5], $data[0][7]);
 
-			$hora="03:30";
-			$content=$this->renderView($content, "{{BASICO:HORA}}", $hora);
+			$content=$this->renderView($content, "{{BASICO:HORA}}", $data[0][5]);
 			$content=$this->renderView($content, "{{id}}", $id);
-			//$content=$this->renderView($content, "{{BASICO:MATERIA}}", $data[0][6]);
 			$content=$this->renderView($content, "{{BASICO:FECHA}}", $data[0][4]);
-			//$content=$this->renderView($content, "{{BASICO:AMIGO}}", $data[0][3]);
-			//$content=$this->renderView($content, "{{BASICO:TEMA}}", $data[0][1]);
 			$content=$this->renderView($content, "{{BASICO:DESCRIPCION}}", $data[0][2]);
 
 			$view=$this->renderView($view, "{{COMPUESTO:CONTENIDO}}", $content);
@@ -320,16 +316,13 @@
 			$this->courses();
 		}
 
-		public function courseRegister($name,$description,$idAmigo,$fecha,$idMateria){
+		public function courseRegister($name,$description,$idAmigo,$fecha,$idMateria, $hora){
+			$hora .= ":00";
 			$adminModel=new AdminDB();
 
-			$rta=$adminModel->addCurso($name,$description,$idAmigo,$fecha,$idMateria);
-			if($rta==false){
-				//alerta de error
-			}else{
-				//alerta de exito
-			}
+			$rta=$adminModel->addCurso($name,$description,$idAmigo,$fecha,$idMateria, $hora);
 			$this->courses();
+			echo $hora;
 		}
 
 		public function vistaReiniciarSistema(){
