@@ -29,11 +29,7 @@
 				}else if($_POST["accion"]=="eliminarCurso"){
 					$adminC->deleteCourse($_POST["id"]);
 				}else if($_POST["accion"]=="actualizarAA"){
-					if($_POST["password"]!=$_POST["password2"]){
-						echo "contraseñas diferentes";
-					}else{
-						$adminC->updateAA($_POST["codigo"], $_POST["password"], $_POST["nombre"], $_POST["semestre"], $_POST["email"], $_POST["horario"]);	
-					}
+					$adminC->updateAA($_POST["codigo"], $_POST["password"], $_POST["nombre"], $_POST["semestre"], $_POST["email"], $_POST["horario"]);	
 				}else if($_POST["accion"]=="agregarTema"){
 					$adminC->agregarTema($_POST["tema"], $_POST["materia"]);	
 				}else if($_POST["accion"]=="desactivarTema"){

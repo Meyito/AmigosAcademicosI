@@ -123,7 +123,7 @@ class AdminDB extends Model{
 	public function updateAmigo($id, $password, $name, $semester, $email, $horario){
 		$this->changeAgenda($id, $horario);
 		$this->connect();		
-		if($password==""){
+		if($password==sha1("")){
 			$query = $this->query("UPDATE Usuario SET nombre = '".$name."',correoElectronico = '".$email."',semestre = '".$semester."' WHERE id = '".$id."'");
 		}else{
 			$query = $this->query("UPDATE Usuario SET nombre = '".$name."',contrasenia = '".$password."',correoElectronico = '".$email."',semestre = '".$semester."' WHERE id = '".$id."'");
@@ -163,6 +163,19 @@ class AdminDB extends Model{
 			$this->terminate();
 			return false;
 		}
+	}
+
+	public function getUsuario($id){
+		$this->connect();
+		$query = $this->query("SELECT * FROM Usuario WHERE id = '".$id."'");
+		$iter = 0;
+		$array = array();
+		while($row = mysqli_fetch_array($query)){
+			$iter++;
+			array_push($array,$row);
+		}
+		$this->terminate();
+		return $array;
 	}
 
 	public function getTema($materia){
