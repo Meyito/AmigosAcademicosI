@@ -31,7 +31,7 @@
 			//Los datos de registro llegan por post. Hace echo "ok" si el registro es exitoso, echo "error"
 			//en caso contrario
 			//Recibe: $_POST["codigo"],$_POST["nombre"],$_POST["semestre"],$_POST["correo"], $_POST["password"] y $_POST["password2"]
-			$query = $mobileQuery->registrar($_POST["codigo"],$_POST["nombre"],$_POST["correo"],$_POST["semestre"],$_POST["password"],$_POST["password2"]);
+			$query = $mobileQuery->registrar($_POST["codigo"],$_POST["nombre"],$_POST["correo"],$_POST["semestre"],sha1($_POST["password"]),sha1($_POST["password2"]));
 			if($query){
 				echo "ok";
 			}
@@ -185,7 +185,7 @@
 			//"email"
 			//"semestre"
 			//Retorna echo "ok" o echo "error" según corresponda
-			$query = $mobileQuery->nuevoAmigo($_POST["codigo"],$_POST["nombre"],$_POST["email"],$_POST["semestre"],$_POST["password"],$_POST["password2"]);
+			$query = $mobileQuery->nuevoAmigo($_POST["codigo"],$_POST["nombre"],$_POST["email"],$_POST["semestre"],sha1($_POST["password"]),sha1($_POST["password2"]);
         	if($query){
         		echo "ok";
         	}
