@@ -211,10 +211,10 @@
 			$index = 0;
 			while($index<sizeof($array)){
 				if(array_key_exists($array[$index][0]+$array[$index][1]+"",$output)){
-					$output[$array[$index][0]+$array[$index][1]+""] += " - " + $array[$index][2];
+					$output[$array[$index][0].$array[$index][1]] += " - " + $array[$index][2];
 				}
 				else{
-					$output[$array[$index][0]+$array[$index][1]+""] = $array[$index][2];
+					$output[$array[$index][0].$array[$index][1]] = $array[$index][2];
 				}
 				$index++;
 			}
@@ -394,7 +394,7 @@
 			$output = array();
 			$index = 0;
 			while($index<sizeof($array)){
-				$output[($index+1)+""] = array(
+				$output[($index+1).""] = array(
 									"id" => $array[$index][0],
 									"nombre" => $array[$index][1],
 									"fecha" => $array[$index][2]);
