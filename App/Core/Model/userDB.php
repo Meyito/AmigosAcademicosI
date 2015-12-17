@@ -119,6 +119,46 @@ class UserDB extends Model{
 		return $query;
 	}
 
+	public function getAmigosHistoricos(){
+		$this->connect();
+		$query = $this->query("SELECT id, nombre FROM Usuario WHERE tipo = 2 AND estado='inactivo'");
+		$this->terminate();
+		$array = array();
+		while($row = mysqli_fetch_array($query)){
+			array_push($array,$row);
+		}
+		return $array;
+	}
+
+	public function activarAAH($cod){
+		$this->connect();
+		$query=$this->query("UPDATE Usuario SET estado = 'activo' WHERE id = '".$cod."'");
+		$this->terminate();
+		return $query;
+	}
+
+	public function getAmigoHistorico($cod){
+		$this->connect();
+		$query = $this->query("SELECT nombre, correoElectronico FROM Usuario WHERE tipo = 2 AND id='".$cod."'");
+		$this->terminate();
+		$array = array();
+		while($row = mysqli_fetch_array($query)){
+			array_push($array,$row);
+		}
+		return $array;
+	}
+
+	public function getPeriodos($cod){
+		$this->connect();
+		$query = $this->query("SELECT descripcion FROM Periodo, AmigoPeriodo WHERE id = idPeriodo AND idAmigoAcademico='".$cod."'");
+		$this->terminate();
+		$array = array();
+		while($row = mysqli_fetch_array($query)){
+			array_push($array,$row);
+		}
+		return $array;
+	}
+
 }
 
 ?>

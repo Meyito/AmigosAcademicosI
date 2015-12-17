@@ -44,6 +44,8 @@
 					$adminC->eliminarTema($_POST["valor"]);	
 				}else if($_POST["accion"]=="reiniciarSistema"){
 					$adminC->reiniciar($_POST["nombreSemestre"], $_POST["noEstudiantes"]);
+				}else if($_POST["accion"]=="activarAAHistorico"){
+					$adminC->activarAAHistorico($_POST["codigo"]);
 				}
 
 			}else if(isset($_GET["accion"])){
@@ -80,6 +82,10 @@
 					$adminC->estadistica3();
 				}else if($_GET["accion"]=="reiniciar"){
 					$adminC->vistaReiniciarSistema();
+				}else if($_GET["accion"]=="historicosAA"){
+					$adminC->vistaHistoricosAA();
+				}else if($_GET["accion"]=="verAAHistorico"){
+					$adminC->vistaAmigoHistorico($_GET["id"]);
 				}
 
 				/*PROCESAMIENTO DE LAS PETICIONES AJAX DE LAS ESTADISTICAS*/

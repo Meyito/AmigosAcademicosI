@@ -342,5 +342,72 @@
 			$adminModel->reiniciarSistema($nombreSem, $cante);
 			$this->index();
 		}
+
+		public function vistaHistoricosAA(){
+			$view=$this->base("Core/View/assets/menu_admin.html");
+			$content=$this->getTemplate("Core/View/contenedores/amigos_Historicos.html");
+			$ga=$this->getAmigosHistoricos();
+			$content=$this->renderView($content, "{{CICLO:AMIGOS}}", $ga);
+			$view=$this->renderView($view, "{{COMPUESTO:CONTENIDO}}", $content);
+			$view=$this->renderView($view, "{{COMPUESTO:LIBRERIAS_JS}}", "");
+			$this->showView($view);
+		}
+
+		public function getAmigosHistoricos(){
+			$template=$this->getTemplate("Core/View/assets/lista_amigos_historicos.html");
+			$userModel=new UserDB();
+			$data=$userModel->getAmigosHistoricos();
+
+			$rta="";
+
+			for($i=0; $i<count($data); $i++){
+				$temp=$template;
+				$temp=$this->renderView($temp, "{{BASICO:NOMBRE_AMIGO}}", $data[$i][1]);
+				$temp=$this->renderView($temp, "{{BASICO:ID}}", $data[$i][0]);
+				$rta .= $temp;
+			}
+
+			return $rta;
+		}
+
+		public function activarAAHistorico($cod){
+			$userModel=new UserDB();
+			$userModel->activarAAH($cod);
+			$this->vistaHistoricosAA();
+		}
+
+		public function vistaAmigoHistorico($cod){
+			$view=$this->base("Core/View/assets/menu_admin.html");
+			$content=$this->getTemplate("Core/View/contenedores/perfil_historico_amigo.html");
+			
+			$userModel=new UserDB();
+			$data=$userModel->getAmigoHistorico($cod);
+
+			$content=$this->renderView($content, "{{BASICO:NOMBRE}}", $data[0][0]);
+			$content=$this->renderView($content, "{{BASICO:EMAIL}}", $data[0][1]);
+
+			$per=$this->getPeriodos($cod);
+			$content=$this->renderView($content, "{{CICLO:PERIODO}}", $per);
+
+			$view=$this->renderView($view, "{{COMPUESTO:CONTENIDO}}", $content);
+			$view=$this->renderView($view, "{{COMPUESTO:LIBRERIAS_JS}}", "");
+			$this->showView($view);
+		}
+
+		public function getPeriodos($cod){
+			$template=$this->getTemplate("Core/View/assets/amigo_historico_periodo.html");
+			$userModel=new UserDB();
+			$data=$userModel->getPeriodos($cod);
+
+			$rta="";
+
+			for($i=0; $i<count($data); $i++){
+				$temp=$template;
+				$temp=$this->renderView($temp, "{{BASICO:PERIODO}}", $data[$i][0]);
+				$rta .= $temp;
+			}
+
+			return $rta;
+		}
 	}
 ?>
