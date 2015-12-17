@@ -561,10 +561,10 @@
 			//Devolver con el siguiente formato
 			$array = $mobileQuery->obtenerDatosAA($_GET["codigoAA"]);
 			$output = array(
-				"codigo" => $array['id'],
-				"nombre" => $array['nombre'],
-				"email" => $array['correoElectronico'],
-				"semestre" => $array['semestre']
+				"codigo" => $array[0],
+				"nombre" => $array[1],
+				"email" => $array[2],
+				"semestre" => $array[3]
 			);
 			
 			echo json_encode($output);
