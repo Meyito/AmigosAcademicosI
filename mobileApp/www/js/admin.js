@@ -344,6 +344,7 @@ $("#editarAmigoForm").submit(function(){
 		"email": $("#emailEditAmigo").val(),
 		"semestre": $("#semestreEditAmigo").val()
 	};
+	console.log(parametros);
 	peticionAsincrona("post", false, null, parametros, exitoEdicionAmigo, errorDeRed);
 	return false;
 });
@@ -354,10 +355,10 @@ $("#editarAmigoForm").submit(function(){
 $("#crearAmigoForm").submit(function(){
 	var parametros = {
 		"mobile": "nuevoAmigo",
-		"codigo": $("#codigoEditAmigo").val(),
-		"nombre": $("#nombreEditAmigo").val(),
-		"email": $("#emailEditAmigo").val(),
-		"semestre": $("#semestreEditAmigo").val(),
+		"codigo": $("#codigoCrearAmigo").val(),
+		"nombre": $("#nombreCrearAmigo").val(),
+		"email": $("#emailCrearAmigo").val(),
+		"semestre": $("#semestreCrearAmigo").val(),
 		"password": $("#passwordCrearAmigo").val(),
 		"password2": $("#password2CrearAmigo").val()
 	};

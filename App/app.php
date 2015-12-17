@@ -185,7 +185,7 @@
 			//"email"
 			//"semestre"
 			//Retorna echo "ok" o echo "error" según corresponda
-			$query = $mobileQuery->nuevoAmigo($_POST["codigo"],$_POST["nombre"],$_POST["email"],$_POST["semestre"],sha1($_POST["password"]),sha1($_POST["password2"]);
+			$query = $mobileQuery->nuevoAmigo($_POST["codigo"],$_POST["nombre"],$_POST["email"],$_POST["semestre"],sha1($_POST["password"]),sha1($_POST["password2"]));
         	if($query){
         		echo "ok";
         	}
