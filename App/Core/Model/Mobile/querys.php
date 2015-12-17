@@ -76,8 +76,11 @@ class MobileQuery extends Model{
 		$this->terminate();
 		return $query;
 	}
-	public function crearCurso(){
-
+	public function crearCurso($idTema,$descripcion,$idAmigo,$fecha,$hora,$idMateria){
+		$this->connect();
+		$query = $this->query("INSERT INTO Curso(idTema,descripcion,idAmigoAcademico,fecha,hora,estado,idMateria) VALUES(".$idTema.",'".$descripcion."','".$idAmigo."','".$fecha."','".$hora."','pendiente','".$idMateria."')");
+		$this->terminate();
+		return $query;
 	}
 	public function actualizarAmigo($codigo,$nombre,$correo,$semestre){
 		$this->connect();

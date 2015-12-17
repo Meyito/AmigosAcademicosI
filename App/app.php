@@ -136,8 +136,13 @@
 			//"hora"
 			//"descripcion"
 			//Retorna echo "ok" o echo "error" según corresponda
-
-			echo "ok";
+			$query = $mobileQuery->crearCurso($_POST["idTema"],$_POST["descripcion"],$_POST["idAmigo"],$_POST["fecha"],$_POST["hora"],$_POST["idMateria"]);
+        	if($query){
+        		echo "ok";
+        	}
+        	else{
+        		echo "error";
+        	}
 
 		}else if($_POST["mobile"]=="actualizarAmigo"){
 			//Actualiza un amigo en la BD. Los siguientes datos llegan por $_POST
