@@ -1,5 +1,20 @@
 <?php
+	
+	/**
+ 	* .............................................
+ 	* UNIVERSIDAD  FRANCISCO  DE  PAULA  SANTANDER
+ 	*    PROGRAMA  DE  INGENIERIA   DE   SISTEMAS
+ 	*         AMIGOS ACADEMICOS INTERACTIVOS
+ 	*             SAN JOSE DE CUCUTA-2015
+	* ............................................
+ 	*/
 
+	/**
+	* @author Gerson Yesid Lazaro Carrillo 1150972
+	* @author Angie Melissa Delgado León 1150990
+	* @author Juan Daniel Vega Santos 1150958
+	*/
+	
 	session_start();
 
 	require_once "Core/Controller/controller.php";

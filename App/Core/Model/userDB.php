@@ -1,6 +1,21 @@
 <?php
 
-include_once "Core/Model/model.php";
+	/**
+ 	* .............................................
+ 	* UNIVERSIDAD  FRANCISCO  DE  PAULA  SANTANDER
+ 	*    PROGRAMA  DE  INGENIERIA   DE   SISTEMAS
+ 	*         AMIGOS ACADEMICOS INTERACTIVOS
+ 	*             SAN JOSE DE CUCUTA-2015
+	* ............................................
+ 	*/
+
+ 	include_once "Core/Model/model.php";
+
+ 	/**
+	* @author Gerson Yesid Lazaro Carrillo 1150972
+	* @author Angie Melissa Delgado León 1150990
+	* @author Juan Daniel Vega Santos 1150958
+	*/
 
 class UserDB extends Model{
 	

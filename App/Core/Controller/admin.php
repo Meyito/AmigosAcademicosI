@@ -1,8 +1,23 @@
 <?php
 
+	/**
+ 	* .............................................
+ 	* UNIVERSIDAD  FRANCISCO  DE  PAULA  SANTANDER
+ 	*    PROGRAMA  DE  INGENIERIA   DE   SISTEMAS
+ 	*         AMIGOS ACADEMICOS INTERACTIVOS
+ 	*             SAN JOSE DE CUCUTA-2015
+	* ............................................
+ 	*/
+
 	require_once "Core/Controller/controller.php";
 	include_once "Core/Model/adminDB.php";
 	include_once "Core/Model/userDB.php";
+
+	/**
+	* @author Gerson Yesid Lazaro Carrillo 1150972
+	* @author Angie Melissa Delgado León 1150990
+	* @author Juan Daniel Vega Santos 1150958
+	*/
 
 	class Admin extends Controller{
 
