@@ -89,7 +89,7 @@ class MobileQuery extends Model{
 	}
 	public function actualizarAmigo($codigo,$nombre,$correo,$semestre){
 		$this->connect();
-		$query = $this->query("UPDATE Usuario SET nombre = '".$nombre."','".$correo."',".$semestre." WHERE id = '".$codigo."' AND tipo = 2 ");
+		$query = $this->query("UPDATE Usuario SET nombre = '".$nombre."',correoElectronico = '".$correo."',semestre = ".$semestre." WHERE id = '".$codigo."' AND tipo = 2 ");
 		$this->terminate();
 		return $query;
 	}
