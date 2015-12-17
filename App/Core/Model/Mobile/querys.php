@@ -200,7 +200,7 @@ class MobileQuery extends Model{
 		return $array;
 
 	}
-	public function obternerDatosAA($codigo){
+	public function obtenerDatosAA($codigo){
 		$this->connect();
 		$query = $this->query("SELECT id,nombre,correoElectronico,semestre FROM Usuario WHERE id = '".$codigo."' AND tipo = 2 AND estado = 'activo'");
 		$this->terminate();
