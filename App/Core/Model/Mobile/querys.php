@@ -100,6 +100,7 @@ class MobileQuery extends Model{
 		$this->connect();
 		$query = $this->query("SELECT a.dia,a.hora,u.nombre FROM Agenda a,Usuario u WHERE a.idAmigoAcademico = u.id");
 		$this->terminate();
+		$array = array();
 		while($row = mysqli_fetch_array($query)){
 			array_push($array,$row);
 		}

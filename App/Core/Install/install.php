@@ -81,6 +81,7 @@ $query = "CREATE TABLE Curso(
 			descripcion varchar(144),
 			idAmigoAcademico varchar(7) NOT NULL,
 			fecha Date NOT NULL,
+			hora TIME NOT NULL,
 			estado varchar(15) NOT NULL,
 			idMateria varchar(7) NOT NULL,
 			promedioCalificacion float(7),
