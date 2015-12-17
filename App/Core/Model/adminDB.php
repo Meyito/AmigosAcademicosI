@@ -123,7 +123,11 @@ class AdminDB extends Model{
 	public function updateAmigo($id, $password, $name, $semester, $email, $horario){
 		$this->changeAgenda($id, $horario);
 		$this->connect();		
-		$query = $this->query("UPDATE Usuario SET nombre = '".$name."',contrasenia = '".$password."',correoElectronico = '".$email."',semestre = '".$semester."' WHERE id = '".$id."'");
+		if($password==""){
+			$query = $this->query("UPDATE Usuario SET nombre = '".$name."',correoElectronico = '".$email."',semestre = '".$semester."' WHERE id = '".$id."'");
+		}else{
+			$query = $this->query("UPDATE Usuario SET nombre = '".$name."',contrasenia = '".$password."',correoElectronico = '".$email."',semestre = '".$semester."' WHERE id = '".$id."'");
+		}
 		$this->terminate();
 		return $query;
 	}
