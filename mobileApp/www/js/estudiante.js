@@ -17,7 +17,6 @@ function inicializar () {
     cargarTemas();
     cargarCursos();
     cargarCalificadores();
-    cargarCalificadoresCurso();
 }
 
 
@@ -36,6 +35,7 @@ function cargarCalificadores(){
         "codigo" : localStorage.getItem("CodigoUsuario")
     };
     peticionAsincrona("get", false, null, parametros, construirCalificadores, function(){}); 
+    cargarCalificadoresCurso();
 }
 function construirCalificadores(response){
 	if(response=="ok"){
@@ -46,7 +46,7 @@ function construirCalificadores(response){
     	var data = JSON.parse(response);
     	var struct = "";
     	for(var val in data){
-    		struct += "<div data-role='collapsible'><h4>"+data[val].materia+" - "+data[val].tema+ " - " + data[val].amigo +" - "+ data[val].fecha+"</h4><button class='ui-btn' onclick=\"popupCalificar('"+data[val].id+"')\">Calificar Esta asesoría</button></div>";
+    		struct += "<div data-role='collapsible'><h4>"+data[val].materia+" - "+data[val].tema+ " - " + data[val].amigo +" - "+ data[val].fecha+"</h4><button class='ui-btn' onclick=\"popupCalificar('"+data[val].id+"')\">Calificar esta asesoría</button></div>";
     	}
     	try{
     		$("#calificaciones").html(struct).collapsibleset("refresh")
@@ -58,7 +58,7 @@ function cargarCalificadoresCurso(){
         "mobile" : 'calificacionCurso',
         "codigo" : localStorage.getItem("CodigoUsuario")
     };
-    peticionAsincrona("get", false, null, parametros, construirCalificadores, function(){}); 
+    peticionAsincrona("get", false, null, parametros, construirCalificadoresCurso, function(){}); 
 }
 function construirCalificadoresCurso(response){
     if(response=="ok"){
@@ -69,7 +69,7 @@ function construirCalificadoresCurso(response){
         var data = JSON.parse(response);
         var struct = "";
         for(var val in data){
-            struct += "<div data-role='collapsible'><h4>"+data[val].materia+" - "+data[val].tema+ " - " + data[val].amigo +" - "+ data[val].fecha+"</h4><button class='ui-btn' onclick=\"popupCalificarCurso('"+data[val].id+"')\">Calificar Esta asesoría</button></div>";
+            struct += "<div data-role='collapsible'><h4>"+data[val].materia+" - "+data[val].tema+ " - " + data[val].amigo +" - "+ data[val].fecha+"</h4><button class='ui-btn' onclick=\"popupCalificarCurso('"+data[val].id+"')\">Calificar este curso</button></div>";
         }
         try{
             $("#calificacionesCursos").html(struct).collapsibleset("refresh")
@@ -134,7 +134,7 @@ $("#verifyAsesoria").click(cargarCalificadores)
  $('#calificacionCursoForm').submit(function() {  
     var parametros = {
         "mobile" : 'registrarCalificacionCurso',
-        "idAsesoria" : $("#calificacionIDCurso").val(),
+        "idCurso" : $("#calificacionIDCurso").val(),
         "puntaje" : $("#puntajeCurso").val(),
         "comentario" : $("#comentarioCurso").val(),
         "estudiante" : localStorage.getItem("CodigoUsuario")

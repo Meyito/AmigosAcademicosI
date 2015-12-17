@@ -344,7 +344,6 @@ $("#editarAmigoForm").submit(function(){
 		"email": $("#emailEditAmigo").val(),
 		"semestre": $("#semestreEditAmigo").val()
 	};
-	console.log(parametros);
 	peticionAsincrona("post", false, null, parametros, exitoEdicionAmigo, errorDeRed);
 	return false;
 });
