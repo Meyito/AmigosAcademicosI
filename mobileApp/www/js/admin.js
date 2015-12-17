@@ -56,6 +56,7 @@ function construirCursosAdmin (response) {
 function editarCurso (id, materia, fecha, hora, nombre, amigo, descripcion) {
 	cargarMateriasEditarCurso (materia, nombre);
 	cargarAmigos(amigo);
+	$("#editCursoID").val(id)
 	$("#editCursoFecha").val(fecha);
 	$("#editCursoHora").val(hora);
 	$("#editCursoComentario").val(descripcion);
@@ -383,6 +384,7 @@ $("#formNuevoTema").submit(function(){
 *	Edición de un curso
 */
 $("#editCursoEditar").click(function(){
+
 	var parametros = {
 		"mobile": "editarCurso",
 		"id": $("#editCursoID").val(),
@@ -393,6 +395,7 @@ $("#editCursoEditar").click(function(){
 		"hora" : $("#editCursoHora").val(),
 		"descripcion" : $("#editCursoComentario").val()
 	};
+	console.log(parametros);
 	peticionAsincrona("post", false, null, parametros, exitoEdicionCurso, errorDeRed);
 });
 

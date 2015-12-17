@@ -560,9 +560,12 @@
 			//Obtiene los datos del amigo académico cuyo código es $_GET["codigoAA"]
 			//Devolver con el siguiente formato
 			$array = $mobileQuery->obtenerDatosAA($_GET["codigoAA"]);
-			$output = array("codigo"=>$array[0],"nombre"=>$array[1],"email"=>$array[2],"semestre"=>$array[3]);
+			$output = array(
+				"codigo"=>$array[0]["id"],
+				"nombre"=>$array[0]["nombre"],
+				"email"=>$array[0]["correoElectronico"],
+				"semestre"=>$array[0]["semestre"]);
 			echo json_encode($output);
-
 		}
 	}
 

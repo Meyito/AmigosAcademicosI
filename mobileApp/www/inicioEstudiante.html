@@ -236,7 +236,8 @@
 		<div data-role="content">
 			<h3>Calificación de Asesorias y Cursos</h3>
 			<div id="calificaciones" data-role="collapsibleset"></div>
-			<button class="ui-btn" id="verifyAsesoria">Verificar si existen nuevas asesorias</button>
+			<div id="calificacionesCursos" data-role="collapsibleset"></div>
+			<button class="ui-btn" id="verifyAsesoria">Verificar si existen nuevas asesorias o cursos</button>
 		</div>
 		<div class="footer" data-role="footer">
 			<img src="css/images/logos.png" alt="">
@@ -288,6 +289,24 @@
 				<br>
 				<label for="comentario">¿Quieres añadir un comentario?</label>
 				<textarea name="comentario" id="comentario"></textarea>
+				<input type="submit" value="Calificar asesoría">
+			</form>
+		</div>
+	</div>
+
+	<div data-role="dialog" id="popupCalificacionCurso">
+		<div data-role="header">
+			<h1>¿Como calificarias este Curso?</h1>
+		</div>
+
+		<div data-role="content">	
+			<form id="calificacionCursoForm">
+				<label for="puntaje">Califica el curso de 1 a 5</label>
+				<input type="hidden" value="" id="calificacionIDCurso">
+				<input type="range" name="puntajeCurso" id="puntajeCurso" value="3" min="1" max="5" step="1" data-highlight="true">
+				<br>
+				<label for="comentarioCurso">¿Quieres añadir un comentario?</label>
+				<textarea name="comentarioCurso" id="comentariocurso"></textarea>
 				<input type="submit" value="Calificar asesoría">
 			</form>
 		</div>
